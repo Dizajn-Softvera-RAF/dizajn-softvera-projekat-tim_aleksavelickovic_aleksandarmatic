@@ -11,11 +11,13 @@ import java.awt.*;
 
 public class MainFrame extends JFrame {
     private static MainFrame instance;
-    ActionManager actionManager;
-    //buduca polja za sve komponente view-a na glavnom prozoru
 
+    private ActionManager actionManager ;
+
+    private JMenuBar menu;
+    private JToolBar toolBar;
     private MainFrame(){
-        initialize();
+       // MainFrame.getInstance().setVisible(true);
     }
 
     public ActionManager getActionManager() {
@@ -23,6 +25,7 @@ public class MainFrame extends JFrame {
     }
 
     private void initialize(){
+        actionManager=new ActionManager();
         Toolkit kit = Toolkit.getDefaultToolkit();
         Dimension screenSize = kit.getScreenSize();
         int screenHeight = screenSize.height;
@@ -34,7 +37,7 @@ public class MainFrame extends JFrame {
 
         MyMenyBar menu = new MyMenyBar();
         setJMenuBar(menu);
-        actionManager=new ActionManager();
+
         MyToolBar toolBar = new MyToolBar();
         add(toolBar, BorderLayout.NORTH);
     }

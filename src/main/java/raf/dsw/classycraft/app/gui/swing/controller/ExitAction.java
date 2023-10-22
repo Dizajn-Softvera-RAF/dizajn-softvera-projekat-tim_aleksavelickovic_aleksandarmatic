@@ -1,11 +1,15 @@
 package raf.dsw.classycraft.app.gui.swing.controller;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.net.URL;
-
+@Getter
+@Setter
 public class ExitAction extends AbstractClassyAction {
 
     public ExitAction(){
