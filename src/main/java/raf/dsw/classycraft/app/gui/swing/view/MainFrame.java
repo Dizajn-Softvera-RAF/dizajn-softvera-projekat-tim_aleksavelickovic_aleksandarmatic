@@ -1,15 +1,25 @@
 package raf.dsw.classycraft.app.gui.swing.view;
 
+import lombok.Getter;
+import lombok.Setter;
+import raf.dsw.classycraft.app.gui.swing.controller.ActionManager;
+
 import javax.swing.*;
 import java.awt.*;
+@Getter
+@Setter
 
 public class MainFrame extends JFrame {
     private static MainFrame instance;
-
+    ActionManager actionManager;
     //buduca polja za sve komponente view-a na glavnom prozoru
 
     private MainFrame(){
+        initialize();
+    }
 
+    public ActionManager getActionManager() {
+        return actionManager;
     }
 
     private void initialize(){
@@ -24,7 +34,7 @@ public class MainFrame extends JFrame {
 
         MyMenyBar menu = new MyMenyBar();
         setJMenuBar(menu);
-
+        actionManager=new ActionManager();
         MyToolBar toolBar = new MyToolBar();
         add(toolBar, BorderLayout.NORTH);
     }

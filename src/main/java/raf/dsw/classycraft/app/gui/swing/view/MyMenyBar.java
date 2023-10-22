@@ -1,6 +1,7 @@
 package raf.dsw.classycraft.app.gui.swing.view;
 
 import raf.dsw.classycraft.app.gui.swing.controller.ExitAction;
+import raf.dsw.classycraft.app.gui.swing.controller.NewProjectAction;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -11,8 +12,11 @@ public class MyMenyBar extends JMenuBar {
     public MyMenyBar(){
         JMenu fileMenu = new JMenu("File");
         fileMenu.setMnemonic(KeyEvent.VK_F);
-        ExitAction ea = new ExitAction();
-        fileMenu.add(ea);
+       fileMenu.add(MainFrame.getInstance().getActionManager().getExitAction());
+        fileMenu.add(MainFrame.getInstance().getActionManager().getNewProjectAction());
+
+
+
         add(fileMenu);
     }
 
