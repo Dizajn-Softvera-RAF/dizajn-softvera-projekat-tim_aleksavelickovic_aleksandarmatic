@@ -1,4 +1,7 @@
 package raf.dsw.classycraft.app.gui.swing.controller;
 
-public class AbstractClassyAction {
+import javax.swing.*;
+
+public abstract class AbstractClassyAction {
+    public abstract Icon loadIcon(String fileName);
 }
