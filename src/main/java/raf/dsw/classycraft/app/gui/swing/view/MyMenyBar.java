@@ -11,14 +11,20 @@ public class MyMenyBar extends JMenuBar {
 
     public MyMenyBar(){
         JMenu fileMenu = new JMenu("File");
+        JMenu editMenu = new JMenu("Edit");
+
         fileMenu.setMnemonic(KeyEvent.VK_F);
+        editMenu.setMnemonic(KeyEvent.VK_E);
         //MainFrame.getInstance().setVisible(true);
        fileMenu.add(MainFrame.getInstance().getActionManager().getExitAction());
         fileMenu.add(MainFrame.getInstance().getActionManager().getNewProjectAction());
 
+        editMenu.add(MainFrame.getInstance().getActionManager().getAboutUs());
+
 
 
         add(fileMenu);
+        add(editMenu);
     }
 
 }

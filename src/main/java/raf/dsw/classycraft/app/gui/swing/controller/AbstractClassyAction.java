@@ -1,5 +1,4 @@
 package raf.dsw.classycraft.app.gui.swing.controller;
-
 import javax.swing.*;
 import java.net.URL;
 
@@ -16,4 +15,5 @@ public abstract class AbstractClassyAction extends AbstractAction{
         }
         return icon;
     }
+
 }
