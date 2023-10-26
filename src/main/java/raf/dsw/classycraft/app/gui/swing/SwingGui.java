@@ -11,6 +11,7 @@ public class SwingGui implements Gui {
     public void start() {
         mainFrame = MainFrame.getInstance();
         mainFrame.setVisible(true);
+
     }
 
 }
