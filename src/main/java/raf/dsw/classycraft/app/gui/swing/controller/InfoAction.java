@@ -51,7 +51,9 @@ public class InfoAction extends AbstractClassyAction{
 
         //labele sa imenima
         JLabel ime1 = new JLabel();
-        JLabel slika2 = new JLabel(new ImageIcon("/images/Info3.jpg"));
+
+        JLabel slika2 = new JLabel(loadIcon("/images/Info3.jpg"));
+        JLabel slika1 = new JLabel(loadIcon("/images/Info4.png"));
         JLabel ime2 = new JLabel();
         ime1.setText("Aleksa Veličković");
         ime2.setText("Aleksandar Miodragović");
@@ -66,7 +68,7 @@ public class InfoAction extends AbstractClassyAction{
 
         panel1.add(ime1);
         panel2.add(ime2);
-        //panel3.add(slika1);
+        panel3.add(slika1);
         panel4.add(slika2);
 
         aboutUsProzor.add(panel1);
