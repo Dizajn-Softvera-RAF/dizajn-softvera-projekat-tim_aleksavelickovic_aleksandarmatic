@@ -1,5 +1,6 @@
 package raf.dsw.classycraft.app.core;
 
+import raf.dsw.classycraft.app.classyRepository.ClassyRepositoryImplementation;
 import raf.dsw.classycraft.app.gui.swing.view.MainFrame;
 
 public class ApplicationFramework {
@@ -11,7 +12,7 @@ public class ApplicationFramework {
     private ApplicationFramework(){
 
     }
-
+    public ClassyRepositoryImplementation classyRepositoryImplementation;
     public void initialize(){
         MainFrame.getInstance().setVisible(true);
     }
