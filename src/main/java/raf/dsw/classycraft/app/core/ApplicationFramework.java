@@ -12,7 +12,20 @@ public class ApplicationFramework {
     private ApplicationFramework(){
 
     }
-    public ClassyRepositoryImplementation classyRepositoryImplementation;
+    private ClassyRepositoryImplementation classyRepositoryImplementation;
+
+    public static void setInstance(ApplicationFramework instance) {
+        ApplicationFramework.instance = instance;
+    }
+
+    public ClassyRepositoryImplementation getClassyRepositoryImplementation() {
+        return classyRepositoryImplementation;
+    }
+
+    public void setClassyRepositoryImplementation(ClassyRepositoryImplementation classyRepositoryImplementation) {
+        this.classyRepositoryImplementation = classyRepositoryImplementation;
+    }
+
     public void initialize(){
         MainFrame.getInstance().setVisible(true);
     }
