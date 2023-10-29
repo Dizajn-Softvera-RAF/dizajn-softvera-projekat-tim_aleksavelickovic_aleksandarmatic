@@ -1,5 +1,6 @@
 package raf.dsw.classycraft.app.core;
 
+import raf.dsw.classycraft.app.classyRepository.ClassyRepositoryImplementation;
 import raf.dsw.classycraft.app.gui.swing.view.MainFrame;
 
 public class ApplicationFramework {
@@ -10,6 +11,19 @@ public class ApplicationFramework {
 
     private ApplicationFramework(){
 
+    }
+    private ClassyRepositoryImplementation classyRepositoryImplementation;
+
+    public static void setInstance(ApplicationFramework instance) {
+        ApplicationFramework.instance = instance;
+    }
+
+    public ClassyRepositoryImplementation getClassyRepositoryImplementation() {
+        return classyRepositoryImplementation;
+    }
+
+    public void setClassyRepositoryImplementation(ClassyRepositoryImplementation classyRepositoryImplementation) {
+        this.classyRepositoryImplementation = classyRepositoryImplementation;
     }
 
     public void initialize(){
