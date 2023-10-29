@@ -5,6 +5,7 @@ import raf.dsw.classycraft.app.classyRepository.implementation.ProjectExplorer;
 
 public class ClassyRepositoryImplementation implements ClassyRepository{
     private ProjectExplorer root;
+
     @Override
     public ProjectExplorer getRoot() {
         return root;

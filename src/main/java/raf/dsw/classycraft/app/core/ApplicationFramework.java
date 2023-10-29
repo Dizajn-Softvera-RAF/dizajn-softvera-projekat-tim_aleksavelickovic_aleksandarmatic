@@ -1,16 +1,19 @@
 package raf.dsw.classycraft.app.core;
 
 import raf.dsw.classycraft.app.classyRepository.ClassyRepositoryImplementation;
+import raf.dsw.classycraft.app.core.MessageGenerator.MessageGeneratorImplementation;
 import raf.dsw.classycraft.app.gui.swing.view.MainFrame;
 
 public class ApplicationFramework {
 
     private static ApplicationFramework instance;
 
+    private MessageGeneratorImplementation messageGeneratorImplementation;
     //buduca polja za model celog projekta
 
     private ApplicationFramework(){
-
+        classyRepositoryImplementation=new ClassyRepositoryImplementation();
+        messageGeneratorImplementation=new MessageGeneratorImplementation();
     }
     private ClassyRepositoryImplementation classyRepositoryImplementation;
 
@@ -26,6 +29,14 @@ public class ApplicationFramework {
         this.classyRepositoryImplementation = classyRepositoryImplementation;
     }
 
+    public MessageGeneratorImplementation getMessageGeneratorImplementation() {
+        return messageGeneratorImplementation;
+    }
+
+    public void setMessageGeneratorImplementation(MessageGeneratorImplementation messageGeneratorImplementation) {
+        this.messageGeneratorImplementation = messageGeneratorImplementation;
+    }
+
     public void initialize(){
         MainFrame.getInstance().setVisible(true);
     }
@@ -36,4 +47,5 @@ public class ApplicationFramework {
         }
         return instance;
     }
+
 }
