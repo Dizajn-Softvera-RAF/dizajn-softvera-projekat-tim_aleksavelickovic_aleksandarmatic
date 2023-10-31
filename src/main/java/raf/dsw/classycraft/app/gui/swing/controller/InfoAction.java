@@ -36,10 +36,6 @@ public class InfoAction extends AbstractClassyAction{
         JPanel panel2 = new JPanel();
         JPanel panel3 = new JPanel();
         JPanel panel4 = new JPanel();
-        panel1.setBackground(Color.blue);
-        panel2.setBackground(Color.GREEN);
-        panel3.setBackground(Color.BLACK);
-        panel4.setBackground(Color.DARK_GRAY);
         panel1.setBounds(0, 0, 400, 100);
         panel2.setBounds(400, 0, 400, 100);
         panel3.setBounds(0,100,400,700);

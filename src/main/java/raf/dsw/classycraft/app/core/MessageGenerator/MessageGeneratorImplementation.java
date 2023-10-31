@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 public class MessageGeneratorImplementation implements MessageGenerator{
     private ArrayList<Subscriber>subscribers;
+
     @Override
     public void addSubscriber(Subscriber subscriber) {
         subscribers.add(subscriber);
@@ -21,6 +22,7 @@ public class MessageGeneratorImplementation implements MessageGenerator{
         if(notification instanceof Message){
             for(Subscriber subscriber:subscribers)
                 subscriber.update(notification);
+
         }
     }
 }

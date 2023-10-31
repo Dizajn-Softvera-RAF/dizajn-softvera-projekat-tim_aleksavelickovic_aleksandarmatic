@@ -2,6 +2,10 @@ package raf.dsw.classycraft.app.gui.swing.view;
 
 //import lombok.Getter;
 //import lombok.Setter;
+import raf.dsw.classycraft.app.core.MessageGenerator.Message;
+import raf.dsw.classycraft.app.core.MessageGenerator.MessageGeneratorImplementation;
+import raf.dsw.classycraft.app.core.MessageGenerator.MessageType;
+import raf.dsw.classycraft.app.core.observer.Subscriber;
 import raf.dsw.classycraft.app.gui.swing.controller.ActionManager;
 
 import javax.swing.*;
@@ -9,15 +13,17 @@ import java.awt.*;
 //@Getter
 //@Setter
 
-public class MainFrame extends JFrame {
+public class MainFrame extends JFrame implements Subscriber {
     private static MainFrame instance;
 
     private ActionManager actionManager ;
-
+    private MessageGeneratorImplementation mgi;
     private JMenuBar menu;
     private JToolBar toolBar;
-    private MainFrame(){
+    private MainFrame(MessageGeneratorImplementation mgi){
        // MainFrame.getInstance().setVisible(true);
+        this.mgi = mgi;
+        this.mgi.addSubscriber(this);
     }
 
     public ActionManager getActionManager() {
@@ -46,9 +52,25 @@ public class MainFrame extends JFrame {
     {
         if(instance == null)
         {
-            instance = new MainFrame();
+            instance = new MainFrame(new MessageGeneratorImplementation());
             instance.initialize();
         }
         return instance;
+    }
+
+    @Override
+    public void update(Object notification) {
+        if(notification instanceof Message){
+            String string = "["+((Message) notification).getType()+"] ["+((Message) notification).getTimestamp()+"] "+((Message) notification).getText();
+            if (((Message) notification).getType().toString().equals("ERROR")){
+                JOptionPane.showMessageDialog(this,string,"ERROR",JOptionPane.ERROR_MESSAGE);
+            }
+            if (((Message) notification).getType().toString().equals("NOTIFICATION")){
+                JOptionPane.showMessageDialog(this,string,"NOTIFICATION",JOptionPane.INFORMATION_MESSAGE);
+            }
+            if (((Message) notification).getType().toString().equals("WARNING")){
+                JOptionPane.showMessageDialog(this,string,"NOTIFICATION",JOptionPane.WARNING_MESSAGE);
+            }
+        }
     }
 }

@@ -1,9 +1,9 @@
 package raf.dsw.classycraft.app.classyRepository.implementation;
 
-import lombok.Getter;
+
 import raf.dsw.classycraft.app.classyRepository.composite.ClassyNode;
 import raf.dsw.classycraft.app.classyRepository.composite.ClassyNodeComposite;
-@Getter
+
 public class Project extends ClassyNodeComposite {
     private String autorName;
 
