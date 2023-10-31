@@ -70,7 +70,7 @@ public class MainFrame extends JFrame implements Subscriber {
             }
             if (((Message) notification).getType().toString().equals("WARNING")){
                 JOptionPane.showMessageDialog(this,string,"NOTIFICATION",JOptionPane.WARNING_MESSAGE);
-            }
-        }
+            }else JOptionPane.showMessageDialog(this,"abc","greska",JOptionPane.WARNING_MESSAGE);
+        }else JOptionPane.showMessageDialog(this,"abd","GRESKA",JOptionPane.ERROR_MESSAGE);
     }
 }

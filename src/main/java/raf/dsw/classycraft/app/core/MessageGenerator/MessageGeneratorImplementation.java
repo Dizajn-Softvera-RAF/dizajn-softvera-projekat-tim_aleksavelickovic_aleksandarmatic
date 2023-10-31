@@ -7,6 +7,9 @@ import java.util.ArrayList;
 public class MessageGeneratorImplementation implements MessageGenerator{
     private ArrayList<Subscriber>subscribers;
 
+    public MessageGeneratorImplementation(){
+        subscribers = new ArrayList<>();
+    }
     @Override
     public void addSubscriber(Subscriber subscriber) {
         subscribers.add(subscriber);

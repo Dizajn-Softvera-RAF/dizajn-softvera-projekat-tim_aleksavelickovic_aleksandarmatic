@@ -4,10 +4,8 @@ import raf.dsw.classycraft.app.core.MessageGenerator.Message;
 import raf.dsw.classycraft.app.core.MessageGenerator.MessageGeneratorImplementation;
 import raf.dsw.classycraft.app.core.MessageGenerator.MessageType;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 
 public class FileLogger extends Logger{
@@ -20,13 +18,15 @@ public class FileLogger extends Logger{
 
     @Override
     public void Print() {
-        try {
-            FileOutputStream fileStream = new FileOutputStream(fajl,true);
-            String string = "["+type+"] ["+timeStamp+"] "+ text;
-            write(fileStream,string);
-            fileStream.close();
+        PrintWriter pw = null;
+        String string = "["+type+"] ["+timeStamp+"] "+text;
+        try{
+            pw = new PrintWriter(new BufferedWriter(new FileWriter("src/main/resources/log.txt")));
+            pw.println(string);
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }finally {
+            if (pw !=null)pw.close();
         }
     }
 
@@ -44,9 +44,5 @@ public class FileLogger extends Logger{
             timeStamp =null;
         }
     }
-    void write(FileOutputStream stream, String output) throws IOException {
-        output = output + System.getProperty("line.separator");
-        byte[] data = output.getBytes();
-        stream.write(data,0, data.length);
-    }
+
 }
