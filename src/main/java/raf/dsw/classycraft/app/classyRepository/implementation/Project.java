@@ -33,4 +33,14 @@ public class Project extends ClassyNodeComposite {
         this.autorName = autorName;
         this.path = path;
     }
+
+    public Project(String name ,ClassyNode parent) {
+        super(name, parent);
+        this.autorName = autorName;
+    }
+
+    @Override
+    public void addChild(ClassyNode child) {
+
+    }
 }

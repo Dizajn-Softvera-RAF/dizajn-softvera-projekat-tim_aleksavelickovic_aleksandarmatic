@@ -9,4 +9,9 @@ public class Package extends ClassyNodeComposite {
     public Package(String name, ClassyNode parent) {
         super(name, parent);
     }
+
+    @Override
+    public void addChild(ClassyNode child) {
+
+    }
 }

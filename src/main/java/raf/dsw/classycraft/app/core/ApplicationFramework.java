@@ -36,9 +36,14 @@ public class ApplicationFramework {
     public void setMessageGeneratorImplementation(MessageGeneratorImplementation messageGeneratorImplementation) {
         this.messageGeneratorImplementation = messageGeneratorImplementation;
     }
+    protected Gui gui;
+    protected ClassyRepository classyRepository;
 
     public void initialize(){
         MainFrame.getInstance().setVisible(true);
+        this.gui = gui;
+        this.classyRepository = classyRepository;
+
     }
 
     public static ApplicationFramework getInstance(){
