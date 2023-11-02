@@ -58,7 +58,8 @@ public class MainFrame extends JFrame implements Subscriber {
 
         MyToolBar toolBar = new MyToolBar();
         add(toolBar, BorderLayout.NORTH);
-        JTree projectExplorer = classyTree.generateTree(ApplicationFramework.getInstance().getClassyRepositoryImplementation().getRoot());//ovo treba da se pogleda ovo mozda ovo pravi erore
+        //ima bitan komtear
+     JTree projectExplorer = classyTree.generateTree(ApplicationFramework.getInstance().getClassyRepositoryImplementation().getProjectExplorer());//ovo treba da se pogleda ovo mozda ovo pravi erore versionisanje fajlova
         JPanel desktop = new JPanel();
 
         JScrollPane scroll=new JScrollPane(projectExplorer);

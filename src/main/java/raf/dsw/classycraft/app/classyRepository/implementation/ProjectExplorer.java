@@ -14,7 +14,7 @@ public class ProjectExplorer extends ClassyNodeComposite {
     public ProjectExplorer() {
         super("Project Exproler",null);
 
-        ApplicationFramework.getInstance().getClassyRepositoryImplementation().setRoot(this);
+      //  ApplicationFramework.getInstance().getClassyRepositoryImplementation().setProjectExplorer(this);
     }
 
     @Override

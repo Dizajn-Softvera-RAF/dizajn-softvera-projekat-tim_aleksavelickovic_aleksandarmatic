@@ -1,5 +1,7 @@
 package raf.dsw.classycraft.app.core;
 
+
+import raf.dsw.classycraft.app.classyRepository.ClassyRepository;
 import raf.dsw.classycraft.app.classyRepository.ClassyRepositoryImplementation;
 import raf.dsw.classycraft.app.core.MessageGenerator.MessageGeneratorImplementation;
 import raf.dsw.classycraft.app.gui.swing.view.MainFrame;
