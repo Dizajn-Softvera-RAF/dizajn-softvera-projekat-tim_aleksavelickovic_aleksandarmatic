@@ -2,6 +2,7 @@ package raf.dsw.classycraft.app.gui.swing.view;
 
 //import lombok.Getter;
 //import lombok.Setter;
+import raf.dsw.classycraft.app.classyRepository.implementation.Project;
 import raf.dsw.classycraft.app.core.ApplicationFramework;
 import raf.dsw.classycraft.app.core.MessageGenerator.Message;
 import raf.dsw.classycraft.app.core.MessageGenerator.MessageGeneratorImplementation;
@@ -47,6 +48,24 @@ public class MainFrame extends JFrame implements Subscriber {
         infoLine=new InfoLine();
         authorFrame=new AuthorFrame();
 
+
+
+
+
+
+           // setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+            //add(infoLine);
+
+
+
+
+            //treba da se popravi umesto ovog treba getSelectedNode
+            infoLine.populate("ime1","Autor1");
+            repaint();
+
+
+
+           // InfoLine.clear();
 
 
 

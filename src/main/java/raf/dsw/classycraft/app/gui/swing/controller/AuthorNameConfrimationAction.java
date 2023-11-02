@@ -40,6 +40,7 @@ public class AuthorNameConfrimationAction extends AbstractClassyAction implement
         notifySubscribers("RENAME_A:" + newAuthor);
         System.out.println("new author:" + newAuthor);
         System.out.println(((Project) selected.getClassyNode()).getAuthorName());
+        MainFrame.getInstance().getInfoLine().setVisible(true);
     }
 
 
