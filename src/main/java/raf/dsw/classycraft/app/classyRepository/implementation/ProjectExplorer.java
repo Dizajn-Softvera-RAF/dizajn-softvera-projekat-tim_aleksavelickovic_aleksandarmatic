@@ -8,6 +8,7 @@ import raf.dsw.classycraft.app.core.Loggeri.LoggerFactory;
 import raf.dsw.classycraft.app.core.MessageGenerator.Message;
 import raf.dsw.classycraft.app.core.MessageGenerator.MessageType;
 
+
 import java.time.LocalDateTime;
 
 public class ProjectExplorer extends ClassyNodeComposite {
@@ -20,9 +21,13 @@ public class ProjectExplorer extends ClassyNodeComposite {
     @Override
     public void addChild(ClassyNode child) {
         if(child!=null && child instanceof Project){
+
             Project project=(Project) child;
-            if(!this.getChildren().contains(project)){
+
+
+           if(!this.getChildren().contains(project)){
                 this.getChildren().add(project);
+                System.out.println("Dodao je project u project explorer");
             }
         }
 
@@ -36,5 +41,6 @@ public class ProjectExplorer extends ClassyNodeComposite {
             l2.Print();
         }
     }
+
 
 }
