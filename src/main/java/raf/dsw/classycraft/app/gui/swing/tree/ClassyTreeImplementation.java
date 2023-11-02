@@ -48,10 +48,17 @@ public class ClassyTreeImplementation implements ClassyTree {
 
     @Override
     public void addChild(ClassyTreeItem parent) {
-
-        if (!(parent.getClassyNode() instanceof ClassyNodeComposite))
+        if(parent==null){
+            ApplicationFramework.getInstance().getMessageGeneratorImplementation().notifySubscribers(new Message("NODE_CANNOT_BE_DELETED", MessageType.ERROR, LocalDateTime.now()));
+            l.Print();
+            l2.Print();
             return;
+        }
+        if (!(parent.getClassyNode() instanceof ClassyNodeComposite)) {
 
+            return;
+        }
+            System.out.println("nesto");
         ClassyNode child = createChild(parent.getClassyNode());
         //  System.out.println("napravio je dete");
         parent.add(new ClassyTreeItem(child));
@@ -96,11 +103,12 @@ public class ClassyTreeImplementation implements ClassyTree {
         if (parent instanceof Package) {
 
             PackageOrProjectSelectionFrame packageOrProjectSelectionFrame = new PackageOrProjectSelectionFrame();
+            if(selection==1)
+                return   new Diagram("Diagram" + new Random().nextInt(100), parent);
             packageOrProjectSelectionFrame.view();
             if(selection==0)
                 return   new Package("Package" + new Random().nextInt(100), parent);
-            if(selection==1)
-                return   new Diagram("Diagram" + new Random().nextInt(100), parent);
+
 
 
 

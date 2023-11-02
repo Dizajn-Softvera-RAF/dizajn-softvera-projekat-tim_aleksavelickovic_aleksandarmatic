@@ -24,6 +24,9 @@ public class MainFrame extends JFrame implements Subscriber {
     private JMenuBar menu;
     private JToolBar toolBar;
     private ClassyTree classyTree;
+    private InfoLine infoLine;
+    private AuthorFrame authorFrame;
+
     private MainFrame(MessageGeneratorImplementation mgi){
        // MainFrame.getInstance().setVisible(true);
         this.mgi = mgi;
@@ -41,6 +44,9 @@ public class MainFrame extends JFrame implements Subscriber {
     private void initialize(){
         actionManager=new ActionManager();
         classyTree=new ClassyTreeImplementation();
+        infoLine=new InfoLine();
+        authorFrame=new AuthorFrame();
+
 
 
 
@@ -59,7 +65,7 @@ public class MainFrame extends JFrame implements Subscriber {
         MyToolBar toolBar = new MyToolBar();
         add(toolBar, BorderLayout.NORTH);
 
-     JTree projectExplorer = classyTree.generateTree(ApplicationFramework.getInstance().getClassyRepositoryImplementation().getProjectExplorer());
+        JTree projectExplorer = classyTree.generateTree(ApplicationFramework.getInstance().getClassyRepositoryImplementation().getProjectExplorer());
         JPanel desktop = new JPanel();
 
         JScrollPane scroll=new JScrollPane(projectExplorer);
@@ -79,6 +85,14 @@ public class MainFrame extends JFrame implements Subscriber {
             instance.initialize();
         }
         return instance;
+    }
+
+    public AuthorFrame getAuthorFrame() {
+        return authorFrame;
+    }
+
+    public InfoLine getInfoLine() {
+        return infoLine;
     }
 
     @Override

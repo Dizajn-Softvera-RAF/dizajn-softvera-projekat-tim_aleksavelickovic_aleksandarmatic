@@ -15,6 +15,8 @@ public class ActionManager{
     private RemoveAction removeAction;
     private PackegeSelectedAction packegeSelectedAction;
     private DiagramSelectedAction diagramSelectedAction;
+    private AuthorNameAction authorNameAction;
+    private AuthorNameConfrimationAction authorNameConfrimationAction;
 
     public ActionManager() {
         initialiseActions();
@@ -76,6 +78,22 @@ public class ActionManager{
         this.removeAction = removeAction;
     }
 
+    public AuthorNameAction getAuthorNameAction() {
+        return authorNameAction;
+    }
+
+    public void setAuthorNameAction(AuthorNameAction authorNameAction) {
+        this.authorNameAction = authorNameAction;
+    }
+
+    public AuthorNameConfrimationAction getAuthorNameConfrimationAction() {
+        return authorNameConfrimationAction;
+    }
+
+    public void setAuthorNameConfrimationAction(AuthorNameConfrimationAction authorNameConfrimationAction) {
+        this.authorNameConfrimationAction = authorNameConfrimationAction;
+    }
+
     private void initialiseActions(){
         exitAction=new ExitAction();
         newProjectAction=new NewProjectAction();
@@ -84,6 +102,8 @@ public class ActionManager{
         removeAction=new RemoveAction();
         packegeSelectedAction=new PackegeSelectedAction();
         diagramSelectedAction=new DiagramSelectedAction();
+        authorNameAction=new AuthorNameAction();
+        authorNameConfrimationAction=new AuthorNameConfrimationAction();
     }
 
 

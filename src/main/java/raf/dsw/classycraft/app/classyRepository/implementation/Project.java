@@ -12,11 +12,11 @@ import raf.dsw.classycraft.app.core.MessageGenerator.MessageType;
 import java.time.LocalDateTime;
 
 public class Project extends ClassyNodeComposite {
-    private String autorName;
+    private String authorName;
 
     private String path;
-    public String getAutorName() {
-        return autorName;
+    public String getAuthorName() {
+        return authorName;
     }
 
 
@@ -25,8 +25,8 @@ public class Project extends ClassyNodeComposite {
         return path;
     }
 
-    public void setAutorName(String autorName) {
-        this.autorName = autorName;
+    public void setAuthorName(String autorName) {
+        this.authorName = autorName;
     }
 
 
@@ -37,13 +37,13 @@ public class Project extends ClassyNodeComposite {
 
     public Project(String name, ClassyNode parent, String autorName, String path) {
         super(name, parent);
-        this.autorName = autorName;
+        this.authorName = autorName;
         this.path = path;
     }
 
     public Project(String name ,ClassyNode parent) {
         super(name, parent);
-        this.autorName = autorName;
+
     }
 
    @Override
