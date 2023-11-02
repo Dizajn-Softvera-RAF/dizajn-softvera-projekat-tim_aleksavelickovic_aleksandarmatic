@@ -11,14 +11,16 @@ public class RemoveAction extends AbstractClassyAction{
 
     public RemoveAction() {
         putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_R, ActionEvent.CTRL_MASK));
-        putValue(SMALL_ICON, loadIcon("/images/plus.png"));
+        putValue(SMALL_ICON, loadIcon("/images/log-out.png"));
         putValue(NAME, "Remove");
         putValue(SHORT_DESCRIPTION, "Remove");
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
         ClassyTreeItem selected = (ClassyTreeItem) MainFrame.getInstance().getClassyTree().getSelectedNode();
         MainFrame.getInstance().getClassyTree().remove(selected);
+
     }
 }

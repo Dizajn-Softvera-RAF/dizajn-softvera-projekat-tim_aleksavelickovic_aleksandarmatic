@@ -6,6 +6,11 @@ import raf.dsw.classycraft.app.classyRepository.implementation.Diagram;
 import raf.dsw.classycraft.app.classyRepository.implementation.Project;
 import raf.dsw.classycraft.app.classyRepository.implementation.Package;
 import raf.dsw.classycraft.app.classyRepository.implementation.ProjectExplorer;
+import raf.dsw.classycraft.app.core.ApplicationFramework;
+import raf.dsw.classycraft.app.core.Loggeri.Logger;
+import raf.dsw.classycraft.app.core.Loggeri.LoggerFactory;
+import raf.dsw.classycraft.app.core.MessageGenerator.Message;
+import raf.dsw.classycraft.app.core.MessageGenerator.MessageType;
 import raf.dsw.classycraft.app.gui.swing.tree.model.ClassyTreeItem;
 import raf.dsw.classycraft.app.gui.swing.tree.view.ClassyTreeView;
 import raf.dsw.classycraft.app.gui.swing.view.MainFrame;
@@ -14,11 +19,24 @@ import raf.dsw.classycraft.app.gui.swing.view.PackageOrProjectSelectionFrame;
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeModel;
 import java.awt.event.ActionEvent;
+import java.time.LocalDateTime;
 import java.util.Random;
 
 public class ClassyTreeImplementation implements ClassyTree {
     private ClassyTreeView treeView;
     private DefaultTreeModel treeModel;
+    private  int selection;
+    LoggerFactory lf = new LoggerFactory();
+    Logger l = lf.creatLogger("CONSOLE",ApplicationFramework.getInstance().getMessageGeneratorImplementation());
+    Logger l2 = lf.creatLogger("FILE",ApplicationFramework.getInstance().getMessageGeneratorImplementation());
+
+    public int getSelection() {
+        return selection;
+    }
+
+    public void setSelection(int selection) {
+        this.selection = selection;
+    }
 
     @Override
     public ClassyTreeView generateTree(ProjectExplorer projectExplorer) {
@@ -50,20 +68,19 @@ public class ClassyTreeImplementation implements ClassyTree {
 
     @Override
     public void remove(ClassyTreeItem node) {
-        if(node.getClassyNode() instanceof ClassyNode ){
-            node.remove(getSelectedNode());
 
+        if(node.getClassyNode().getParent() == null) {
+            ApplicationFramework.getInstance().getMessageGeneratorImplementation().notifySubscribers(new Message("NODE_CANNOT_BE_DELETED", MessageType.ERROR, LocalDateTime.now()));
+            l.Print();
+            l2.Print();
+            return;
         }
-        else{
-            ClassyNodeComposite classyNodeComposite=(ClassyNodeComposite) node.getClassyNode();
-            if(classyNodeComposite.getChildren().isEmpty()){
-                node.remove(getSelectedNode());
-            }
-            else{
-                node.removeAllChildren();
-            }
-        }
+
+        ((ClassyNodeComposite)node.getClassyNode().getParent()).removeChild(node.getClassyNode());
+
+        node.removeFromParent();
         SwingUtilities.updateComponentTreeUI(treeView);
+
     }
 
     private ClassyNode createChild(ClassyNode parent) {
@@ -80,25 +97,18 @@ public class ClassyTreeImplementation implements ClassyTree {
 
             PackageOrProjectSelectionFrame packageOrProjectSelectionFrame = new PackageOrProjectSelectionFrame();
             packageOrProjectSelectionFrame.view();
-            packageOrProjectSelectionFrame.getBt1().addActionListener(e ->{
-               create(parent);
-             });
+            if(selection==0)
+                return   new Package("Package" + new Random().nextInt(100), parent);
+            if(selection==1)
+                return   new Diagram("Diagram" + new Random().nextInt(100), parent);
 
-            packageOrProjectSelectionFrame.getBt2().addActionListener(e ->{
-                create1(parent);
-            });
 
 
         }
 
         return null;
     }
-    public Package create(ClassyNode parent){
-        return   new Package("Package" + new Random().nextInt(100), parent);
-    }
-    public Diagram create1(ClassyNode parent){
-        return   new Diagram("Diagram" + new Random().nextInt(100), parent);
-    }
+
 
 
 

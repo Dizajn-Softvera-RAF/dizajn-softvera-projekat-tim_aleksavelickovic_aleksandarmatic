@@ -13,6 +13,9 @@ public class ActionManager{
     private InfoAction aboutUs;
     private SelectionAction selectionAction;
     private RemoveAction removeAction;
+    private PackegeSelectedAction packegeSelectedAction;
+    private DiagramSelectedAction diagramSelectedAction;
+
     public ActionManager() {
         initialiseActions();
     }
@@ -49,11 +52,38 @@ public class ActionManager{
         return removeAction;
     }
 
+    public void setSelectionAction(SelectionAction selectionAction) {
+        this.selectionAction = selectionAction;
+    }
+
+    public PackegeSelectedAction getPackegeSelectedAction() {
+        return packegeSelectedAction;
+    }
+
+    public void setPackegeSelectedAction(PackegeSelectedAction packegeSelectedAction) {
+        this.packegeSelectedAction = packegeSelectedAction;
+    }
+
+    public DiagramSelectedAction getDiagramSelectedAction() {
+        return diagramSelectedAction;
+    }
+
+    public void setDiagramSelectedAction(DiagramSelectedAction diagramSelectedAction) {
+        this.diagramSelectedAction = diagramSelectedAction;
+    }
+
+    public void setRemoveAction(RemoveAction removeAction) {
+        this.removeAction = removeAction;
+    }
+
     private void initialiseActions(){
         exitAction=new ExitAction();
         newProjectAction=new NewProjectAction();
         aboutUs = new InfoAction();
         selectionAction=new SelectionAction();
+        removeAction=new RemoveAction();
+        packegeSelectedAction=new PackegeSelectedAction();
+        diagramSelectedAction=new DiagramSelectedAction();
     }
 
 

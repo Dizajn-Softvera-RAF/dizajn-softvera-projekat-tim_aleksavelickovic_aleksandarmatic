@@ -8,7 +8,7 @@ public class PackageOrProjectSelectionFrame extends JFrame {
     private JButton bt2=new JButton("Diagram");
     public void view(){
         JFrame packageOrProject=new JFrame();
-        packageOrProject.setSize(300, 150);
+        packageOrProject.setSize(300, 400);
         packageOrProject.setAlwaysOnTop(true);
         packageOrProject.setTitle("Izbor");
         packageOrProject.setLocationRelativeTo(null);
@@ -19,20 +19,22 @@ public class PackageOrProjectSelectionFrame extends JFrame {
         JPanel panel2 = new JPanel();
         JPanel panel3 = new JPanel();
 
-        panel1.setBounds(0, 0, 300, 150);
-      //  JButton bt1=new JButton("Package");
-       // JButton bt2=new JButton("Diagram");
+       // panel1.setBounds(0, 0, 300, 150);
+        JButton bt1=new JButton("Package");
+        JButton bt2=new JButton("Diagram");
         bt1.setHorizontalAlignment(JLabel.LEFT);
+        bt1.setAction(MainFrame.getInstance().getActionManager().getPackegeSelectedAction());
         bt2.setHorizontalAlignment(JLabel.RIGHT);
+        bt2.setAction(MainFrame.getInstance().getActionManager().getDiagramSelectedAction());
         panel2.add(bt1);
         panel2.add(bt2);
 
-        panel2.setBounds(0,0,300,100);
+        panel2.setBounds(0,0,300,200);
         JLabel jLabel=new JLabel("Choose what you want to create");
         jLabel.setHorizontalAlignment(JLabel.CENTER);
         jLabel.setHorizontalTextPosition(JLabel.CENTER);
         panel3.add(jLabel);
-        panel3.setBounds(0,100,300,50);
+        panel3.setBounds(0,200,300,200);
 
 
 
