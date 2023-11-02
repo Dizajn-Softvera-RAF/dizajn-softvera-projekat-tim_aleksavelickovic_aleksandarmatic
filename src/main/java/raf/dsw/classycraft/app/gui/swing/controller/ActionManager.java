@@ -11,6 +11,8 @@ public class ActionManager{
     private ExitAction exitAction;
     private NewProjectAction newProjectAction;
     private InfoAction aboutUs;
+    private SelectionAction selectionAction;
+    private RemoveAction removeAction;
     public ActionManager() {
         initialiseActions();
     }
@@ -39,10 +41,19 @@ public class ActionManager{
         this.aboutUs = aboutUs;
     }
 
+    public SelectionAction getSelectionAction() {
+        return selectionAction;
+    }
+
+    public RemoveAction getRemoveAction() {
+        return removeAction;
+    }
+
     private void initialiseActions(){
         exitAction=new ExitAction();
         newProjectAction=new NewProjectAction();
         aboutUs = new InfoAction();
+        selectionAction=new SelectionAction();
     }
 
 
