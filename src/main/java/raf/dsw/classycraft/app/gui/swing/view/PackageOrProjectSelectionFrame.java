@@ -6,42 +6,27 @@ import java.awt.*;
 public class PackageOrProjectSelectionFrame extends JFrame {
    private JButton bt1=new JButton("Package");
     private JButton bt2=new JButton("Diagram");
-    public void view(){
-        JFrame packageOrProject=new JFrame();
-        packageOrProject.setSize(300, 400);
-        packageOrProject.setAlwaysOnTop(true);
-        packageOrProject.setTitle("Izbor");
-        packageOrProject.setLocationRelativeTo(null);
-        packageOrProject.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        packageOrProject.setLayout(null);
-
-        JPanel panel1 = new JPanel();
-        JPanel panel2 = new JPanel();
-        JPanel panel3 = new JPanel();
-
-       // panel1.setBounds(0, 0, 300, 150);
-        JButton bt1=new JButton("Package");
-        JButton bt2=new JButton("Diagram");
-        bt1.setHorizontalAlignment(JLabel.LEFT);
-        bt1.setAction(MainFrame.getInstance().getActionManager().getPackegeSelectedAction());
-        bt2.setHorizontalAlignment(JLabel.RIGHT);
-        bt2.setAction(MainFrame.getInstance().getActionManager().getDiagramSelectedAction());
-        panel2.add(bt1);
-        panel2.add(bt2);
-
-        panel2.setBounds(0,0,300,200);
-        JLabel jLabel=new JLabel("Choose what you want to create");
-        jLabel.setHorizontalAlignment(JLabel.CENTER);
-        jLabel.setHorizontalTextPosition(JLabel.CENTER);
-        panel3.add(jLabel);
-        panel3.setBounds(0,200,300,200);
+        public PackageOrProjectSelectionFrame(){
 
 
 
-        packageOrProject.add(panel2);
-        packageOrProject.add(panel3);
 
-        packageOrProject.setVisible(true);
+        setTitle("Select what you want to create ");
+
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int screenHeight = screenSize.height;
+        int screenWidth = screenSize.width;
+        setSize(screenWidth/6, screenHeight/5);
+
+        setLayout(new FlowLayout(FlowLayout.CENTER, 20,20));
+        JButton pButton = new JButton();
+        JButton dButton = new JButton();
+        pButton.setAction(MainFrame.getInstance().getActionManager().getPackegeSelectedAction());
+
+        dButton.setAction(MainFrame.getInstance().getActionManager().getDiagramSelectedAction());
+        add(pButton);
+        add(dButton);
+
 
     }
 
@@ -52,4 +37,5 @@ public class PackageOrProjectSelectionFrame extends JFrame {
     public JButton getBt2() {
         return bt2;
     }
+
 }

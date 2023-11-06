@@ -2,6 +2,7 @@ package raf.dsw.classycraft.app.gui.swing.view;
 
 //import lombok.Getter;
 //import lombok.Setter;
+import raf.dsw.classycraft.app.classyRepository.implementation.Package;
 import raf.dsw.classycraft.app.classyRepository.implementation.Project;
 import raf.dsw.classycraft.app.core.ApplicationFramework;
 import raf.dsw.classycraft.app.core.MessageGenerator.Message;
@@ -9,6 +10,8 @@ import raf.dsw.classycraft.app.core.MessageGenerator.MessageGeneratorImplementat
 import raf.dsw.classycraft.app.core.MessageGenerator.MessageType;
 import raf.dsw.classycraft.app.core.observer.Subscriber;
 import raf.dsw.classycraft.app.gui.swing.controller.ActionManager;
+import raf.dsw.classycraft.app.gui.swing.controller.DiagramSelectedAction;
+import raf.dsw.classycraft.app.gui.swing.controller.PackegeSelectedAction;
 import raf.dsw.classycraft.app.gui.swing.tree.ClassyTree;
 import raf.dsw.classycraft.app.gui.swing.tree.ClassyTreeImplementation;
 
@@ -24,9 +27,14 @@ public class MainFrame extends JFrame implements Subscriber {
     private MessageGeneratorImplementation mgi;
     private JMenuBar menu;
     private JToolBar toolBar;
-    private ClassyTree classyTree;
+    private ClassyTreeImplementation classyTreeImplementation;
     private InfoLine infoLine;
     private AuthorFrame authorFrame;
+    private  PackageOrProjectSelectionFrame packageOrProjectSelectionFrame;
+    private ClassyTree classyTree;
+    private DiagramSelectedAction diagramSelectedAction;
+    private PackegeSelectedAction packegeSelectedAction;
+
 
     private MainFrame(MessageGeneratorImplementation mgi){
        // MainFrame.getInstance().setVisible(true);
@@ -38,15 +46,23 @@ public class MainFrame extends JFrame implements Subscriber {
         return actionManager;
     }
 
-    public ClassyTree getClassyTree() {
-        return classyTree;
+    public ClassyTree getClassyTreeImplementation() {
+        return classyTreeImplementation;
+    }
+
+    public PackageOrProjectSelectionFrame getPackageOrProjectSelectionFrame() {
+        return packageOrProjectSelectionFrame;
     }
 
     private void initialize(){
         actionManager=new ActionManager();
-        classyTree=new ClassyTreeImplementation();
+        classyTreeImplementation=new ClassyTreeImplementation();
         infoLine=new InfoLine();
         authorFrame=new AuthorFrame();
+        packageOrProjectSelectionFrame=new PackageOrProjectSelectionFrame();
+        packegeSelectedAction=new PackegeSelectedAction();
+        diagramSelectedAction=new DiagramSelectedAction();
+
 
 
 
@@ -84,7 +100,7 @@ public class MainFrame extends JFrame implements Subscriber {
         MyToolBar toolBar = new MyToolBar();
         add(toolBar, BorderLayout.NORTH);
 
-        JTree projectExplorer = classyTree.generateTree(ApplicationFramework.getInstance().getClassyRepositoryImplementation().getProjectExplorer());
+        JTree projectExplorer = classyTreeImplementation.generateTree(ApplicationFramework.getInstance().getClassyRepositoryImplementation().getProjectExplorer());
         JPanel desktop = new JPanel();
 
         JScrollPane scroll=new JScrollPane(projectExplorer);
@@ -112,6 +128,14 @@ public class MainFrame extends JFrame implements Subscriber {
 
     public InfoLine getInfoLine() {
         return infoLine;
+    }
+
+    public DiagramSelectedAction getDiagramSelectedAction() {
+        return diagramSelectedAction;
+    }
+
+    public PackegeSelectedAction getPackegeSelectedAction() {
+        return packegeSelectedAction;
     }
 
     @Override

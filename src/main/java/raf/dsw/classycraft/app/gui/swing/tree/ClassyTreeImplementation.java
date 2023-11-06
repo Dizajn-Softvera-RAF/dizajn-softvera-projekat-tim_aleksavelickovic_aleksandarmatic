@@ -1,11 +1,13 @@
 package raf.dsw.classycraft.app.gui.swing.tree;
 
+import raf.dsw.classycraft.app.classyRepository.Factory.NodeFactory;
 import raf.dsw.classycraft.app.classyRepository.composite.ClassyNode;
 import raf.dsw.classycraft.app.classyRepository.composite.ClassyNodeComposite;
 import raf.dsw.classycraft.app.classyRepository.implementation.Diagram;
 import raf.dsw.classycraft.app.classyRepository.implementation.Project;
 import raf.dsw.classycraft.app.classyRepository.implementation.Package;
 import raf.dsw.classycraft.app.classyRepository.implementation.ProjectExplorer;
+import raf.dsw.classycraft.app.classyRepository.utils.Utils;
 import raf.dsw.classycraft.app.core.ApplicationFramework;
 import raf.dsw.classycraft.app.core.Loggeri.Logger;
 import raf.dsw.classycraft.app.core.Loggeri.LoggerFactory;
@@ -48,18 +50,22 @@ public class ClassyTreeImplementation implements ClassyTree {
 
     @Override
     public void addChild(ClassyTreeItem parent) {
+
         if(parent==null){
-            ApplicationFramework.getInstance().getMessageGeneratorImplementation().notifySubscribers(new Message("NODE_CANNOT_BE_DELETED", MessageType.ERROR, LocalDateTime.now()));
+            ApplicationFramework.getInstance().getMessageGeneratorImplementation().notifySubscribers(new Message("NODE_CANNOT_BE_ADDED", MessageType.ERROR, LocalDateTime.now()));
             l.Print();
             l2.Print();
+
             return;
+
         }
         if (!(parent.getClassyNode() instanceof ClassyNodeComposite)) {
 
             return;
         }
-            System.out.println("nesto");
-        ClassyNode child = createChild(parent.getClassyNode());
+        NodeFactory nf= Utils.getNodeFactory(parent.getClassyNode(),getSelection());
+        nf.getNode((ClassyNodeComposite) parent.getClassyNode());
+        ClassyNode child =nf.getNode((ClassyNodeComposite) parent.getClassyNode());
         //  System.out.println("napravio je dete");
         parent.add(new ClassyTreeItem(child));
         //  System.out.println("dodao je dete u perenta");
@@ -91,8 +97,8 @@ public class ClassyTreeImplementation implements ClassyTree {
     }
 
     private ClassyNode createChild(ClassyNode parent) {
-
-        if (parent instanceof ProjectExplorer) {
+    /*
+        if ( parent instanceof ProjectExplorer) {
 
             return new Project("Project" + new Random().nextInt(100), parent);
         }
@@ -113,8 +119,10 @@ public class ClassyTreeImplementation implements ClassyTree {
 
 
         }
-
+        */
         return null;
+
+
     }
 
 

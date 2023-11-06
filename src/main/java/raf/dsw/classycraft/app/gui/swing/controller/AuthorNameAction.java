@@ -22,7 +22,7 @@ public class AuthorNameAction extends AbstractClassyAction{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        ClassyTreeItem selected = MainFrame.getInstance().getClassyTree().getSelectedNode();
+        ClassyTreeItem selected = MainFrame.getInstance().getClassyTreeImplementation().getSelectedNode();
 
         if(!(selected.getClassyNode() instanceof Project))
         {

@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class SelectionAction extends AbstractClassyAction{
-    PackageOrProjectSelectionFrame packageOrProjectSelectionFrame=new PackageOrProjectSelectionFrame();
+    //PackageOrProjectSelectionFrame packageOrProjectSelectionFrame=new PackageOrProjectSelectionFrame();
     public SelectionAction() {
       //  packageOrProjectSelectionFrame.getBt1().addActionListener();
     }
@@ -14,7 +14,7 @@ public class SelectionAction extends AbstractClassyAction{
     @Override
     public void actionPerformed(ActionEvent e) {
        // PackageOrProjectSelectionFrame packageOrProjectSelectionFrame=new PackageOrProjectSelectionFrame();
-        packageOrProjectSelectionFrame.view();
+       // packageOrProjectSelectionFrame.view();
        // if(packageOrProjectSelectionFrame.getBt1().isSelected())
           //  System.out.println("pritisnuto je dugme Package");
        // if(packageOrProjectSelectionFrame.getBt2().isSelected())

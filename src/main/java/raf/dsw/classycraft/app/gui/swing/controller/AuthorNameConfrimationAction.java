@@ -24,7 +24,7 @@ public class AuthorNameConfrimationAction extends AbstractClassyAction implement
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        ClassyTreeItem selected = MainFrame.getInstance().getClassyTree().getSelectedNode();
+        ClassyTreeItem selected = MainFrame.getInstance().getClassyTreeImplementation().getSelectedNode();
 
         String newAuthor = MainFrame.getInstance().getAuthorFrame().getCaTextField().getText();
 
