@@ -9,6 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.EventObject;
 
 public class ClassyTreeCellEditor  extends DefaultTreeCellEditor implements ActionListener {
@@ -39,7 +40,11 @@ public class ClassyTreeCellEditor  extends DefaultTreeCellEditor implements Acti
         return false;
     }
 
-
+    public void mouseClicked(MouseEvent e){
+        if (e.getClickCount() == 2){
+            
+        }
+    }
 
     public void actionPerformed(ActionEvent e){
 

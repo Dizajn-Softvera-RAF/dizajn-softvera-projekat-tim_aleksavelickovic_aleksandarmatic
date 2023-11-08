@@ -14,8 +14,10 @@ import raf.dsw.classycraft.app.gui.swing.controller.DiagramSelectedAction;
 import raf.dsw.classycraft.app.gui.swing.controller.PackegeSelectedAction;
 import raf.dsw.classycraft.app.gui.swing.tree.ClassyTree;
 import raf.dsw.classycraft.app.gui.swing.tree.ClassyTreeImplementation;
+import raf.dsw.classycraft.app.gui.swing.tree.controller.MyTreeMouseListner;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 //@Getter
 //@Setter
@@ -34,6 +36,7 @@ public class MainFrame extends JFrame implements Subscriber {
     private ClassyTree classyTree;
     private DiagramSelectedAction diagramSelectedAction;
     private PackegeSelectedAction packegeSelectedAction;
+    private JPanel desktop;
 
 
     private MainFrame(MessageGeneratorImplementation mgi){
@@ -52,6 +55,9 @@ public class MainFrame extends JFrame implements Subscriber {
 
     public PackageOrProjectSelectionFrame getPackageOrProjectSelectionFrame() {
         return packageOrProjectSelectionFrame;
+    }
+    public InfoLine getInfoLine() {
+        return infoLine;
     }
 
     private void initialize(){
@@ -101,12 +107,19 @@ public class MainFrame extends JFrame implements Subscriber {
         add(toolBar, BorderLayout.NORTH);
 
         JTree projectExplorer = classyTreeImplementation.generateTree(ApplicationFramework.getInstance().getClassyRepositoryImplementation().getProjectExplorer());
-        JPanel desktop = new JPanel();
+        MyTreeMouseListner myTreeMouseListner = new MyTreeMouseListner(projectExplorer);
+        projectExplorer.addMouseListener(myTreeMouseListner);
+        this.desktop = new JPanel();
+
+
 
         JScrollPane scroll=new JScrollPane(projectExplorer);
-        scroll.setMinimumSize(new Dimension(200,150));
+        scroll.setMinimumSize(new Dimension(250,150));
+        scroll.setPreferredSize(new Dimension(200,100));
         JSplitPane split=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,scroll,desktop);
-        getContentPane().add(split,BorderLayout.CENTER);
+        getContentPane().add(split,BorderLayout.WEST);
+        getContentPane().add(desktop,BorderLayout.CENTER);
+
         split.setDividerLocation(250);
         split.setOneTouchExpandable(true);
 
@@ -126,9 +139,7 @@ public class MainFrame extends JFrame implements Subscriber {
         return authorFrame;
     }
 
-    public InfoLine getInfoLine() {
-        return infoLine;
-    }
+
 
     public DiagramSelectedAction getDiagramSelectedAction() {
         return diagramSelectedAction;
@@ -137,6 +148,7 @@ public class MainFrame extends JFrame implements Subscriber {
     public PackegeSelectedAction getPackegeSelectedAction() {
         return packegeSelectedAction;
     }
+
 
     @Override
     public void update(Object notification) {
@@ -152,5 +164,9 @@ public class MainFrame extends JFrame implements Subscriber {
                 JOptionPane.showMessageDialog(this,string,"NOTIFICATION",JOptionPane.WARNING_MESSAGE);
             }else JOptionPane.showMessageDialog(this,"abc","greska",JOptionPane.WARNING_MESSAGE);
         }else JOptionPane.showMessageDialog(this,"abd","GRESKA",JOptionPane.ERROR_MESSAGE);
+    }
+
+    public JPanel getDesktop() {
+        return desktop;
     }
 }

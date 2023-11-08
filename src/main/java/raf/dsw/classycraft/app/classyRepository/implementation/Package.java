@@ -7,14 +7,18 @@ import raf.dsw.classycraft.app.core.Loggeri.Logger;
 import raf.dsw.classycraft.app.core.Loggeri.LoggerFactory;
 import raf.dsw.classycraft.app.core.MessageGenerator.Message;
 import raf.dsw.classycraft.app.core.MessageGenerator.MessageType;
+import raf.dsw.classycraft.app.core.observer.Pubsliher;
+import raf.dsw.classycraft.app.core.observer.Subscriber;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
-public class Package extends ClassyNodeComposite {
-
+public class Package extends ClassyNodeComposite implements Pubsliher {
+    private ArrayList<Subscriber>subscribers;
 
     public Package(String name, ClassyNode parent) {
         super(name, parent);
+        subscribers = new ArrayList<>();
     }
 
     @Override
@@ -42,5 +46,21 @@ public class Package extends ClassyNodeComposite {
             l.Print();
             l2.Print();
         }
+    }
+
+    @Override
+    public void addSubscriber(Subscriber subscriber) {
+        subscribers.add(subscriber);
+    }
+
+    @Override
+    public void removeSubscriber(Subscriber subscriber) {
+        subscribers.remove(subscriber);
+    }
+
+    @Override
+    public void notifySubscribers(Object notification) {
+        for(Subscriber subscriber:subscribers)
+            subscriber.update(notification);
     }
 }

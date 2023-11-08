@@ -1,6 +1,6 @@
 package raf.dsw.classycraft.app.classyRepository.composite;
 
-import lombok.ToString;
+//import lombok.ToString;
 
 public abstract class ClassyNode {
     private String name;

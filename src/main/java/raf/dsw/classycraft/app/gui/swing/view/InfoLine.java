@@ -24,6 +24,14 @@ public class InfoLine extends JPanel {
         repaint();
     }
 
+    public JLabel getAuthorLabel() {
+        return authorLabel;
+    }
+
+    public JLabel getProjectLabel() {
+        return projectLabel;
+    }
+
     public void setupAuthor(String author) {
         this.authorLabel.setText(" | Author: " +  author);
         repaint();
