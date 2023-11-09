@@ -4,6 +4,8 @@ import com.sun.tools.javac.Main;
 import raf.dsw.classycraft.app.classyRepository.composite.ClassyNode;
 import raf.dsw.classycraft.app.classyRepository.implementation.Package;
 import raf.dsw.classycraft.app.core.ApplicationFramework;
+import raf.dsw.classycraft.app.core.MessageGenerator.Message;
+import raf.dsw.classycraft.app.core.MessageGenerator.MessageType;
 import raf.dsw.classycraft.app.gui.swing.tree.model.ClassyTreeItem;
 import raf.dsw.classycraft.app.gui.swing.view.MainFrame;
 import raf.dsw.classycraft.app.gui.swing.view.PackageView;
@@ -12,6 +14,7 @@ import javax.swing.*;
 import javax.swing.tree.TreePath;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.time.LocalDateTime;
 
 public class MyTreeMouseListner implements MouseListener {
     private JTree jTree;
@@ -34,13 +37,9 @@ public class MyTreeMouseListner implements MouseListener {
                     ClassyNode cvor = treeItem.getClassyNode();
                     if(cvor instanceof Package){
                         System.out.println("Dupli klik");
+                        //ovde negde je problem
                         Package paket = (Package) cvor;
-                        //JLabel projekat = MainFrame.getInstance().getInfoLine().getProjectLabel();
-                       // JLabel autor = MainFrame.getInstance().getInfoLine().getAuthorLabel();
-                      //  PackageView pw = new PackageView(paket,projekat,autor);
-                     //
-                    // ovo gledaj   PackageView pw=new PackageView(MainFrame.getInstance().getInfoLine(),MainFrame.getInstance().getTabbedPane());
-                     //   MainFrame.getInstance().getDesktop().add(pw);
+                        ApplicationFramework.getInstance().getMessageGeneratorImplementation().notifySubscribers(paket);//umesto new package itd
 
                     }
                 }

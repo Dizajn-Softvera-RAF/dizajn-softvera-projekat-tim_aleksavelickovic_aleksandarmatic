@@ -13,16 +13,21 @@ public class TabbedPane extends JTabbedPane {
     private Project project;
     private Package cpackage;
     private String author;
-
+   private  JTabbedPane pane;
     private final List<DiagramView> diagrams = new ArrayList<>();
 
     public TabbedPane() {
+
         super(JTabbedPane.TOP, JTabbedPane.SCROLL_TAB_LAYOUT);
+
     }
 
     public void loadcpackage(Package toLoad) {
+       // for(ClassyNode classyNode: cpackage.getChildren())
+        System.out.println(toLoad.getName());
         project = (Project) toLoad.findProject();
-       cpackage  = toLoad;
+        System.out.println(project.getName());
+        cpackage  = toLoad;
         clear();
         loadDiagrams();
         addTabs();
@@ -31,8 +36,9 @@ public class TabbedPane extends JTabbedPane {
 
     public void loadDiagrams() {
         for (ClassyNode cn : this.cpackage.getChildren()) {
-            if (cn instanceof Diagram)
+            if (cn instanceof Diagram) {
                 this.diagrams.add(new DiagramView((Diagram) cn));
+            }
         }
     }
 
@@ -53,5 +59,9 @@ public class TabbedPane extends JTabbedPane {
 
     public Package getCpackage() {
         return cpackage;
+    }
+
+    public List<DiagramView> getDiagrams() {
+        return diagrams;
     }
 }

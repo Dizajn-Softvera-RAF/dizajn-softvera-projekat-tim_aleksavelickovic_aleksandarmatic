@@ -34,6 +34,12 @@ public class Package extends ClassyNodeComposite implements Pubsliher {
                 Diagram diagram = (Diagram) child;
                 if (!this.getChildren().contains(diagram)) {
                     this.getChildren().add(diagram);
+                    System.out.println(diagram.getName()+"u paaket");
+                    System.out.println(getName()+getChildren());
+                    System.out.println("imena diagrama");
+                    for(ClassyNode c:getChildren())
+                        System.out.println(c.getName());
+                    System.out.println("gotova imena");
                 }
             }
         }

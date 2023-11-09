@@ -22,10 +22,14 @@ public class MessageGeneratorImplementation implements MessageGenerator{
 
     @Override
     public void notifySubscribers(Object notification) {
-        if(notification instanceof Message){
+       // if(notification instanceof Message){
             for(Subscriber subscriber:subscribers)
                 subscriber.update(notification);
 
-        }
+       // }
+    }
+
+    public ArrayList<Subscriber> getSubscribers() {
+        return subscribers;
     }
 }

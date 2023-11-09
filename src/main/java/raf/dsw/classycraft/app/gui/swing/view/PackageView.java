@@ -16,6 +16,7 @@ public class PackageView extends JPanel implements Subscriber {
     private final TabbedPane tabbedPane;
 
     public PackageView(InfoLine infoLine,TabbedPane tabbedPane) {
+
         this.infoLine=infoLine;
         this.tabbedPane=tabbedPane;
         setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
@@ -23,6 +24,7 @@ public class PackageView extends JPanel implements Subscriber {
         add(tabbedPane);
     }
     public void view(Package opackage){
+
         this.tabbedPane.loadcpackage(opackage);
         this.infoLine.populate(tabbedPane.getproject().getName(),tabbedPane.getproject().getAuthorName());
         repaint();
@@ -32,16 +34,7 @@ public class PackageView extends JPanel implements Subscriber {
         this.tabbedPane.clear();
         this.tabbedPane.revalidate();
     }
-   /* public PackageView(Package paket,JLabel projekat, JLabel autor){
-        this.paket = paket;
-        this.paket.addSubscriber(this);
-        this.diagramView = new DiagramView();
-        this.setLayout(new BoxLayout(this,BoxLayout.X_AXIS));
-        this.add(projekat);
-        this.add(autor);
-        this.add(diagramView);
-    }
-*/
+
 
     @Override
     public void update(Object notification) {

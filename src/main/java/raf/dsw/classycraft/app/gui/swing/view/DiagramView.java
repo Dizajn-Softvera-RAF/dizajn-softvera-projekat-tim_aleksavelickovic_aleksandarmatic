@@ -6,12 +6,11 @@ import raf.dsw.classycraft.app.core.observer.Subscriber;
 import javax.swing.*;
 
 public class DiagramView extends JTabbedPane implements Subscriber {
-    Diagram diagram;
-    public DiagramView(){
-        JTabbedPane dw = new JTabbedPane();
-    }
+    private final Diagram diagram;
+    private final String name;
     public DiagramView(Diagram diagram){
         this.diagram = diagram;
+        this.name=diagram.getName();
         this.diagram.addSubscriber(this);
     }
     @Override

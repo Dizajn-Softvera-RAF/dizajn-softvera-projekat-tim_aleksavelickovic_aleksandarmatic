@@ -1,11 +1,18 @@
 package raf.dsw.classycraft.app.gui.swing.controller;
 
+import raf.dsw.classycraft.app.classyRepository.implementation.Diagram;
+import raf.dsw.classycraft.app.classyRepository.implementation.Package;
+import raf.dsw.classycraft.app.classyRepository.implementation.Project;
+import raf.dsw.classycraft.app.core.ApplicationFramework;
+import raf.dsw.classycraft.app.core.MessageGenerator.Message;
+import raf.dsw.classycraft.app.core.MessageGenerator.MessageType;
 import raf.dsw.classycraft.app.gui.swing.tree.model.ClassyTreeItem;
 import raf.dsw.classycraft.app.gui.swing.view.MainFrame;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.time.LocalDateTime;
 
 public class RemoveAction extends AbstractClassyAction{
 
@@ -21,6 +28,9 @@ public class RemoveAction extends AbstractClassyAction{
 
         ClassyTreeItem selected = (ClassyTreeItem) MainFrame.getInstance().getClassyTreeImplementation().getSelectedNode();
         MainFrame.getInstance().getClassyTreeImplementation().remove(selected);
-
+        if (selected.getClassyNode() instanceof Package || selected.getClassyNode() instanceof Project)
+            ApplicationFramework.getInstance().getMessageGeneratorImplementation().notifySubscribers(new Message("CLEAR", MessageType.NOTIFICATION, LocalDateTime.now()));
+        else if (selected.getClassyNode() instanceof Diagram)
+            ApplicationFramework.getInstance().getMessageGeneratorImplementation().notifySubscribers(new Message("DELETED_DIAGRAM", MessageType.NOTIFICATION, LocalDateTime.now()));
     }
 }

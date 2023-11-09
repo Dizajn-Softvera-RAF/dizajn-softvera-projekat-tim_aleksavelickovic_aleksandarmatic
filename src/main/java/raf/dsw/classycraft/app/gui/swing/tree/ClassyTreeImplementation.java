@@ -70,6 +70,11 @@ public class ClassyTreeImplementation implements ClassyTree {
         parent.add(new ClassyTreeItem(child));
         //  System.out.println("dodao je dete u perenta");
         ((ClassyNodeComposite) parent.getClassyNode()).addChild(child);
+
+
+       //treaba da porbam nesto da li treba if ili ne
+      // if(child instanceof Diagram)
+        ApplicationFramework.getInstance().getMessageGeneratorImplementation().notifySubscribers(new Message("ADDED", MessageType.NOTIFICATION, LocalDateTime.now()));
         treeView.expandPath(treeView.getSelectionPath());
         SwingUtilities.updateComponentTreeUI(treeView);
     }

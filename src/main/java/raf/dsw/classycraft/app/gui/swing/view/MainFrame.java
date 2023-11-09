@@ -2,6 +2,8 @@ package raf.dsw.classycraft.app.gui.swing.view;
 
 //import lombok.Getter;
 //import lombok.Setter;
+import raf.dsw.classycraft.app.classyRepository.composite.ClassyNode;
+import raf.dsw.classycraft.app.classyRepository.composite.ClassyNodeComposite;
 import raf.dsw.classycraft.app.classyRepository.implementation.Package;
 import raf.dsw.classycraft.app.classyRepository.implementation.Project;
 import raf.dsw.classycraft.app.core.ApplicationFramework;
@@ -70,14 +72,15 @@ public class MainFrame extends JFrame implements Subscriber {
         packageOrProjectSelectionFrame=new PackageOrProjectSelectionFrame();
         packegeSelectedAction=new PackegeSelectedAction();
         diagramSelectedAction=new DiagramSelectedAction();
+
         tabbedPane=new TabbedPane();
         packageView=new PackageView(infoLine,tabbedPane);
 
 
-
-
-
-
+        if(ApplicationFramework.getInstance().getMessageGeneratorImplementation().getSubscribers().isEmpty())
+            System.out.println("prazana lista");
+        for(Subscriber subscriber:ApplicationFramework.getInstance().getMessageGeneratorImplementation().getSubscribers())
+            System.out.println(subscriber);
            // setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
             //add(infoLine);
 
@@ -85,14 +88,14 @@ public class MainFrame extends JFrame implements Subscriber {
 
 
             //treba da se popravi umesto ovog treba getSelectedNode
-            infoLine.populate("ime1","Autor1");
-            repaint();
+          //  infoLine.populate("ime1","Autor1");
+          //  repaint();
 
 
 
            // InfoLine.clear();
 
-
+        //update();
 
         Toolkit kit = Toolkit.getDefaultToolkit();
         Dimension screenSize = kit.getScreenSize();
@@ -113,15 +116,15 @@ public class MainFrame extends JFrame implements Subscriber {
         MyTreeMouseListner myTreeMouseListner = new MyTreeMouseListner(projectExplorer);
         projectExplorer.addMouseListener(myTreeMouseListner);
         this.desktop = new JPanel();
+        desktop.add(packageView);
 
-
-
+      //  desktop.setPreferredSize(new Dimension(2000,2000));
         JScrollPane scroll=new JScrollPane(projectExplorer);
         scroll.setMinimumSize(new Dimension(250,150));
         scroll.setPreferredSize(new Dimension(200,100));
-        JSplitPane split=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,scroll,desktop);
-        getContentPane().add(split,BorderLayout.WEST);
-        getContentPane().add(desktop,BorderLayout.CENTER);
+        JSplitPane split=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,scroll,packageView);//bio desktop na kraju
+        getContentPane().add(split,BorderLayout.CENTER);
+     //   getContentPane().add(desktop,BorderLayout.CENTER);
 
         split.setDividerLocation(250);
         split.setOneTouchExpandable(true);
@@ -132,7 +135,7 @@ public class MainFrame extends JFrame implements Subscriber {
     {
         if(instance == null)
         {
-            instance = new MainFrame(new MessageGeneratorImplementation());
+            instance = new MainFrame(ApplicationFramework.getInstance().getMessageGeneratorImplementation());
             instance.initialize();
         }
         return instance;
@@ -160,16 +163,36 @@ public class MainFrame extends JFrame implements Subscriber {
     public void update(Object notification) {
         if(notification instanceof Message){
             String string = "["+((Message) notification).getType()+"] ["+((Message) notification).getTimestamp()+"] "+((Message) notification).getText();
-            if (((Message) notification).getType().toString().equals("ERROR")){
+            if (((Message) notification).getType().equals(MessageType.ERROR)){
                 JOptionPane.showMessageDialog(this,string,"ERROR",JOptionPane.ERROR_MESSAGE);
+                System.out.println("hvata error");
             }
-            if (((Message) notification).getType().toString().equals("NOTIFICATION")){
-                JOptionPane.showMessageDialog(this,string,"NOTIFICATION",JOptionPane.INFORMATION_MESSAGE);
+            if (((Message) notification).getType().equals(MessageType.NOTIFICATION)){
+                //JOptionPane.showMessageDialog(this,string,"NOTIFICATION",JOptionPane.INFORMATION_MESSAGE);
+                //  mnogo bitno treba dea se vrati u if ospod
+                if(tabbedPane.getCpackage() != null&&((Message) notification).getText().toString().equals("ADDED")|| ((Message) notification).getText().toString().equals("DELETED_DIAGRAM")) {
+                    System.out.println("evo ga taj if");
+                    System.out.println( tabbedPane.getCpackage().getName()+"abrakadabra");
+                    packageView.view(tabbedPane.getCpackage());//ne treba ovaj pakage
+                 //   for((Package) ClassyNodeComposite tb:tabbedPane.getCpackage().getChildren())
+                  //  tb.getChildren();
+                 //   if(tabbedPane.getCpackage().getChildren().isEmpty())
+                   //     System.out.println("Nema nista u package");//dodaju se novi diajgrami sa raz imenima sto zanaci da nije prazan pa je onda vrv  los package
+                  //  if(tabbedPane.getDiagrams().isEmpty())
+                     //   System.out.println("Prazan jeee");
+                    System.out.println(tabbedPane.getCpackage().getName()+tabbedPane.getCpackage().getChildren());//problem je u get pac od tabbpane
+                      for(DiagramView dv:tabbedPane.getDiagrams())
+                          System.out.println(dv);
+                }
+                else if(((Message) notification).getText().toString().equals("CLEAR"))
+                    packageView.clear();
             }
-            if (((Message) notification).getType().toString().equals("WARNING")){
+            if (((Message) notification).getType().equals(MessageType.WARNING)){
                 JOptionPane.showMessageDialog(this,string,"NOTIFICATION",JOptionPane.WARNING_MESSAGE);
-            }else JOptionPane.showMessageDialog(this,"abc","greska",JOptionPane.WARNING_MESSAGE);
-        }else JOptionPane.showMessageDialog(this,"abd","GRESKA",JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        if(notification instanceof Package)
+          packageView.view((Package) notification) ;
     }
 
     public JPanel getDesktop() {
