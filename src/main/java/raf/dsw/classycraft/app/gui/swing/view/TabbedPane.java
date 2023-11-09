@@ -26,16 +26,27 @@ public class TabbedPane extends JTabbedPane {
         project = (Project) toLoad.findProject();
         System.out.println(project.getName());
         cpackage  = toLoad;
-        clear();
-        loadDiagrams();
-        addTabs();
-        revalidate();
+
+
+        if(!toLoad.getChildren().isEmpty()) {
+
+            clear();
+            loadDiagrams();
+            addTabs();
+            revalidate();
+        }
+        else
+            System.out.println("prazann je");
+
     }
 
     public void loadDiagrams() {
         for (ClassyNode cn : this.cpackage.getChildren()) {
             if (cn instanceof Diagram) {
+
                 this.diagrams.add(new DiagramView((Diagram) cn));
+
+
             }
         }
     }
@@ -47,9 +58,11 @@ public class TabbedPane extends JTabbedPane {
     }
 
     public void addTabs() {
-        for (DiagramView tabElement : this.diagrams){
+        for (DiagramView tabElement : diagrams){
+
             addTab(tabElement.getName(), tabElement);
-            System.out.println(tabElement.getName());}
+            System.out.println("Imenba u funckiji addtabss"+tabElement.getName());
+        }
     }
 
     public Project getproject() {

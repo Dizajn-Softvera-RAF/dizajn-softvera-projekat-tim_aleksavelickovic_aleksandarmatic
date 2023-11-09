@@ -12,9 +12,15 @@ public class DiagramView extends JPanel implements Subscriber {
         this.diagram = diagram;
         name = diagram.getName();
         this.diagram.addSubscriber(this);
+        System.out.println("Ime u konstruktoiru"+name);
     }
     @Override
     public void update(Object notification) {
 
+    }
+
+    @Override
+    public String getName() {
+        return name;
     }
 }

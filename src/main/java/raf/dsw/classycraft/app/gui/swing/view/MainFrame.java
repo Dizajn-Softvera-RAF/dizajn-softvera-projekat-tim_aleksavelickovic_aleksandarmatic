@@ -167,19 +167,22 @@ public class MainFrame extends JFrame implements Subscriber {
             if (((Message) notification).getType().equals(MessageType.NOTIFICATION)){
                 //JOptionPane.showMessageDialog(this,string,"NOTIFICATION",JOptionPane.INFORMATION_MESSAGE);
                 //  mnogo bitno treba dea se vrati u if ospod
-                if(tabbedPane.getCpackage() != null&&((Message) notification).getText().toString().equals("ADDED")|| ((Message) notification).getText().toString().equals("DELETED_DIAGRAM")) {
-                    System.out.println("evo ga taj if");
-                    System.out.println( tabbedPane.getCpackage().getName()+"abrakadabra");
+                if(tabbedPane.getCpackage() == null)
+                    System.out.println("Mora da je null");
+                if(tabbedPane.getCpackage() != null&&(((Message) notification).getText().toString().equals("ADDED")|| ((Message) notification).getText().toString().equals("DELETED_DIAGRAM"))) {
+                 //   System.out.println( tabbedPane.getCpackage().getName()+"abrakadabra");
                     packageView.view(tabbedPane.getCpackage());//ne treba ovaj pakage
-                 //   for((Package) ClassyNodeComposite tb:tabbedPane.getCpackage().getChildren())
+                //  for(ClassyNode cn: tabbedPane.getCpackage().getChildren())
+                  //    System.out.println( "imena u mainfrejmu su "+cn.getName());
                   //  tb.getChildren();
                  //   if(tabbedPane.getCpackage().getChildren().isEmpty())
                    //     System.out.println("Nema nista u package");//dodaju se novi diajgrami sa raz imenima sto zanaci da nije prazan pa je onda vrv  los package
                   //  if(tabbedPane.getDiagrams().isEmpty())
                      //   System.out.println("Prazan jeee");
-                    System.out.println(tabbedPane.getCpackage().getName()+tabbedPane.getCpackage().getChildren());//problem je u get pac od tabbpane
-                      for(DiagramView dv:tabbedPane.getDiagrams())
-                          System.out.println(dv);
+                    //System.out.println(tabbedPane.getCpackage().getName()+tabbedPane.getCpackage().getChildren());//problem je u get pac od tabbpane
+                  //  System.out.println("evo su imena");
+                    //  for(DiagramView dv:tabbedPane.getDiagrams())
+                      //    System.out.println(dv);
                 }
                 else if(((Message) notification).getText().toString().equals("CLEAR"))
                     packageView.clear();

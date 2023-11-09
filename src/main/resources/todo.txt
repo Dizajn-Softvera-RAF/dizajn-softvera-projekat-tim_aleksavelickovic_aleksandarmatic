@@ -1,6 +1,4 @@
 bugovi
-kad se gasi abut us gasi se ceo program
-about as action mvc
 treba svuda se pozovu greske
 kad se obrise cvor mora da se popravi selekcija
 kada se upisuju greske u log filewriter
