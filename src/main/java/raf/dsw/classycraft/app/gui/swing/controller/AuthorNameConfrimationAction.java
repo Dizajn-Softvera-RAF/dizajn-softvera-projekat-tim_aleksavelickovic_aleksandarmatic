@@ -37,7 +37,7 @@ public class AuthorNameConfrimationAction extends AbstractClassyAction implement
         }
 
         ((Project)selected.getClassyNode()).setAuthorName(newAuthor);
-        notifySubscribers("RENAME_A:" + newAuthor);
+        ApplicationFramework.getInstance().getMessageGeneratorImplementation().notifySubscribers(new Message("RENAME_AUTHOR"+newAuthor, MessageType.NOTIFICATION, LocalDateTime.now()));
         System.out.println("new author:" + newAuthor);
         System.out.println(((Project) selected.getClassyNode()).getAuthorName());
         MainFrame.getInstance().getInfoLine().setVisible(true);

@@ -1,5 +1,10 @@
 package raf.dsw.classycraft.app.gui.swing.tree.controller;
 
+import raf.dsw.classycraft.app.classyRepository.implementation.Project;
+import raf.dsw.classycraft.app.classyRepository.implementation.ProjectExplorer;
+import raf.dsw.classycraft.app.core.ApplicationFramework;
+import raf.dsw.classycraft.app.core.MessageGenerator.Message;
+import raf.dsw.classycraft.app.core.MessageGenerator.MessageType;
 import raf.dsw.classycraft.app.gui.swing.tree.model.ClassyTreeItem;
 
 import javax.swing.*;
@@ -10,6 +15,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.time.LocalDateTime;
 import java.util.EventObject;
 
 public class ClassyTreeCellEditor  extends DefaultTreeCellEditor implements ActionListener {
@@ -52,7 +58,15 @@ public class ClassyTreeCellEditor  extends DefaultTreeCellEditor implements Acti
             return;
 
         ClassyTreeItem clicked = (ClassyTreeItem) clickedOn;
+        if (clicked.getClassyNode() instanceof ProjectExplorer) {
+            ApplicationFramework.getInstance().getMessageGeneratorImplementation().notifySubscribers(new Message("CANNOT_RENAME_NODE", MessageType.WARNING, LocalDateTime.now()));
+            return;
+        }
+
         clicked.setName(e.getActionCommand());
+        if(clicked.getClassyNode() instanceof Project)
+            ApplicationFramework.getInstance().getMessageGeneratorImplementation().notifySubscribers(new Message("RENAME_PROJECT"+e.getActionCommand(), MessageType.NOTIFICATION, LocalDateTime.now()));
+
 
     }
 
