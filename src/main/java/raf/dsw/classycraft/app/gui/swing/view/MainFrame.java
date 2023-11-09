@@ -37,6 +37,8 @@ public class MainFrame extends JFrame implements Subscriber {
     private DiagramSelectedAction diagramSelectedAction;
     private PackegeSelectedAction packegeSelectedAction;
     private JPanel desktop;
+    private PackageView packageView;
+    private TabbedPane tabbedPane;
 
 
     private MainFrame(MessageGeneratorImplementation mgi){
@@ -68,7 +70,8 @@ public class MainFrame extends JFrame implements Subscriber {
         packageOrProjectSelectionFrame=new PackageOrProjectSelectionFrame();
         packegeSelectedAction=new PackegeSelectedAction();
         diagramSelectedAction=new DiagramSelectedAction();
-
+        tabbedPane=new TabbedPane();
+        packageView=new PackageView(infoLine,tabbedPane);
 
 
 
@@ -149,6 +152,9 @@ public class MainFrame extends JFrame implements Subscriber {
         return packegeSelectedAction;
     }
 
+    public TabbedPane getTabbedPane() {
+        return tabbedPane;
+    }
 
     @Override
     public void update(Object notification) {

@@ -35,10 +35,12 @@ public class MyTreeMouseListner implements MouseListener {
                     if(cvor instanceof Package){
                         System.out.println("Dupli klik");
                         Package paket = (Package) cvor;
-                        JLabel projekat = MainFrame.getInstance().getInfoLine().getProjectLabel();
-                        JLabel autor = MainFrame.getInstance().getInfoLine().getAuthorLabel();
-                        PackageView pw = new PackageView(paket,projekat,autor);
-                        MainFrame.getInstance().getDesktop().add(pw);
+                        //JLabel projekat = MainFrame.getInstance().getInfoLine().getProjectLabel();
+                       // JLabel autor = MainFrame.getInstance().getInfoLine().getAuthorLabel();
+                      //  PackageView pw = new PackageView(paket,projekat,autor);
+                     //
+                    // ovo gledaj   PackageView pw=new PackageView(MainFrame.getInstance().getInfoLine(),MainFrame.getInstance().getTabbedPane());
+                     //   MainFrame.getInstance().getDesktop().add(pw);
 
                     }
                 }

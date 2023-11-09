@@ -47,6 +47,13 @@ public class Package extends ClassyNodeComposite implements Pubsliher {
             l2.Print();
         }
     }
+    public ClassyNodeComposite findProject() {
+        ClassyNodeComposite project = (ClassyNodeComposite) this.getParent();
+        while (!(project instanceof Project)) {
+            project = (ClassyNodeComposite) project.getParent();
+        }
+        return project;
+    }
 
     @Override
     public void addSubscriber(Subscriber subscriber) {
