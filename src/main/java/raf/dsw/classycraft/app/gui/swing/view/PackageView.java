@@ -8,10 +8,7 @@ import java.awt.*;
 
 
 public class PackageView extends JPanel implements Subscriber {
-   // JLabel projekat;
-   // JLabel autor;
-   // DiagramView diagramView;
-   // Package paket;
+
     private final InfoLine infoLine;
     private final TabbedPane tabbedPane;
 

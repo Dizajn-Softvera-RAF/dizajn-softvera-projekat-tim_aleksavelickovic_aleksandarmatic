@@ -1,5 +1,7 @@
 package raf.dsw.classycraft.app.gui.swing.view;
 
+import raf.dsw.classycraft.app.gui.swing.controller.AbstractClassyAction;
+
 import javax.swing.*;
 import java.awt.*;
 import javax.swing.*;
@@ -7,16 +9,18 @@ import javax.swing.text.Position;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.net.URL;
 
-public class AboutUsFrame {
+public class AboutUsFrame  {
+    public AboutUsFrame(){init();}
     public void init() {
-      /*
+
         JFrame aboutUsProzor = new JFrame();
         aboutUsProzor.setSize(800, 800);
         aboutUsProzor.setAlwaysOnTop(true);
         aboutUsProzor.setTitle("AboutUs");
         aboutUsProzor.setLocationRelativeTo(null);
-        aboutUsProzor.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        aboutUsProzor.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         aboutUsProzor.setLayout(null);
         //aboutUsProzor.getContentPane().setLayout(new );
 
@@ -37,8 +41,8 @@ public class AboutUsFrame {
         //labele sa imenima
         JLabel ime1 = new JLabel();
 
-        JLabel slika2 = new JLabel(loadIcon("/images/Info3.jpg")); ovo treba
-       JLabel slika1 = new JLabel(loadIcon("/images/Info4.png"));
+        JLabel slika2 = new JLabel(loadIcon("/images/Info3.jpg"));
+        JLabel slika1 = new JLabel(loadIcon("/images/Info4.png"));
         JLabel ime2 = new JLabel();
         ime1.setText("Aleksa Veličković");
         ime2.setText("Aleksandar Miodragović");
@@ -62,6 +66,20 @@ public class AboutUsFrame {
         aboutUsProzor.add(panel4);
         aboutUsProzor.setVisible(true);
 
-*/
+
     }
+    public Icon loadIcon(String fileName) {
+        URL imageURL = getClass().getResource(fileName);
+        Icon icon = null;
+
+        if (imageURL != null) {
+            icon = new ImageIcon(imageURL);
+        }
+        else {
+            System.err.println("Resource not found: " + fileName);
+        }
+        return icon;
+    }
+
+
 }

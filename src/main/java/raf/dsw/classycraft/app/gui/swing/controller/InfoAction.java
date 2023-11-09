@@ -1,6 +1,7 @@
 package raf.dsw.classycraft.app.gui.swing.controller;
 
 import javafx.geometry.Pos;
+import raf.dsw.classycraft.app.gui.swing.view.AboutUsFrame;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -17,17 +18,19 @@ public class InfoAction extends AbstractClassyAction{
     public InfoAction(){
         putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.CTRL_MASK));
         putValue(NAME, "AboutUs");
+        putValue(SMALL_ICON, loadIcon("/images/info.png"));
         putValue(SHORT_DESCRIPTION, "AboutUs");
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        //novi prozor za AboutUs
+        AboutUsFrame aboutUsFrame = new AboutUsFrame();
+      /*  //novi prozor za AboutUs
         JFrame aboutUsProzor = new JFrame();
         aboutUsProzor.setSize(800, 800);
         aboutUsProzor.setAlwaysOnTop(true);
         aboutUsProzor.setTitle("AboutUs");
         aboutUsProzor.setLocationRelativeTo(null);
-        aboutUsProzor.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        aboutUsProzor.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         aboutUsProzor.setLayout(null);
         //aboutUsProzor.getContentPane().setLayout(new );
 
@@ -71,7 +74,7 @@ public class InfoAction extends AbstractClassyAction{
         aboutUsProzor.add(panel2);
         aboutUsProzor.add(panel3);
         aboutUsProzor.add(panel4);
-        aboutUsProzor.setVisible(true);
+        aboutUsProzor.setVisible(true);*/
     }
 
 }

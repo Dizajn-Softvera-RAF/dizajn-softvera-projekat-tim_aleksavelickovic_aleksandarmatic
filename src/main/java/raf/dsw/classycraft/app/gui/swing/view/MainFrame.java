@@ -38,7 +38,7 @@ public class MainFrame extends JFrame implements Subscriber {
     private ClassyTree classyTree;
     private DiagramSelectedAction diagramSelectedAction;
     private PackegeSelectedAction packegeSelectedAction;
-    private JPanel desktop;
+
     private PackageView packageView;
     private TabbedPane tabbedPane;
 
@@ -115,16 +115,13 @@ public class MainFrame extends JFrame implements Subscriber {
         JTree projectExplorer = classyTreeImplementation.generateTree(ApplicationFramework.getInstance().getClassyRepositoryImplementation().getProjectExplorer());
         MyTreeMouseListner myTreeMouseListner = new MyTreeMouseListner(projectExplorer);
         projectExplorer.addMouseListener(myTreeMouseListner);
-        this.desktop = new JPanel();
-        desktop.add(packageView);
 
-      //  desktop.setPreferredSize(new Dimension(2000,2000));
+
+
         JScrollPane scroll=new JScrollPane(projectExplorer);
-        scroll.setMinimumSize(new Dimension(250,150));
-        scroll.setPreferredSize(new Dimension(200,100));
         JSplitPane split=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,scroll,packageView);//bio desktop na kraju
         getContentPane().add(split,BorderLayout.CENTER);
-     //   getContentPane().add(desktop,BorderLayout.CENTER);
+
 
         split.setDividerLocation(250);
         split.setOneTouchExpandable(true);
@@ -194,8 +191,6 @@ public class MainFrame extends JFrame implements Subscriber {
         if(notification instanceof Package)
           packageView.view((Package) notification) ;
     }
-
-    public JPanel getDesktop() {
-        return desktop;
-    }
 }
+
+

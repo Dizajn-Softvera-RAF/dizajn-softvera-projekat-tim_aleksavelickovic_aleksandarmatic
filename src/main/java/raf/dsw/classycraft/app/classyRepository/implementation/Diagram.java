@@ -9,8 +9,10 @@ import java.util.concurrent.Flow;
 
 public class Diagram extends ClassyNode implements Pubsliher {
     private ArrayList<Subscriber>subscribers;
+    private String name;
     public Diagram(String name, ClassyNode parent) {
         super(name, parent);
+        this.name = name;
         subscribers = new ArrayList<>();
     }
 
@@ -23,6 +25,7 @@ public class Diagram extends ClassyNode implements Pubsliher {
     public void removeSubscriber(Subscriber subscriber) {
         subscribers.remove(subscriber);
     }
+
 
     @Override
     public void notifySubscribers(Object notification) {
