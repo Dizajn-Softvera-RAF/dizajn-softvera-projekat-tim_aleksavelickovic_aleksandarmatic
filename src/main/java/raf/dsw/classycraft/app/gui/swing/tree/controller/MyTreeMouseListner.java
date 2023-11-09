@@ -27,19 +27,14 @@ public class MyTreeMouseListner implements MouseListener {
     public void mouseClicked(MouseEvent e) {
         if (e.getClickCount()==2){
             TreePath path = jTree.getSelectionPath();
-
             if (path != null){
                 Object node = path.getLastPathComponent();
-
-                System.out.println(node);
                 if (node instanceof ClassyTreeItem){
                     ClassyTreeItem treeItem = (ClassyTreeItem) node;
                     ClassyNode cvor = treeItem.getClassyNode();
                     if(cvor instanceof Package){
-                        System.out.println("Dupli klik");
-                        //ovde negde je problem
                         Package paket = (Package) cvor;
-                        ApplicationFramework.getInstance().getMessageGeneratorImplementation().notifySubscribers(paket);//umesto new package itd
+                        ApplicationFramework.getInstance().getMessageGeneratorImplementation().notifySubscribers(paket);
 
                     }
                 }

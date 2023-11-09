@@ -53,11 +53,11 @@ public class Project extends ClassyNodeComposite {
            Package pack=(Package) child;
            if(!this.getChildren().contains(pack)){
                this.getChildren().add(pack);
-             //  System.out.println("Dodao je project u project explorer");
+
            }
        }
 
-       //  super.addChild(child);
+
        else {
            LoggerFactory lf = new LoggerFactory();
            Logger l = lf.creatLogger("CONSOLE", ApplicationFramework.getInstance().getMessageGeneratorImplementation());

@@ -41,10 +41,7 @@ public class TabbedPane extends JTabbedPane {
     public void loadDiagrams() {
         for (ClassyNode cn : this.cpackage.getChildren()) {
             if (cn instanceof Diagram) {
-
                 this.diagrams.add(new DiagramView((Diagram) cn));
-
-
             }
         }
     }
@@ -57,9 +54,7 @@ public class TabbedPane extends JTabbedPane {
 
     public void addTabs() {
         for (DiagramView tabElement : diagrams){
-
             addTab(tabElement.getName(), tabElement);
-            System.out.println("Imenba u funckiji addtabss"+tabElement.getName());
         }
     }
 

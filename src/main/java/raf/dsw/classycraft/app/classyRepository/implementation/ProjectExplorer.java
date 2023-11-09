@@ -31,7 +31,7 @@ public class ProjectExplorer extends ClassyNodeComposite {
             }
         }
 
-          //  super.addChild(child);
+
         else {
             LoggerFactory lf = new LoggerFactory();
             Logger l = lf.creatLogger("CONSOLE",ApplicationFramework.getInstance().getMessageGeneratorImplementation());

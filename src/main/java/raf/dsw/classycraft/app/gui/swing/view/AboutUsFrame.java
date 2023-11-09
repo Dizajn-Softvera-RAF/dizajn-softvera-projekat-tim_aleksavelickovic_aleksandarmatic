@@ -1,7 +1,6 @@
 package raf.dsw.classycraft.app.gui.swing.view;
 
-import raf.dsw.classycraft.app.gui.swing.controller.AbstractClassyAction;
-
+import raf.dsw.classycraft.app.gui.swing.controller.AbstractClassyAction ;
 import javax.swing.*;
 import java.awt.*;
 import javax.swing.*;
@@ -22,7 +21,7 @@ public class AboutUsFrame  {
         aboutUsProzor.setLocationRelativeTo(null);
         aboutUsProzor.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         aboutUsProzor.setLayout(null);
-        //aboutUsProzor.getContentPane().setLayout(new );
+
 
         //paneli
         JPanel panel1 = new JPanel();
@@ -35,19 +34,22 @@ public class AboutUsFrame  {
         panel4.setBounds(400, 100, 400, 700);
         panel1.setLayout(new BorderLayout());
         panel2.setLayout(new BorderLayout());
-        //Slike
+
 
 
         //labele sa imenima
         JLabel ime1 = new JLabel();
+        JLabel ime2 = new JLabel();
 
         JLabel slika2 = new JLabel(loadIcon("/images/Info3.jpg"));
         JLabel slika1 = new JLabel(loadIcon("/images/Info4.png"));
-        JLabel ime2 = new JLabel();
+
         ime1.setText("Aleksa Veličković");
         ime2.setText("Aleksandar Miodragović");
+
         ime1.setFont(new Font("Info", Font.BOLD, 28));
         ime2.setFont(new Font("Info", Font.BOLD, 28));
+
         ime1.setVerticalAlignment(JLabel.CENTER);
         ime2.setVerticalAlignment(JLabel.CENTER);
         ime1.setHorizontalAlignment(JLabel.CENTER);

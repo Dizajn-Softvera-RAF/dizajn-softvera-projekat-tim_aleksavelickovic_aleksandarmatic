@@ -10,9 +10,7 @@ abstract public class NodeFactory extends ClassyNode {
     abstract public ClassyNode createNode(ClassyNodeComposite parent);
 
     public ClassyNode getNode(ClassyNodeComposite parent){
-        ClassyNode node=createNode(parent);
-     //   node.setName(name);
-       // node.setParent(parent);
-        return node;
+        return createNode(parent);
+
     }
 }

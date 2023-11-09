@@ -43,7 +43,7 @@ public class Package extends ClassyNodeComposite implements Pubsliher {
                 }
             }
         }
-        //  super.addChild(child);
+
         else {
             LoggerFactory lf = new LoggerFactory();
             Logger l = lf.creatLogger("CONSOLE", ApplicationFramework.getInstance().getMessageGeneratorImplementation());

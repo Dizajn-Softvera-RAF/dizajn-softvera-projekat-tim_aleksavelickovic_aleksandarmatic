@@ -23,10 +23,6 @@ public class ConsoleLogger extends Logger{
             timeStamp = ((Message) notification).getTimestamp();
             Print();
         }
-        else {
-            text = "";
-            type = null;
-            timeStamp =null;
-        }
+
     }
 }

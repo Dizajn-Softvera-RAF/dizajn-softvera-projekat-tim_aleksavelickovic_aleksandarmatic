@@ -12,13 +12,6 @@ public class ClassyRepositoryImplementation implements ClassyRepository{
      private NodeFactory nodeFactory ;
      private ClassyNode parent=null;
 
-    //@Override
-   // public ProjectExplorer getRoot() {
-       // return root;
-  //  }
-   // public void setRoot(ProjectExplorer root) {
-     //   this.root = root;
-   // }
 
 
     public void setProjectExplorer(ProjectExplorer projectExplorer) {
@@ -26,7 +19,7 @@ public class ClassyRepositoryImplementation implements ClassyRepository{
     }
 
     public ClassyRepositoryImplementation() {
-      //  projectExplorer=new ProjectExplorer();
+
 
         NodeFactory nf= Utils.getNodeFactory(parent,0);
         projectExplorer= (ProjectExplorer) nf.getNode((ClassyNodeComposite) parent);

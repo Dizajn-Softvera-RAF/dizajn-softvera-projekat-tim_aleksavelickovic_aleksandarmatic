@@ -1,9 +1,8 @@
 bugovi
 treba svuda se pozovu greske
 kad se obrise cvor mora da se popravi selekcija
-kada se upisuju greske u log filewriter
 kad se obrise bilo koji node ime broj ostaje isti
-
+preimenovanje autora i projekta pre pokretanja tabbed pane
 
 feeature
 treba da se povezivanje odradi odma

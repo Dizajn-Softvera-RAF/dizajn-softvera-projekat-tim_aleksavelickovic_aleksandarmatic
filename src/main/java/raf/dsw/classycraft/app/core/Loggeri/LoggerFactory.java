@@ -5,8 +5,8 @@ import raf.dsw.classycraft.app.core.MessageGenerator.MessageGeneratorImplementat
 public class LoggerFactory {
 
     public Logger creatLogger(String ime, MessageGeneratorImplementation mgi){
-        if(ime.toUpperCase().equals("FILE")){return new FileLogger(mgi);}
-        if (ime.toUpperCase().equals("CONSOLE")){return new ConsoleLogger(mgi);}
+        if(ime.equalsIgnoreCase("FILE")){return new FileLogger(mgi);}
+        if (ime.equalsIgnoreCase("CONSOLE")){return new ConsoleLogger(mgi);}
         else return null;
 
     }

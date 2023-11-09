@@ -44,7 +44,6 @@ public class MainFrame extends JFrame implements Subscriber {
 
 
     private MainFrame(MessageGeneratorImplementation mgi){
-       // MainFrame.getInstance().setVisible(true);
         this.mgi = mgi;
         this.mgi.addSubscriber(this);
     }
@@ -77,25 +76,11 @@ public class MainFrame extends JFrame implements Subscriber {
         packageView=new PackageView(infoLine,tabbedPane);
 
 
-        if(ApplicationFramework.getInstance().getMessageGeneratorImplementation().getSubscribers().isEmpty())
+        /*if(ApplicationFramework.getInstance().getMessageGeneratorImplementation().getSubscribers().isEmpty())
             System.out.println("prazana lista");
         for(Subscriber subscriber:ApplicationFramework.getInstance().getMessageGeneratorImplementation().getSubscribers())
             System.out.println(subscriber);
-           // setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-            //add(infoLine);
-
-
-
-
-            //treba da se popravi umesto ovog treba getSelectedNode
-          //  infoLine.populate("ime1","Autor1");
-          //  repaint();
-
-
-
-           // InfoLine.clear();
-
-        //update();
+        */
 
         Toolkit kit = Toolkit.getDefaultToolkit();
         Dimension screenSize = kit.getScreenSize();
@@ -119,11 +104,11 @@ public class MainFrame extends JFrame implements Subscriber {
 
 
         JScrollPane scroll=new JScrollPane(projectExplorer);
-        JSplitPane split=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,scroll,packageView);//bio desktop na kraju
+        JSplitPane split=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,scroll,packageView);
         getContentPane().add(split,BorderLayout.CENTER);
 
 
-        split.setDividerLocation(250);
+        split.setDividerLocation(200);
         split.setOneTouchExpandable(true);
 
     }
@@ -162,24 +147,18 @@ public class MainFrame extends JFrame implements Subscriber {
             String string = "["+((Message) notification).getType()+"] ["+((Message) notification).getTimestamp()+"] "+((Message) notification).getText();
             if (((Message) notification).getType().equals(MessageType.ERROR)){
                 JOptionPane.showMessageDialog(this,string,"ERROR",JOptionPane.ERROR_MESSAGE);
-                System.out.println("hvata error");
+
             }
             if (((Message) notification).getType().equals(MessageType.NOTIFICATION)){
-                //JOptionPane.showMessageDialog(this,string,"NOTIFICATION",JOptionPane.INFORMATION_MESSAGE);
-                //  mnogo bitno treba dea se vrati u if ospod
                 if(tabbedPane.getCpackage() == null)
                     System.out.println("Mora da je null");
-                if(tabbedPane.getCpackage() != null&&(((Message) notification).getText().toString().equals("ADDED")|| ((Message) notification).getText().toString().equals("DELETED_DIAGRAM"))) {
-
+                if(tabbedPane.getCpackage() != null&&(((Message) notification).getText().toString().equals("ADDED")|| ((Message) notification).getText().toString().equals("DELETED_DIAGRAM"))){
                     packageView.view(tabbedPane.getCpackage());
-
                 }
                 else if(((Message) notification).getText().toString().equals("CLEAR"))
                     packageView.clear();
                else if ( ((Message) notification).getText().toString().contains("RENAME_AUTHOR")) {
-                    System.out.println("Uso je u if gde se renejmuje autor");
                     infoLine.setupAuthor(((Message) notification).getText().toString().replace("RENAME_AUTHOR", ""));
-
                 }
 
 

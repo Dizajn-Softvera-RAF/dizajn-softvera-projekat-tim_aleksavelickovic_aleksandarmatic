@@ -9,7 +9,7 @@ import java.nio.file.Paths;
 import java.time.LocalDateTime;
 
 public class FileLogger extends Logger{
-    private File fajl = new File("log.txt");
+    File fajl = new File("src/main/resources/log.txt");
     MessageGeneratorImplementation mgi;
     public FileLogger(MessageGeneratorImplementation mgi) {
         this.mgi = mgi;
@@ -19,9 +19,9 @@ public class FileLogger extends Logger{
     @Override
     public void Print() {
         PrintWriter pw = null;
-        String string = "["+type+"] ["+timeStamp+"] "+text;
+        String string = "["+type+"] ["+timeStamp+"] "+text+"\n";
         try{
-            pw = new PrintWriter(new BufferedWriter(new FileWriter("src/main/resources/log.txt")));
+            pw = new PrintWriter(new BufferedWriter(new FileWriter(fajl,true)));
             pw.println(string);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -38,11 +38,7 @@ public class FileLogger extends Logger{
             timeStamp = ((Message) notification).getTimestamp();
             Print();
         }
-        else {
-            text = "";
-            type = null;
-            timeStamp =null;
-        }
+
     }
 
 }
