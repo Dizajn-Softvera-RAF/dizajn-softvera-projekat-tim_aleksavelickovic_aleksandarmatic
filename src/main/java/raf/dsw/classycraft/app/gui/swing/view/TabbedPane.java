@@ -28,15 +28,13 @@ public class TabbedPane extends JTabbedPane {
         cpackage  = toLoad;
 
 
-        if(!toLoad.getChildren().isEmpty()) {
+
 
             clear();
             loadDiagrams();
             addTabs();
             revalidate();
-        }
-        else
-            System.out.println("prazann je");
+
 
     }
 

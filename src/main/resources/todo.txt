@@ -6,4 +6,4 @@ kad se obrise bilo koji node ime broj ostaje isti
 
 
 feeature
-trewba da se poveze i prikaze tabbedpane
+treba da se povezivanje odradi odma
