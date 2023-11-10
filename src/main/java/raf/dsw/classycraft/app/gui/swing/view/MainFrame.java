@@ -141,15 +141,20 @@ public class MainFrame extends JFrame implements Subscriber {
         return tabbedPane;
     }
 
+    public MessageGeneratorImplementation getMgi() {
+        return mgi;
+    }
+
     @Override
     public void update(Object notification) {
-        if(notification instanceof Message){
-            String string = "["+((Message) notification).getType()+"] ["+((Message) notification).getTimestamp()+"] "+((Message) notification).getText();
-            if (((Message) notification).getType().equals(MessageType.ERROR)){
-                JOptionPane.showMessageDialog(this,string,"ERROR",JOptionPane.ERROR_MESSAGE);
+        System.out.println("Mainfrejmov update");
+        if(notification instanceof Message) {
+            String string = "[" + ((Message) notification).getType() + "] [" + ((Message) notification).getTimestamp() + "] " + ((Message) notification).getText();
+            if (((Message) notification).getType().equals(MessageType.ERROR)) {
+                JOptionPane.showMessageDialog(this, string, "ERROR", JOptionPane.ERROR_MESSAGE);
 
             }
-            if (((Message) notification).getType().equals(MessageType.NOTIFICATION)){
+           /* if (((Message) notification).getType().equals(MessageType.NOTIFICATION)){
                 if(tabbedPane.getCpackage() == null)
                     System.out.println("Mora da je null");
                 if(tabbedPane.getCpackage() != null&&(((Message) notification).getText().toString().equals("ADDED")|| ((Message) notification).getText().toString().equals("DELETED_DIAGRAM"))){
@@ -172,6 +177,8 @@ public class MainFrame extends JFrame implements Subscriber {
         }
         if(notification instanceof Package)
           packageView.view((Package) notification) ;
+          */
+        }
     }
 }
 

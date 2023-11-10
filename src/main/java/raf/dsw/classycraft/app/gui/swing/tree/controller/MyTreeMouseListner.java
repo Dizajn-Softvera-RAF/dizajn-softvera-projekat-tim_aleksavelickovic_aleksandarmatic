@@ -27,6 +27,7 @@ public class MyTreeMouseListner implements MouseListener {
     public void mouseClicked(MouseEvent e) {
         if (e.getClickCount()==2){
             TreePath path = jTree.getSelectionPath();
+
             if (path != null){
                 Object node = path.getLastPathComponent();
                 if (node instanceof ClassyTreeItem){
@@ -35,6 +36,7 @@ public class MyTreeMouseListner implements MouseListener {
                     if(cvor instanceof Package){
                         Package paket = (Package) cvor;
                         ApplicationFramework.getInstance().getMessageGeneratorImplementation().notifySubscribers(paket);
+                        System.out.println("NApravi paket i notifyuje");
 
                     }
                 }

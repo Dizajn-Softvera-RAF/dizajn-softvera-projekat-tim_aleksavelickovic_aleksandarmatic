@@ -26,7 +26,7 @@ public class AuthorNameConfrimationAction extends AbstractClassyAction implement
     public void actionPerformed(ActionEvent e) {
         ClassyTreeItem selected = MainFrame.getInstance().getClassyTreeImplementation().getSelectedNode();
 
-        String newAuthor = MainFrame.getInstance().getAuthorFrame().getCaTextField().getText();
+        String newAuthor = MainFrame.getInstance().getAuthorFrame().getCaTextField().getText();//ovo krsi mvc
 
         MainFrame.getInstance().getAuthorFrame().setVisible(false);
         MainFrame.getInstance().getAuthorFrame().getCaTextField().setText("");

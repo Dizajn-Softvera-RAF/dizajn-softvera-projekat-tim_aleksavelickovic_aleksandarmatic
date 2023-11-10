@@ -13,11 +13,23 @@ public class DiagramFactory extends NodeFactory{
 
     @Override
     public ClassyNode createNode(ClassyNodeComposite parent) {
-        String name = "Diagram";
-        ClassyTreeItem classyTreeItem;
+        if (parent.getChildren().size() > 0) {
+            int i = 0;
+            while(true) {
+                i++;
+                boolean exist = false;
 
-        if(parent.getChildren().size()>0)
-            name += " (" + parent.getChildren().size() + ")";
-        return new Diagram(name,parent);
+                for(ClassyNode cn : parent.getChildren())
+                    if (cn.getName().equals("Diagram (" + i + ")")) {
+                        exist = true;
+                        break;
+                    }
+
+                if(!exist)
+                    return new Diagram("Diagram (" + i + ")",parent);
+            }
+        }
+
+        return new Diagram("Diagram",parent);
     }
 }

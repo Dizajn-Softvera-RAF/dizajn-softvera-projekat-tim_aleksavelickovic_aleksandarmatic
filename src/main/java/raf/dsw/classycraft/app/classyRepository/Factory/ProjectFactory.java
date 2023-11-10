@@ -13,10 +13,23 @@ public class ProjectFactory extends NodeFactory{
 
     @Override
     public ClassyNode createNode(ClassyNodeComposite parent) {
-        String name = "Project";
+        if (parent.getChildren().size() > 0) {
+            int i = 0;
+            while(true) {
+                i++;
+                boolean exist = false;
 
-        if(parent.getChildren().size()>0)
-            name += " (" + parent.getChildren().size() + ")";
-        return new Project(name,parent);
+                for(ClassyNode classyNode : parent.getChildren())
+                    if (classyNode.getName().equals("Project (" + i + ")")) {
+                        exist = true;
+                        break;
+                    }
+
+                if(!exist)
+                    return new Project("Project (" + i + ")", parent,"default Author", "/");
+            }
+        }
+
+        return new Project("Project",parent, "default Author", "/");
     }
 }
