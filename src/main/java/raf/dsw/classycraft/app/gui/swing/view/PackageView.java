@@ -4,6 +4,7 @@ import raf.dsw.classycraft.app.classyRepository.implementation.Package;
 import raf.dsw.classycraft.app.core.MessageGenerator.Message;
 import raf.dsw.classycraft.app.core.MessageGenerator.MessageType;
 import raf.dsw.classycraft.app.core.observer.Subscriber;
+import raf.dsw.classycraft.app.core.observer.interCommunicationNotification.InterCommunicationNotification;
 
 import javax.swing.*;
 import java.awt.*;
@@ -39,6 +40,7 @@ public class PackageView extends JPanel implements Subscriber {
     @Override
     public void update(Object notification) {
         System.out.println("Uslo je u update");
+
         if(notification instanceof Message){
 
 
@@ -51,8 +53,8 @@ public class PackageView extends JPanel implements Subscriber {
                 }
                 else if(((Message) notification).getText().toString().equals("CLEAR"))
                    clear();
-                else if ( ((Message) notification).getText().toString().contains("RENAME_AUTHOR")) {
-                    infoLine.setupAuthor(((Message) notification).getText().toString().replace("RENAME_AUTHOR", ""));
+               // else if ( ((Message) notification).getText().toString().contains("RENAME_AUTHOR")) {
+                   // infoLine.setupAuthor(((Message) notification).getText().toString().replace("RENAME_AUTHOR", ""));
                 }
 
 
@@ -60,11 +62,22 @@ public class PackageView extends JPanel implements Subscriber {
                     infoLine.setupProjectName( ((Message) notification).getText().replace("RENAME_PROJECT", ""));
 
             }
-
-        }
-        if(notification instanceof Package) {
+            if(notification instanceof Package) {
 
             view((Package) notification);
+            }
+             if(notification instanceof InterCommunicationNotification){
+                if(((InterCommunicationNotification) notification).getMessage().toString().equals("RENAME_AUTHOR")) {
+                    if(((InterCommunicationNotification) notification).getContent()==null)
+                        System.out.println("jesteee nulaaa dada");
+                    System.out.println(((InterCommunicationNotification) notification).getMessage().toString());
+                    infoLine.setupAuthor(((InterCommunicationNotification) notification).getContent().toString());
+                    System.out.println("oVo se desi");
+                    System.out.println(((InterCommunicationNotification) notification).getContent().toString());
+                }
+            }
+
         }
-    }
+
+
 }

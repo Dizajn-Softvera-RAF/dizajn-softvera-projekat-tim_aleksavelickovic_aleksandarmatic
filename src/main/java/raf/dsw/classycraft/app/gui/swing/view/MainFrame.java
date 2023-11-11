@@ -63,6 +63,10 @@ public class MainFrame extends JFrame implements Subscriber {
         return infoLine;
     }
 
+    public PackageView getPackageView() {
+        return packageView;
+    }
+
     private void initialize(){
         actionManager=new ActionManager();
         classyTreeImplementation=new ClassyTreeImplementation();

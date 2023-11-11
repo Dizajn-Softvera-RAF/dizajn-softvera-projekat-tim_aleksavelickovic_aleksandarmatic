@@ -26,7 +26,12 @@ public class Project extends ClassyNodeComposite {
     }
 
     public void setAuthorName(String autorName) {
+
         this.authorName = autorName;
+        System.out.println("U set autr neame je "+autorName);
+        for(ClassyNode cn: this.getChildren())
+            ((Package) cn).projectAuthorRename("RENAME_AUTHOR",this,autorName);
+
     }
 
 

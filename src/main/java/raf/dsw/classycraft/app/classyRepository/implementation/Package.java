@@ -9,6 +9,9 @@ import raf.dsw.classycraft.app.core.MessageGenerator.Message;
 import raf.dsw.classycraft.app.core.MessageGenerator.MessageType;
 import raf.dsw.classycraft.app.core.observer.Pubsliher;
 import raf.dsw.classycraft.app.core.observer.Subscriber;
+import raf.dsw.classycraft.app.core.observer.interCommunicationNotification.InterCommunicationNotification;
+import raf.dsw.classycraft.app.gui.swing.view.MainFrame;
+import raf.dsw.classycraft.app.gui.swing.view.PackageView;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -19,6 +22,7 @@ public class Package extends ClassyNodeComposite implements Pubsliher {
     public Package(String name, ClassyNode parent) {
         super(name, parent);
         subscribers = new ArrayList<>();
+        subscribers.add(MainFrame.getInstance().getPackageView());
     }
 
     @Override
@@ -60,7 +64,21 @@ public class Package extends ClassyNodeComposite implements Pubsliher {
         }
         return project;
     }
+    public void projectRename(String message,ClassyNode classyNode,String content){
+        if(this.findProject()!=classyNode)
+             return;
+        notifySubscribers(new InterCommunicationNotification(message,classyNode,content));
 
+    }
+    public void projectAuthorRename(String message,ClassyNode classyNode,String content){
+        if(this.findProject()!=classyNode)
+            return;
+
+        System.out.println("content u packegu je "+content);
+        notifySubscribers(new InterCommunicationNotification(message,classyNode,content));//prepravi ovo
+        System.out.println("notifay se notifayao");
+
+    }
     @Override
     public void addSubscriber(Subscriber subscriber) {
         subscribers.add(subscriber);
