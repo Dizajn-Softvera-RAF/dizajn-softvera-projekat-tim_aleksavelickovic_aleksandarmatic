@@ -51,7 +51,14 @@ public class Project extends ClassyNodeComposite {
 
     }
 
-   @Override
+    @Override
+    public void setName(String name) {
+        super.setName(name);
+        for(ClassyNode cn:this.getChildren())
+            ((Package)cn).projectRename("RENAME_PROJECT",this,name);
+    }
+
+    @Override
     public void addChild(ClassyNode child) {
        if(child!=null && child instanceof Package){
 

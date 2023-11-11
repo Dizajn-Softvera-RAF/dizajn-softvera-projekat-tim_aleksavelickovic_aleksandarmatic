@@ -68,7 +68,11 @@ public class Package extends ClassyNodeComposite implements Pubsliher {
         if(this.findProject()!=classyNode)
              return;
         notifySubscribers(new InterCommunicationNotification(message,classyNode,content));
+        System.out.println("Notifajao je ime projekta"+content);
 
+    }
+    public void show(){
+        notifySubscribers(new InterCommunicationNotification("SHOW",this));
     }
     public void projectAuthorRename(String message,ClassyNode classyNode,String content){
         if(this.findProject()!=classyNode)

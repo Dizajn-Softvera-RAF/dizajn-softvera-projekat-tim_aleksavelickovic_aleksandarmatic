@@ -64,8 +64,8 @@ public class ClassyTreeCellEditor  extends DefaultTreeCellEditor implements Acti
         }
 
         clicked.setName(e.getActionCommand());
-        if(clicked.getClassyNode() instanceof Project)
-            ApplicationFramework.getInstance().getMessageGeneratorImplementation().notifySubscribers(new Message("RENAME_PROJECT: "+e.getActionCommand(), MessageType.NOTIFICATION, LocalDateTime.now()));
+      //  if(clicked.getClassyNode() instanceof Project)
+        //    ApplicationFramework.getInstance().getMessageGeneratorImplementation().notifySubscribers(new Message("RENAME_PROJECT: "+e.getActionCommand(), MessageType.NOTIFICATION, LocalDateTime.now()));
 
 
     }

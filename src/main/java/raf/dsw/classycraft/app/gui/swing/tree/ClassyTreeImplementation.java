@@ -13,6 +13,7 @@ import raf.dsw.classycraft.app.core.Loggeri.Logger;
 import raf.dsw.classycraft.app.core.Loggeri.LoggerFactory;
 import raf.dsw.classycraft.app.core.MessageGenerator.Message;
 import raf.dsw.classycraft.app.core.MessageGenerator.MessageType;
+import raf.dsw.classycraft.app.core.observer.interCommunicationNotification.InterCommunicationNotification;
 import raf.dsw.classycraft.app.gui.swing.tree.model.ClassyTreeItem;
 import raf.dsw.classycraft.app.gui.swing.tree.view.ClassyTreeView;
 import raf.dsw.classycraft.app.gui.swing.view.MainFrame;
@@ -73,8 +74,12 @@ public class ClassyTreeImplementation implements ClassyTree {
 
 
 
-      // if(child instanceof Diagram)
-        ApplicationFramework.getInstance().getMessageGeneratorImplementation().notifySubscribers(new Message("ADDED", MessageType.NOTIFICATION, LocalDateTime.now()));
+      // if(child instanceof Diagram) to nije bilo odkomentarisano
+       // ApplicationFramework.getInstance().getMessageGeneratorImplementation().notifySubscribers(new Message("ADDED", MessageType.NOTIFICATION, LocalDateTime.now()));
+          if(child instanceof Diagram) {
+              if(child.getParent() instanceof Package)
+                  ((Package) child.getParent()).notifySubscribers(new InterCommunicationNotification("ADDED",child,child.getParent()));
+          }
         treeView.expandPath(treeView.getSelectionPath());
         SwingUtilities.updateComponentTreeUI(treeView);
     }
