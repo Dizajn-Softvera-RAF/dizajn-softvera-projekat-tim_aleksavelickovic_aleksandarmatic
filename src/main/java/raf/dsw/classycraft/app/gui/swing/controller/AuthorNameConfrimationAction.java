@@ -32,7 +32,8 @@ public class AuthorNameConfrimationAction extends AbstractClassyAction implement
         MainFrame.getInstance().getAuthorFrame().getCaTextField().setText("");
 
         if(newAuthor.isEmpty()) {
-            ApplicationFramework.getInstance().getMessageGeneratorImplementation().notifySubscribers(new Message("AUTHOR_NAME_CANNOT_BE_EMPTY", MessageType.ERROR, LocalDateTime.now()));
+            //ApplicationFramework.getInstance().getMessageGeneratorImplementation().notifySubscribers(new Message("AUTHOR_NAME_CANNOT_BE_EMPTY", MessageType.ERROR, LocalDateTime.now()));
+            ApplicationFramework.getInstance().getMessageGeneratorImplementation().generate("AUTHOR_NAME_CANNOT_BE_EMPTY", MessageType.ERROR, LocalDateTime.now());
             return;
         }
 

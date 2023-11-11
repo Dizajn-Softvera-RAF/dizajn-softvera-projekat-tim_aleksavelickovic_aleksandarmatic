@@ -26,7 +26,8 @@ public class AuthorNameAction extends AbstractClassyAction{
 
         if(!(selected.getClassyNode() instanceof Project))
         {
-            ApplicationFramework.getInstance().getMessageGeneratorImplementation().notifySubscribers(new Message("CANNOT_EDIT_AUTHOR_ON_NON_PROJECT", MessageType.ERROR, LocalDateTime.now()));
+            //ApplicationFramework.getInstance().getMessageGeneratorImplementation().notifySubscribers(new Message("CANNOT_EDIT_AUTHOR_ON_NON_PROJECT", MessageType.ERROR, LocalDateTime.now()));
+            ApplicationFramework.getInstance().getMessageGeneratorImplementation().generate("CANNOT_EDIT_AUTHOR_ON_NON_PROJECT", MessageType.ERROR, LocalDateTime.now());
             return;
         }
 

@@ -53,9 +53,10 @@ public class ClassyTreeImplementation implements ClassyTree {
     public void addChild(ClassyTreeItem parent) {
 
         if(parent==null){
-            ApplicationFramework.getInstance().getMessageGeneratorImplementation().notifySubscribers(new Message("NODE_CANNOT_BE_ADDED", MessageType.ERROR, LocalDateTime.now()));
+            /*ApplicationFramework.getInstance().getMessageGeneratorImplementation().notifySubscribers(new Message("NODE_CANNOT_BE_ADDED", MessageType.ERROR, LocalDateTime.now()));
             l.Print();
-            l2.Print();
+            l2.Print();*/
+            ApplicationFramework.getInstance().getMessageGeneratorImplementation().generate("NODE_CANNOT_BE_ADDED", MessageType.ERROR, LocalDateTime.now());
 
             return;
 
@@ -93,9 +94,10 @@ public class ClassyTreeImplementation implements ClassyTree {
     public void remove(ClassyTreeItem node) {
 
         if(node.getClassyNode().getParent() == null) {
-            ApplicationFramework.getInstance().getMessageGeneratorImplementation().notifySubscribers(new Message("NODE_CANNOT_BE_DELETED", MessageType.ERROR, LocalDateTime.now()));
+            /*ApplicationFramework.getInstance().getMessageGeneratorImplementation().notifySubscribers(new Message("NODE_CANNOT_BE_DELETED", MessageType.ERROR, LocalDateTime.now()));
             l.Print();
-            l2.Print();
+            l2.Print();*/
+            ApplicationFramework.getInstance().getMessageGeneratorImplementation().generate("NODE_CANNOT_BE_DELETED", MessageType.ERROR, LocalDateTime.now());
             return;
         }
 
