@@ -63,7 +63,7 @@ public class PackageView extends JPanel implements Subscriber {
 
             }
             if(notification instanceof Package) {
-
+            System.out.println("ovo se pozove");
             view((Package) notification);
             }
              if(notification instanceof InterCommunicationNotification){
