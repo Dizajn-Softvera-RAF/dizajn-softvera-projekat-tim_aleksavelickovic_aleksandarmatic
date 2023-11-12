@@ -32,7 +32,7 @@ public class RemoveAction extends AbstractClassyAction{
         MainFrame.getInstance().getClassyTreeImplementation().remove(selected);
         if (selected.getClassyNode() instanceof Package || selected.getClassyNode() instanceof Project){
             if(selected.getClassyNode() instanceof Package)
-                ((Package) selected.getClassyNode()).notifySubscribers(new InterCommunicationNotification("CLEAR",selected.getClassyNode()));
+                ((Package) selected.getClassyNode()).notifySubscribers(new InterCommunicationNotification("CLEAR",selected.getClassyNode(),"PACKAGE"));
             if(selected.getClassyNode() instanceof  Project){
               for(ClassyNode classyNode:  ( (Project)selected.getClassyNode()).getChildren()){
                   ((Package)classyNode).notifySubscribers(new InterCommunicationNotification("CLEAR",((Package) classyNode).findProject(),"Project"));

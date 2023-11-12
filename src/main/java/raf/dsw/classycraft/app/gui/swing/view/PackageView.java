@@ -56,9 +56,18 @@ public class PackageView extends JPanel implements Subscriber {
             if((((InterCommunicationNotification) notification).getMessage().toString().equals("DELETED")&&((InterCommunicationNotification) notification).getParent().equals(tabbedPane.getCpackage()) )||(((InterCommunicationNotification) notification).getMessage().toString().equals("ADDED")&&((InterCommunicationNotification) notification).getParent().equals(tabbedPane.getCpackage())))
                 view(tabbedPane.getCpackage());
             if( ((InterCommunicationNotification) notification).getMessage().toString().equals("CLEAR")){
-                if(((InterCommunicationNotification) notification).getClassyNode().equals(tabbedPane.getCpackage()))
-                clear();
+                if(((InterCommunicationNotification) notification).getContent().equals("PACKAGE")){
+
+
+                    if(((InterCommunicationNotification) notification).getClassyNode().equals(tabbedPane.getCpackage())) {
+                        System.out.println("Usto je u taj if");
+                        clear();
+                        System.out.println("Proso je klir");
+                    }
+                }
+                System.out.println("Proso je svbe");
                 if(((InterCommunicationNotification) notification).getContent().toString().equals("Project")) {
+                    System.out.println("Poziva se u projectu nzm sto");
                     if ((((Project) ((InterCommunicationNotification) notification).getClassyNode()).getChildren().contains(tabbedPane.getCpackage()))) {
 
                         clear();
