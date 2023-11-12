@@ -72,12 +72,13 @@ public class Project extends ClassyNodeComposite {
 
 
        else {
-           LoggerFactory lf = new LoggerFactory();
+           /*LoggerFactory lf = new LoggerFactory();
            Logger l = lf.creatLogger("CONSOLE", ApplicationFramework.getInstance().getMessageGeneratorImplementation());
            Logger l2 = lf.creatLogger("FILE",ApplicationFramework.getInstance().getMessageGeneratorImplementation());
            ApplicationFramework.getInstance().getMessageGeneratorImplementation().notifySubscribers(new Message("Node_CANNOT_BE_ADDED", MessageType.ERROR, LocalDateTime.now()));
            l.Print();
-           l2.Print();
+           l2.Print();*/
+           ApplicationFramework.getInstance().getMessageGeneratorImplementation().generate("Node_CANNOT_BE_ADDED", MessageType.ERROR, LocalDateTime.now());
        }
    }
 }

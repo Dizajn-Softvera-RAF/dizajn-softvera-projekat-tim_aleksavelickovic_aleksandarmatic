@@ -158,6 +158,12 @@ public class MainFrame extends JFrame implements Subscriber {
                 JOptionPane.showMessageDialog(this, string, "ERROR", JOptionPane.ERROR_MESSAGE);
 
             }
+            if (((Message) notification).getType().equals(MessageType.WARNING)){
+                JOptionPane.showMessageDialog(this,string,"WARNING",JOptionPane.WARNING_MESSAGE);
+            }
+            if (((Message) notification).getType().equals(MessageType.NOTIFICATION)){
+                JOptionPane.showMessageDialog(this,string,"NOTIFICATION",JOptionPane.INFORMATION_MESSAGE);
+            }
            /* if (((Message) notification).getType().equals(MessageType.NOTIFICATION)){
                 if(tabbedPane.getCpackage() == null)
                     System.out.println("Mora da je null");

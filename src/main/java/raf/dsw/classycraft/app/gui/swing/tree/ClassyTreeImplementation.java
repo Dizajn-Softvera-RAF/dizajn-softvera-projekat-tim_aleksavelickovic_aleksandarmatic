@@ -13,6 +13,7 @@ import raf.dsw.classycraft.app.core.Loggeri.Logger;
 import raf.dsw.classycraft.app.core.Loggeri.LoggerFactory;
 import raf.dsw.classycraft.app.core.MessageGenerator.Message;
 import raf.dsw.classycraft.app.core.MessageGenerator.MessageType;
+import raf.dsw.classycraft.app.core.observer.interCommunicationNotification.InterCommunicationNotification;
 import raf.dsw.classycraft.app.gui.swing.tree.model.ClassyTreeItem;
 import raf.dsw.classycraft.app.gui.swing.tree.view.ClassyTreeView;
 import raf.dsw.classycraft.app.gui.swing.view.MainFrame;
@@ -52,9 +53,10 @@ public class ClassyTreeImplementation implements ClassyTree {
     public void addChild(ClassyTreeItem parent) {
 
         if(parent==null){
-            ApplicationFramework.getInstance().getMessageGeneratorImplementation().notifySubscribers(new Message("NODE_CANNOT_BE_ADDED", MessageType.ERROR, LocalDateTime.now()));
+            /*ApplicationFramework.getInstance().getMessageGeneratorImplementation().notifySubscribers(new Message("NODE_CANNOT_BE_ADDED", MessageType.ERROR, LocalDateTime.now()));
             l.Print();
-            l2.Print();
+            l2.Print();*/
+            ApplicationFramework.getInstance().getMessageGeneratorImplementation().generate("NODE_CANNOT_BE_ADDED", MessageType.ERROR, LocalDateTime.now());
 
             return;
 
@@ -73,8 +75,12 @@ public class ClassyTreeImplementation implements ClassyTree {
 
 
 
-      // if(child instanceof Diagram)
-        ApplicationFramework.getInstance().getMessageGeneratorImplementation().notifySubscribers(new Message("ADDED", MessageType.NOTIFICATION, LocalDateTime.now()));
+      // if(child instanceof Diagram) to nije bilo odkomentarisano
+       // ApplicationFramework.getInstance().getMessageGeneratorImplementation().notifySubscribers(new Message("ADDED", MessageType.NOTIFICATION, LocalDateTime.now()));
+          if(child instanceof Diagram) {
+              if(child.getParent() instanceof Package)
+                  ((Package) child.getParent()).notifySubscribers(new InterCommunicationNotification("ADDED",child,child.getParent()));
+          }
         treeView.expandPath(treeView.getSelectionPath());
         SwingUtilities.updateComponentTreeUI(treeView);
     }
@@ -88,9 +94,10 @@ public class ClassyTreeImplementation implements ClassyTree {
     public void remove(ClassyTreeItem node) {
 
         if(node.getClassyNode().getParent() == null) {
-            ApplicationFramework.getInstance().getMessageGeneratorImplementation().notifySubscribers(new Message("NODE_CANNOT_BE_DELETED", MessageType.ERROR, LocalDateTime.now()));
+            /*ApplicationFramework.getInstance().getMessageGeneratorImplementation().notifySubscribers(new Message("NODE_CANNOT_BE_DELETED", MessageType.ERROR, LocalDateTime.now()));
             l.Print();
-            l2.Print();
+            l2.Print();*/
+            ApplicationFramework.getInstance().getMessageGeneratorImplementation().generate("NODE_CANNOT_BE_DELETED", MessageType.ERROR, LocalDateTime.now());
             return;
         }
 
