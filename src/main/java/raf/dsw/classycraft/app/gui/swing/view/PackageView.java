@@ -75,6 +75,8 @@ public class PackageView extends JPanel implements Subscriber {
                     System.out.println("oVo se desi");
                     System.out.println(((InterCommunicationNotification) notification).getContent().toString());
                 }
+                 if ( ((InterCommunicationNotification) notification).getMessage().toString().equals("RENAME_PROJECT"))
+                     infoLine.setupProjectName(((InterCommunicationNotification) notification).getContent().toString());
             }
 
         }
