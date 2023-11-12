@@ -9,8 +9,7 @@ import raf.dsw.classycraft.app.classyRepository.utils.Utils;
 
 public class ClassyRepositoryImplementation implements ClassyRepository{
     private ProjectExplorer projectExplorer;
-     private NodeFactory nodeFactory ;
-     private ClassyNode parent=null;
+    private ClassyNode parent=null;
 
 
 

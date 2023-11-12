@@ -37,10 +37,6 @@ public class MyTreeMouseListner implements MouseListener {
                         Package paket = (Package) cvor;
                         paket.show();
                         ApplicationFramework.getInstance().getMessageGeneratorImplementation().notifySubscribers(paket);
-
-                        System.out.println("NApravi paket i notifyuje");
-
-
                     }
                 }
             }

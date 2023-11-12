@@ -12,7 +12,7 @@ import java.util.List;
 public class TabbedPane extends JTabbedPane {
     private Project project;
     private Package cpackage;
-    private String author;
+
     private final List<DiagramView> diagrams = new ArrayList<>();
 
     public TabbedPane() {
@@ -22,18 +22,14 @@ public class TabbedPane extends JTabbedPane {
     }
 
     public void loadcpackage(Package toLoad) {
-        System.out.println(toLoad.getName());
+
         project = (Project) toLoad.findProject();
-        System.out.println(project.getName());
         cpackage  = toLoad;
 
-
-
-
-            clear();
-            loadDiagrams();
-            addTabs();
-            revalidate();
+        clear();
+        loadDiagrams();
+        addTabs();
+        revalidate();
 
 
     }

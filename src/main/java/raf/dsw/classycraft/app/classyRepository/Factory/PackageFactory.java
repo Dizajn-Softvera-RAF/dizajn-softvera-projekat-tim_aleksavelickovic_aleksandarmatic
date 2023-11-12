@@ -6,7 +6,6 @@ import raf.dsw.classycraft.app.classyRepository.implementation.Diagram;
 import raf.dsw.classycraft.app.classyRepository.implementation.Package;
 
 public class PackageFactory extends NodeFactory{
-    Package aPackage;
     public PackageFactory(String name, ClassyNode parent) {
         super(name, parent);
     }
@@ -29,7 +28,6 @@ public class PackageFactory extends NodeFactory{
                         exist = true;
                         break;
                     }
-
                 if(!exist)
                     return new Package("Package (" + i + ")",parent);
             }

@@ -30,21 +30,12 @@ public class NewProjectAction extends AbstractClassyAction{
     public void actionPerformed(ActionEvent e) {
         ClassyTreeItem selected = (ClassyTreeItem) MainFrame.getInstance().getClassyTreeImplementation().getSelectedNode();
         if(selected==null) {
-            /*LoggerFactory lf = new LoggerFactory();
-            Logger l = lf.creatLogger("CONSOLE", ApplicationFramework.getInstance().getMessageGeneratorImplementation());
-            Logger l2 = lf.creatLogger("FILE", ApplicationFramework.getInstance().getMessageGeneratorImplementation());
-            ApplicationFramework.getInstance().getMessageGeneratorImplementation().notifySubscribers(new Message("Node_CANNOT_BE_ADDED", MessageType.ERROR, LocalDateTime.now()));
-            l.Print();
-            l2.Print();*/
             ApplicationFramework.getInstance().getMessageGeneratorImplementation().generate("Node_CANNOT_BE_ADDED", MessageType.ERROR, LocalDateTime.now());
-
         }
         else if(selected.getClassyNode() instanceof Package) {
-            System.out.println("Izbor");
             MainFrame.getInstance().getPackageOrProjectSelectionFrame().setVisible(true);
         }
         else {
-
             MainFrame.getInstance().getClassyTreeImplementation().addChild(selected);
         }
 

@@ -6,7 +6,7 @@ import raf.dsw.classycraft.app.classyRepository.implementation.Package;
 import raf.dsw.classycraft.app.classyRepository.implementation.Project;
 
 public class ProjectFactory extends NodeFactory{
-    Project project;
+
     public ProjectFactory(String name, ClassyNode parent) {
         super(name, parent);
     }

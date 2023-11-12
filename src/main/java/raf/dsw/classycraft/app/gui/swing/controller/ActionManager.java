@@ -1,7 +1,6 @@
 package raf.dsw.classycraft.app.gui.swing.controller;
 
-//import lombok.Getter;
-//import lombok.Setter;
+
 
 import javax.swing.*;
 import java.net.URL;
@@ -11,7 +10,6 @@ public class ActionManager{
     private ExitAction exitAction;
     private NewProjectAction newProjectAction;
     private InfoAction aboutUs;
-    private SelectionAction selectionAction;
     private RemoveAction removeAction;
     private PackegeSelectedAction packegeSelectedAction;
     private DiagramSelectedAction diagramSelectedAction;
@@ -46,16 +44,10 @@ public class ActionManager{
         this.aboutUs = aboutUs;
     }
 
-    public SelectionAction getSelectionAction() {
-        return selectionAction;
-    }
+
 
     public RemoveAction getRemoveAction() {
         return removeAction;
-    }
-
-    public void setSelectionAction(SelectionAction selectionAction) {
-        this.selectionAction = selectionAction;
     }
 
     public PackegeSelectedAction getPackegeSelectedAction() {
@@ -98,7 +90,6 @@ public class ActionManager{
         exitAction=new ExitAction();
         newProjectAction=new NewProjectAction();
         aboutUs = new InfoAction();
-        selectionAction=new SelectionAction();
         removeAction=new RemoveAction();
         packegeSelectedAction=new PackegeSelectedAction();
         diagramSelectedAction=new DiagramSelectedAction();

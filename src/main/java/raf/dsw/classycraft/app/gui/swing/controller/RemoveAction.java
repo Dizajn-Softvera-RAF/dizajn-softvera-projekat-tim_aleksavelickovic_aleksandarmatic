@@ -30,33 +30,12 @@ public class RemoveAction extends AbstractClassyAction{
 
         ClassyTreeItem selected = (ClassyTreeItem) MainFrame.getInstance().getClassyTreeImplementation().getSelectedNode();
         MainFrame.getInstance().getClassyTreeImplementation().remove(selected);
-     /*   if (selected.getClassyNode() instanceof Package || selected.getClassyNode() instanceof Project){
-            if(selected.getClassyNode() instanceof Package)
-                ((Package) selected.getClassyNode()).notifySubscribers(new InterCommunicationNotification("CLEAR",selected.getClassyNode()));
-            if(selected.getClassyNode() instanceof  Project){
-              for(ClassyNode classyNode:  ( (Project)selected.getClassyNode()).getChildren()){
-                  ((Package)classyNode).notifySubscribers(new InterCommunicationNotification("CLEAR",((Package) classyNode).findProject(),"Project"));
-                  return;
-              }
 
-            }
-        }
-        */
         if (selected.getClassyNode() instanceof Package || selected.getClassyNode() instanceof Project)
-            ApplicationFramework.getInstance().getMessageGeneratorImplementation().notifySubscribers(new Message("CLEAR", MessageType.NOTIFICATION, LocalDateTime.now()));
+            ApplicationFramework.getInstance().getMessageGeneratorImplementation().generate("CLEAR", MessageType.NOTIFICATION, LocalDateTime.now());
         else if (selected.getClassyNode() instanceof Diagram)
-            ApplicationFramework.getInstance().getMessageGeneratorImplementation().notifySubscribers(new Message("DELETED_DIAGRAM", MessageType.NOTIFICATION, LocalDateTime.now()));
+            ApplicationFramework.getInstance().getMessageGeneratorImplementation().generate("DELETED_DIAGRAM", MessageType.NOTIFICATION, LocalDateTime.now());
 
-
-    /*ApplicationFramework.getInstance().getMessageGeneratorImplementation().notifySubscribers(new Message("CLEAR", MessageType.NOTIFICATION, LocalDateTime.now()));
-        else if (selected.getClassyNode() instanceof Diagram) {
-
-             ((Package) selected.getClassyNode().getParent()). notifySubscribers(new InterCommunicationNotification("DELETED",selected.getClassyNode(),selected.getClassyNode().getParent()));
-
-
-            // ApplicationFramework.getInstance().getMessageGeneratorImplementation().notifySubscribers(new Message("DELETED_DIAGRAM", MessageType.NOTIFICATION, LocalDateTime.now()));
-        }
-        */
 
     }
 }

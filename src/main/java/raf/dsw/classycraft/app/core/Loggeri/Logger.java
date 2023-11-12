@@ -8,9 +8,7 @@ import raf.dsw.classycraft.app.core.observer.Subscriber;
 import java.time.LocalDateTime;
 
 public abstract class Logger implements Subscriber {
-    String text;
-    MessageType type;
-    LocalDateTime timeStamp;
+
 
 
 

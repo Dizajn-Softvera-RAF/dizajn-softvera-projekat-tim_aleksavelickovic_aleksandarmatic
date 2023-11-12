@@ -80,11 +80,7 @@ public class MainFrame extends JFrame implements Subscriber {
         packageView=new PackageView(infoLine,tabbedPane);
 
 
-        /*if(ApplicationFramework.getInstance().getMessageGeneratorImplementation().getSubscribers().isEmpty())
-            System.out.println("prazana lista");
-        for(Subscriber subscriber:ApplicationFramework.getInstance().getMessageGeneratorImplementation().getSubscribers())
-            System.out.println(subscriber);
-        */
+
 
         Toolkit kit = Toolkit.getDefaultToolkit();
         Dimension screenSize = kit.getScreenSize();
@@ -151,7 +147,6 @@ public class MainFrame extends JFrame implements Subscriber {
 
     @Override
     public void update(Object notification) {
-        System.out.println("Mainfrejmov update");
         if(notification instanceof Message) {
             String string = "[" + ((Message) notification).getType() + "] [" + ((Message) notification).getTimestamp() + "] " + ((Message) notification).getText();
             if (((Message) notification).getType().equals(MessageType.ERROR)) {
@@ -161,32 +156,9 @@ public class MainFrame extends JFrame implements Subscriber {
             if (((Message) notification).getType().equals(MessageType.WARNING)){
                 JOptionPane.showMessageDialog(this,string,"WARNING",JOptionPane.WARNING_MESSAGE);
             }
-           // if (((Message) notification).getType().equals(MessageType.NOTIFICATION)){
-//            }
-           /* if (((Message) notification).getType().equals(MessageType.NOTIFICATION)){
-                if(tabbedPane.getCpackage() == null)
-                    System.out.println("Mora da je null");
-                if(tabbedPane.getCpackage() != null&&(((Message) notification).getText().toString().equals("ADDED")|| ((Message) notification).getText().toString().equals("DELETED_DIAGRAM"))){
-                    packageView.view(tabbedPane.getCpackage());
-                }
-                else if(((Message) notification).getText().toString().equals("CLEAR"))
-                    packageView.clear();
-               else if ( ((Message) notification).getText().toString().contains("RENAME_AUTHOR")) {
-                    infoLine.setupAuthor(((Message) notification).getText().toString().replace("RENAME_AUTHOR", ""));
-                }
-
-
-                else if (( ((Message) notification).getText().toString().contains("RENAME_PROJECT")))
-                    infoLine.setupProjectName( ((Message) notification).getText().replace("RENAME_PROJECT", ""));
-
+            if (((Message) notification).getType().equals(MessageType.ALERT)){
+                JOptionPane.showMessageDialog(this,string,"ALERT",JOptionPane.INFORMATION_MESSAGE);
             }
-            if (((Message) notification).getType().equals(MessageType.WARNING)){
-                JOptionPane.showMessageDialog(this,string,"NOTIFICATION",JOptionPane.WARNING_MESSAGE);
-            }
-        }
-        if(notification instanceof Package)
-          packageView.view((Package) notification) ;
-          */
         }
     }
 }

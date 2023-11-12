@@ -14,31 +14,18 @@ import java.time.LocalDateTime;
 public class ProjectExplorer extends ClassyNodeComposite {
     public ProjectExplorer() {
         super("Project Exproler",null);
-
-      //  ApplicationFramework.getInstance().getClassyRepositoryImplementation().setProjectExplorer(this);
     }
 
     @Override
     public void addChild(ClassyNode child) {
         if(child!=null && child instanceof Project){
-
             Project project=(Project) child;
-
 
            if(!this.getChildren().contains(project)){
                 this.getChildren().add(project);
-                System.out.println("Dodao je project u project explorer");
             }
         }
-
-
         else {
-           /* LoggerFactory lf = new LoggerFactory();
-            Logger l = lf.creatLogger("CONSOLE",ApplicationFramework.getInstance().getMessageGeneratorImplementation());
-            Logger l2 = lf.creatLogger("FILE",ApplicationFramework.getInstance().getMessageGeneratorImplementation());
-            ApplicationFramework.getInstance().getMessageGeneratorImplementation().notifySubscribers(new Message("Node_CANNOT_BE_ADDED", MessageType.ERROR, LocalDateTime.now()));
-            l.Print();
-            l2.Print();*/
             ApplicationFramework.getInstance().getMessageGeneratorImplementation().generate("Node_CANNOT_BE_ADDED", MessageType.ERROR, LocalDateTime.now());
         }
     }

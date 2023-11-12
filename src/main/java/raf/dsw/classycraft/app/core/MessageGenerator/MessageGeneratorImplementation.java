@@ -26,16 +26,13 @@ public class MessageGeneratorImplementation implements MessageGenerator{
     public void generate(String text, MessageType type, LocalDateTime time){
         Message newMessage = new Message(text,type,time);
         ApplicationFramework.getInstance().getMessageGeneratorImplementation().notifySubscribers(newMessage);
-        ApplicationFramework.getInstance().log(newMessage);
+
     }
 
     @Override
     public void notifySubscribers(Object notification) {
-       // if(notification instanceof Message){
             for(Subscriber subscriber:subscribers)
                 subscriber.update(notification);
-
-       // }
     }
 
     public ArrayList<Subscriber> getSubscribers() {

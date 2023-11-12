@@ -14,16 +14,13 @@ public class ApplicationFramework {
     private static ApplicationFramework instance;
 
     private MessageGeneratorImplementation messageGeneratorImplementation;
-    //buduca polja za model celog projekta
-    private Logger loger1;
-    private  Logger loger2;
-    private LoggerFactory lf;
+
     private ApplicationFramework(){
         classyRepositoryImplementation=new ClassyRepositoryImplementation();
         messageGeneratorImplementation=new MessageGeneratorImplementation();
-        lf = new LoggerFactory();
-        loger1 = lf.creatLogger("FILE",messageGeneratorImplementation);
-        loger2 = lf.creatLogger("CONSOLE",messageGeneratorImplementation);
+        LoggerFactory lf = new LoggerFactory();
+        Logger loger1 = lf.creatLogger("FILE", messageGeneratorImplementation);
+        Logger loger2 = lf.creatLogger("CONSOLE", messageGeneratorImplementation);
     }
     private ClassyRepositoryImplementation classyRepositoryImplementation;
 
@@ -38,10 +35,7 @@ public class ApplicationFramework {
     public void setClassyRepositoryImplementation(ClassyRepositoryImplementation classyRepositoryImplementation) {
         this.classyRepositoryImplementation = classyRepositoryImplementation;
     }
-    public void log(Message message){
-        loger1.Print(message);
-        loger2.Print(message);
-    }
+
 
     public MessageGeneratorImplementation getMessageGeneratorImplementation() {
         return messageGeneratorImplementation;

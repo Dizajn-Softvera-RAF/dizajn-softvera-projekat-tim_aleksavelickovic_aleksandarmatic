@@ -29,7 +29,7 @@ public class ClassyTreeCellEditor  extends DefaultTreeCellEditor implements Acti
     }
 
     public Component getTreeCellEditorComponent(JTree arg0, Object arg1, boolean arg2, boolean arg3, boolean arg4, int arg5) {
-        //super.getTreeCellEditorComponent(arg0,arg1,arg2,arg3,arg4,arg5);
+
         clickedOn =arg1;
         edit=new JTextField(arg1.toString());
         edit.addActionListener(this);
@@ -46,11 +46,7 @@ public class ClassyTreeCellEditor  extends DefaultTreeCellEditor implements Acti
         return false;
     }
 
-    public void mouseClicked(MouseEvent e){
-        if (e.getClickCount() == 2){
-            
-        }
-    }
+
 
     public void actionPerformed(ActionEvent e){
 
@@ -59,16 +55,14 @@ public class ClassyTreeCellEditor  extends DefaultTreeCellEditor implements Acti
 
         ClassyTreeItem clicked = (ClassyTreeItem) clickedOn;
         if (clicked.getClassyNode() instanceof ProjectExplorer) {
-            ApplicationFramework.getInstance().getMessageGeneratorImplementation().notifySubscribers(new Message("CANNOT_RENAME_NODE", MessageType.WARNING, LocalDateTime.now()));
+            ApplicationFramework.getInstance().getMessageGeneratorImplementation().generate("CANNOT_RENAME_NODE", MessageType.WARNING, LocalDateTime.now());
             return;
         }
 
         clicked.setName(e.getActionCommand());
-       // if(clicked.getClassyNode() instanceof Project)
-          //  ApplicationFramework.getInstance().getMessageGeneratorImplementation().notifySubscribers(new Message("RENAME_PROJECT: "+e.getActionCommand(), MessageType.NOTIFICATION, LocalDateTime.now()));
 
         if(clicked.getClassyNode() instanceof Project)
-            ApplicationFramework.getInstance().getMessageGeneratorImplementation().notifySubscribers(new Message("RENAME_PROJECT: "+e.getActionCommand(), MessageType.NOTIFICATION, LocalDateTime.now()));
+            ApplicationFramework.getInstance().getMessageGeneratorImplementation().generate("RENAME_PROJECT: "+e.getActionCommand(), MessageType.NOTIFICATION, LocalDateTime.now());
     }
 
 }

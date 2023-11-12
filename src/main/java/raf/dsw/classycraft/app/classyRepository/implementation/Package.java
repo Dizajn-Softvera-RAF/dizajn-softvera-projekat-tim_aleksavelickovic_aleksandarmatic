@@ -38,23 +38,11 @@ public class Package extends ClassyNodeComposite implements Pubsliher {
                 Diagram diagram = (Diagram) child;
                 if (!this.getChildren().contains(diagram)) {
                     this.getChildren().add(diagram);
-                    System.out.println(diagram.getName()+"u paaket");
-                    System.out.println(getName()+getChildren());
-                    System.out.println("imena diagrama");
-                    for(ClassyNode c:getChildren())
-                        System.out.println(c.getName());
-                    System.out.println("gotova imena");
                 }
             }
         }
 
         else {
-            //LoggerFactory lf = new LoggerFactory();
-            //Logger l = lf.creatLogger("CONSOLE", ApplicationFramework.getInstance().getMessageGeneratorImplementation());
-            //Logger l2 = lf.creatLogger("FILE",ApplicationFramework.getInstance().getMessageGeneratorImplementation());
-            //ApplicationFramework.getInstance().getMessageGeneratorImplementation().notifySubscribers(new Message("Node_CANNOT_BE_ADDED", MessageType.ERROR, LocalDateTime.now()));
-            //l.Print();
-            //l2.Print();
             ApplicationFramework.getInstance().getMessageGeneratorImplementation().generate("Node_CANNOT_BE_ADDED", MessageType.ERROR, LocalDateTime.now());
         }
     }
@@ -69,7 +57,6 @@ public class Package extends ClassyNodeComposite implements Pubsliher {
         if(this.findProject()!=classyNode)
              return;
         notifySubscribers(new InterCommunicationNotification(message,classyNode,content));
-        System.out.println("Notifajao je ime projekta"+content);
 
     }
     public void show(){
@@ -79,9 +66,8 @@ public class Package extends ClassyNodeComposite implements Pubsliher {
         if(this.findProject()!=classyNode)
             return;
 
-        System.out.println("content u packegu je "+content);
-        notifySubscribers(new InterCommunicationNotification(message,classyNode,content));//prepravi ovo
-        System.out.println("notifay se notifayao");
+
+        notifySubscribers(new InterCommunicationNotification(message,classyNode,content));
 
     }
     @Override

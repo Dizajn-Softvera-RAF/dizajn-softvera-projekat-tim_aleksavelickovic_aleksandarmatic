@@ -18,9 +18,6 @@ public class ConsoleLogger extends Logger{
     @Override
     public void update(Object notification) {
         if(notification instanceof Message){
-            text = ((Message) notification).getText();
-            type = ((Message) notification).getType();
-            timeStamp = ((Message) notification).getTimestamp();
             Print((Message) notification);
         }
 
