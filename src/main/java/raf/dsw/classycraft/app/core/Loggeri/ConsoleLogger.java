@@ -11,22 +11,15 @@ public class ConsoleLogger extends Logger{
     }
 
     @Override
-    public void Print() {
-        System.out.println("["+type +"] ["+timeStamp+"] "+text);
+    public void Print(Message notification) {
+        System.out.println("["+notification.getType() +"] ["+notification.getTimestamp()+"] "+notification.getText());
     }
 
     @Override
     public void update(Object notification) {
         if(notification instanceof Message){
-            text = ((Message) notification).getText();
-            type = ((Message) notification).getType();
-            timeStamp = ((Message) notification).getTimestamp();
-            Print();
+            Print((Message) notification);
         }
-        else {
-            text = "";
-            type = null;
-            timeStamp =null;
-        }
+
     }
 }

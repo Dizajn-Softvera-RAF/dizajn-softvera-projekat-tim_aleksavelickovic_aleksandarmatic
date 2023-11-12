@@ -2,13 +2,24 @@ package raf.dsw.classycraft.app.gui.swing.view;
 
 //import lombok.Getter;
 //import lombok.Setter;
+import raf.dsw.classycraft.app.classyRepository.composite.ClassyNode;
+import raf.dsw.classycraft.app.classyRepository.composite.ClassyNodeComposite;
+import raf.dsw.classycraft.app.classyRepository.implementation.Package;
+import raf.dsw.classycraft.app.classyRepository.implementation.Project;
+import raf.dsw.classycraft.app.core.ApplicationFramework;
 import raf.dsw.classycraft.app.core.MessageGenerator.Message;
 import raf.dsw.classycraft.app.core.MessageGenerator.MessageGeneratorImplementation;
 import raf.dsw.classycraft.app.core.MessageGenerator.MessageType;
 import raf.dsw.classycraft.app.core.observer.Subscriber;
 import raf.dsw.classycraft.app.gui.swing.controller.ActionManager;
+import raf.dsw.classycraft.app.gui.swing.controller.DiagramSelectedAction;
+import raf.dsw.classycraft.app.gui.swing.controller.PackegeSelectedAction;
+import raf.dsw.classycraft.app.gui.swing.tree.ClassyTree;
+import raf.dsw.classycraft.app.gui.swing.tree.ClassyTreeImplementation;
+import raf.dsw.classycraft.app.gui.swing.tree.controller.MyTreeMouseListner;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 //@Getter
 //@Setter
@@ -20,8 +31,19 @@ public class MainFrame extends JFrame implements Subscriber {
     private MessageGeneratorImplementation mgi;
     private JMenuBar menu;
     private JToolBar toolBar;
+    private ClassyTreeImplementation classyTreeImplementation;
+    private InfoLine infoLine;
+    private AuthorFrame authorFrame;
+    private  PackageOrProjectSelectionFrame packageOrProjectSelectionFrame;
+    private ClassyTree classyTree;
+    private DiagramSelectedAction diagramSelectedAction;
+    private PackegeSelectedAction packegeSelectedAction;
+
+    private PackageView packageView;
+    private TabbedPane tabbedPane;
+
+
     private MainFrame(MessageGeneratorImplementation mgi){
-       // MainFrame.getInstance().setVisible(true);
         this.mgi = mgi;
         this.mgi.addSubscriber(this);
     }
@@ -30,8 +52,36 @@ public class MainFrame extends JFrame implements Subscriber {
         return actionManager;
     }
 
+    public ClassyTree getClassyTreeImplementation() {
+        return classyTreeImplementation;
+    }
+
+    public PackageOrProjectSelectionFrame getPackageOrProjectSelectionFrame() {
+        return packageOrProjectSelectionFrame;
+    }
+    public InfoLine getInfoLine() {
+        return infoLine;
+    }
+
+    public PackageView getPackageView() {
+        return packageView;
+    }
+
     private void initialize(){
         actionManager=new ActionManager();
+        classyTreeImplementation=new ClassyTreeImplementation();
+        infoLine=new InfoLine();
+        authorFrame=new AuthorFrame();
+        packageOrProjectSelectionFrame=new PackageOrProjectSelectionFrame();
+        packegeSelectedAction=new PackegeSelectedAction();
+        diagramSelectedAction=new DiagramSelectedAction();
+
+        tabbedPane=new TabbedPane();
+        packageView=new PackageView(infoLine,tabbedPane);
+
+
+
+
         Toolkit kit = Toolkit.getDefaultToolkit();
         Dimension screenSize = kit.getScreenSize();
         int screenHeight = screenSize.height;
@@ -46,31 +96,71 @@ public class MainFrame extends JFrame implements Subscriber {
 
         MyToolBar toolBar = new MyToolBar();
         add(toolBar, BorderLayout.NORTH);
+
+        JTree projectExplorer = classyTreeImplementation.generateTree(ApplicationFramework.getInstance().getClassyRepositoryImplementation().getProjectExplorer());
+        MyTreeMouseListner myTreeMouseListner = new MyTreeMouseListner(projectExplorer);
+        projectExplorer.addMouseListener(myTreeMouseListner);
+
+
+
+        JScrollPane scroll=new JScrollPane(projectExplorer);
+        JSplitPane split=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,scroll,packageView);
+        getContentPane().add(split,BorderLayout.CENTER);
+
+
+        split.setDividerLocation(200);
+        split.setOneTouchExpandable(true);
+
     }
 
     public static MainFrame getInstance()
     {
         if(instance == null)
         {
-            instance = new MainFrame(new MessageGeneratorImplementation());
+            instance = new MainFrame(ApplicationFramework.getInstance().getMessageGeneratorImplementation());
             instance.initialize();
         }
         return instance;
     }
 
+    public AuthorFrame getAuthorFrame() {
+        return authorFrame;
+    }
+
+
+
+    public DiagramSelectedAction getDiagramSelectedAction() {
+        return diagramSelectedAction;
+    }
+
+    public PackegeSelectedAction getPackegeSelectedAction() {
+        return packegeSelectedAction;
+    }
+
+    public TabbedPane getTabbedPane() {
+        return tabbedPane;
+    }
+
+    public MessageGeneratorImplementation getMgi() {
+        return mgi;
+    }
+
     @Override
     public void update(Object notification) {
-        if(notification instanceof Message){
-            String string = "["+((Message) notification).getType()+"] ["+((Message) notification).getTimestamp()+"] "+((Message) notification).getText();
-            if (((Message) notification).getType().toString().equals("ERROR")){
-                JOptionPane.showMessageDialog(this,string,"ERROR",JOptionPane.ERROR_MESSAGE);
+        if(notification instanceof Message) {
+            String string = "[" + ((Message) notification).getType() + "] [" + ((Message) notification).getTimestamp() + "] " + ((Message) notification).getText();
+            if (((Message) notification).getType().equals(MessageType.ERROR)) {
+                JOptionPane.showMessageDialog(this, string, "ERROR", JOptionPane.ERROR_MESSAGE);
+
             }
-            if (((Message) notification).getType().toString().equals("NOTIFICATION")){
-                JOptionPane.showMessageDialog(this,string,"NOTIFICATION",JOptionPane.INFORMATION_MESSAGE);
+            if (((Message) notification).getType().equals(MessageType.WARNING)){
+                JOptionPane.showMessageDialog(this,string,"WARNING",JOptionPane.WARNING_MESSAGE);
             }
-            if (((Message) notification).getType().toString().equals("WARNING")){
-                JOptionPane.showMessageDialog(this,string,"NOTIFICATION",JOptionPane.WARNING_MESSAGE);
-            }else JOptionPane.showMessageDialog(this,"abc","greska",JOptionPane.WARNING_MESSAGE);
-        }else JOptionPane.showMessageDialog(this,"abd","GRESKA",JOptionPane.ERROR_MESSAGE);
+            if (((Message) notification).getType().equals(MessageType.ALERT)){
+                JOptionPane.showMessageDialog(this,string,"ALERT",JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
     }
 }
+
+

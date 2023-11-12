@@ -1,5 +1,5 @@
 package raf.dsw.classycraft.app.core.MessageGenerator;
 
 public enum MessageType {
-    ERROR,NOTIFICATION,WARNING
+    ERROR,NOTIFICATION,WARNING,ALERT
 }

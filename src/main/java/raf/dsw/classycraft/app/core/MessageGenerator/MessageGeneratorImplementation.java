@@ -1,7 +1,10 @@
 package raf.dsw.classycraft.app.core.MessageGenerator;
 
+import raf.dsw.classycraft.app.core.ApplicationFramework;
 import raf.dsw.classycraft.app.core.observer.Subscriber;
 
+import java.awt.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class MessageGeneratorImplementation implements MessageGenerator{
@@ -20,12 +23,19 @@ public class MessageGeneratorImplementation implements MessageGenerator{
         subscribers.remove(subscriber);
     }
 
+    public void generate(String text, MessageType type, LocalDateTime time){
+        Message newMessage = new Message(text,type,time);
+        ApplicationFramework.getInstance().getMessageGeneratorImplementation().notifySubscribers(newMessage);
+
+    }
+
     @Override
     public void notifySubscribers(Object notification) {
-        if(notification instanceof Message){
             for(Subscriber subscriber:subscribers)
                 subscriber.update(notification);
+    }
 
-        }
+    public ArrayList<Subscriber> getSubscribers() {
+        return subscribers;
     }
 }

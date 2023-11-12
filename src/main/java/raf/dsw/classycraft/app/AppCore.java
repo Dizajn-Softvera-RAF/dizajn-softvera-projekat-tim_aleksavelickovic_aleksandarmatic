@@ -9,7 +9,6 @@ public class AppCore {
     public static void main(String[] args) {
         ApplicationFramework appCore = ApplicationFramework.getInstance();
         appCore.initialize();
-        ProjectExplorer projectExplorer = new ProjectExplorer();
-        projectExplorer.addChild(new Diagram("d",projectExplorer));
+
     }
 }
