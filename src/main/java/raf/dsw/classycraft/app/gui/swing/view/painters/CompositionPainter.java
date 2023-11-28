@@ -4,8 +4,8 @@ import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.Dia
 
 import java.awt.*;
 
-public abstract class ConnectionPainter extends ElementPainter{
-    public ConnectionPainter(DiagramElement diagramElement) {
+public class CompositionPainter extends ConnectionPainter{
+    public CompositionPainter(DiagramElement diagramElement) {
         super(diagramElement);
     }
 
