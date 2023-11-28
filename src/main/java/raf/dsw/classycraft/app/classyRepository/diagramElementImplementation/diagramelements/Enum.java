@@ -6,11 +6,18 @@ import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.Dia
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.InterClass;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public  class Enum extends InterClass {
+    private ArrayList<String> types;
 
+    public Enum(String name, ClassyNode parent, Color color, Stroke stroke, AccessModifier accessModifier, Point postition, Dimension size) {
 
-    public Enum(String name, ClassyNode parent, Color color, Stroke stroke, String naziv, AccessModifier accessModifier, Point postition, Dimension size) {
-        super(name, parent, color, stroke, naziv, accessModifier, postition, size);
+        super(name, parent, color, stroke, accessModifier, postition, size);
+
+    }
+
+    public ArrayList<String> getTypes() {
+        return types;
     }
 }

@@ -11,7 +11,16 @@ public  class Interface extends InterClass {
     private Method method;
 
 
-    public Interface(String name, ClassyNode parent, Color color, Stroke stroke, String naziv, AccessModifier accessModifier, Point postition, Dimension size) {
-        super(name, parent, color, stroke, naziv, accessModifier, postition, size);
+    public Interface(String name, ClassyNode parent, Color color, Stroke stroke, AccessModifier accessModifier, Point postition, Dimension size) {
+        super(name, parent, color, stroke, accessModifier, postition, size);
+
+    }
+
+    public Method getMethod() {
+        return method;
+    }
+
+    public void setMethod(Method method) {
+        this.method = method;
     }
 }

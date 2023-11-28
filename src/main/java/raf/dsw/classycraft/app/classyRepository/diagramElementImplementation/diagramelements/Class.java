@@ -6,12 +6,22 @@ import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.Dia
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.InterClass;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public  class Class extends InterClass {
-    private ClassContents classContents;
+    private ArrayList<ClassContents> classContents;
 
 
-    public Class(String name, ClassyNode parent, Color color, Stroke stroke, String naziv, AccessModifier accessModifier, Point postition, Dimension size) {
-        super(name, parent, color, stroke, naziv, accessModifier, postition, size);
+    public Class(String name, ClassyNode parent, Color color, Stroke stroke, AccessModifier accessModifier, Point postition, Dimension size) {
+        super(name, parent, color, stroke, accessModifier, postition, size);
+
+    }
+
+    public ArrayList<ClassContents> getClassContents() {
+        return classContents;
+    }
+
+    public void setClassContents(ArrayList<ClassContents> classContents) {
+        this.classContents = classContents;
     }
 }
