@@ -8,25 +8,48 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.List;
 
-public class DiagramView extends JPanel implements Subscriber {
+public class DiagramView extends JPanel implements Subscriber{
     private final Diagram diagram;
     private JPanel framework;
     private String name;
 
 
     private List<ElementPainter> painters;
-    public void paint(Graphics g){
+    public void paint(Graphics2D g){
         for(ElementPainter p:painters){
             p.draw(g);
         }
     }
+
+
     private class MouseController extends MouseAdapter{
         @Override
         public void mousePressed(MouseEvent e) {
             super.mousePressed(e);
+            //System.out.println("mouse pressed");
+
         }
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            super.mouseClicked(e);
+            System.out.println("mouse clicked");
+            //ovde zoves stateove pa metode za kliknut itd sa point za poziciju i posle se prave klase itd u zavisnosti od stejta
+        }
+        //dodaj paintere ako moze bez modela i pozovi ih na silu
+        @Override
+        public void mouseMoved(MouseEvent e) {
+            super.mouseMoved(e);
+        }
+
+        @Override
+        public void mouseDragged(MouseEvent e) {
+            super.mouseDragged(e);
+        }
+
     }
 
 
@@ -35,12 +58,13 @@ public class DiagramView extends JPanel implements Subscriber {
         this.diagram = diagram;
         name = diagram.getName();
         this.diagram.addSubscriber(this);
+       this.addMouseListener(new MouseController());
+        //framework=new Framework();
+       // framework.setCursor(new Cursor(Cursor.HAND_CURSOR));
+     //   framework.setBackground(Color.RED);
+     //   MainFrame.getInstance().getTabbedPane().add(framework,BorderLayout.CENTER);
+     //   framework.addMouseListener(new MouseController());
 
-        framework=new Framework();
-        framework.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        framework.setBackground(Color.WHITE);
-        MainFrame.getInstance().getTabbedPane().add(framework,BorderLayout.CENTER);
-        framework.addMouseListener(new MouseController());
     }
     @Override
     public void update(Object notification) {
@@ -54,6 +78,7 @@ public class DiagramView extends JPanel implements Subscriber {
     private class Framework extends JPanel{
 
         protected void paintComponent(Graphics g) {
+
             super.paintComponent(g);
 
             Graphics2D g2 = (Graphics2D) g;
@@ -61,7 +86,7 @@ public class DiagramView extends JPanel implements Subscriber {
 
             g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.8f));
            // for()//treba da se prodje kroz sve paintere
-
+            //paint(g2);to ne radi ali tako treba da se radi
             System.out.println("Izvršena paintComponent metoda view-a");
         }
 

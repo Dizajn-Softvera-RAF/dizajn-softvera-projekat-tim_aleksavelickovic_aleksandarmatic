@@ -3,6 +3,7 @@ package raf.dsw.classycraft.app.classyRepository.implementation;
 import raf.dsw.classycraft.app.classyRepository.composite.ClassyNode;
 import raf.dsw.classycraft.app.classyRepository.composite.ClassyNodeComposite;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.DiagramElement;
+import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.diagramelements.Class;
 import raf.dsw.classycraft.app.core.observer.Pubsliher;
 import raf.dsw.classycraft.app.core.observer.Subscriber;
 import raf.dsw.classycraft.app.core.observer.interCommunicationNotification.InterCommunicationNotification;
@@ -20,12 +21,15 @@ public class Diagram extends ClassyNodeComposite implements Pubsliher {
         this.name = name;
         subscribers = new ArrayList<>();
 
+
+
     }
 
     @Override
     public void addChild(ClassyNode child) {
 
-
+       // if(child instanceof Class)
+           // return new Class()
       //  return new DiagramElement("DiagramElement",this);
         notifySubscribers(new InterCommunicationNotification("DIAFGRAM_ELEMENT"));//treba el novi da se notifayuje ili samo repaint
     }

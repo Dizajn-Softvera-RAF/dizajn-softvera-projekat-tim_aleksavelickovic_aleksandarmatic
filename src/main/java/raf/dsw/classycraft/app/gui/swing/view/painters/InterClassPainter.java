@@ -13,7 +13,7 @@ public class InterClassPainter extends ElementPainter{
     }
 
     @Override
-    public void draw(Graphics g) {
+    public void draw(Graphics2D g) {
 
     }
     public void rectangle(DiagramElement diagramElement){//nije gotovo umesto interclass treba clas enum itd shape nioje dobar
