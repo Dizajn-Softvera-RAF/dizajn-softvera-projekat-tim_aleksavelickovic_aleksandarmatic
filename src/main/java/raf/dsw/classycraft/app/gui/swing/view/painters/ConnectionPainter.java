@@ -3,6 +3,7 @@ package raf.dsw.classycraft.app.gui.swing.view.painters;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.DiagramElement;
 
 import java.awt.*;
+import java.awt.geom.GeneralPath;
 
 public abstract class ConnectionPainter extends ElementPainter{
     public ConnectionPainter(DiagramElement diagramElement) {
@@ -10,7 +11,7 @@ public abstract class ConnectionPainter extends ElementPainter{
     }
 
     @Override
-    public void draw(Graphics2D g) {
+    public void draw(Graphics2D g, DiagramElement diagramElement) {
 
     }
 

@@ -10,8 +10,8 @@ public class CompositionPainter extends ConnectionPainter{
     }
 
     @Override
-    public void draw(Graphics2D g) {
-
+    public void draw(Graphics2D g, DiagramElement diagramElement) {
+        super.draw(g, diagramElement);
     }
 
     @Override

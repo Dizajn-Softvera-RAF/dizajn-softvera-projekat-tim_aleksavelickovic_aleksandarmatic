@@ -16,7 +16,7 @@ public class InterClassPainter extends ElementPainter{
     }
 
     @Override
-    public void draw(Graphics2D g) {
+    public void draw(Graphics2D g,DiagramElement diagramElement) {
         if(diagramElement instanceof Class)
             rectangle((Class) diagramElement);
         else if(diagramElement instanceof Enum)

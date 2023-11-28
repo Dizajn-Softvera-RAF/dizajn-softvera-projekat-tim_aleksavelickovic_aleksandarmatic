@@ -11,6 +11,14 @@ public abstract class ElementPainter {
         this.diagramElement = diagramElement;
     }
 
-    public abstract void draw(Graphics2D g);
+    public abstract void draw(Graphics2D g,DiagramElement diagramElement);
     public abstract boolean elementAt(DiagramElement element,Point position);
+
+    public DiagramElement getDiagramElement() {
+        return diagramElement;
+    }
+
+    public void setDiagramElement(DiagramElement diagramElement) {
+        this.diagramElement = diagramElement;
+    }
 }

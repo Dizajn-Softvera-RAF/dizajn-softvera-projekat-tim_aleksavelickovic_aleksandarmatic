@@ -20,7 +20,7 @@ public class DiagramView extends JPanel implements Subscriber{
     private List<ElementPainter> painters;
     public void paint(Graphics2D g){
         for(ElementPainter p:painters){
-            p.draw(g);
+            p.draw(g,p.getDiagramElement());
         }
     }
 
@@ -37,9 +37,10 @@ public class DiagramView extends JPanel implements Subscriber{
         public void mouseClicked(MouseEvent e) {
             super.mouseClicked(e);
             System.out.println("mouse clicked");
-            //ovde zoves stateove pa metode za kliknut itd sa point za poziciju i posle se prave klase itd u zavisnosti od stejta
+            //ovde zoves stateove pa metode za kliknut itd sa pointom za poziciju i posle se prave klase itd u zavisnosti od stejta
+
         }
-        //dodaj paintere ako moze bez modela i pozovi ih na silu
+
         @Override
         public void mouseMoved(MouseEvent e) {
             super.mouseMoved(e);
