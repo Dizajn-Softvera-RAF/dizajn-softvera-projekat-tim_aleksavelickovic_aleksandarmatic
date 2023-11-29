@@ -31,7 +31,7 @@ public class Diagram extends ClassyNodeComposite implements Pubsliher {
        // if(child instanceof Class)
            // return new Class()
       //  return new DiagramElement("DiagramElement",this);
-        notifySubscribers(new InterCommunicationNotification("DIAFGRAM_ELEMENT"));//treba el novi da se notifayuje ili samo repaint
+        notifySubscribers(new InterCommunicationNotification("DIAGRAM_ELEMENT"));//treba el novi da se notifayuje ili samo repaint
     }
 
     @Override

@@ -15,7 +15,7 @@ public class DiagramView extends JPanel implements Subscriber{
     private final Diagram diagram;
     private JPanel framework;
     private String name;
-    DiagramView diagramView;
+    private DiagramView diagramView;
 
 
     private List<ElementPainter> painters;
@@ -97,6 +97,7 @@ public class DiagramView extends JPanel implements Subscriber{
 
             g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.8f));
            // for()//treba da se prodje kroz sve paintere
+            DiagramView.this.paint(g2);
             //paint(g2);to ne radi ali tako treba da se radi
             System.out.println("Izvršena paintComponent metoda view-a");
         }
