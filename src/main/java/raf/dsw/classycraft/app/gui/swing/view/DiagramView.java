@@ -38,7 +38,7 @@ public class DiagramView extends JPanel implements Subscriber{
 
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.8f));
         // for()//treba da se prodje kroz sve paintere
-        DiagramView.this.paint(g2);
+       // DiagramView.this.paint(g2);
         //paint(g2);to ne radi ali tako treba da se radi
         System.out.println("Izvršena paintComponent metoda view-a");
         for(ElementPainter ep:painters)
@@ -64,7 +64,9 @@ public class DiagramView extends JPanel implements Subscriber{
             super.mouseClicked(e);
             System.out.println("mouse clicked");
             //ovde zoves stateove pa metode za kliknut itd sa pointom za poziciju i posle se prave klase itd u zavisnosti od stejta
-            Point p = new Point(e.getX(),getY());
+            Point p = new Point(e.getX(),e.getY());
+            System.out.println("mouse point"+p.getLocation().x+" "+p.getLocation().y);
+         //   Point p=MouseInfo.getPointerInfo().getLocation();
             MainFrame.getInstance().getPackageView().misKlik(p,dw);
 
         }
@@ -86,6 +88,9 @@ public class DiagramView extends JPanel implements Subscriber{
     }
 
     public DiagramView(Diagram diagram){
+        //this.setMinimumSize();
+        System.out.println("evo su kordinate"+this.getSize().width+this.getSize().height);
+        this.setMinimumSize(new Dimension(500,500));
         this.diagram = diagram;
         name = diagram.getName();
         this.diagram.addSubscriber(this);

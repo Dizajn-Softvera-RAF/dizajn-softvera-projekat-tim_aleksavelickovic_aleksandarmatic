@@ -40,4 +40,6 @@ public abstract class InterClass extends DiagramElement{
     public void setSize(Dimension size) {
         this.size = size;
     }
+
+
 }
