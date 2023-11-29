@@ -15,6 +15,7 @@ public class DiagramView extends JPanel implements Subscriber{
     private final Diagram diagram;
     private JPanel framework;
     private String name;
+    DiagramView diagramView;
 
 
     private List<ElementPainter> painters;
@@ -24,8 +25,12 @@ public class DiagramView extends JPanel implements Subscriber{
         }
     }
 
+    public Diagram getDiagram() {
+        return diagram;
+    }
 
     private class MouseController extends MouseAdapter{
+        DiagramView dw = diagramView;
         @Override
         public void mousePressed(MouseEvent e) {
             super.mousePressed(e);
@@ -38,6 +43,8 @@ public class DiagramView extends JPanel implements Subscriber{
             super.mouseClicked(e);
             System.out.println("mouse clicked");
             //ovde zoves stateove pa metode za kliknut itd sa pointom za poziciju i posle se prave klase itd u zavisnosti od stejta
+            Point p = new Point(e.getX(),getY());
+            MainFrame.getInstance().getPackageView().misKlik(p,dw);
 
         }
 
@@ -53,13 +60,16 @@ public class DiagramView extends JPanel implements Subscriber{
 
     }
 
-
+    public List<ElementPainter> getPainters() {
+        return painters;
+    }
 
     public DiagramView(Diagram diagram){
         this.diagram = diagram;
         name = diagram.getName();
         this.diagram.addSubscriber(this);
-       this.addMouseListener(new MouseController());
+        this.addMouseListener(new MouseController());
+        this.diagramView = this;
         //framework=new Framework();
        // framework.setCursor(new Cursor(Cursor.HAND_CURSOR));
      //   framework.setBackground(Color.RED);

@@ -96,6 +96,8 @@ public class MainFrame extends JFrame implements Subscriber {
 
         MyToolBar toolBar = new MyToolBar();
         add(toolBar, BorderLayout.NORTH);
+        MyToolBar2 toolBar2 = new MyToolBar2();
+        add(toolBar2,BorderLayout.EAST);
 
         JTree projectExplorer = classyTreeImplementation.generateTree(ApplicationFramework.getInstance().getClassyRepositoryImplementation().getProjectExplorer());
         MyTreeMouseListner myTreeMouseListner = new MyTreeMouseListner(projectExplorer);

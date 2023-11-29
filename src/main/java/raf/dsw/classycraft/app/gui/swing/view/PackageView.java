@@ -1,5 +1,6 @@
 package raf.dsw.classycraft.app.gui.swing.view;
 
+import raf.dsw.classycraft.app.classyRepository.State.StateManager;
 import raf.dsw.classycraft.app.classyRepository.implementation.Package;
 import raf.dsw.classycraft.app.core.MessageGenerator.Message;
 import raf.dsw.classycraft.app.core.MessageGenerator.MessageType;
@@ -11,7 +12,7 @@ import java.awt.*;
 
 
 public class PackageView extends JPanel implements Subscriber {
-
+    private StateManager stateManager;
     private final InfoLine infoLine;
     private final TabbedPane tabbedPane;
 
@@ -20,6 +21,7 @@ public class PackageView extends JPanel implements Subscriber {
         MainFrame.getInstance().getMgi().addSubscriber(this);
         this.infoLine=infoLine;
         this.tabbedPane=tabbedPane;
+        stateManager = new StateManager();
         setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
         add(infoLine);
         add(tabbedPane);
@@ -36,15 +38,15 @@ public class PackageView extends JPanel implements Subscriber {
         this.tabbedPane.revalidate();
     }
 
+    public StateManager getStateManager() {
+        return stateManager;
+    }
 
     @Override
     public void update(Object notification) {
 
 
         if(notification instanceof Message){
-
-
-
             if (((Message) notification).getType().equals(MessageType.NOTIFICATION)){
 
                 if(tabbedPane.getCpackage() != null&&(((Message) notification).getText().toString().equals("ADDED")|| ((Message) notification).getText().toString().equals("DELETED_DIAGRAM"))){
@@ -52,12 +54,10 @@ public class PackageView extends JPanel implements Subscriber {
                 }
                 else if(((Message) notification).getText().toString().equals("CLEAR"))
                    clear();
-
                 }
                 else if (( ((Message) notification).getText().toString().contains("RENAME_PROJECT")))
                     infoLine.setupProjectName( ((Message) notification).getText().replace("RENAME_PROJECT", ""));
-
-            }
+        }
             if(notification instanceof Package) {
             view((Package) notification);
             }
@@ -69,7 +69,21 @@ public class PackageView extends JPanel implements Subscriber {
                     infoLine.setupProjectName(((InterCommunicationNotification) notification).getContent().toString());
             }
 
-        }
+    }
 
-
+    public void startAddInterclass(){stateManager.setAddInterclass();
+        System.out.println("State Interclasse");}
+    public void startAddConnection(){stateManager.setAddConnection();
+        System.out.println("State Connection");}
+    public void startAddElement(){stateManager.setAddElement();
+        System.out.println("State AddElement");}
+    public void startDelete(){stateManager.setDelete();
+        System.out.println("State Delete");}
+    public void startSelected(){stateManager.setSelected();
+        System.out.println("State Selected");}
+    public void misKlik(Point point, DiagramView dw){
+        stateManager.getCurrState().misKlik(point,dw);
+    }
+    public  void misPusten(){}
+    public void misPrevucen(){}
 }
