@@ -4,12 +4,17 @@ import raf.dsw.classycraft.app.classyRepository.composite.ClassyNode;
 import raf.dsw.classycraft.app.classyRepository.composite.ClassyNodeComposite;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.DiagramElement;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.diagramelements.Class;
+import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.diagramelements.Enum;
+import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.diagramelements.Interface;
+import raf.dsw.classycraft.app.core.ApplicationFramework;
+import raf.dsw.classycraft.app.core.MessageGenerator.MessageType;
 import raf.dsw.classycraft.app.core.observer.Pubsliher;
 import raf.dsw.classycraft.app.core.observer.Subscriber;
 import raf.dsw.classycraft.app.core.observer.interCommunicationNotification.InterCommunicationNotification;
 import raf.dsw.classycraft.app.gui.swing.view.DiagramView;
 import raf.dsw.classycraft.app.gui.swing.view.MainFrame;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.concurrent.Flow;
 
@@ -28,10 +33,32 @@ public class Diagram extends ClassyNodeComposite implements Pubsliher {
     @Override
     public void addChild(ClassyNode child) {
 
-       // if(child instanceof Class)
-           // return new Class()
-      //  return new DiagramElement("DiagramElement",this);
-        notifySubscribers(new InterCommunicationNotification("DIAGRAM_ELEMENT"));//treba el novi da se notifayuje ili samo repaint
+        if(child!=null && (child instanceof Class|| child instanceof Enum || child instanceof Interface)) {
+            if (child instanceof Class) {
+                Class clas = (Class) child;
+                if (!this.getChildren().contains(clas)) {
+                    this.getChildren().add(clas);
+                }
+            }
+            if (child instanceof Enum) {
+                Enum enumm = (Enum) child;
+                if (!this.getChildren().contains(enumm)) {
+                    this.getChildren().add(enumm);
+                }
+            }
+            if (child instanceof Interface) {
+                Interface interfacee= (Interface) child;
+                if (!this.getChildren().contains(interfacee)) {
+                    this.getChildren().add(interfacee);
+                }
+            }
+            notifySubscribers(new InterCommunicationNotification("DIAGRAM_ELEMENT"));//treba el novi da se notifayuje ili samo repaint
+        }
+
+        else {
+            ApplicationFramework.getInstance().getMessageGeneratorImplementation().generate("Node_CANNOT_BE_ADDED", MessageType.ERROR, LocalDateTime.now());
+        }
+
     }
 
     @Override

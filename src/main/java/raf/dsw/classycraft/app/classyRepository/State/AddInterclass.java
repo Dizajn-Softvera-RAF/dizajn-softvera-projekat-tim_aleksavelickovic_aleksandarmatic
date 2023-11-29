@@ -16,11 +16,18 @@ public class AddInterclass implements State{
     @Override
     public void misKlik(Point point, DiagramView diagramView) {
         System.out.println("misKlik");
-        Class klasa = (Class) ApplicationFramework.getInstance().getClassyManufacturer().createInterClass("CLASS","klasa"+i,diagramView.getDiagram(),Color.BLUE, new BasicStroke(), AccessModifier.PRIVATE,point, new Dimension(30,50));
+
+        System.out.println(diagramView.getDiagram().getName());
+       Class klasa = (Class) ApplicationFramework.getInstance().getClassyManufacturer().createInterClass("CLASS","klasa"+i,diagramView.getDiagram(),Color.BLUE, new BasicStroke(), AccessModifier.PRIVATE,point, new Dimension(30,50));
         i++;
+        diagramView.getDiagram().addChild(klasa);
+
+        System.out.println(klasa.getName());
         InterClassPainter icp = new InterClassPainter(klasa);
         diagramView.getPainters().add(icp);
-        diagramView.getDiagram().addChild(klasa);
+
+
+
     }
 
     @Override

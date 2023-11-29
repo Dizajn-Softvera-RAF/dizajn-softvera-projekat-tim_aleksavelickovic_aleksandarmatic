@@ -17,6 +17,7 @@ public  class Class extends InterClass {
 
     }
 
+
     public ArrayList<ClassContents> getClassContents() {
         return classContents;
     }

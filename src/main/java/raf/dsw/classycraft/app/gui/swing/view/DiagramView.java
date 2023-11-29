@@ -15,7 +15,7 @@ public class DiagramView extends JPanel implements Subscriber{
     private final Diagram diagram;
     private JPanel framework;
     private String name;
-    private DiagramView diagramView;
+    private DiagramView diagramView=this;
 
 
     private List<ElementPainter> painters;
