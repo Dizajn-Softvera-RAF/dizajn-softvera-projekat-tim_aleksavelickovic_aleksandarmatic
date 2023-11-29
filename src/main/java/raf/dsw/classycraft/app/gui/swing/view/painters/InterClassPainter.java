@@ -32,7 +32,7 @@ public class InterClassPainter extends ElementPainter{
     public void rectangle(InterClass interClass,Graphics2D g){//nije gotovo umesto interclass treba clas enum itd shape nioje dobar mozda je i okej
         g.setStroke(interClass.getStroke());
         g.setColor(interClass.getColor());
-        g.drawRect(interClass.getPostition().getLocation().x, interClass.getPostition().getLocation().y, interClass.getSize().width,interClass.getSize().height);
+
 
 
      /* shape=new GeneralPath();
@@ -47,6 +47,13 @@ public class InterClassPainter extends ElementPainter{
         ((GeneralPath)shape).closePath();
         g.draw(shape);
         */
+       System.out.println (interClass.getAccessModifier().name().length());
+
+        if((g.getFont().getSize()*interClass.getName().length()+g.getFont().getSize()*interClass.getAccessModifier().name().length()+65)>(interClass.getSize().width))
+            g.drawRect(interClass.getPostition().getLocation().x, interClass.getPostition().getLocation().y, interClass.getSize().width+((g.getFont().getSize()*interClass.getName().length()+g.getFont().getSize()*interClass.getAccessModifier().name().length()+65)-(interClass.getSize().width)),interClass.getSize().height);
+        else
+            g.drawRect(interClass.getPostition().getLocation().x, interClass.getPostition().getLocation().y, interClass.getSize().width,interClass.getSize().height);
+
         g.drawString(interClass.getAccessModifier().name(),interClass.getPostition().x+10,interClass.getPostition().y+10);
         g.drawString(interClass.getName(),interClass.getPostition().x+75,interClass.getPostition().y+10);
 
