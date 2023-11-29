@@ -18,7 +18,7 @@ public class AddInterclass implements State{
         System.out.println("misKlik");
 
         System.out.println(diagramView.getDiagram().getName());
-       Class klasa = (Class) ApplicationFramework.getInstance().getClassyManufacturer().createInterClass("CLASS","klasa"+i,diagramView.getDiagram(),Color.BLUE, new BasicStroke(), AccessModifier.PRIVATE,point, new Dimension(30,50));
+       Class klasa = (Class) ApplicationFramework.getInstance().getClassyManufacturer().createInterClass("CLASS","klasa"+i,diagramView.getDiagram(),Color.BLUE, new BasicStroke(), AccessModifier.PRIVATE,point, new Dimension(150,100));
         i++;
         diagramView.getDiagram().addChild(klasa);
 

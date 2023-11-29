@@ -9,6 +9,9 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.ImageObserver;
+import java.text.AttributedCharacterIterator;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DiagramView extends JPanel implements Subscriber{
@@ -18,16 +21,34 @@ public class DiagramView extends JPanel implements Subscriber{
     private DiagramView diagramView=this;
 
 
-    private List<ElementPainter> painters;
+
+    private ArrayList<ElementPainter> painters=new ArrayList<>();
     public void paint(Graphics2D g){
         for(ElementPainter p:painters){
+            System.out.println("prolazi kroz listu");
             p.draw(g,p.getDiagramElement());
         }
     }
+    protected void paintComponent(Graphics g) {
 
+        super.paintComponent(g);
+
+        Graphics2D g2 = (Graphics2D) g;
+
+
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.8f));
+        // for()//treba da se prodje kroz sve paintere
+        DiagramView.this.paint(g2);
+        //paint(g2);to ne radi ali tako treba da se radi
+        System.out.println("Izvršena paintComponent metoda view-a");
+        for(ElementPainter ep:painters)
+            ep.draw(g2,ep.getDiagramElement());
+
+    }
     public Diagram getDiagram() {
         return diagram;
     }
+
 
     private class MouseController extends MouseAdapter{
         DiagramView dw = diagramView;
@@ -75,10 +96,12 @@ public class DiagramView extends JPanel implements Subscriber{
      //   framework.setBackground(Color.RED);
      //   MainFrame.getInstance().getTabbedPane().add(framework,BorderLayout.CENTER);
      //   framework.addMouseListener(new MouseController());
+      //  paintComponent(Graphics g);
 
     }
     @Override
     public void update(Object notification) {
+        System.out.println("uslo u update");
         repaint();
     }
 
@@ -86,7 +109,7 @@ public class DiagramView extends JPanel implements Subscriber{
     public String getName() {
         return name;
     }
-    private class Framework extends JPanel{
+/*    private class Framework extends JPanel{
 
         protected void paintComponent(Graphics g) {
 
@@ -100,9 +123,12 @@ public class DiagramView extends JPanel implements Subscriber{
             DiagramView.this.paint(g2);
             //paint(g2);to ne radi ali tako treba da se radi
             System.out.println("Izvršena paintComponent metoda view-a");
+            for(ElementPainter ep:painters)
+                ep.draw(g2,ep.getDiagramElement());
         }
 
     }
+    */
 
 
 }
