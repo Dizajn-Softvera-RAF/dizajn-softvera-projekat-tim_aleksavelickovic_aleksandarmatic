@@ -9,12 +9,13 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.awt.image.ImageObserver;
 import java.text.AttributedCharacterIterator;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DiagramView extends JPanel implements Subscriber{
+public class DiagramView extends JPanel implements Subscriber, MouseMotionListener,MouseListener {
     private final Diagram diagram;
     private JPanel framework;
     private String name;
@@ -49,6 +50,41 @@ public class DiagramView extends JPanel implements Subscriber{
         return diagram;
     }
 
+    @Override
+    public void mouseDragged(MouseEvent e) {
+        System.out.println("detektuje");
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        System.out.println("detektuje klik");
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
+
 
     private class MouseController extends MouseAdapter{
         DiagramView dw = diagramView;
@@ -77,6 +113,7 @@ public class DiagramView extends JPanel implements Subscriber{
             System.out.println("mis pomeren");
 
         }
+
         @Override
         public void mouseDragged(MouseEvent e) {
             super.mouseDragged(e);
@@ -107,6 +144,8 @@ public class DiagramView extends JPanel implements Subscriber{
         this.diagram.addSubscriber(this);
         this.addMouseListener(new MouseController());
         this.diagramView = this;
+        this.addMouseListener(this);
+        this.addMouseMotionListener(this);
         //framework=new Framework();
        // framework.setCursor(new Cursor(Cursor.HAND_CURSOR));
      //   framework.setBackground(Color.RED);
