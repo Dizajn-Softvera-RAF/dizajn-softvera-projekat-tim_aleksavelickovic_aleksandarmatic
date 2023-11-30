@@ -8,8 +8,11 @@ import java.awt.*;
 import java.awt.geom.GeneralPath;
 import java.awt.geom.Line2D;
 
-public abstract class ConnectionPainter extends ElementPainter{
+import static java.lang.Math.sqrt;
 
+public abstract class ConnectionPainter extends ElementPainter{
+    private Point startPoint;
+    private Point endPoint;
     public ConnectionPainter(DiagramElement diagramElement) {
         super(diagramElement);
         //mozda treba this diagel =diagel
@@ -17,7 +20,7 @@ public abstract class ConnectionPainter extends ElementPainter{
   public  double dsquare(Point p1,Point p2) {
         double dx = p1.x - p2.x;
         double dy = p1.y - p2.y;
-        return dx * dx + dy * dy;
+        return sqrt(dx * dx + dy * dy);
     }
     @Override
     public void draw(Graphics2D g, DiagramElement diagramElement) {
@@ -38,25 +41,43 @@ public abstract class ConnectionPainter extends ElementPainter{
 
         Point minf=cpf[0];
         for(int i=0;i<4;i++){
-            if(dsquare(cpf[i],connection.getFrom().getPostition())<dsquare(minf,connection.getFrom().getPostition()))
+            if(dsquare(cpf[i],this.startPoint)<dsquare(minf,this.startPoint))
                 minf=cpf[i];
         }
+
 
         Point conpointform=minf;
 
         Point mint=cpt[0];
         for(int i=0;i<4;i++){
-            if(dsquare(cpt[i],connection.getTo().getPostition())<dsquare(mint,connection.getTo().getPostition()))
+            if(dsquare(cpt[i],this.endPoint)<dsquare(mint,this.endPoint))
                 mint=cpt[i];
         }
 
         Point conpointto=mint;
         Line2D line2D=new Line2D.Double(minf.x,minf.y,mint.x,mint.y);
+       // Line2D line2D=new Line2D.Double(cpgf.x,cpgf.y,cpdolt.x,cpdolt.y);
         g.draw(line2D);
     }
 
     @Override
     public boolean elementAt(DiagramElement element, Point position, DiagramView diagramView) {
         return false;
+    }
+
+    public Point getStartPoint() {
+        return startPoint;
+    }
+
+    public void setStartPoint(Point startPoint) {
+        this.startPoint = startPoint;
+    }
+
+    public Point getEndPoint() {
+        return endPoint;
+    }
+
+    public void setEndPoint(Point endPoint) {
+        this.endPoint = endPoint;
     }
 }

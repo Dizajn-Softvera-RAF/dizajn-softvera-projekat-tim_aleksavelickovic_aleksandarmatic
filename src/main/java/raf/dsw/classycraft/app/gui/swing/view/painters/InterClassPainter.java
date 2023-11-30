@@ -18,14 +18,14 @@ public class InterClassPainter extends ElementPainter{
     public InterClassPainter(DiagramElement diagramElement) {
         super(diagramElement);
         this.diagramElement=diagramElement;
-        System.out.println("ulazi u konstruktor");
+     //   System.out.println("ulazi u konstruktor");
         // draw();
     }
 
     @Override
     public void draw(Graphics2D g,DiagramElement diagramElement) {
         if(diagramElement instanceof Class) {
-            System.out.println("poziva se rectangle ");
+        //    System.out.println("poziva se rectangle ");
             rectangle((Class) diagramElement,g);
         }
         else if(diagramElement instanceof Enum)
@@ -51,7 +51,7 @@ public class InterClassPainter extends ElementPainter{
         ((GeneralPath)shape).closePath();
         g.draw(shape);
         */
-       System.out.println (interClass.getAccessModifier().name().length());
+     //  System.out.println (interClass.getAccessModifier().name().length());
         fontSize=g.getFont().getSize();
         if((g.getFont().getSize()*interClass.getName().length()+g.getFont().getSize()*interClass.getAccessModifier().name().length()+65)>(interClass.getSize().width)) {
             interClass.setSize(new Dimension(interClass.getSize().width + ((g.getFont().getSize() * interClass.getName().length() + g.getFont().getSize() * interClass.getAccessModifier().name().length() + 65) - (interClass.getSize().width)),interClass.getSize().height));

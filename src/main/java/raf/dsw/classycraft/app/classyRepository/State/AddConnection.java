@@ -37,6 +37,9 @@ public class AddConnection implements State{
             Connection veza = ApplicationFramework.getInstance().getClassyManufacturer().createConnection("AGREGATION", "AGREGATION" + i, diagramView.getDiagram(), Color.BLACK, new BasicStroke(), from, to);
             i++;
             ConnectionPainter connectionPainter = new AgregationPainter(veza);
+            connectionPainter.setStartPoint(initPoint);
+            connectionPainter.setEndPoint(endPoint);
+
             diagramView.getDiagram().addChild(veza);
             diagramView.getPainters().add(connectionPainter);
 
