@@ -20,6 +20,8 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
     private JPanel framework;
     private String name;
     private DiagramView diagramView=this;
+    private Point endPoint;
+    private Point initPoint;
 
 
 
@@ -52,7 +54,8 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        System.out.println("detektuje");
+        endPoint = new Point(e.getX(),e.getY());
+        MainFrame.getInstance().getPackageView().misPrevucen(initPoint,endPoint,diagramView);
     }
 
     @Override
@@ -62,12 +65,19 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
 
     @Override
     public void mouseClicked(MouseEvent e) {
+
         System.out.println("detektuje klik");
+
+
+        Point p = new Point(e.getX(),e.getY());
+        System.out.println("mouse point"+p.getLocation().x+" "+p.getLocation().y);
+        //   Point p=MouseInfo.getPointerInfo().getLocation();
+        MainFrame.getInstance().getPackageView().misKlik(p,diagramView);
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-
+        this.initPoint = new Point(e.getX(),e.getY());
     }
 
     @Override
@@ -91,12 +101,12 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
         @Override
         public void mousePressed(MouseEvent e) {
             super.mousePressed(e);
-            //System.out.println("mouse pressed");
+
 
         }
 
-        @Override
-        public void mouseClicked(MouseEvent e) {
+       // @Override
+       /* public void mouseClicked(MouseEvent e) {
             super.mouseClicked(e);
             System.out.println("mouse clicked");
             //ovde zoves stateove pa metode za kliknut itd sa pointom za poziciju i posle se prave klase itd u zavisnosti od stejta
@@ -105,7 +115,7 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
          //   Point p=MouseInfo.getPointerInfo().getLocation();
             MainFrame.getInstance().getPackageView().misKlik(p,dw);
 
-        }
+        }*/
 
         @Override
         public void mouseMoved(MouseEvent e) {
@@ -117,8 +127,8 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
         @Override
         public void mouseDragged(MouseEvent e) {
             super.mouseDragged(e);
-            System.out.println("Mis prevucen");
-            MainFrame.getInstance().getPackageView().misPrevucen();
+
+            MainFrame.getInstance().getPackageView().misPrevucen(initPoint,endPoint,dw);
         }
         //@Override
        /* public void mouseReleased(MouseEvent e) {

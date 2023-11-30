@@ -9,5 +9,5 @@ import java.awt.event.MouseListener;
 public interface State {
     void misKlik(Point point,DiagramView diagramView);
     void misPusten();
-    void misPrevucen();
+    void misPrevucen(Point initPoint, Point endPoint, DiagramView diagramView);
 }

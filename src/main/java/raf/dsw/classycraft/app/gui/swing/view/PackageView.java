@@ -87,5 +87,5 @@ public class PackageView extends JPanel implements Subscriber {
         stateManager.getCurrState().misKlik(point,dw);
     }
     public  void misPusten(){stateManager.getCurrState().misPusten();}
-    public void misPrevucen(){stateManager.getCurrState().misPrevucen();}
+    public void misPrevucen(Point initPoint, Point endPoint, DiagramView dw){stateManager.getCurrState().misPrevucen(initPoint,endPoint,dw);}
 }

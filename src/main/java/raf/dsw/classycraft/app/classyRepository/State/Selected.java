@@ -18,8 +18,8 @@ public class Selected implements State{
                     System.out.println("jeste tu");
                     ep.getDiagramElement().setSelected(true);
                 }
-            else {ep.getDiagramElement().setSelected(false);
-                    System.out.println("Nije selektovan element");}
+                else {ep.getDiagramElement().setSelected(false);
+                        System.out.println("Nije selektovan element");}
             }
 
         }
@@ -31,7 +31,7 @@ public class Selected implements State{
     }
 
     @Override
-    public void misPrevucen() {
+    public void misPrevucen(Point initPoint, Point endPoint, DiagramView diagramView) {
 
     }
 }

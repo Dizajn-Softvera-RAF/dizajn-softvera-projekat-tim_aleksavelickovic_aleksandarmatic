@@ -20,13 +20,13 @@ public class AddInterclass implements State{
         System.out.println("misKlik");
 
         System.out.println(diagramView.getDiagram().getName());
-       Class klasa = (Class) ApplicationFramework.getInstance().getClassyManufacturer().createInterClass("CLASS","klasa"+i,diagramView.getDiagram(),Color.BLUE, new BasicStroke(), AccessModifier.PRIVATE,point, new Dimension(150,100));
+        Class klasa = (Class) ApplicationFramework.getInstance().getClassyManufacturer().createInterClass("CLASS","klasa"+i,diagramView.getDiagram(),Color.BLUE, new BasicStroke(), AccessModifier.PRIVATE,point, new Dimension(150,100));
         i++;
-
+        InterClassPainter icp = new InterClassPainter(klasa);
         diagramView.getDiagram().addChild(klasa);
 
         System.out.println(klasa.getName());
-        InterClassPainter icp = new InterClassPainter(klasa);
+
         //icp.setDiagramElement(klasa);
         if(icp.getDiagramElement()==null)
             System.out.println("null je na pocetku");
@@ -51,7 +51,7 @@ public class AddInterclass implements State{
     }
 
     @Override
-    public void misPrevucen() {
+    public void misPrevucen(Point initPoint, Point endPoint, DiagramView diagramView) {
 
     }
 }

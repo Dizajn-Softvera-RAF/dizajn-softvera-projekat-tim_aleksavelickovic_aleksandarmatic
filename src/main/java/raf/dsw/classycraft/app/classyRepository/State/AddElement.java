@@ -18,7 +18,7 @@ public class AddElement implements State{
     }
 
     @Override
-    public void misPrevucen() {
+    public void misPrevucen(Point initPoint, Point endPoint, DiagramView diagramView) {
 
     }
 }

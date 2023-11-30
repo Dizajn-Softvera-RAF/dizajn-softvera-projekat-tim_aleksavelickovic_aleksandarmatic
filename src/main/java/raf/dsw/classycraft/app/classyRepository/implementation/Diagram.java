@@ -3,6 +3,7 @@ package raf.dsw.classycraft.app.classyRepository.implementation;
 import raf.dsw.classycraft.app.classyRepository.composite.ClassyNode;
 import raf.dsw.classycraft.app.classyRepository.composite.ClassyNodeComposite;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.DiagramElement;
+import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.connections.Agregation;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.diagramelements.Class;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.diagramelements.Enum;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.diagramelements.Interface;
@@ -33,7 +34,7 @@ public class Diagram extends ClassyNodeComposite implements Pubsliher {
     @Override
     public void addChild(ClassyNode child) {
 
-        if(child!=null && (child instanceof Class|| child instanceof Enum || child instanceof Interface)) {
+        if(child!=null && (child instanceof Class|| child instanceof Enum || child instanceof Interface || child instanceof Agregation)) {
             if (child instanceof Class) {
                 Class clas = (Class) child;
                 if (!this.getChildren().contains(clas)) {
