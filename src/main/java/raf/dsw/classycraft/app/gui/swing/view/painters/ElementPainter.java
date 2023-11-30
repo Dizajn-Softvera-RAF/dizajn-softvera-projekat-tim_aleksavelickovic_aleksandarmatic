@@ -1,6 +1,7 @@
 package raf.dsw.classycraft.app.gui.swing.view.painters;
 
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.DiagramElement;
+import raf.dsw.classycraft.app.gui.swing.view.DiagramView;
 
 import java.awt.*;
 
@@ -12,7 +13,7 @@ public abstract class ElementPainter {
     }
 
     public abstract void draw(Graphics2D g,DiagramElement diagramElement);
-    public abstract boolean elementAt(DiagramElement element,Point position);
+    public abstract boolean elementAt(DiagramElement element, Point position, DiagramView diagramView);
 
     public DiagramElement getDiagramElement() {
         return diagramElement;

@@ -1,6 +1,7 @@
 package raf.dsw.classycraft.app.gui.swing.view.painters;
 
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.DiagramElement;
+import raf.dsw.classycraft.app.gui.swing.view.DiagramView;
 
 import java.awt.*;
 
@@ -15,7 +16,9 @@ public class DependencyPainter extends ConnectionPainter{
     }
 
     @Override
-    public boolean elementAt(DiagramElement element, Point position) {
+    public boolean elementAt(DiagramElement element, Point position, DiagramView diagramView) {
         return false;
     }
+
+
 }
