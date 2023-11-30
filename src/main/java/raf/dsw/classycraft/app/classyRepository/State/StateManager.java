@@ -8,6 +8,7 @@ public class StateManager {
     private AddElement addElement;
     private Delete delete;
     private Selected selected;
+    private Edit edit;
     public StateManager(){
         init();
     }
@@ -35,6 +36,7 @@ public class StateManager {
     public void setSelected() {
         currState =  selected;
     }
+    public void setEdit(){currState = edit;}
 
     private void init() {
         addInterclass = new AddInterclass();
@@ -42,6 +44,7 @@ public class StateManager {
         addElement = new AddElement();
         delete = new Delete();
         selected = new Selected();
+        edit = new Edit();
         currState =  addInterclass;
     }
 }

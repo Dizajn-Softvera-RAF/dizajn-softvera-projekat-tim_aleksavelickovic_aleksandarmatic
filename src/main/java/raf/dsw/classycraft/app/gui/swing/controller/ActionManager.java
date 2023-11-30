@@ -20,6 +20,7 @@ public class ActionManager{
     private AddInterclassAction addInterclassAction;
     private DeleteAction deleteAction;
     private SelectedAction selectedAction;
+    private EditAction editAction;
 
     public ActionManager() {
         initialiseActions();
@@ -111,6 +112,10 @@ public class ActionManager{
         return selectedAction;
     }
 
+    public EditAction getEditAction() {
+        return editAction;
+    }
+
     private void initialiseActions(){
         exitAction=new ExitAction();
         newProjectAction=new NewProjectAction();
@@ -125,6 +130,7 @@ public class ActionManager{
         addInterclassAction = new AddInterclassAction();
         deleteAction = new DeleteAction();
         selectedAction = new SelectedAction();
+        editAction = new EditAction();
     }
 
 

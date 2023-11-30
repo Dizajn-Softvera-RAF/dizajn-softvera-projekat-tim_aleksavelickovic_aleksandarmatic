@@ -1,6 +1,7 @@
 package raf.dsw.classycraft.app.gui.swing.view.painters;
 
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.DiagramElement;
+import raf.dsw.classycraft.app.gui.swing.view.DiagramView;
 
 import java.awt.*;
 
@@ -16,7 +17,7 @@ public class InterfacePainter extends InterClassPainter{
     }
 
     @Override
-    public boolean elementAt(DiagramElement element, Point position) {
-        return super.elementAt(element, position);
+    public boolean elementAt(DiagramElement element, Point position, DiagramView dw) {
+        return super.elementAt(element, position, dw);
     }
 }

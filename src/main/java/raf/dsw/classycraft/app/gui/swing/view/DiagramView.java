@@ -74,12 +74,23 @@ public class DiagramView extends JPanel implements Subscriber{
         @Override
         public void mouseMoved(MouseEvent e) {
             super.mouseMoved(e);
-        }
+            System.out.println("mis pomeren");
 
+        }
         @Override
         public void mouseDragged(MouseEvent e) {
             super.mouseDragged(e);
+            System.out.println("Mis prevucen");
+            MainFrame.getInstance().getPackageView().misPrevucen();
         }
+        //@Override
+       /* public void mouseReleased(MouseEvent e) {
+            super.mouseReleased(e);
+            System.out.println("Mis pusten");
+            MainFrame.getInstance().getPackageView().misPusten();
+        }*/
+
+
 
     }
 

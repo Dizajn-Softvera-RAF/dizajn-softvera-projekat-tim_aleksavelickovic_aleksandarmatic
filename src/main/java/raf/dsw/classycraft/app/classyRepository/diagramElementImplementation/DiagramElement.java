@@ -7,6 +7,7 @@ import java.awt.*;
 public abstract class DiagramElement extends ClassyNode {
     protected Color color;
     protected Stroke stroke;
+    protected boolean selected;
 
     public DiagramElement(String name, ClassyNode parent) {
         super(name, parent);
@@ -16,6 +17,7 @@ public abstract class DiagramElement extends ClassyNode {
         super(name, parent);
         this.color = color;
         this.stroke = stroke;
+        this.selected = false;
     }
 
     public Color getColor() {
@@ -32,5 +34,13 @@ public abstract class DiagramElement extends ClassyNode {
 
     public void setStroke(Stroke stroke) {
         this.stroke = stroke;
+    }
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
     }
 }

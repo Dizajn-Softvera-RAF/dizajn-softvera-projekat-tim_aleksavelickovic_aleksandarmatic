@@ -9,7 +9,7 @@ public class MyToolBar2 extends JToolBar {
 
         add(MainFrame.getInstance().getActionManager().getAddInterclassAction());
         add(MainFrame.getInstance().getActionManager().getAddConnectionAction());
-        add(MainFrame.getInstance().getActionManager().getAddElementAction());
+        add(MainFrame.getInstance().getActionManager().getEditAction());
         add(MainFrame.getInstance().getActionManager().getDeleteAction());
         add(MainFrame.getInstance().getActionManager().getSelectedAction());
 
