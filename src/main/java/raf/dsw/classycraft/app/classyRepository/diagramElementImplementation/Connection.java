@@ -18,4 +18,20 @@ public abstract class Connection extends DiagramElement{
         this.from = from;
         this.to = to;
     }
+
+    public InterClass getFrom() {
+        return from;
+    }
+
+    public void setFrom(InterClass from) {
+        this.from = from;
+    }
+
+    public InterClass getTo() {
+        return to;
+    }
+
+    public void setTo(InterClass to) {
+        this.to = to;
+    }
 }

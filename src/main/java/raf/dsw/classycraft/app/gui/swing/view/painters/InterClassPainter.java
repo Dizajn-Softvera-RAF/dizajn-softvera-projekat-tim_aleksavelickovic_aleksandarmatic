@@ -53,8 +53,10 @@ public class InterClassPainter extends ElementPainter{
         */
        System.out.println (interClass.getAccessModifier().name().length());
         fontSize=g.getFont().getSize();
-        if((g.getFont().getSize()*interClass.getName().length()+g.getFont().getSize()*interClass.getAccessModifier().name().length()+65)>(interClass.getSize().width))
-         g.drawRect(interClass.getPostition().getLocation().x, interClass.getPostition().getLocation().y, interClass.getSize().width+((g.getFont().getSize()*interClass.getName().length()+g.getFont().getSize()*interClass.getAccessModifier().name().length()+65)-(interClass.getSize().width)),interClass.getSize().height);
+        if((g.getFont().getSize()*interClass.getName().length()+g.getFont().getSize()*interClass.getAccessModifier().name().length()+65)>(interClass.getSize().width)) {
+            interClass.setSize(new Dimension(interClass.getSize().width + ((g.getFont().getSize() * interClass.getName().length() + g.getFont().getSize() * interClass.getAccessModifier().name().length() + 65) - (interClass.getSize().width)),interClass.getSize().height));
+            g.drawRect(interClass.getPostition().getLocation().x, interClass.getPostition().getLocation().y,interClass.getSize().width , interClass.getSize().height);
+        }
         else
             g.drawRect(interClass.getPostition().getLocation().x, interClass.getPostition().getLocation().y, interClass.getSize().width,interClass.getSize().height);
 
@@ -80,13 +82,13 @@ public class InterClassPainter extends ElementPainter{
         if(icp==null)
             return false;
 
-        if((icp.getFontSize()*interClass.getName().length()+ icp.getFontSize()*interClass.getAccessModifier().name().length()+65)>(interClass.getSize().width)){
-            if((interClass.getPostition().x<position.x)&&(interClass.getPostition().y<position.y)&&(interClass.getPostition().x+interClass.getSize().width+(icp.getFontSize()*interClass.getName().length()+icp.getFontSize()*interClass.getAccessModifier().name().length()+65)>position.x)&&(interClass.getPostition().y+interClass.getSize().height> position.y))
-                return true;
-                //mislim da treba bez -interclass.width
-        }
-        else if((interClass.getPostition().x<position.x)&&(interClass.getPostition().y<position.y)&&(interClass.getPostition().y+interClass.getSize().height> position.y)&&(interClass.getPostition().x+interClass.getSize().width> position.x))
+     //   if((icp.getFontSize()*interClass.getName().length()+ icp.getFontSize()*interClass.getAccessModifier().name().length()+65)>(interClass.getSize().width)){
+        if((interClass.getPostition().x<position.x)&&(interClass.getPostition().y<position.y)&&(interClass.getPostition().x+interClass.getSize().width>position.x)&&(interClass.getPostition().y+interClass.getSize().height> position.y))
             return true;
+                //mislim da treba bez -interclass.width
+      //  }
+       // else if((interClass.getPostition().x<position.x)&&(interClass.getPostition().y<position.y)&&(interClass.getPostition().y+interClass.getSize().height> position.y)&&(interClass.getPostition().x+interClass.getSize().width> position.x))
+          //  return true;
 
         return false;
 

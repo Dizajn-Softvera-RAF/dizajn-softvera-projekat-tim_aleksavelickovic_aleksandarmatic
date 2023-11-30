@@ -26,16 +26,21 @@ public class AddConnection implements State{
         for(ElementPainter ep:diagramView.getPainters()) {
             if (ep instanceof InterClassPainter){
                 if(ep.elementAt(ep.getDiagramElement(),initPoint,diagramView)) {
+                     System.out.println("pocetne koridante klse"+initPoint);
                      from = (InterClass) ep.getDiagramElement();
                 }
                 if(ep.elementAt(ep.getDiagramElement(),endPoint,diagramView)) {
+                    System.out.println("zavrsne  koridante klase"+endPoint);
                      to = (InterClass) ep.getDiagramElement();
                 }}}
-        Connection veza = ApplicationFramework.getInstance().getClassyManufacturer().createConnection("AGREGATION","AGREGATION"+i, diagramView.getDiagram(), Color.BLACK,new BasicStroke(),from,to);
-        i++;
-        ConnectionPainter connectionPainter = new AgregationPainter(veza);
-        diagramView.getDiagram().addChild(veza);
-        diagramView.getPainters().add(connectionPainter);
+        if(from!= null && to!=null) {
+            Connection veza = ApplicationFramework.getInstance().getClassyManufacturer().createConnection("AGREGATION", "AGREGATION" + i, diagramView.getDiagram(), Color.BLACK, new BasicStroke(), from, to);
+            i++;
+            ConnectionPainter connectionPainter = new AgregationPainter(veza);
+            diagramView.getDiagram().addChild(veza);
+            diagramView.getPainters().add(connectionPainter);
+
+        }
 
     }
 
