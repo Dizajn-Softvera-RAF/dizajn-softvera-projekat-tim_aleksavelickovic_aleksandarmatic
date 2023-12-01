@@ -22,6 +22,7 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
     private DiagramView diagramView=this;
     private Point endPoint;
     private Point initPoint;
+    private ArrayList<Point>points=new ArrayList<>();
 
 
 
@@ -54,8 +55,13 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
 
     @Override
     public void mouseDragged(MouseEvent e) {
+        System.out.println("prikazu je se dragged"+e.getX()+e.getY());
         endPoint = new Point(e.getX(),e.getY());
-        MainFrame.getInstance().getPackageView().misPrevucen(initPoint,endPoint,diagramView);
+        Point point =new Point(e.getX(),getY());
+        points.add((point));
+        MainFrame.getInstance().getPackageView().misPrevucen(points,diagramView);
+
+
     }
 
     @Override
@@ -79,10 +85,13 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
     public void mousePressed(MouseEvent e) {
         this.initPoint = new Point(e.getX(),e.getY());
         System.out.println("Initpoint je "+initPoint);
+
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
+
+        endPoint = new Point(e.getX(),e.getY());
 
     }
 

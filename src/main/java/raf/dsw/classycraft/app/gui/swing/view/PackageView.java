@@ -9,6 +9,7 @@ import raf.dsw.classycraft.app.core.observer.interCommunicationNotification.Inte
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 
 public class PackageView extends JPanel implements Subscriber {
@@ -88,4 +89,7 @@ public class PackageView extends JPanel implements Subscriber {
     }
     public  void misPusten(){stateManager.getCurrState().misPusten();}
     public void misPrevucen(Point initPoint, Point endPoint, DiagramView dw){stateManager.getCurrState().misPrevucen(initPoint,endPoint,dw);}
+    public void misPrevucen(ArrayList<Point> points, DiagramView diagramView){
+        stateManager.getCurrState().misPrevucen(points, diagramView);
+    }
 }

@@ -10,17 +10,60 @@ import raf.dsw.classycraft.app.gui.swing.view.painters.ElementPainter;
 import raf.dsw.classycraft.app.gui.swing.view.painters.InterClassPainter;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public class AddConnection implements State{
     private int i = 0;
+
     @Override
     public void misKlik(Point point, DiagramView diagramView) {}
 
     @Override
-    public void misPusten() {}
+    public void misPusten() {
+
+    }
+
+    @Override
+    public void misPusten(Point initPoint, Point endPoint, DiagramView diagramView) {
+        InterClass from = null;
+        InterClass to= null;
+        for(ElementPainter ep:diagramView.getPainters()) {
+            if (ep instanceof InterClassPainter){
+                if(ep.elementAt(ep.getDiagramElement(),initPoint,diagramView)) {
+                    System.out.println("pocetne koridante klse"+initPoint);
+                    from = (InterClass) ep.getDiagramElement();
+                }
+                if(ep.elementAt(ep.getDiagramElement(),endPoint,diagramView)) {
+                    if(!ep.getDiagramElement().equals(from)) {
+                        System.out.println("zavrsne  koridante klase" + endPoint);//iz nekog razloga se povecava x u svakoj iteraciji vrv je to jedan
+                        to = (InterClass) ep.getDiagramElement();
+                    }
+                }
+            }
+        }
+        if(from!= null && to!=null) {
+            Connection veza = ApplicationFramework.getInstance().getClassyManufacturer().createConnection("AGREGATION", "AGREGATION" + i, diagramView.getDiagram(), Color.BLACK, new BasicStroke(), from, to);
+            i++;
+            ConnectionPainter connectionPainter = new AgregationPainter(veza);
+            // connectionPainter.getPoints().add()
+            connectionPainter.setStartPoint(initPoint);
+            connectionPainter.setEndPoint(endPoint);
+
+            diagramView.getDiagram().addChild(veza);
+            diagramView.getPainters().add(connectionPainter);
+
+        }
+
+    }
 
     @Override
     public void misPrevucen(Point initPoint, Point endPoint, DiagramView diagramView) {
+
+    }
+
+
+    //   @Override
+   /* public void misPrevucen(Point initPoint, Point endPoint, DiagramView diagramView) {
         InterClass from = null;
         InterClass to= null;
         for(ElementPainter ep:diagramView.getPainters()) {
@@ -41,6 +84,7 @@ public class AddConnection implements State{
             Connection veza = ApplicationFramework.getInstance().getClassyManufacturer().createConnection("AGREGATION", "AGREGATION" + i, diagramView.getDiagram(), Color.BLACK, new BasicStroke(), from, to);
             i++;
             ConnectionPainter connectionPainter = new AgregationPainter(veza);
+           // connectionPainter.getPoints().add()
             connectionPainter.setStartPoint(initPoint);
             connectionPainter.setEndPoint(endPoint);
 
@@ -51,5 +95,32 @@ public class AddConnection implements State{
 
     }
 
+    */
 
+    @Override
+    public void misPrevucen(ArrayList<Point> points, DiagramView diagramView) {
+        InterClass from = null;
+        InterClass to= null;
+        Point initPoint=points.get(0);
+        Point endPoint=points.get(points.size()-1);
+        for(ElementPainter ep:diagramView.getPainters()) {
+            if (ep instanceof InterClassPainter){
+                if(ep.elementAt(ep.getDiagramElement(),initPoint,diagramView)) {
+                    System.out.println("pocetne koridante klse"+initPoint);
+                    from = (InterClass) ep.getDiagramElement();
+                }
+                if(ep.elementAt(ep.getDiagramElement(),endPoint,diagramView)) {
+                    if(!ep.getDiagramElement().equals(from)) {
+                        System.out.println("zavrsne  koridante klase" + endPoint);//iz nekog razloga se povecava x u svakoj iteraciji vrv je to jedan
+                        to = (InterClass) ep.getDiagramElement();
+                    }
+                }
+            }
+            if(from!= null && to!=null) {
+                Connection veza = ApplicationFramework.getInstance().getClassyManufacturer().createConnection("AGREGATION", "AGREGATION" + i, diagramView.getDiagram(), Color.BLACK, new BasicStroke(), from, to);
+                i++;
+                ConnectionPainter connectionPainter = new AgregationPainter(veza);
+            }
+        }
+    }
 }

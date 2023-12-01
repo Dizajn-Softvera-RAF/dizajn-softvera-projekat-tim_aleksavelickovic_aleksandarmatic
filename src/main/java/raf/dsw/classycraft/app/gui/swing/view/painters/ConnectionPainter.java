@@ -8,12 +8,15 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.GeneralPath;
 import java.awt.geom.Line2D;
+import java.util.ArrayList;
 
 import static java.lang.Math.sqrt;
 
 public abstract class ConnectionPainter extends ElementPainter{
     private Point startPoint;
     private Point endPoint;
+
+    private ArrayList<Point>points=new ArrayList<>();
 
     public ConnectionPainter(DiagramElement diagramElement) {
         super(diagramElement);
@@ -123,6 +126,7 @@ public abstract class ConnectionPainter extends ElementPainter{
         //drawArrowHead2(g,line);
         drawArrowLine(g,minf.x,minf.y,mint.x,mint.y,35,25);
 
+
     }
 
     @Override
@@ -144,5 +148,13 @@ public abstract class ConnectionPainter extends ElementPainter{
 
     public void setEndPoint(Point endPoint) {
         this.endPoint = endPoint;
+    }
+
+    public ArrayList<Point> getPoints() {
+        return points;
+    }
+
+    public void setPoints(ArrayList<Point> points) {
+        this.points = points;
     }
 }

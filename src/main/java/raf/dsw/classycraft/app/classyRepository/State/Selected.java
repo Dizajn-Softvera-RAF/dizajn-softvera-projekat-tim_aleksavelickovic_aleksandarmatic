@@ -6,6 +6,7 @@ import raf.dsw.classycraft.app.gui.swing.view.painters.ElementPainter;
 import raf.dsw.classycraft.app.gui.swing.view.painters.InterClassPainter;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public class Selected implements State{
 
@@ -31,7 +32,17 @@ public class Selected implements State{
     }
 
     @Override
+    public void misPusten(Point initPoint, Point endPoint, DiagramView diagramView) {
+
+    }
+
+    @Override
     public void misPrevucen(Point initPoint, Point endPoint, DiagramView diagramView) {
+
+    }
+
+    @Override
+    public void misPrevucen(ArrayList<Point> points, DiagramView diagramView) {
 
     }
 }
