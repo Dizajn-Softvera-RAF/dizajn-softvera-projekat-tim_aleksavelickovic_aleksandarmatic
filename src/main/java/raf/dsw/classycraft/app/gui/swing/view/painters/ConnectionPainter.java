@@ -16,6 +16,8 @@ public abstract class ConnectionPainter extends ElementPainter{
     private Point startPoint;
     private Point endPoint;
 
+    private int flag=0;
+
     private ArrayList<Point>points=new ArrayList<>();
 
     public ConnectionPainter(DiagramElement diagramElement) {

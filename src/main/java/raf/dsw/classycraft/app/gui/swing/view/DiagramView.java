@@ -55,10 +55,11 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        System.out.println("prikazu je se dragged"+e.getX()+e.getY());
-        endPoint = new Point(e.getX(),e.getY());
-        Point point =new Point(e.getX(),getY());
-        points.add((point));
+        System.out.println("prikazu je se dragged"+e.getX()+" "+e.getY());
+    //    endPoint = new Point(e.getX(),e.getY());
+        Point point =new Point(e.getX(),e.getY());
+        points.add(point);
+        points.set(0,initPoint);
         MainFrame.getInstance().getPackageView().misPrevucen(points,diagramView);
 
 
@@ -84,6 +85,7 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
     @Override
     public void mousePressed(MouseEvent e) {
         this.initPoint = new Point(e.getX(),e.getY());
+        this.setInitPoint(new Point(e.getX(),e.getY()));
         System.out.println("Initpoint je "+initPoint);
 
     }
@@ -92,7 +94,17 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
     public void mouseReleased(MouseEvent e) {
 
         endPoint = new Point(e.getX(),e.getY());
+        System.out.println("mouse released koordinate su "+e.getX()+" "+e.getY());
 
+        if(!points.isEmpty()) {
+            System.out.println("poslednja svar u listi"+points.get(points.size()-1).getX()+" "+points.get(points.size()-1).getY());
+            if (endPoint.getX()==points.get(points.size()-1).getX()&&endPoint.getY()==points.get(points.size()-1).getY()) {         //mozda ovaj equals nije ok
+                System.out.println("po<vao se mis pusten");
+                MainFrame.getInstance().getPackageView().misPusten(initPoint, endPoint, diagramView);
+
+            }
+
+        }
     }
 
     @Override
@@ -178,6 +190,14 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
     public void update(Object notification) {
         System.out.println("uslo u update");
         repaint();
+    }
+
+    public Point getInitPoint() {
+        return initPoint;
+    }
+
+    public void setInitPoint(Point initPoint) {
+        this.initPoint = initPoint;
     }
 
     @Override

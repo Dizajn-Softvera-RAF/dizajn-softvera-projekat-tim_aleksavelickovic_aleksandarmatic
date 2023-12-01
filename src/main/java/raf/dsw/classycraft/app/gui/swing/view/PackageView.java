@@ -92,4 +92,7 @@ public class PackageView extends JPanel implements Subscriber {
     public void misPrevucen(ArrayList<Point> points, DiagramView diagramView){
         stateManager.getCurrState().misPrevucen(points, diagramView);
     }
+    public void misPusten(Point initPoint, Point endPoint, DiagramView diagramView) {
+        stateManager.getCurrState().misPusten(initPoint,endPoint,diagramView);
+    }
 }

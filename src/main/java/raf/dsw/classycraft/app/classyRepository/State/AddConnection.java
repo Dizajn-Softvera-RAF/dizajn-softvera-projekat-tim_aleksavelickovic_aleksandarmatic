@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 public class AddConnection implements State{
     private int i = 0;
+    private Connection connection;
 
     @Override
     public void misKlik(Point point, DiagramView diagramView) {}
@@ -25,7 +26,7 @@ public class AddConnection implements State{
 
     @Override
     public void misPusten(Point initPoint, Point endPoint, DiagramView diagramView) {
-        InterClass from = null;
+        /*InterClass from = null;
         InterClass to= null;
         for(ElementPainter ep:diagramView.getPainters()) {
             if (ep instanceof InterClassPainter){
@@ -44,15 +45,18 @@ public class AddConnection implements State{
         if(from!= null && to!=null) {
             Connection veza = ApplicationFramework.getInstance().getClassyManufacturer().createConnection("AGREGATION", "AGREGATION" + i, diagramView.getDiagram(), Color.BLACK, new BasicStroke(), from, to);
             i++;
-            ConnectionPainter connectionPainter = new AgregationPainter(veza);
+
+         */
+
+            ConnectionPainter connectionPainter = new AgregationPainter(connection);
             // connectionPainter.getPoints().add()
             connectionPainter.setStartPoint(initPoint);
             connectionPainter.setEndPoint(endPoint);
 
-            diagramView.getDiagram().addChild(veza);
+            diagramView.getDiagram().addChild(connection);
             diagramView.getPainters().add(connectionPainter);
 
-        }
+
 
     }
 
@@ -119,8 +123,18 @@ public class AddConnection implements State{
             if(from!= null && to!=null) {
                 Connection veza = ApplicationFramework.getInstance().getClassyManufacturer().createConnection("AGREGATION", "AGREGATION" + i, diagramView.getDiagram(), Color.BLACK, new BasicStroke(), from, to);
                 i++;
-                ConnectionPainter connectionPainter = new AgregationPainter(veza);
+               // ConnectionPainter connectionPainter = new AgregationPainter(veza);
+                this.setConnection(veza);
+               // System.out.println("veza "+veza.getName());
             }
         }
+    }
+
+    public Connection getConnection() {
+        return connection;
+    }
+
+    public void setConnection(Connection connection) {
+        this.connection = connection;
     }
 }
