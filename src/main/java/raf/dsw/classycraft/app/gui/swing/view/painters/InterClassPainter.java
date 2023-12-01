@@ -55,6 +55,7 @@ public class InterClassPainter extends ElementPainter{
         fontSize=g.getFont().getSize();
         if((g.getFont().getSize()*interClass.getName().length()+g.getFont().getSize()*interClass.getAccessModifier().name().length()+65)>(interClass.getSize().width)) {
             interClass.setSize(new Dimension(interClass.getSize().width + ((g.getFont().getSize() * interClass.getName().length() + g.getFont().getSize() * interClass.getAccessModifier().name().length() + 65) - (interClass.getSize().width)),interClass.getSize().height));
+            System.out.println("setuje se size ");
             g.drawRect(interClass.getPostition().getLocation().x, interClass.getPostition().getLocation().y,interClass.getSize().width , interClass.getSize().height);
         }
         else

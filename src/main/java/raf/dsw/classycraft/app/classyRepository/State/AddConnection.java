@@ -30,9 +30,13 @@ public class AddConnection implements State{
                      from = (InterClass) ep.getDiagramElement();
                 }
                 if(ep.elementAt(ep.getDiagramElement(),endPoint,diagramView)) {
-                    System.out.println("zavrsne  koridante klase"+endPoint);
-                     to = (InterClass) ep.getDiagramElement();
-                }}}
+                    if(!ep.getDiagramElement().equals(from)) {
+                        System.out.println("zavrsne  koridante klase" + endPoint);//iz nekog razloga se povecava x u svakoj iteraciji vrv je to jedan
+                        to = (InterClass) ep.getDiagramElement();
+                    }
+                }
+            }
+        }
         if(from!= null && to!=null) {
             Connection veza = ApplicationFramework.getInstance().getClassyManufacturer().createConnection("AGREGATION", "AGREGATION" + i, diagramView.getDiagram(), Color.BLACK, new BasicStroke(), from, to);
             i++;

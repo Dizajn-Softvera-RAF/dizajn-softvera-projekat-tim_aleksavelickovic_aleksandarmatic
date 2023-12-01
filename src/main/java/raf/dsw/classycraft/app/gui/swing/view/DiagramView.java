@@ -78,6 +78,7 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
     @Override
     public void mousePressed(MouseEvent e) {
         this.initPoint = new Point(e.getX(),e.getY());
+        System.out.println("Initpoint je "+initPoint);
     }
 
     @Override
