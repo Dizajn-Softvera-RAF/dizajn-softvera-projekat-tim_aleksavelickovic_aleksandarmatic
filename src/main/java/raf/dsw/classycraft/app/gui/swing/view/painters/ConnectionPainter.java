@@ -29,8 +29,8 @@ public abstract class ConnectionPainter extends ElementPainter{
         double dy = p1.y - p2.y;
         return sqrt(dx * dx + dy * dy);
     }
-    AffineTransform tx = new AffineTransform();
-    Polygon arrowHead = new Polygon();
+
+
   /*  public void drawArrowHead(Graphics2D g,Line2D line){
 
         arrowHead.addPoint( 0,5);
@@ -89,44 +89,49 @@ public abstract class ConnectionPainter extends ElementPainter{
     }
     @Override
     public void draw(Graphics2D g, DiagramElement diagramElement) {
+        if(flag==1){
+            Connection connection=(Connection)diagramElement;
+            Point cpgf=new Point(connection.getFrom().getPostition().x+(connection.getFrom().getSize().width)/2,connection.getFrom().getPostition().y);
+            Point cpdolf=new Point(connection.getFrom().getPostition().x+(connection.getFrom().getSize().width)/2,connection.getFrom().getPostition().y+connection.getFrom().getSize().height);
+            Point cplf=new Point(connection.getFrom().getPostition().x,connection.getFrom().getPostition().y+(connection.getFrom().getSize().height)/2);
+            Point cpdesf=new Point(connection.getFrom().getPostition().x+connection.getFrom().getSize().width,connection.getFrom().getPostition().y+(connection.getFrom().getSize().height)/2);
 
-        Connection connection=(Connection)diagramElement;
-        Point cpgf=new Point(connection.getFrom().getPostition().x+(connection.getFrom().getSize().width)/2,connection.getFrom().getPostition().y);
-        Point cpdolf=new Point(connection.getFrom().getPostition().x+(connection.getFrom().getSize().width)/2,connection.getFrom().getPostition().y+connection.getFrom().getSize().height);
-        Point cplf=new Point(connection.getFrom().getPostition().x,connection.getFrom().getPostition().y+(connection.getFrom().getSize().height)/2);
-        Point cpdesf=new Point(connection.getFrom().getPostition().x+connection.getFrom().getSize().width,connection.getFrom().getPostition().y+(connection.getFrom().getSize().height)/2);
-
-        Point cpgt=new Point(connection.getTo().getPostition().x+(connection.getTo().getSize().width)/2,connection.getTo().getPostition().y);
-        Point cpdolt=new Point(connection.getTo().getPostition().x+(connection.getTo().getSize().width)/2,connection.getTo().getPostition().y+connection.getTo().getSize().height);
-        Point cplt=new Point(connection.getTo().getPostition().x,connection.getTo().getPostition().y+(connection.getTo().getSize().height)/2);
-        Point cpdest=new Point(connection.getTo().getPostition().x+connection.getTo().getSize().width,connection.getTo().getPostition().y+(connection.getTo().getSize().height)/2);
+            Point cpgt=new Point(connection.getTo().getPostition().x+(connection.getTo().getSize().width)/2,connection.getTo().getPostition().y);
+            Point cpdolt=new Point(connection.getTo().getPostition().x+(connection.getTo().getSize().width)/2,connection.getTo().getPostition().y+connection.getTo().getSize().height);
+            Point cplt=new Point(connection.getTo().getPostition().x,connection.getTo().getPostition().y+(connection.getTo().getSize().height)/2);
+            Point cpdest=new Point(connection.getTo().getPostition().x+connection.getTo().getSize().width,connection.getTo().getPostition().y+(connection.getTo().getSize().height)/2);
 
 
-        Point[] cpf={cpgf,cpdolf,cplf,cpdesf};
-        Point[] cpt={cpgt,cpdolt,cplt,cpdest};
+            Point[] cpf={cpgf,cpdolf,cplf,cpdesf};
+            Point[] cpt={cpgt,cpdolt,cplt,cpdest};
 
-        Point minf=cpf[0];
-        for(int i=0;i<4;i++){
-            if(dsquare(cpf[i],this.startPoint)<dsquare(minf,this.startPoint))
-                minf=cpf[i];
+            Point minf=cpf[0];
+            for(int i=0;i<4;i++){
+                if(dsquare(cpf[i],this.startPoint)<dsquare(minf,this.startPoint))
+                    minf=cpf[i];
+            }
+
+
+            Point conpointform=minf;
+
+            Point mint=cpt[0];
+            for(int i=0;i<4;i++){
+                if(dsquare(cpt[i],this.endPoint)<dsquare(mint,this.endPoint))
+                    mint=cpt[i];
+            }
+
+            Point conpointto=mint;
+            Line2D line=new Line2D.Double(minf.x,minf.y,mint.x,mint.y);
+
+
+            //g.draw(line);
+            //drawArrowHead2(g,line);
+            drawArrowLine(g,minf.x,minf.y,mint.x,mint.y,35,25);
         }
+       else{
+            //ovde treba konstano da se dodaje moze diagramview .repaint
 
-
-        Point conpointform=minf;
-
-        Point mint=cpt[0];
-        for(int i=0;i<4;i++){
-            if(dsquare(cpt[i],this.endPoint)<dsquare(mint,this.endPoint))
-                mint=cpt[i];
         }
-
-        Point conpointto=mint;
-        Line2D line=new Line2D.Double(minf.x,minf.y,mint.x,mint.y);
-
-
-        //g.draw(line);
-        //drawArrowHead2(g,line);
-        drawArrowLine(g,minf.x,minf.y,mint.x,mint.y,35,25);
 
 
     }
@@ -158,5 +163,13 @@ public abstract class ConnectionPainter extends ElementPainter{
 
     public void setPoints(ArrayList<Point> points) {
         this.points = points;
+    }
+
+    public int getFlag() {
+        return flag;
+    }
+
+    public void setFlag(int flag) {
+        this.flag = flag;
     }
 }

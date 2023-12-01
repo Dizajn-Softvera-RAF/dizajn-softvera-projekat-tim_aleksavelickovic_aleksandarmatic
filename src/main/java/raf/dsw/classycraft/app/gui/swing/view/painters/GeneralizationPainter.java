@@ -12,6 +12,7 @@ public class GeneralizationPainter extends ConnectionPainter{
 
     @Override
     public void draw(Graphics2D g, DiagramElement diagramElement) {
+        g.setColor(Color.blue);
         super.draw(g, diagramElement);
     }
 

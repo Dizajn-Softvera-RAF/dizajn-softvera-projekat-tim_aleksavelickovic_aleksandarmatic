@@ -4,10 +4,7 @@ import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.Con
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.InterClass;
 import raf.dsw.classycraft.app.core.ApplicationFramework;
 import raf.dsw.classycraft.app.gui.swing.view.DiagramView;
-import raf.dsw.classycraft.app.gui.swing.view.painters.AgregationPainter;
-import raf.dsw.classycraft.app.gui.swing.view.painters.ConnectionPainter;
-import raf.dsw.classycraft.app.gui.swing.view.painters.ElementPainter;
-import raf.dsw.classycraft.app.gui.swing.view.painters.InterClassPainter;
+import raf.dsw.classycraft.app.gui.swing.view.painters.*;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -15,6 +12,7 @@ import java.util.ArrayList;
 public class AddConnection implements State{
     private int i = 0;
     private Connection connection;
+    private ConnectionPainter connectionPainter;
 
     @Override
     public void misKlik(Point point, DiagramView diagramView) {}
@@ -48,15 +46,20 @@ public class AddConnection implements State{
 
          */
 
-            ConnectionPainter connectionPainter = new AgregationPainter(connection);
-            // connectionPainter.getPoints().add()
-            connectionPainter.setStartPoint(initPoint);
-            connectionPainter.setEndPoint(endPoint);
+          //  ConnectionPainter connectionPainter = new AgregationPainter(connection);
+            // connectionPainter.getPoints().add() ovo je pre bilo zakom nema funk tren
 
-            diagramView.getDiagram().addChild(connection);
-            diagramView.getPainters().add(connectionPainter);
+            ConnectionPainter cp=new DependencyPainter(connection);
+            cp.setFlag(1);
+            cp.setStartPoint(initPoint);
+            cp.setEndPoint(endPoint);
+            diagramView.getDiagram().addChild(connection);//OVO RESAVA TAJ PROBLEM SA PAINTEROM ALI PRAVI DOLE HAHAHA
+            diagramView.getPainters().add(cp);
 
+           // diagramView.getDiagram().addChild(connection);
+           // diagramView.getPainters().add(connectionPainter);
 
+            //NE RADI DOBRO JE SE REPAINT POZIVA KAD SE NAPRAVI NOVI ELEMENT A OVDE SE NE PRAVI
 
     }
 
@@ -99,6 +102,8 @@ public class AddConnection implements State{
 
     }
 
+
+
     */
 
     @Override
@@ -120,13 +125,19 @@ public class AddConnection implements State{
                     }
                 }
             }
-            if(from!= null && to!=null) {
-                Connection veza = ApplicationFramework.getInstance().getClassyManufacturer().createConnection("AGREGATION", "AGREGATION" + i, diagramView.getDiagram(), Color.BLACK, new BasicStroke(), from, to);
-                i++;
-               // ConnectionPainter connectionPainter = new AgregationPainter(veza);
-                this.setConnection(veza);
-               // System.out.println("veza "+veza.getName());
-            }
+
+        }
+        if(from!= null && to!=null) {
+            Connection veza = ApplicationFramework.getInstance().getClassyManufacturer().createConnection("DEPENDENCY", "DEPENDENCY" + i, diagramView.getDiagram(), Color.BLACK, new BasicStroke(), from, to);
+            i++;
+            // ConnectionPainter connectionPainter = new AgregationPainter(veza);
+            this.setConnection(veza);
+            ConnectionPainter connectionPainter = new DependencyPainter(connection);
+            this.setConnectionPainter(connectionPainter);
+           // diagramView.getDiagram().addChild(connection); OVO MOZDA TREBA DA SE VRATI ZOBG TOGA OVE NEMA REPAINT
+            diagramView.getPainters().add(connectionPainter);
+
+            // System.out.println("veza "+veza.getName());
         }
     }
 
@@ -136,5 +147,13 @@ public class AddConnection implements State{
 
     public void setConnection(Connection connection) {
         this.connection = connection;
+    }
+
+    public ConnectionPainter getConnectionPainter() {
+        return connectionPainter;
+    }
+
+    public void setConnectionPainter(ConnectionPainter connectionPainter) {
+        this.connectionPainter = connectionPainter;
     }
 }
