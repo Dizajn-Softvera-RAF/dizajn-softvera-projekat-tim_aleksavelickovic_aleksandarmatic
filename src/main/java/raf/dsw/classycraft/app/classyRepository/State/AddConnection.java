@@ -13,6 +13,7 @@ public class AddConnection implements State{
     private int i = 0;
     private Connection connection;
     private ConnectionPainter connectionPainter;
+    private int t=0;
 
     @Override
     public void misKlik(Point point, DiagramView diagramView) {}
@@ -128,19 +129,28 @@ public class AddConnection implements State{
 
         }
         if(from!= null && to!=null) {
-            Connection veza = ApplicationFramework.getInstance().getClassyManufacturer().createConnection("DEPENDENCY", "DEPENDENCY" + i, diagramView.getDiagram(), Color.BLACK, new BasicStroke(), from, to);
-            i++;
+            if(t==0) {
+                //ovde terab if else za tipove veeza
+                connection = ApplicationFramework.getInstance().getClassyManufacturer().createConnection("DEPENDENCY", "DEPENDENCY" + i, diagramView.getDiagram(), Color.BLACK, new BasicStroke(), from, to);
+                i++;
+                connectionPainter = new DependencyPainter(connection,diagramView);
+                diagramView.getPainters().add(connectionPainter);
+            }
             // ConnectionPainter connectionPainter = new AgregationPainter(veza);
-            this.setConnection(veza);
-            ConnectionPainter connectionPainter = new DependencyPainter(connection,diagramView);
+
+
+
+
+
             connectionPainter.setPoints(points);
-            this.setConnectionPainter(connectionPainter);
-            int t=0;
+           // this.setConnectionPainter(connectionPainter);
+
             System.out.println("kolko se put poziva ova funkcija "+i++);//svaki put kad se ovo pozove se pravi novi painter ne znam koliko je to dobro
            // diagramView.getDiagram().addChild(connection); OVO MOZDA TREBA DA SE VRATI ZOBG TOGA OVE NEMA REPAINT
-            diagramView.getPainters().add(connectionPainter);
+
 
             // System.out.println("veza "+veza.getName());
+            t++;
         }
     }
 
