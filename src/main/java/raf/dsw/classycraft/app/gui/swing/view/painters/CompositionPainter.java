@@ -10,6 +10,10 @@ public class CompositionPainter extends ConnectionPainter{
         super(diagramElement);
     }
 
+    public CompositionPainter(DiagramElement diagramElement, DiagramView diagramView) {
+        super(diagramElement, diagramView);
+    }
+
     @Override
     public void draw(Graphics2D g, DiagramElement diagramElement) {
         g.setColor(Color.green);

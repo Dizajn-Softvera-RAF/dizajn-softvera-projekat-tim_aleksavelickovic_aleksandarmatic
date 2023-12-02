@@ -1,4 +1,7 @@
 package raf.dsw.classycraft.app.gui.swing.tree.view;
+import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.diagramelements.Class;
+import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.diagramelements.Enum;
+import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.diagramelements.Interface;
 import raf.dsw.classycraft.app.classyRepository.implementation.Diagram;
 import raf.dsw.classycraft.app.classyRepository.implementation.Package;
 import raf.dsw.classycraft.app.classyRepository.implementation.Project;
@@ -28,6 +31,12 @@ public class ClassyTreeCellRenderer extends DefaultTreeCellRenderer {
         else if(((ClassyTreeItem)value).getClassyNode() instanceof Diagram){
             imageURL = getClass().getResource("/images/diagram.png");
         }
+        else if((((ClassyTreeItem)value).getClassyNode() instanceof Class))
+            imageURL = getClass().getResource("/images/class.png");
+        else if((((ClassyTreeItem)value).getClassyNode() instanceof Interface))
+            imageURL = getClass().getResource("/images/interface.png");
+        else if((((ClassyTreeItem)value).getClassyNode() instanceof Enum))
+            imageURL = getClass().getResource("/images/enum.png");
 
 
         Icon icon = null;

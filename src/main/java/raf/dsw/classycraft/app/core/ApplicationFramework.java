@@ -67,4 +67,5 @@ public class ApplicationFramework {
     public ClassyManufacturer getClassyManufacturer() {
         return classyManufacturer;
     }
+
 }

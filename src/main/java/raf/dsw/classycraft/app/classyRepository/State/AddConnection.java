@@ -132,8 +132,11 @@ public class AddConnection implements State{
             i++;
             // ConnectionPainter connectionPainter = new AgregationPainter(veza);
             this.setConnection(veza);
-            ConnectionPainter connectionPainter = new DependencyPainter(connection);
+            ConnectionPainter connectionPainter = new DependencyPainter(connection,diagramView);
+            connectionPainter.setPoints(points);
             this.setConnectionPainter(connectionPainter);
+            int t=0;
+            System.out.println("kolko se put poziva ova funkcija "+i++);//svaki put kad se ovo pozove se pravi novi painter ne znam koliko je to dobro
            // diagramView.getDiagram().addChild(connection); OVO MOZDA TREBA DA SE VRATI ZOBG TOGA OVE NEMA REPAINT
             diagramView.getPainters().add(connectionPainter);
 
