@@ -21,6 +21,12 @@ public class ClassyManufacturer extends ClassyAbstractFactory{
     @Override
     public InterClass createInterClass(String type, String name, ClassyNode parent, Color color, Stroke stroke, AccessModifier accessModifier, Point postition, Dimension size) {
         if(type.equals("CLASS")) {
+         //   int t=0;
+           // for(ClassyNode cn: ((ClassyNodeComposite) parent).getChildren()){ ovo je bolji nacin ali ne radi trenutno
+             //   if(cn instanceof Class)
+               //     t++;
+            //}
+
             if(((ClassyNodeComposite) parent).getChildren().size()>0) {
                 int i = 0;
                 while(true) {
@@ -121,6 +127,12 @@ public class ClassyManufacturer extends ClassyAbstractFactory{
             return new Composition("Composition", parent, color, stroke, from, to);
         }
         else if(type.equals("DEPENDENCY")) {
+           // int t=0;
+            //for(ClassyNode cn: ((ClassyNodeComposite) parent).getChildren()){
+
+             //   if(cn instanceof  Dependency)
+               //     t++;
+           // }
             if(((ClassyNodeComposite) parent).getChildren().size()>0) {
                 int i = 0;
                 while(true) {

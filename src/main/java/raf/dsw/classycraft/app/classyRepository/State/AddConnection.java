@@ -1,7 +1,9 @@
 package raf.dsw.classycraft.app.classyRepository.State;
 
+import raf.dsw.classycraft.app.classyRepository.composite.ClassyNode;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.Connection;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.InterClass;
+import raf.dsw.classycraft.app.classyRepository.implementation.Diagram;
 import raf.dsw.classycraft.app.core.ApplicationFramework;
 import raf.dsw.classycraft.app.gui.swing.view.DiagramView;
 import raf.dsw.classycraft.app.gui.swing.view.painters.*;
@@ -49,18 +51,30 @@ public class AddConnection implements State{
 
           //  ConnectionPainter connectionPainter = new AgregationPainter(connection);
             // connectionPainter.getPoints().add() ovo je pre bilo zakom nema funk tren
-
+/* u poslednjem commitu je ovako i ne radi
             ConnectionPainter cp=new DependencyPainter(connection);
             cp.setFlag(1);
             cp.setStartPoint(initPoint);
             cp.setEndPoint(endPoint);
+
             diagramView.getDiagram().addChild(connection);//OVO RESAVA TAJ PROBLEM SA PAINTEROM ALI PRAVI DOLE HAHAHA
             diagramView.getPainters().add(cp);
 
            // diagramView.getDiagram().addChild(connection);
            // diagramView.getPainters().add(connectionPainter);
 
+
+ */
+        ConnectionPainter cp=new DependencyPainter(connection);
+        cp.setFlag(1);
+        cp.setStartPoint(initPoint);
+        cp.setEndPoint(endPoint);
+        diagramView.getDiagram().addChild(connection);//OVO RESAVA TAJ PROBLEM SA PAINTEROM ALI PRAVI DOLE HAHAHA
+        diagramView.getPainters().add(cp);
             //NE RADI DOBRO JE SE REPAINT POZIVA KAD SE NAPRAVI NOVI ELEMENT A OVDE SE NE PRAVI
+        for(ClassyNode cn :diagramView.getDiagram().getChildren()){
+            System.out.println("dete ovog dijagrama ju "+cn.getName());
+        }
 
     }
 
@@ -128,13 +142,14 @@ public class AddConnection implements State{
             }
 
         }
-        if(from!= null && to!=null) {
+       /* if(from!= null && to!=null) { u poslednjem komitu je ovako i ne radi
             if(t==0) {
                 //ovde terab if else za tipove veeza
                 connection = ApplicationFramework.getInstance().getClassyManufacturer().createConnection("DEPENDENCY", "DEPENDENCY" + i, diagramView.getDiagram(), Color.BLACK, new BasicStroke(), from, to);
                 i++;
                 connectionPainter = new DependencyPainter(connection,diagramView);
                 diagramView.getPainters().add(connectionPainter);
+                diagramView.getDiagram().addChild(connection);
             }
             // ConnectionPainter connectionPainter = new AgregationPainter(veza);
 
@@ -151,6 +166,27 @@ public class AddConnection implements State{
 
             // System.out.println("veza "+veza.getName());
             t++;
+        }
+
+        */
+        int k=0;
+        if(from!= null && to!=null) {
+            Connection veza = ApplicationFramework.getInstance().getClassyManufacturer().createConnection("DEPENDENCY", "DEPENDENCY" + i, diagramView.getDiagram(), Color.BLACK, new BasicStroke(), from, to);
+            i++;
+            // ConnectionPainter connectionPainter = new AgregationPainter(veza);
+            System.out.println("evo ga ime veze odma"+veza.getName());
+            if(veza.equals(connection))
+                System.out.println("sad je veza equal sa conn");
+            this.setConnection(veza);
+            ConnectionPainter connectionPainter = new DependencyPainter(connection);
+            this.setConnectionPainter(connectionPainter);
+            // diagramView.getDiagram().addChild(connection); OVO MOZDA TREBA DA SE VRATI ZOBG TOGA OVE NEMA REPAINT
+            diagramView.getPainters().add(connectionPainter);
+
+            // System.out.println("veza "+veza.getName());
+
+            System.out.println("koliko puta se izvrski"+k);
+            k++;
         }
     }
 

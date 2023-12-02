@@ -135,7 +135,7 @@ public abstract class ConnectionPainter extends ElementPainter{
         }
        else{
             //ovde treba konstano da se dodaje moze diagramview .repaint
-
+            System.out.println("velicina lista je "+points.size());
           //  if(points.size()==1)
 
            // drawArrowLine(,35,25);

@@ -114,12 +114,36 @@ public class ClassyTreeImplementation implements ClassyTree {
            //     if (!parent.isNodeChild(new ClassyTreeItem(cn)))
              //       parent.add(new ClassyTreeItem(cn));
             //}
-            parent.add(child);
-           // ApplicationFramework.getInstance().getMessageGeneratorImplementation().generate("ADDED", MessageType.NOTIFICATION, LocalDateTime.now());
+            if(parent.getClassyNode() instanceof Diagram)
+                parent.add(child);
+            else
+                ApplicationFramework.getInstance().getMessageGeneratorImplementation().generate("ERROR DIAGRAM MUST BE SELECTED TO ADD ELEMENTS TO TREE", MessageType.ERROR, LocalDateTime.now());
+           //ApplicationFramework.getInstance().getMessageGeneratorImplementation().generate("ADDED", MessageType.NOTIFICATION, LocalDateTime.now());
+
             treeView.expandPath(treeView.getSelectionPath());
             SwingUtilities.updateComponentTreeUI(treeView);
 
         //}
+    }
+
+    @Override
+    public void addChild(ClassyTreeItem grandparent, ClassyTreeItem parent, ClassyTreeItem child) {
+        if(!grandparent.isNodeChild(parent))
+            System.out.println("nije mu roditelj");
+        System.out.println("broj dece "+grandparent.getChildCount());
+
+        parent.add(child);
+        //ApplicationFramework.getInstance().getMessageGeneratorImplementation().generate("ADDED", MessageType.NOTIFICATION, LocalDateTime.now());
+
+        treeView.expandPath(treeView.getSelectionPath());
+        SwingUtilities.updateComponentTreeUI(treeView);
+    }
+
+    @Override
+    public void addChild(ClassyTreeItem grandparent, ClassyNode parent, ClassyTreeItem child) {
+       // if(parent.equals((ClassyNode)grandparent.getFirstChild() ))
+          //  System.out.println("jesuuu jednakii");
+
     }
 
     @Override

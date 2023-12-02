@@ -31,15 +31,18 @@ public class AddInterclass implements State{
         diagramView.getDiagram().addChild(klasa);
         this.setInterClass(klasa);
         //ClassyTreeItem selected = (ClassyTreeItem) MainFrame.getInstance().getClassyTreeImplementation().getSelectedNode();
-      //  ClassyTreeItem parent=new ClassyTreeItem(diagramView.getDiagram());  1
-       // ClassyTreeItem child=new ClassyTreeItem(klasa); 2
-       // MainFrame.getInstance().getClassyTreeImplementation().addChild(parent,child); //3 sva tri treba ju da se odkomentarisu kad krenem novo
+
         System.out.println(klasa.getName());
 
         //icp.setDiagramElement(klasa);
         if(icp.getDiagramElement()==null)
             System.out.println("null je na pocetku");
         diagramView.getPainters().add(icp);
+        ClassyTreeItem parent=new ClassyTreeItem(diagramView.getDiagram());
+        ClassyTreeItem child=new ClassyTreeItem(klasa);
+        MainFrame.getInstance().getClassyTreeImplementation().addChild(MainFrame.getInstance().getClassyTreeImplementation().getSelectedNode(),child); //3 sva tri treba ju da se odkomentarisu kad krenem novo
+      //  MainFrame.getInstance().getClassyTreeImplementation().addChild(MainFrame.getInstance().getClassyTreeImplementation().getSelectedNode(),parent,child);
+       // MainFrame.getInstance().getClassyTreeImplementation().addChild(MainFrame.getInstance().getClassyTreeImplementation().getSelectedNode(),diagramView.getDiagram(),child);
         for(ElementPainter ep:diagramView.getPainters()) {
             if (ep instanceof InterClassPainter){
                 System.out.println(ep.getDiagramElement().getName());
