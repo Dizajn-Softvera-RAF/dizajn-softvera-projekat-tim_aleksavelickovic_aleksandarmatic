@@ -6,9 +6,10 @@ import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.Dia
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.InterClass;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public  class Interface extends InterClass {
-    private Method method;
+    private ArrayList<ClassContents> methods;
 
 
     public Interface(String name, ClassyNode parent, Color color, Stroke stroke, AccessModifier accessModifier, Point postition, Dimension size) {
@@ -16,11 +17,12 @@ public  class Interface extends InterClass {
 
     }
 
-    public Method getMethod() {
-        return method;
+    public ArrayList<ClassContents> getMethods() {
+        return methods;
     }
 
-    public void setMethod(Method method) {
-        this.method = method;
+    public void setMethods(ArrayList<ClassContents> methods) {
+        this.methods = methods;
     }
+
 }

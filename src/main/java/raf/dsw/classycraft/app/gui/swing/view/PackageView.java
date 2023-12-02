@@ -16,6 +16,7 @@ public class PackageView extends JPanel implements Subscriber {
     private StateManager stateManager;
     private final InfoLine infoLine;
     private final TabbedPane tabbedPane;
+    private DiagramView diagramView = null;
 
 
     public PackageView(InfoLine infoLine,TabbedPane tabbedPane) {
@@ -86,6 +87,7 @@ public class PackageView extends JPanel implements Subscriber {
         System.out.println("State Edit");}
     public void misKlik(Point point, DiagramView dw){
         stateManager.getCurrState().misKlik(point,dw);
+        this.diagramView = dw;
     }
     public  void misPusten(){stateManager.getCurrState().misPusten();}
     public void misPrevucen(Point initPoint, Point endPoint, DiagramView dw){stateManager.getCurrState().misPrevucen(initPoint,endPoint,dw);}
@@ -94,5 +96,9 @@ public class PackageView extends JPanel implements Subscriber {
     }
     public void misPusten(Point initPoint, Point endPoint, DiagramView diagramView) {
         stateManager.getCurrState().misPusten(initPoint,endPoint,diagramView);
+    }
+
+    public DiagramView getDiagramView() {
+        return diagramView;
     }
 }

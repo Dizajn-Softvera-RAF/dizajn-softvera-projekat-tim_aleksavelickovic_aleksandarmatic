@@ -13,15 +13,17 @@ public class Selected implements State{
     @Override
     public void misKlik(Point point, DiagramView diagramView) {
         for(ElementPainter ep:diagramView.getPainters()) {
-            if (ep instanceof InterClassPainter || ep instanceof ConnectionPainter){
-                if(ep.elementAt(ep.getDiagramElement(),point,diagramView)) {
+            if(ep.elementAt(ep.getDiagramElement(),point,diagramView)) {
                     System.out.println(ep.getDiagramElement().getName());
                     System.out.println("jeste tu");
                     ep.getDiagramElement().setSelected(true);
-                }
-                else {ep.getDiagramElement().setSelected(false);
-                        System.out.println("Nije selektovan element");}
             }
+            else {
+                for(ElementPainter elementPainter:diagramView.getPainters()){
+                    if (elementPainter instanceof InterClassPainter || elementPainter instanceof ConnectionPainter)elementPainter.getDiagramElement().setSelected(false);
+                }
+            }
+
 
         }
     }

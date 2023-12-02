@@ -10,4 +10,20 @@ public abstract class ClassContents {
         this.name = name;
         AccessModifier = accessModifier;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getAccessModifier() {
+        return AccessModifier;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAccessModifier(String accessModifier) {
+        AccessModifier = accessModifier;
+    }
 }
