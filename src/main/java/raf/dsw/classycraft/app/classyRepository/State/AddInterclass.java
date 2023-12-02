@@ -4,10 +4,13 @@ import javafx.scene.shape.StrokeType;
 import raf.dsw.classycraft.app.classyRepository.composite.ClassyNode;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.AccessModifier;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.DiagramElement;
+import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.InterClass;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.diagramelements.Class;
 import raf.dsw.classycraft.app.classyRepository.implementation.Diagram;
 import raf.dsw.classycraft.app.core.ApplicationFramework;
+import raf.dsw.classycraft.app.gui.swing.tree.model.ClassyTreeItem;
 import raf.dsw.classycraft.app.gui.swing.view.DiagramView;
+import raf.dsw.classycraft.app.gui.swing.view.MainFrame;
 import raf.dsw.classycraft.app.gui.swing.view.painters.ElementPainter;
 import raf.dsw.classycraft.app.gui.swing.view.painters.InterClassPainter;
 
@@ -16,6 +19,7 @@ import java.util.ArrayList;
 
 public class AddInterclass implements State{
     private int i = 0;
+    private InterClass interClass;
     @Override
     public void misKlik(Point point, DiagramView diagramView) {
         System.out.println("misKlik");
@@ -25,7 +29,11 @@ public class AddInterclass implements State{
         i++;
         InterClassPainter icp = new InterClassPainter(klasa);
         diagramView.getDiagram().addChild(klasa);
-
+        this.setInterClass(klasa);
+        //ClassyTreeItem selected = (ClassyTreeItem) MainFrame.getInstance().getClassyTreeImplementation().getSelectedNode();
+      //  ClassyTreeItem parent=new ClassyTreeItem(diagramView.getDiagram());  1
+       // ClassyTreeItem child=new ClassyTreeItem(klasa); 2
+       // MainFrame.getInstance().getClassyTreeImplementation().addChild(parent,child); //3 sva tri treba ju da se odkomentarisu kad krenem novo
         System.out.println(klasa.getName());
 
         //icp.setDiagramElement(klasa);
@@ -36,7 +44,7 @@ public class AddInterclass implements State{
             if (ep instanceof InterClassPainter){
                 System.out.println(ep.getDiagramElement().getName());
                 if(ep.elementAt(ep.getDiagramElement(),point,diagramView))
-                System.out.println("jeste tu");
+                    System.out.println("jeste tu");
             }
 
         }
@@ -44,6 +52,14 @@ public class AddInterclass implements State{
 
 
 
+    }
+
+    public InterClass getInterClass() {
+        return interClass;
+    }
+
+    public void setInterClass(InterClass interClass) {
+        this.interClass = interClass;
     }
 
     @Override

@@ -24,7 +24,12 @@ public abstract class ConnectionPainter extends ElementPainter{
         super(diagramElement);
         //mozda treba this diagel =diagel
     }
-  public  double dsquare(Point p1,Point p2) {
+
+    public ConnectionPainter(DiagramElement diagramElement, DiagramView diagramView) {
+        super(diagramElement, diagramView);
+    }
+
+    public  double dsquare(Point p1, Point p2) {
         double dx = p1.x - p2.x;
         double dy = p1.y - p2.y;
         return sqrt(dx * dx + dy * dy);
@@ -130,6 +135,10 @@ public abstract class ConnectionPainter extends ElementPainter{
         }
        else{
             //ovde treba konstano da se dodaje moze diagramview .repaint
+
+          //  if(points.size()==1)
+
+           // drawArrowLine(,35,25);
 
         }
 

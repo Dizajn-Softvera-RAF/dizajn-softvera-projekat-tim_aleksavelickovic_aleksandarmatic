@@ -3,6 +3,7 @@ package raf.dsw.classycraft.app.gui.swing.tree;
 import raf.dsw.classycraft.app.classyRepository.Factory.NodeFactory;
 import raf.dsw.classycraft.app.classyRepository.composite.ClassyNode;
 import raf.dsw.classycraft.app.classyRepository.composite.ClassyNodeComposite;
+import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.DiagramElement;
 import raf.dsw.classycraft.app.classyRepository.implementation.Diagram;
 import raf.dsw.classycraft.app.classyRepository.implementation.Project;
 import raf.dsw.classycraft.app.classyRepository.implementation.Package;
@@ -29,6 +30,8 @@ public class ClassyTreeImplementation implements ClassyTree {
     private ClassyTreeView treeView;
     private DefaultTreeModel treeModel;
     private  int selection;
+    private DiagramElement diagramElement;
+    private int nesto;
 
 
     public int getSelection() {
@@ -37,6 +40,22 @@ public class ClassyTreeImplementation implements ClassyTree {
 
     public void setSelection(int selection) {
         this.selection = selection;
+    }
+
+    public int getNesto() {
+        return nesto;
+    }
+
+    public void setNesto(int nesto) {
+        this.nesto = nesto;
+    }
+
+    public DiagramElement getDiagramElement() {
+        return diagramElement;
+    }
+
+    public void setDiagramElement(DiagramElement diagramElement) {
+        this.diagramElement = diagramElement;
     }
 
     @Override
@@ -50,24 +69,28 @@ public class ClassyTreeImplementation implements ClassyTree {
     @Override
     public void addChild(ClassyTreeItem parent) {
 
-        if(parent==null){
 
-            ApplicationFramework.getInstance().getMessageGeneratorImplementation().generate("NODE_CANNOT_BE_ADDED", MessageType.ERROR, LocalDateTime.now());
+            if(parent==null){
 
-            return;
+                ApplicationFramework.getInstance().getMessageGeneratorImplementation().generate("NODE_CANNOT_BE_ADDED", MessageType.ERROR, LocalDateTime.now());
 
-        }
-        if (!(parent.getClassyNode() instanceof ClassyNodeComposite)) {
+                return;
 
-            return;
-        }
-        NodeFactory nf= Utils.getNodeFactory(parent.getClassyNode(),getSelection());
-        nf.getNode((ClassyNodeComposite) parent.getClassyNode());
-        ClassyNode child =nf.getNode((ClassyNodeComposite) parent.getClassyNode());
+            }
+            if (!(parent.getClassyNode() instanceof ClassyNodeComposite)) {
 
-        parent.add(new ClassyTreeItem(child));
+                return;
+            }
+            NodeFactory nf= Utils.getNodeFactory(parent.getClassyNode(),getSelection());
+            nf.getNode((ClassyNodeComposite) parent.getClassyNode());
+            ClassyNode child =nf.getNode((ClassyNodeComposite) parent.getClassyNode());
 
-        ((ClassyNodeComposite) parent.getClassyNode()).addChild(child);
+            parent.add(new ClassyTreeItem(child));
+
+            ((ClassyNodeComposite) parent.getClassyNode()).addChild(child);
+
+
+
 
 
 
@@ -81,6 +104,22 @@ public class ClassyTreeImplementation implements ClassyTree {
     @Override
     public ClassyTreeItem getSelectedNode() {
         return (ClassyTreeItem) treeView.getLastSelectedPathComponent();
+    }
+
+    @Override
+    public void addChild(ClassyTreeItem parent, ClassyTreeItem child) {
+     //   if(parent.getClassyNode() instanceof Diagram){
+
+         //   for(ClassyNode cn: ((ClassyNodeComposite)parent.getClassyNode()).getChildren()) {
+           //     if (!parent.isNodeChild(new ClassyTreeItem(cn)))
+             //       parent.add(new ClassyTreeItem(cn));
+            //}
+            parent.add(child);
+           // ApplicationFramework.getInstance().getMessageGeneratorImplementation().generate("ADDED", MessageType.NOTIFICATION, LocalDateTime.now());
+            treeView.expandPath(treeView.getSelectionPath());
+            SwingUtilities.updateComponentTreeUI(treeView);
+
+        //}
     }
 
     @Override
