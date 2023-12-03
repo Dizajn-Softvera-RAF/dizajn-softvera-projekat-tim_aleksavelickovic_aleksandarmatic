@@ -11,6 +11,10 @@ public abstract class ClassContents {
         AccessModifier = accessModifier;
     }
 
+    public ClassContents() {
+
+    }
+
     public String getName() {
         return name;
     }

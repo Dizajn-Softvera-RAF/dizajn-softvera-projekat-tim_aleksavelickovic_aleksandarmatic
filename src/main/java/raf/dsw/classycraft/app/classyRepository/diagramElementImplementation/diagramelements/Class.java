@@ -15,28 +15,6 @@ public  class Class extends InterClass {
     public Class(String name, ClassyNode parent, Color color, Stroke stroke, AccessModifier accessModifier, Point postition, Dimension size) {
         super(name, parent, color, stroke, accessModifier, postition, size);
         classContents = new ArrayList<>();
-        ClassContents classContents1 = new ClassContents("","") {
-            @Override
-            public String getName() {
-                return super.getName();
-            }
-
-            @Override
-            public String getAccessModifier() {
-                return super.getAccessModifier();
-            }
-
-            @Override
-            public void setName(String name) {
-                super.setName(name);
-            }
-
-            @Override
-            public void setAccessModifier(String accessModifier) {
-                super.setAccessModifier(accessModifier);
-            }
-        };
-        classContents.add(classContents1);
 
     }
 
