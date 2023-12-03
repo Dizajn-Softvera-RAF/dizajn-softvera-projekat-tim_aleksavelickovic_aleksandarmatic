@@ -7,6 +7,7 @@ import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.Dia
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.InterClass;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.diagramelements.*;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.diagramelements.Class;
+import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.diagramelements.Enum;
 import raf.dsw.classycraft.app.classyRepository.implementation.Diagram;
 import raf.dsw.classycraft.app.core.ApplicationFramework;
 import raf.dsw.classycraft.app.gui.swing.tree.model.ClassyTreeItem;
@@ -26,7 +27,7 @@ public class AddInterclass implements State{
         System.out.println("misKlik");
 
         System.out.println(diagramView.getDiagram().getName());
-      /*  Class klasa = (Class) ApplicationFramework.getInstance().getClassyManufacturer().createInterClass("CLASS","klasa"+i,diagramView.getDiagram(),Color.BLUE, new BasicStroke(), AccessModifier.PRIVATE,point, new Dimension(150,100));
+      /* Class klasa = (Class) ApplicationFramework.getInstance().getClassyManufacturer().createInterClass("CLASS","klasa"+i,diagramView.getDiagram(),Color.BLUE, new BasicStroke(), AccessModifier.PRIVATE,point, new Dimension(150,100));
         i++;
         ClassContents cc=new Atribute("atribut",AccessModifier.PROTECTED);//gledaj sta ce da se desi
         ClassContents cc1=new Atribute("atribut1",AccessModifier.PACKAGE);
@@ -47,9 +48,11 @@ public class AddInterclass implements State{
         klasa.addClassContents(cc7);
         klasa.addClassContents(cc8);
 
+
+
        */
 
-        Interface klasa = (Interface) ApplicationFramework.getInstance().getClassyManufacturer().createInterClass("INTERFACE","INTERFACE"+i,diagramView.getDiagram(),Color.BLUE, new BasicStroke(), AccessModifier.PRIVATE,point, new Dimension(150,100));
+       Interface klasa = (Interface) ApplicationFramework.getInstance().getClassyManufacturer().createInterClass("INTERFACE","INTERFACE"+i,diagramView.getDiagram(),Color.BLUE, new BasicStroke(), AccessModifier.PRIVATE,point, new Dimension(150,100));
         i++;
         Method cc=new Method("atribut",AccessModifier.PROTECTED);//gledaj sta ce da se desi
         Method cc1=new Method("atribut1",AccessModifier.PROTECTED);
@@ -65,6 +68,11 @@ public class AddInterclass implements State{
         klasa.addMethods(cc4);
         klasa.addMethods(cc5);
         klasa.addMethods(cc6);
+
+
+
+
+
 
         InterClassPainter icp = new InterClassPainter(klasa);
         diagramView.getDiagram().addChild(klasa);

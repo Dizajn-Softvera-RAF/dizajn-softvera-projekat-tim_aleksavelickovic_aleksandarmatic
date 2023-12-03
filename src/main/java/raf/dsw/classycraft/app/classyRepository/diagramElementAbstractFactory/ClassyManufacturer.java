@@ -59,7 +59,7 @@ public class ClassyManufacturer extends ClassyAbstractFactory{
                             break;
                         }
                     if(!exist)
-                        return new  Class("Enum (" + i + ")", parent, color, stroke, accessModifier, postition, size);
+                        return new Enum("Enum (" + i + ")", parent, color, stroke, accessModifier, postition, size);
                 }
             }
             return new Enum("Enum", parent, color, stroke, accessModifier, postition, size);
