@@ -3,6 +3,7 @@ package raf.dsw.classycraft.app.gui.swing.view.painters;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.DiagramElement;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.InterClass;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.diagramelements.Class;
+import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.diagramelements.ClassContents;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.diagramelements.Enum;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.diagramelements.Interface;
 import raf.dsw.classycraft.app.gui.swing.view.DiagramView;
@@ -14,6 +15,8 @@ public class InterClassPainter extends ElementPainter{
     protected Shape shape;
     private DiagramElement diagramElement;
     private int fontSize;
+
+    private String mode;
 
     public InterClassPainter(DiagramElement diagramElement) {
         super(diagramElement);
@@ -55,7 +58,14 @@ public class InterClassPainter extends ElementPainter{
         fontSize=g.getFont().getSize();
         if((g.getFont().getSize()*interClass.getName().length()+g.getFont().getSize()*interClass.getAccessModifier().name().length()+65)>(interClass.getSize().width)) {
             interClass.setSize(new Dimension(interClass.getSize().width + ((g.getFont().getSize() * interClass.getName().length() + g.getFont().getSize() * interClass.getAccessModifier().name().length() + 65) - (interClass.getSize().width)),interClass.getSize().height));
-            System.out.println("setuje se size ");
+            if(interClass instanceof Class){
+                Class clas=(Class) interClass;
+                for(ClassContents cc:clas.getClassContents()){
+                    if((g.getFont().getSize()*cc.getName().length()+g.getFont().getSize()*cc.getAccessModifier().name().length()+65)>(interClass.getSize().width))
+                        interClass.setSize(new Dimension(interClass.getSize().width + ((g.getFont().getSize() * cc.getName().length() + g.getFont().getSize() * cc.getAccessModifier().name().length() + 65) - (interClass.getSize().width)),interClass.getSize().height));
+                  //  g.drawString();
+                }
+            }
             g.drawRect(interClass.getPostition().getLocation().x, interClass.getPostition().getLocation().y,interClass.getSize().width , interClass.getSize().height);
         }
         else
@@ -63,6 +73,8 @@ public class InterClassPainter extends ElementPainter{
 
         g.drawString(interClass.getAccessModifier().name(),interClass.getPostition().x+10,interClass.getPostition().y+10);
         g.drawString(interClass.getName(),interClass.getPostition().x+75,interClass.getPostition().y+10);
+
+
 
     }
 

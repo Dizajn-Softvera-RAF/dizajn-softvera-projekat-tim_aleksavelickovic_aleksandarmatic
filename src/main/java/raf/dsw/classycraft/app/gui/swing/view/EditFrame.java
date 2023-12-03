@@ -267,14 +267,43 @@ public class EditFrame implements ActionListener{
             AccessModifier vidljivost = (AccessModifier) getVidljivost().getSelectedItem();
             klasa.setAccessModifier(vidljivost);
             if (getOdabirPolja().getSelectedItem().toString().equals("New field")){
-                klasa.getClassContents().add(new Atribute(getImePolja().getText(),getVidljivostPolja().getSelectedItem().toString()));
+                AccessModifier ac=null;
+                if(getVidljivostPolja().getSelectedItem().toString().equals("PRIVATE"))
+                    ac=AccessModifier.PRIVATE;
+                else if(getVidljivostPolja().getSelectedItem().toString().equals("PUBLIC"))
+                    ac=AccessModifier.PUBLIC;
+                else if(getVidljivostPolja().getSelectedItem().toString().equals("PACKAGE"))
+                    ac=AccessModifier.PACKAGE;
+                else if(getVidljivostPolja().getSelectedItem().toString().equals("PROTECTED"))
+                    ac=AccessModifier.PROTECTED;
+
+                klasa.getClassContents().add(new Atribute(getImePolja().getText(),ac));
             } else if (getOdabirPolja().getSelectedItem().toString().equals("New method")) {
-                klasa.getClassContents().add(new Method(getImePolja().getText(),getVidljivostPolja().getSelectedItem().toString()));
+                if (getOdabirPolja().getSelectedItem().toString().equals("New field")) {
+                    AccessModifier ac = null;
+                    if (getVidljivostPolja().getSelectedItem().toString().equals("PRIVATE"))
+                        ac = AccessModifier.PRIVATE;
+                    else if (getVidljivostPolja().getSelectedItem().toString().equals("PUBLIC"))
+                        ac = AccessModifier.PUBLIC;
+                    else if (getVidljivostPolja().getSelectedItem().toString().equals("PACKAGE"))
+                        ac = AccessModifier.PACKAGE;
+                    else if (getVidljivostPolja().getSelectedItem().toString().equals("PROTECTED"))
+                        ac = AccessModifier.PROTECTED;
+                    klasa.getClassContents().add(new Method(getImePolja().getText(), ac));
+                }
             }
             else{
                 ClassContents polje = getItemFromClassContentsList((String)odabirPolja.getSelectedItem(),classContents);
                 polje.setName(getImePolja().getText());
-                polje.setAccessModifier(getVidljivostPolja().getSelectedItem().toString());
+             //   polje.setAccessModifier(getVidljivostPolja().getSelectedItem().toString()); ovo sam ja promenio da bude enum samo se uzme classModifier.getname da bi dobio string
+                if(getVidljivostPolja().getSelectedItem().toString().equals("PRIVATE"))
+                    polje.setAccessModifier(AccessModifier.PRIVATE);
+                else if(getVidljivostPolja().getSelectedItem().toString().equals("PUBLIC"))
+                    polje.setAccessModifier(AccessModifier.PUBLIC);
+                else if(getVidljivostPolja().getSelectedItem().toString().equals("PACKAGE"))
+                    polje.setAccessModifier(AccessModifier.PACKAGE);
+                else if(getVidljivostPolja().getSelectedItem().toString().equals("PROTECTED"))
+                    polje.setAccessModifier(AccessModifier.PROTECTED);
             }
         }
     }

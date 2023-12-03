@@ -49,8 +49,9 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
         for(ElementPainter ep:painters) {
             ep.draw(g2, ep.getDiagramElement());
             ep.getDiagramElement().addSubscriber(this);
-            if(ep.getDiagramElement()instanceof InterClass)//ne znam da li za ovim ima potrebe
+            if(ep.getDiagramElement()instanceof InterClass)
                 ((InterClass)ep.getDiagramElement()).addSubscriber(this);
+
         }
     }
     public Diagram getDiagram() {

@@ -4,11 +4,11 @@ import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.Acc
 
 public abstract class ClassContents {
     private String name;
-    private String AccessModifier;
+    private AccessModifier accessModifier;
 
-    public ClassContents(String name, String accessModifier) {
+    public ClassContents(String name, AccessModifier accessModifier) {
         this.name = name;
-        AccessModifier = accessModifier;
+        this.accessModifier = accessModifier;
     }
 
     public ClassContents() {
@@ -19,15 +19,17 @@ public abstract class ClassContents {
         return name;
     }
 
-    public String getAccessModifier() {
-        return AccessModifier;
-    }
+
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setAccessModifier(String accessModifier) {
-        AccessModifier = accessModifier;
+    public AccessModifier getAccessModifier() {
+        return accessModifier;
+    }
+
+    public void setAccessModifier(AccessModifier accessModifier) {
+        this.accessModifier = accessModifier;
     }
 }
