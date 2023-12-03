@@ -78,7 +78,7 @@ public class ClassyManufacturer extends ClassyAbstractFactory{
                             break;
                         }
                     if(!exist)
-                        return new  Class("Interface (" + i + ")", parent, color, stroke, accessModifier, postition, size);
+                        return new Interface("Interface (" + i + ")", parent, color, stroke, accessModifier, postition, size);
                 }
             }
             return new Interface("Interface", parent, color, stroke, accessModifier, postition, size);

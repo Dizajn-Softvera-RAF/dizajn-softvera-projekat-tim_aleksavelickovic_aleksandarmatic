@@ -32,7 +32,6 @@ public  class Class extends InterClass implements Pubsliher {
         this.classContents = classContents;
     }
     public void addClassContents(ClassContents classContent){
-
         classContents.add(classContent);
         notifySubscribers(new InterCommunicationNotification("CLASSCONTENT_ADDED"));
     }

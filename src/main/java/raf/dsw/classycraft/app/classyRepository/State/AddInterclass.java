@@ -48,6 +48,7 @@ public class AddInterclass implements State{
         klasa.addClassContents(cc8);
 
        */
+
         Interface klasa = (Interface) ApplicationFramework.getInstance().getClassyManufacturer().createInterClass("INTERFACE","INTERFACE"+i,diagramView.getDiagram(),Color.BLUE, new BasicStroke(), AccessModifier.PRIVATE,point, new Dimension(150,100));
         i++;
         Method cc=new Method("atribut",AccessModifier.PROTECTED);//gledaj sta ce da se desi
