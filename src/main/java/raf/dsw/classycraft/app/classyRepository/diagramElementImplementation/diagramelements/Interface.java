@@ -12,7 +12,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public  class  Interface extends InterClass implements Pubsliher {
-    private ArrayList<ClassContents> methods;
+    private ArrayList<Method> methods;
     private ArrayList<Subscriber> subscribers;
 
     public Interface(String name, ClassyNode parent, Color color, Stroke stroke, AccessModifier accessModifier, Point postition, Dimension size) {
@@ -23,7 +23,7 @@ public  class  Interface extends InterClass implements Pubsliher {
 
     }
 
-    public ArrayList<ClassContents> getMethods() {
+    public ArrayList<Method> getMethods() {
         return methods;
     }
 
