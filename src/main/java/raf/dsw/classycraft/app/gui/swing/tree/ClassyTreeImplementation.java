@@ -24,6 +24,7 @@ import javax.swing.*;
 import javax.swing.tree.DefaultTreeModel;
 import java.awt.event.ActionEvent;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class ClassyTreeImplementation implements ClassyTree {
@@ -32,6 +33,7 @@ public class ClassyTreeImplementation implements ClassyTree {
     private  int selection;
     private DiagramElement diagramElement;
     private int nesto;
+    private ArrayList<ClassyTreeItem> parentlist=new ArrayList<>();
 
 
     public int getSelection() {
@@ -85,7 +87,12 @@ public class ClassyTreeImplementation implements ClassyTree {
             nf.getNode((ClassyNodeComposite) parent.getClassyNode());
             ClassyNode child =nf.getNode((ClassyNodeComposite) parent.getClassyNode());
 
-            parent.add(new ClassyTreeItem(child));
+            //parent.add(new ClassyTreeItem(child)); ovo je zakomentarisano
+        ClassyTreeItem classyTreeItem=new ClassyTreeItem(child);
+        if(child instanceof Diagram)
+            parentlist.add(classyTreeItem);
+        //   parent.add(new ClassyTreeItem(child));
+        parent.add(classyTreeItem);
 
             ((ClassyNodeComposite) parent.getClassyNode()).addChild(child);
 
@@ -141,9 +148,13 @@ public class ClassyTreeImplementation implements ClassyTree {
 
     @Override
     public void addChild(ClassyTreeItem grandparent, ClassyNode parent, ClassyTreeItem child) {
-       // if(parent.equals((ClassyNode)grandparent.getFirstChild() ))
-          //  System.out.println("jesuuu jednakii");
+        for(ClassyTreeItem cti:parentlist) {
+            if (cti.getClassyNode().equals(parent))
+                cti.add(child);
 
+        }
+        treeView.expandPath(treeView.getSelectionPath());
+        SwingUtilities.updateComponentTreeUI(treeView);
     }
 
     @Override

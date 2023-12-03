@@ -74,7 +74,8 @@ public class AddConnection implements State{
         diagramView.getDiagram().addChild(connection);//OVO RESAVA TAJ PROBLEM SA PAINTEROM ALI PRAVI DOLE HAHAHA
 
         ClassyTreeItem child=new ClassyTreeItem(connection);
-        MainFrame.getInstance().getClassyTreeImplementation().addChild(MainFrame.getInstance().getClassyTreeImplementation().getSelectedNode(),child);
+        //MainFrame.getInstance().getClassyTreeImplementation().addChild(MainFrame.getInstance().getClassyTreeImplementation().getSelectedNode(),child);
+        MainFrame.getInstance().getClassyTreeImplementation().addChild(null,diagramView.getDiagram(),child);
         diagramView.getPainters().add(cp);
             //NE RADI DOBRO JE SE REPAINT POZIVA KAD SE NAPRAVI NOVI ELEMENT A OVDE SE NE PRAVI
         for(ClassyNode cn :diagramView.getDiagram().getChildren()){
