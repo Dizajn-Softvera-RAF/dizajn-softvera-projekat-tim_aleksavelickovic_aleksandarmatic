@@ -1,5 +1,6 @@
 package raf.dsw.classycraft.app.gui.swing.view;
 
+import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.InterClass;
 import raf.dsw.classycraft.app.classyRepository.implementation.Diagram;
 import raf.dsw.classycraft.app.core.observer.Subscriber;
 import raf.dsw.classycraft.app.gui.swing.view.painters.ElementPainter;
@@ -45,9 +46,12 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
        // DiagramView.this.paint(g2);
         //paint(g2);to ne radi ali tako treba da se radi
         System.out.println("Izvršena paintComponent metoda view-a");
-        for(ElementPainter ep:painters)
-            ep.draw(g2,ep.getDiagramElement());
-
+        for(ElementPainter ep:painters) {
+            ep.draw(g2, ep.getDiagramElement());
+            ep.getDiagramElement().addSubscriber(this);
+            if(ep.getDiagramElement()instanceof InterClass)//ne znam da li za ovim ima potrebe
+                ((InterClass)ep.getDiagramElement()).addSubscriber(this);
+        }
     }
     public Diagram getDiagram() {
         return diagram;
@@ -174,6 +178,7 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
         this.diagram = diagram;
         name = diagram.getName();
         this.diagram.addSubscriber(this);
+
         this.addMouseListener(new MouseController());
         this.diagramView = this;
         this.addMouseListener(this);

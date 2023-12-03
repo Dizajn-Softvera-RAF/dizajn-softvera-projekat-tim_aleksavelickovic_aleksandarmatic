@@ -5,7 +5,9 @@ import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.Con
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.InterClass;
 import raf.dsw.classycraft.app.classyRepository.implementation.Diagram;
 import raf.dsw.classycraft.app.core.ApplicationFramework;
+import raf.dsw.classycraft.app.gui.swing.tree.model.ClassyTreeItem;
 import raf.dsw.classycraft.app.gui.swing.view.DiagramView;
+import raf.dsw.classycraft.app.gui.swing.view.MainFrame;
 import raf.dsw.classycraft.app.gui.swing.view.painters.*;
 
 import java.awt.*;
@@ -70,6 +72,9 @@ public class AddConnection implements State{
         cp.setStartPoint(initPoint);
         cp.setEndPoint(endPoint);
         diagramView.getDiagram().addChild(connection);//OVO RESAVA TAJ PROBLEM SA PAINTEROM ALI PRAVI DOLE HAHAHA
+
+        ClassyTreeItem child=new ClassyTreeItem(connection);
+        MainFrame.getInstance().getClassyTreeImplementation().addChild(MainFrame.getInstance().getClassyTreeImplementation().getSelectedNode(),child);
         diagramView.getPainters().add(cp);
             //NE RADI DOBRO JE SE REPAINT POZIVA KAD SE NAPRAVI NOVI ELEMENT A OVDE SE NE PRAVI
         for(ClassyNode cn :diagramView.getDiagram().getChildren()){
