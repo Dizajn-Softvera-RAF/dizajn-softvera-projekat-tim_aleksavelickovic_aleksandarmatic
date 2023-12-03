@@ -223,7 +223,6 @@ public class EditFrame implements ActionListener{
         if (diagramElement instanceof Class){
             //rad sa poljima klase
             if(source.equals(odabirPolja)){
-                System.out.println("source je odabir polja");
                 if(getItemFromClassContentsList((String)odabirPolja.getSelectedItem(),classContents)!=null){
                     ClassContents content = getItemFromClassContentsList((String)odabirPolja.getSelectedItem(),classContents);
                     getImePolja().setText(content.getName());
@@ -236,7 +235,6 @@ public class EditFrame implements ActionListener{
             }
             //izmena klase
             if (comand.equals("Confirm")){
-                System.out.println("Detektuje dugme");
                 Class klasa = (Class)diagramElement;
                 if (getOdabirPolja().getSelectedItem().toString().equals("New field")){
                     AccessModifier ac=null;
@@ -281,7 +279,6 @@ public class EditFrame implements ActionListener{
         }else if (diagramElement instanceof Interface){
             Interface interfejs = (Interface) diagramElement;
             if(source.equals(odabirPolja)){
-                System.out.println("source je odabir polja");
                 if(getItemFromMethodList((String)odabirPolja.getSelectedItem(),interfejs.getMethods())!=null){
                     Method metoda = getItemFromMethodList((String)odabirPolja.getSelectedItem(),interfejs.getMethods());
                     getImePolja().setText(metoda.getName());
@@ -294,7 +291,6 @@ public class EditFrame implements ActionListener{
             }
             //izmena klase
             if (comand.equals("Confirm")) {
-                System.out.println("Detektuje dugme u interfejs");
                 if (getOdabirPolja().getSelectedItem().toString().equals("New field")) {
                     AccessModifier ac = null;
                     if (getVidljivostPolja().getSelectedItem().toString().equals("PRIVATE"))
@@ -331,6 +327,7 @@ public class EditFrame implements ActionListener{
                         polje.setAccessModifier(AccessModifier.PACKAGE);
                     else if (getVidljivostPolja().getSelectedItem().toString().equals("PROTECTED"))
                         polje.setAccessModifier(AccessModifier.PROTECTED);
+
                 }
             }
         }
