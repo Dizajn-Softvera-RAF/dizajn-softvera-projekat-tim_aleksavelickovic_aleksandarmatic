@@ -30,6 +30,24 @@ public class AddInterclass implements State{
         Class klasa = (Class) ApplicationFramework.getInstance().getClassyManufacturer().createInterClass("CLASS","klasa"+i,diagramView.getDiagram(),Color.BLUE, new BasicStroke(), AccessModifier.PRIVATE,point, new Dimension(150,100));
         i++;
         ClassContents cc=new Atribute("atribut",AccessModifier.PROTECTED);//gledaj sta ce da se desi
+        ClassContents cc1=new Atribute("atribut1",AccessModifier.PACKAGE);
+        ClassContents cc2=new Atribute("atribut1",AccessModifier.PACKAGE);
+        ClassContents cc3=new Atribute("atribut1",AccessModifier.PACKAGE);
+        ClassContents cc4=new Atribute("atribut1",AccessModifier.PACKAGE);
+        ClassContents cc5=new Atribute("atribut1",AccessModifier.PACKAGE);
+        ClassContents cc6=new Atribute("atribut1",AccessModifier.PACKAGE);
+        ClassContents cc7=new Atribute("atribut1",AccessModifier.PACKAGE);
+        ClassContents cc8=new Atribute("atribut1",AccessModifier.PACKAGE);
+        klasa.addClassContents(cc);
+        klasa.addClassContents(cc1);
+        klasa.addClassContents(cc2);
+        klasa.addClassContents(cc3);
+        klasa.addClassContents(cc4);
+        klasa.addClassContents(cc5);
+        klasa.addClassContents(cc6);
+        klasa.addClassContents(cc7);
+        klasa.addClassContents(cc8);
+
         InterClassPainter icp = new InterClassPainter(klasa);
         diagramView.getDiagram().addChild(klasa);
         this.setInterClass(klasa);

@@ -2,10 +2,9 @@ package raf.dsw.classycraft.app.gui.swing.view.painters;
 
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.DiagramElement;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.InterClass;
+import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.diagramelements.*;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.diagramelements.Class;
-import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.diagramelements.ClassContents;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.diagramelements.Enum;
-import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.diagramelements.Interface;
 import raf.dsw.classycraft.app.gui.swing.view.DiagramView;
 
 import java.awt.*;
@@ -56,25 +55,46 @@ public class InterClassPainter extends ElementPainter{
         */
      //  System.out.println (interClass.getAccessModifier().name().length());
         fontSize=g.getFont().getSize();
-        if((g.getFont().getSize()*interClass.getName().length()+g.getFont().getSize()*interClass.getAccessModifier().name().length()+65)>(interClass.getSize().width)) {
-            interClass.setSize(new Dimension(interClass.getSize().width + ((g.getFont().getSize() * interClass.getName().length() + g.getFont().getSize() * interClass.getAccessModifier().name().length() + 65) - (interClass.getSize().width)),interClass.getSize().height));
+        if((g.getFont().getSize()*interClass.getName().length()+g.getFont().getSize()*interClass.getAccessModifier().name().length()+85)>(interClass.getSize().width))
+            interClass.setSize(new Dimension(interClass.getSize().width + ((g.getFont().getSize() * interClass.getName().length() + g.getFont().getSize() * interClass.getAccessModifier().name().length() + 85) - (interClass.getSize().width)),interClass.getSize().height));
             if(interClass instanceof Class){
                 Class clas=(Class) interClass;
+                int u=g.getFont().getSize()+30;
                 for(ClassContents cc:clas.getClassContents()){
-                    if((g.getFont().getSize()*cc.getName().length()+g.getFont().getSize()*cc.getAccessModifier().name().length()+65)>(interClass.getSize().width))
-                        interClass.setSize(new Dimension(interClass.getSize().width + ((g.getFont().getSize() * cc.getName().length() + g.getFont().getSize() * cc.getAccessModifier().name().length() + 65) - (interClass.getSize().width)),interClass.getSize().height));
-                  //  g.drawString();
+                    if((g.getFont().getSize()*cc.getName().length()+g.getFont().getSize()*cc.getAccessModifier().name().length()+85)>(interClass.getSize().width)) {
+                        interClass.setSize(new Dimension(interClass.getSize().width + ((g.getFont().getSize() * cc.getName().length() + g.getFont().getSize() * cc.getAccessModifier().name().length() + 85) - (interClass.getSize().width)), interClass.getSize().height));
+
+                    }
+                    u=u+g.getFont().getSize()+5;
+
+                    if(u>interClass.getSize().height)
+                        interClass.setSize(new Dimension(interClass.getSize().width,interClass.getSize().height+(u-interClass.getSize().height)+10));
+
                 }
             }
-            g.drawRect(interClass.getPostition().getLocation().x, interClass.getPostition().getLocation().y,interClass.getSize().width , interClass.getSize().height);
-        }
-        else
+          //  g.drawRect(interClass.getPostition().getLocation().x, interClass.getPostition().getLocation().y,interClass.getSize().width , interClass.getSize().height);
+        //}
+        //else
             g.drawRect(interClass.getPostition().getLocation().x, interClass.getPostition().getLocation().y, interClass.getSize().width,interClass.getSize().height);
 
         g.drawString(interClass.getAccessModifier().name(),interClass.getPostition().x+10,interClass.getPostition().y+10);
         g.drawString(interClass.getName(),interClass.getPostition().x+75,interClass.getPostition().y+10);
-
-
+        int k=g.getFont().getSize()+30;
+        if(interClass instanceof Class) {
+            System.out  .println("jeste instanca klassse");
+            Class clas=(Class) interClass;
+            if(clas.getClassContents().isEmpty())
+                System.out.println("nekako je prazna");
+            for (ClassContents cc : clas.getClassContents()) {
+                System.out.println("Uslo je u for");
+                g.drawString(cc.getAccessModifier().name(),interClass.getPostition().x+10,interClass.getPostition().y+k);
+                if(cc instanceof Method)
+                    g.drawString(cc.getName()+"()",interClass.getPostition().x+95,interClass.getPostition().y+k);
+                else
+                    g.drawString(cc.getName(),interClass.getPostition().x+95,interClass.getPostition().y+k);
+                k=k+g.getFont().getSize()+5;
+            }
+        }
 
     }
 
