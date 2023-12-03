@@ -17,18 +17,17 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class EditFrame implements ActionListener{
-    private JComboBox classSelection;
+    private JComboBox vidljivost;
+    private JTextField klasaIme;
     private JComboBox vidljivostPolja;
     private JTextField imePolja;
-    private JTextField klasaIme;
     private JComboBox odabirPolja;
-    private JComboBox vidljivost;
-    private ArrayList<DiagramElement> diagramElements;
     private ArrayList<ClassContents> classContents;
     private JButton confirm;
-    public EditFrame(){init();}
+    private DiagramElement diagramElement;
+    public EditFrame(DiagramElement diagramElement){init(diagramElement);}
 
-    private void init() {
+    private void init(DiagramElement diagramElement) {
         JFrame editFrame = new JFrame();
         editFrame.setLayout(new BorderLayout());
         editFrame.setSize(500,500);
@@ -38,26 +37,8 @@ public class EditFrame implements ActionListener{
         editFrame.getInsets().set(10,5,10,5);
 
 
-        //combobox na vrhu
-        diagramElements = new ArrayList<>();
-        classContents = new ArrayList<>();
-        JPanel comboBox = new JPanel();
-        comboBox.setLayout(new FlowLayout());
-        classSelection = new JComboBox<>();
-        classSelection.setEditable(false);
 
-        if (MainFrame.getInstance().getPackageView().getDiagramView() != null){
-            for(ElementPainter elementPainter: MainFrame.getInstance().getPackageView().getDiagramView().getPainters()){
-                if (elementPainter instanceof InterClassPainter){
-                    diagramElements.add(elementPainter.getDiagramElement());
-                }
-            }
-        }
-        for (DiagramElement diagramElement: diagramElements){
-            classSelection.addItem(diagramElement.getName());
-        }
-        classSelection.addActionListener(this);
-        comboBox.add(classSelection);
+
 
         //centar
         JPanel centar = new JPanel();
@@ -112,21 +93,32 @@ public class EditFrame implements ActionListener{
 
         odabirPolja.addItem("New field");
         odabirPolja.addItem("New method");
-        if (classSelection.getSelectedItem()!= ""){
-            for (DiagramElement diagramElement: diagramElements){
-                if (diagramElement.getName().equals(classSelection.getSelectedItem()) && (diagramElement instanceof Class)){
-                    Class klasa = (Class) diagramElement;
-                    System.out.println(klasa);
-                    if (!(klasa.getClassContents().isEmpty())){
-                        for(ClassContents classContents:klasa.getClassContents()){
-                            this.classContents.add(classContents);
-                            odabirPolja.addItem(classContents.getName());
-                        }
-                    }
 
+        if(diagramElement instanceof Class){
+            Class klasa = (Class) diagramElement;
+            this.diagramElement = klasa;
+            klasaIme.setText(klasa.getName());
+            vidljivost.setSelectedItem(klasa.getAccessModifier().toString());
+            System.out.println(klasa);
+            if (!(klasa.getClassContents().isEmpty())){
+                for(ClassContents classContents:klasa.getClassContents()){
+                    this.classContents.add(classContents);
+                    odabirPolja.addItem(classContents.getName());
+                }
+            }
+        } else if (diagramElement instanceof Interface) {
+            Interface interfejs = (Interface) diagramElement;
+            this.diagramElement = interfejs;
+            klasaIme.setText(interfejs.getName());
+            System.out.println(interfejs);
+            if (!(interfejs.getMethods().isEmpty())){
+                for (Method method: interfejs.getMethods()){
+                    //this.metode.add(method);
+                    odabirPolja.addItem(method.getName());
                 }
             }
         }
+
         odabirPolja.addActionListener(this);
         comboBox2.add(odabirPolja);
 
@@ -145,6 +137,7 @@ public class EditFrame implements ActionListener{
         confirm.setText("Confirm");
         remove.setText("Remove");
         confirm.addActionListener(this);
+        confirm.setActionCommand("Confirm");
 
         JPanel buttons = new JPanel();
         buttons.setLayout(new FlowLayout());
@@ -153,7 +146,7 @@ public class EditFrame implements ActionListener{
 
 
 
-        editFrame.add(comboBox,BorderLayout.NORTH);
+
         editFrame.add(centar,BorderLayout.WEST);
         editFrame.add(buttons,BorderLayout.SOUTH);
 
@@ -161,13 +154,7 @@ public class EditFrame implements ActionListener{
 
     }
 
-    public void setClassSelection(JComboBox classSelection) {
-        this.classSelection = classSelection;
-    }
 
-    public JComboBox getClassSelection() {
-        return classSelection;
-    }
 
     public JComboBox getVidljivostPolja() {
         return vidljivostPolja;
@@ -193,9 +180,6 @@ public class EditFrame implements ActionListener{
         this.klasaIme = klasaIme;
     }
 
-    public ArrayList<DiagramElement> getDiagramElements() {
-        return diagramElements;
-    }
 
     public JComboBox getVidljivost() {
         return vidljivost;
@@ -221,9 +205,7 @@ public class EditFrame implements ActionListener{
         this.vidljivost = vidljivost;
     }
 
-    public void setDiagramElements(ArrayList<DiagramElement> diagramElements) {
-        this.diagramElements = diagramElements;
-    }
+
 
     public void setClassContents(ArrayList<ClassContents> classContents) {
         this.classContents = classContents;
@@ -236,49 +218,83 @@ public class EditFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
-        //rad sa klasom
-        if(source.equals(classSelection)){
-            System.out.println("source je classSelection");
-            if (getDiagramElementFromList((String)classSelection.getSelectedItem(),diagramElements) instanceof Class ){
-                Class klasa = (Class) getDiagramElementFromList((String)classSelection.getSelectedItem(),diagramElements);
-                String ime = klasa.getName();
-                AccessModifier acc = klasa.getAccessModifier();
-                getKlasaIme().setText(ime);
-                getVidljivost().setSelectedItem(acc);
+        String comand = e.getActionCommand();
+        System.out.println("Ima promene");
+        if (diagramElement instanceof Class){
+            //rad sa poljima klase
+            if(source.equals(odabirPolja)){
+                System.out.println("source je odabir polja");
+                if(getItemFromClassContentsList((String)odabirPolja.getSelectedItem(),classContents)!=null){
+                    ClassContents content = getItemFromClassContentsList((String)odabirPolja.getSelectedItem(),classContents);
+                    getImePolja().setText(content.getName());
+                    getVidljivostPolja().setSelectedItem(content.getAccessModifier());
+                }
+                else {
+                    getImePolja().setText("");
+                    getVidljivostPolja().setSelectedItem(AccessModifier.PACKAGE);
+                }
             }
-        }
-        //rad sa poljima klase
-        if(source.equals(odabirPolja)){
-            System.out.println("source je odabir polja");
-            if(getItemFromClassContentsList((String)odabirPolja.getSelectedItem(),classContents)!=null){
-                ClassContents content = getItemFromClassContentsList((String)odabirPolja.getSelectedItem(),classContents);
-                getImePolja().setText(content.getName());
-                getVidljivostPolja().setSelectedItem(content.getAccessModifier());
+            //izmena klase
+            if (comand.equals("Confirm")){
+                System.out.println("Detektuje dugme");
+                Class klasa = (Class)diagramElement;
+                if (getOdabirPolja().getSelectedItem().toString().equals("New field")){
+                    AccessModifier ac=null;
+                    if(getVidljivostPolja().getSelectedItem().toString().equals("PRIVATE"))
+                        ac=AccessModifier.PRIVATE;
+                    else if(getVidljivostPolja().getSelectedItem().toString().equals("PUBLIC"))
+                        ac=AccessModifier.PUBLIC;
+                    else if(getVidljivostPolja().getSelectedItem().toString().equals("PACKAGE"))
+                        ac=AccessModifier.PACKAGE;
+                    else if(getVidljivostPolja().getSelectedItem().toString().equals("PROTECTED"))
+                        ac=AccessModifier.PROTECTED;
+                    klasa.getClassContents().add(new Atribute(getImePolja().getText(),ac));
+                } else if (getOdabirPolja().getSelectedItem().toString().equals("New method")) {
+                    if (getOdabirPolja().getSelectedItem().toString().equals("New field")) {
+                        AccessModifier ac = null;
+                        if (getVidljivostPolja().getSelectedItem().toString().equals("PRIVATE"))
+                            ac = AccessModifier.PRIVATE;
+                        else if (getVidljivostPolja().getSelectedItem().toString().equals("PUBLIC"))
+                            ac = AccessModifier.PUBLIC;
+                        else if (getVidljivostPolja().getSelectedItem().toString().equals("PACKAGE"))
+                            ac = AccessModifier.PACKAGE;
+                        else if (getVidljivostPolja().getSelectedItem().toString().equals("PROTECTED"))
+                            ac = AccessModifier.PROTECTED;
+                        klasa.getClassContents().add(new Method(getImePolja().getText(), ac));
+                    }
+                }
+                else{
+                    ClassContents polje = getItemFromClassContentsList((String)odabirPolja.getSelectedItem(),classContents);
+                    polje.setName(getImePolja().getText());
+                 //   polje.setAccessModifier(getVidljivostPolja().getSelectedItem().toString()); ovo sam ja promenio da bude enum samo se uzme classModifier.getname da bi dobio string
+                    if(getVidljivostPolja().getSelectedItem().toString().equals("PRIVATE"))
+                        polje.setAccessModifier(AccessModifier.PRIVATE);
+                    else if(getVidljivostPolja().getSelectedItem().toString().equals("PUBLIC"))
+                        polje.setAccessModifier(AccessModifier.PUBLIC);
+                    else if(getVidljivostPolja().getSelectedItem().toString().equals("PACKAGE"))
+                        polje.setAccessModifier(AccessModifier.PACKAGE);
+                    else if(getVidljivostPolja().getSelectedItem().toString().equals("PROTECTED"))
+                        polje.setAccessModifier(AccessModifier.PROTECTED);
+                }
             }
-            else {
-                getImePolja().setText("");
-                getVidljivostPolja().setSelectedItem(AccessModifier.PACKAGE);
-            }
-        }
-        //izmena klase
-        if (source.equals(confirm)){
-            Class klasa = (Class) getDiagramElementFromList((String)classSelection.getSelectedItem(),diagramElements);
-            klasa.setName(getKlasaIme().getText());
-            AccessModifier vidljivost = (AccessModifier) getVidljivost().getSelectedItem();
-            klasa.setAccessModifier(vidljivost);
-            if (getOdabirPolja().getSelectedItem().toString().equals("New field")){
-                AccessModifier ac=null;
-                if(getVidljivostPolja().getSelectedItem().toString().equals("PRIVATE"))
-                    ac=AccessModifier.PRIVATE;
-                else if(getVidljivostPolja().getSelectedItem().toString().equals("PUBLIC"))
-                    ac=AccessModifier.PUBLIC;
-                else if(getVidljivostPolja().getSelectedItem().toString().equals("PACKAGE"))
-                    ac=AccessModifier.PACKAGE;
-                else if(getVidljivostPolja().getSelectedItem().toString().equals("PROTECTED"))
-                    ac=AccessModifier.PROTECTED;
 
-                klasa.getClassContents().add(new Atribute(getImePolja().getText(),ac));
-            } else if (getOdabirPolja().getSelectedItem().toString().equals("New method")) {
+        }else if (diagramElement instanceof Interface){
+            Interface interfejs = (Interface) diagramElement;
+            if(source.equals(odabirPolja)){
+                System.out.println("source je odabir polja");
+                if(getItemFromMethodList((String)odabirPolja.getSelectedItem(),interfejs.getMethods())!=null){
+                    Method metoda = getItemFromMethodList((String)odabirPolja.getSelectedItem(),interfejs.getMethods());
+                    getImePolja().setText(metoda.getName());
+                    getVidljivostPolja().setSelectedItem(metoda.getAccessModifier());
+                }
+                else {
+                    getImePolja().setText("");
+                    getVidljivostPolja().setSelectedItem(AccessModifier.PACKAGE);
+                }
+            }
+            //izmena klase
+            if (comand.equals("Confirm")) {
+                System.out.println("Detektuje dugme u interfejs");
                 if (getOdabirPolja().getSelectedItem().toString().equals("New field")) {
                     AccessModifier ac = null;
                     if (getVidljivostPolja().getSelectedItem().toString().equals("PRIVATE"))
@@ -289,32 +305,42 @@ public class EditFrame implements ActionListener{
                         ac = AccessModifier.PACKAGE;
                     else if (getVidljivostPolja().getSelectedItem().toString().equals("PROTECTED"))
                         ac = AccessModifier.PROTECTED;
-                    klasa.getClassContents().add(new Method(getImePolja().getText(), ac));
+                    interfejs.getMethods().add(new Method(getImePolja().getText(), ac));
+                } else if (getOdabirPolja().getSelectedItem().toString().equals("New method")) {
+                    if (getOdabirPolja().getSelectedItem().toString().equals("New field")) {
+                        AccessModifier ac = null;
+                        if (getVidljivostPolja().getSelectedItem().toString().equals("PRIVATE"))
+                            ac = AccessModifier.PRIVATE;
+                        else if (getVidljivostPolja().getSelectedItem().toString().equals("PUBLIC"))
+                            ac = AccessModifier.PUBLIC;
+                        else if (getVidljivostPolja().getSelectedItem().toString().equals("PACKAGE"))
+                            ac = AccessModifier.PACKAGE;
+                        else if (getVidljivostPolja().getSelectedItem().toString().equals("PROTECTED"))
+                            ac = AccessModifier.PROTECTED;
+                        interfejs.getMethods().add(new Method(getImePolja().getText(), ac));
+                    }
+                } else {
+                    Method polje = getItemFromMethodList((String) odabirPolja.getSelectedItem(),interfejs.getMethods());
+                    polje.setName(getImePolja().getText());
+                    //   polje.setAccessModifier(getVidljivostPolja().getSelectedItem().toString()); ovo sam ja promenio da bude enum samo se uzme classModifier.getname da bi dobio string
+                    if (getVidljivostPolja().getSelectedItem().toString().equals("PRIVATE"))
+                        polje.setAccessModifier(AccessModifier.PRIVATE);
+                    else if (getVidljivostPolja().getSelectedItem().toString().equals("PUBLIC"))
+                        polje.setAccessModifier(AccessModifier.PUBLIC);
+                    else if (getVidljivostPolja().getSelectedItem().toString().equals("PACKAGE"))
+                        polje.setAccessModifier(AccessModifier.PACKAGE);
+                    else if (getVidljivostPolja().getSelectedItem().toString().equals("PROTECTED"))
+                        polje.setAccessModifier(AccessModifier.PROTECTED);
                 }
-            }
-            else{
-                ClassContents polje = getItemFromClassContentsList((String)odabirPolja.getSelectedItem(),classContents);
-                polje.setName(getImePolja().getText());
-             //   polje.setAccessModifier(getVidljivostPolja().getSelectedItem().toString()); ovo sam ja promenio da bude enum samo se uzme classModifier.getname da bi dobio string
-                if(getVidljivostPolja().getSelectedItem().toString().equals("PRIVATE"))
-                    polje.setAccessModifier(AccessModifier.PRIVATE);
-                else if(getVidljivostPolja().getSelectedItem().toString().equals("PUBLIC"))
-                    polje.setAccessModifier(AccessModifier.PUBLIC);
-                else if(getVidljivostPolja().getSelectedItem().toString().equals("PACKAGE"))
-                    polje.setAccessModifier(AccessModifier.PACKAGE);
-                else if(getVidljivostPolja().getSelectedItem().toString().equals("PROTECTED"))
-                    polje.setAccessModifier(AccessModifier.PROTECTED);
             }
         }
     }
-    public  DiagramElement getDiagramElementFromList(String ime, ArrayList<DiagramElement> diagramElements){
-        DiagramElement diagramElement;
-        for (DiagramElement de: diagramElements){
-            if (de.getName().equals(ime)){
-                diagramElement = de;
-                return diagramElement;
-            }
+    public  Method getItemFromMethodList(String ime, ArrayList<Method> metode){
+        Method metoda;
+        for (Method metod: metode){
+            if (metod.getName().equals(ime)){metoda = metod;return metoda;}
         }
+
         return null;
     }
     public ClassContents getItemFromClassContentsList(String ime, ArrayList<ClassContents> classContents){

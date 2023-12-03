@@ -18,6 +18,6 @@ public class EditAction extends AbstractClassyAction{
     @Override
     public void actionPerformed(ActionEvent e) {
         MainFrame.getInstance().getPackageView().startEdit();
-        new EditFrame();
+
     }
 }
