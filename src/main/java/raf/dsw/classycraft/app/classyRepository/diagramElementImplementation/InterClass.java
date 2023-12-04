@@ -32,6 +32,12 @@ public abstract class InterClass extends DiagramElement implements Pubsliher {
         notifySubscribers(new InterCommunicationNotification("MODIFER_SET"));
     }
 
+    @Override
+    public void setName(String name) {
+        super.setName(name);
+        notifySubscribers(new InterCommunicationNotification("NAME_SET"));
+    }
+
     public Point getPostition() {
         return postition;
     }

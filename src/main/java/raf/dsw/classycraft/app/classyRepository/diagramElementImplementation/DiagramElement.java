@@ -63,4 +63,7 @@ public abstract class DiagramElement extends ClassyNode implements Pubsliher {
         for(Subscriber subscriber:subscribers)
             subscriber.update(notification);
     }
+
+
+
 }
