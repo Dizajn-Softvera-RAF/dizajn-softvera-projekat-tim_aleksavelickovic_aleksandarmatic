@@ -63,8 +63,8 @@ public class InterClassPainter extends ElementPainter{
                 Class clas=(Class) interClass;
                 int u=g.getFont().getSize()+30;
                 for(ClassContents cc:clas.getClassContents()){
-                    if((g.getFont().getSize()*cc.getName().length()+g.getFont().getSize()*cc.getAccessModifier().name().length()+20)>(interClass.getSize().width)) {
-                        interClass.setSize(new Dimension(interClass.getSize().width + ((g.getFont().getSize() * cc.getName().length() + g.getFont().getSize() * cc.getAccessModifier().name().length() + 85) - (interClass.getSize().width)), interClass.getSize().height));
+                    if((g.getFont().getSize()*cc.getName().length()+g.getFont().getSize()*cc.getAccessModifier().name().length()+g.getFont().getSize()*cc.getReturnType().length()+30)>(interClass.getSize().width)) {
+                        interClass.setSize(new Dimension(interClass.getSize().width + ((g.getFont().getSize() * cc.getName().length() + g.getFont().getSize() * cc.getAccessModifier().name().length() + g.getFont().getSize()*cc.getReturnType().length()+40) - (interClass.getSize().width)), interClass.getSize().height));
                     }
                     u=u+g.getFont().getSize()+5;
 
@@ -79,8 +79,8 @@ public class InterClassPainter extends ElementPainter{
                 Interface interfacee=(Interface) interClass;
                 int u=g.getFont().getSize()+30;
                 for(Method m:interfacee.getMethods()){
-                    if((g.getFont().getSize()*m.getName().length()+g.getFont().getSize()*m.getAccessModifier().name().length()+20)>(interClass.getSize().width)) {
-                        interClass.setSize(new Dimension(interClass.getSize().width + ((g.getFont().getSize() * m.getName().length() + g.getFont().getSize() * m.getAccessModifier().name().length() + 85) - (interClass.getSize().width)), interClass.getSize().height));
+                    if((g.getFont().getSize()*m.getName().length()+g.getFont().getSize()*m.getAccessModifier().name().length()+g.getFont().getSize()*m.getReturnType().length()+30)>(interClass.getSize().width)) {
+                        interClass.setSize(new Dimension(interClass.getSize().width + ((g.getFont().getSize() * m.getName().length() + g.getFont().getSize() * m.getAccessModifier().name().length()+g.getFont().getSize()*m.getReturnType().length() + 40) - (interClass.getSize().width)), interClass.getSize().height));
                     }
                     u=u+g.getFont().getSize()+5;
                 }
@@ -126,10 +126,14 @@ public class InterClassPainter extends ElementPainter{
                 if(cc.getAccessModifier().equals(AccessModifier.PACKAGE))
                     g.drawString("~",interClass.getPostition().x+10,interClass.getPostition().y+k);
 
-                if(cc instanceof Method)
-                    g.drawString(cc.getName()+"()",interClass.getPostition().x+20,interClass.getPostition().y+k);
-                else
-                    g.drawString(cc.getName(),interClass.getPostition().x+20,interClass.getPostition().y+k);
+                if(cc instanceof Method) {
+                    g.drawString(cc.getName() + "() :", interClass.getPostition().x + 20, interClass.getPostition().y + k);
+                    g.drawString(cc.getReturnType(), interClass.getPostition().x+cc.getName().length() * g.getFont().getSize() + 30, interClass.getPostition().y + k);
+                }
+                else {
+                    g.drawString(cc.getName() + " :", interClass.getPostition().x + 20, interClass.getPostition().y + k);
+                    g.drawString(cc.getReturnType(), interClass.getPostition().x+ cc.getName().length()*g.getFont().getSize() + 30, interClass.getPostition().y + k);
+                }
                 k=k+g.getFont().getSize()+5;
             }
         }
@@ -148,7 +152,8 @@ public class InterClassPainter extends ElementPainter{
                 if(m.getAccessModifier().equals(AccessModifier.PACKAGE))
                     g.drawString("~",interClass.getPostition().x+10,interClass.getPostition().y+u);
 
-                g.drawString(m.getName()+"()",interClass.getPostition().x+20,interClass.getPostition().y+u);
+                g.drawString(m.getName()+"() :",interClass.getPostition().x+20,interClass.getPostition().y+u);
+                g.drawString(m.getReturnType(), interClass.getPostition().x+m.getName().length()*g.getFont().getSize() + 30, interClass.getPostition().y + u);
                 u=u+g.getFont().getSize()+5;
               //  System.out.println("ispisuje se viseputa");
             }

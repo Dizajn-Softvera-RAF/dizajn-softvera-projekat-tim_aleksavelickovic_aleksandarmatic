@@ -19,6 +19,8 @@ public class AddConnection implements State{
     private ConnectionPainter connectionPainter;
     private int t=0;
 
+    
+
     @Override
     public void misKlik(Point point, DiagramView diagramView) {}
 
@@ -176,7 +178,7 @@ public class AddConnection implements State{
 
         */
         int k=0;
-        if(from!= null && to!=null) {
+        if(from!= null ) {
             Connection veza = ApplicationFramework.getInstance().getClassyManufacturer().createConnection("DEPENDENCY", "DEPENDENCY" + i, diagramView.getDiagram(), Color.BLACK, new BasicStroke(), from, to);
             i++;
             // ConnectionPainter connectionPainter = new AgregationPainter(veza);

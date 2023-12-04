@@ -55,12 +55,20 @@ public class AddInterclass implements State{
        Interface klasa = (Interface) ApplicationFramework.getInstance().getClassyManufacturer().createInterClass("INTERFACE","INTERFACE"+i,diagramView.getDiagram(),Color.BLUE, new BasicStroke(), AccessModifier.PRIVATE,point, new Dimension(150,100));
         i++;
         Method cc=new Method("atribut",AccessModifier.PROTECTED);//gledaj sta ce da se desi
+
         Method cc1=new Method("atribut1",AccessModifier.PROTECTED);
         Method cc2=new Method("atribut2",AccessModifier.PROTECTED);
         Method cc3=new Method("atribut3",AccessModifier.PROTECTED);
         Method cc4=new Method("atribut4",AccessModifier.PROTECTED);
         Method cc5=new Method("atribut5",AccessModifier.PROTECTED);
         Method cc6=new Method("atribut6",AccessModifier.PROTECTED);
+        cc.setReturnType("int");
+        cc1.setReturnType("int");
+        cc2.setReturnType("int");
+        cc3.setReturnType("int");
+        cc4.setReturnType("int");
+        cc5.setReturnType("int");
+        cc6.setReturnType("int");
         klasa.addMethods(cc);
         klasa.addMethods(cc1);
         klasa.addMethods(cc2);

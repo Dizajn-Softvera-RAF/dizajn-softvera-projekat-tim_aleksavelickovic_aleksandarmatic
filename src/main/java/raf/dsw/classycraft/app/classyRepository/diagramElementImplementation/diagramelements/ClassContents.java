@@ -6,6 +6,8 @@ public abstract class ClassContents {
     private String name;
     private AccessModifier accessModifier;
 
+    private String returnType;
+
     public ClassContents(String name, AccessModifier accessModifier) {
         this.name = name;
         this.accessModifier = accessModifier;
@@ -31,5 +33,13 @@ public abstract class ClassContents {
 
     public void setAccessModifier(AccessModifier accessModifier) {
         this.accessModifier = accessModifier;
+    }
+
+    public String getReturnType() {
+        return returnType;
+    }
+
+    public void setReturnType(String returnType) {
+        this.returnType = returnType;
     }
 }
