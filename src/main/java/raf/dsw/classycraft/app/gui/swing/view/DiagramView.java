@@ -6,6 +6,7 @@ import raf.dsw.classycraft.app.classyRepository.implementation.Diagram;
 import raf.dsw.classycraft.app.core.observer.Subscriber;
 import raf.dsw.classycraft.app.gui.swing.view.painters.ConnectionPainter;
 import raf.dsw.classycraft.app.gui.swing.view.painters.ElementPainter;
+import raf.dsw.classycraft.app.gui.swing.view.painters.MultiSelectionPainter;
 
 import javax.swing.*;
 import java.awt.*;
@@ -30,6 +31,7 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
 
 
     private ArrayList<ElementPainter> painters=new ArrayList<>();
+    private ArrayList<MultiSelectionPainter> multiSelectionPainters=new ArrayList<>();
     public void paint(Graphics2D g){
         for(ElementPainter p:painters){
             System.out.println("prolazi kroz listu");
@@ -55,9 +57,16 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
                 ((InterClass)ep.getDiagramElement()).addSubscriber(this);
 
         }
+        for(MultiSelectionPainter mp: multiSelectionPainters){
+            mp.draw(g2);
+        }
     }
     public Diagram getDiagram() {
         return diagram;
+    }
+
+    public ArrayList<MultiSelectionPainter> getMultiSelectionPainters() {
+        return multiSelectionPainters;
     }
 
     @Override
@@ -91,6 +100,16 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
 
 
     }
+    public void removeMultiSelectionPainter(){
+        if(multiSelectionPainters.size()>0) {
+            if (multiSelectionPainters.get(multiSelectionPainters.size() - 1) instanceof MultiSelectionPainter)
+                multiSelectionPainters.remove(multiSelectionPainters.size() - 1);
+        }
+
+
+
+    }
+
     @Override
     public void mouseMoved(MouseEvent e) {
 
@@ -116,6 +135,7 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
         System.out.println("Initpoint je "+initPoint);
         if(!points.isEmpty())
             System.out.println("nije prazan points u pressedu");
+
         MainFrame.getInstance().getPackageView().misPritisnut(initPoint,diagramView);
 
     }

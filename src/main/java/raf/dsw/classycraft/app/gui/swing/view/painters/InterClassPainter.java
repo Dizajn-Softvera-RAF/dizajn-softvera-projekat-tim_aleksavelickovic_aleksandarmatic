@@ -41,8 +41,8 @@ public class InterClassPainter extends ElementPainter{
         g.setColor(interClass.getColor());
 
 
-
-     /* shape=new GeneralPath();
+/*
+      shape=new GeneralPath();
         ((GeneralPath)shape).moveTo(interClass.getPostition().x,interClass.getPostition().y);
 
         ((GeneralPath)shape).lineTo(interClass.getPostition().x+interClass.getSize().width,interClass.getPostition().y);

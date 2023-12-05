@@ -4,6 +4,7 @@ import raf.dsw.classycraft.app.classyRepository.composite.ClassyNode;
 import raf.dsw.classycraft.app.classyRepository.implementation.Diagram;
 import raf.dsw.classycraft.app.classyRepository.implementation.Package;
 import raf.dsw.classycraft.app.classyRepository.implementation.Project;
+import raf.dsw.classycraft.app.core.observer.interCommunicationNotification.InterCommunicationNotification;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -62,6 +63,7 @@ public class TabbedPane extends JTabbedPane {
         for (ClassyNode cn : this.cpackage.getChildren()) {
             if (cn instanceof Diagram) {
                 this.diagrams.add(new DiagramView((Diagram) cn));
+            ((Diagram) cn).notifySubscribers(new InterCommunicationNotification("DIAGRAMVIEW_ADDED"));
             }
         }
     }

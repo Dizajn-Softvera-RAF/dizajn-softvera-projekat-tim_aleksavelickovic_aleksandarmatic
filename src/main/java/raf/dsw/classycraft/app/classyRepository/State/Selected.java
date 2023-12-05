@@ -4,11 +4,21 @@ import raf.dsw.classycraft.app.gui.swing.view.DiagramView;
 import raf.dsw.classycraft.app.gui.swing.view.painters.ConnectionPainter;
 import raf.dsw.classycraft.app.gui.swing.view.painters.ElementPainter;
 import raf.dsw.classycraft.app.gui.swing.view.painters.InterClassPainter;
+import raf.dsw.classycraft.app.gui.swing.view.painters.MultiSelectionPainter;
 
 import java.awt.*;
 import java.util.ArrayList;
 
 public class Selected implements State{
+    private Point init;
+
+    public Point getInit() {
+        return init;
+    }
+
+    public void setInit(Point init) {
+        this.init = init;
+    }
 
     @Override
     public void misKlik(Point point, DiagramView diagramView) {
@@ -35,7 +45,7 @@ public class Selected implements State{
 
     @Override
     public void misPusten(Point initPoint, Point endPoint, DiagramView diagramView) {
-
+        diagramView.removeMultiSelectionPainter();
     }
 
     @Override
@@ -50,6 +60,9 @@ public class Selected implements State{
 
     @Override
     public void misPritisnut(Point initPoint, DiagramView diagramView) {
+       // if(initPoint==null)
+            System.out.println("jeste null");
+              this.setInit(initPoint);
 
     }
 
@@ -60,6 +73,9 @@ public class Selected implements State{
 
     @Override
     public void misPovucen(Point currPoint, int i, DiagramView diagramView) {
-
+        diagramView.removeMultiSelectionPainter();
+        MultiSelectionPainter multiSelectionPainter=new MultiSelectionPainter(this.getInit(),currPoint,diagramView);
+        diagramView.getMultiSelectionPainters().add(multiSelectionPainter);
+        diagramView.repaint();
     }
 }
