@@ -103,6 +103,9 @@ public class PackageView extends JPanel implements Subscriber {
     public void misPovucen(Point currPoint,DiagramView diagramView){
         stateManager.getCurrState().misPovucen(currPoint,diagramView);
     }
+    public void misPovucen(Point currPoint,int i,DiagramView diagramView){
+        stateManager.getCurrState().misPovucen(currPoint,i,diagramView);
+    }
 
     public DiagramView getDiagramView() {
         return diagramView;

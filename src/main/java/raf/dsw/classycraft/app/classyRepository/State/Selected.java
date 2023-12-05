@@ -57,4 +57,9 @@ public class Selected implements State{
     public void misPovucen(Point currPoint, DiagramView diagramView) {
 
     }
+
+    @Override
+    public void misPovucen(Point currPoint, int i, DiagramView diagramView) {
+
+    }
 }

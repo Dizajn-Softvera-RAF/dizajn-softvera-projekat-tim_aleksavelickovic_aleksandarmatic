@@ -47,7 +47,13 @@ public class Delete implements State{
     }
 
     @Override
+    public void misPovucen(Point currPoint, int i, DiagramView diagramView) {
+
+    }
+
+    @Override
     public void misPovucen(Point currPoint, DiagramView diagramView) {
+
 
     }
 }

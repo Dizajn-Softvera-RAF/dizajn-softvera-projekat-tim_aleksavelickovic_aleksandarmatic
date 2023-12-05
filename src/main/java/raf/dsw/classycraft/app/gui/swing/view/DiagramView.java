@@ -1,5 +1,6 @@
 package raf.dsw.classycraft.app.gui.swing.view;
 
+import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.Connection;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.InterClass;
 import raf.dsw.classycraft.app.classyRepository.implementation.Diagram;
 import raf.dsw.classycraft.app.core.observer.Subscriber;
@@ -63,13 +64,16 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
     public void mouseDragged(MouseEvent e) {
       //  System.out.println("prikazu je se dragged"+e.getX()+" "+e.getY());
     //    endPoint = new Point(e.getX(),e.getY());
+        int i=0;
         Point point =new Point(e.getX(),e.getY());
         points.add(point);
         points.set(0,initPoint);
         if(point.equals(initPoint))
             System.out.println("pocetak je isti");
        // MainFrame.getInstance().getPackageView().misPrevucen(points,diagramView);
-        MainFrame.getInstance().getPackageView().misPovucen(point,diagramView);
+       // MainFrame.getInstance().getPackageView().misPovucen(point,diagramView);
+        MainFrame.getInstance().getPackageView().misPovucen(point,i,diagramView);
+        //i++;
 
 
     }
@@ -81,7 +85,7 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
             }
         }
         */
-        if(painters.get(painters.size()-1)instanceof ConnectionPainter)
+        if(painters.get(painters.size()-1)instanceof ConnectionPainter &&((Connection)painters.get(painters.size()-1).getDiagramElement()).getTo()==null )
        painters.remove(painters.size()-1);
 
 

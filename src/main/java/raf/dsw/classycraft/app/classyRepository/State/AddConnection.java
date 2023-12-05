@@ -24,6 +24,7 @@ public class AddConnection implements State{
     private InterClass to;
     private Point Initpoint;
 
+
     public Point getInitpoint() {
         return Initpoint;
     }
@@ -71,6 +72,11 @@ public class AddConnection implements State{
 
     @Override
     public void misPovucen(Point currPoint, DiagramView diagramView) {
+
+    }
+
+   /* @Override
+    public void misPovucen(Point currPoint, DiagramView diagramView) {
         diagramView.removeConnectionPainter();
         Connection veza = ApplicationFramework.getInstance().getClassyManufacturer().createConnection("AGREGATION", "DEPENDENCY" + i, diagramView.getDiagram(), Color.BLACK, new BasicStroke(), from, null);
 
@@ -81,6 +87,37 @@ public class AddConnection implements State{
         this.setConnectionPainter(connectionPainter1);
         diagramView.getPainters().add(connectionPainter1);
         diagramView.repaint();
+
+    }
+
+    */
+
+    @Override
+    public void misPovucen(Point currPoint, int i, DiagramView diagramView) {
+        if(i!=0) {
+            //diagramView.removeConnectionPainter();
+            Connection veza = ApplicationFramework.getInstance().getClassyManufacturer().createConnection("AGREGATION", "DEPENDENCY" + i, diagramView.getDiagram(), Color.BLACK, new BasicStroke(), from, null);
+
+            this.setConnection(veza);
+            ConnectionPainter connectionPainter1 = new AgregationPainter(veza);
+            connectionPainter1.setStartPoint(this.getInitpoint());
+            connectionPainter1.setEndPoint(currPoint);
+            this.setConnectionPainter(connectionPainter1);
+            diagramView.getPainters().add(connectionPainter1);
+            diagramView.repaint();
+        }
+        else{
+            diagramView.removeConnectionPainter();
+            Connection veza = ApplicationFramework.getInstance().getClassyManufacturer().createConnection("AGREGATION", "DEPENDENCY" + i, diagramView.getDiagram(), Color.BLACK, new BasicStroke(), from, null);
+
+            this.setConnection(veza);
+            ConnectionPainter connectionPainter1 = new AgregationPainter(veza);
+            connectionPainter1.setStartPoint(this.getInitpoint());
+            connectionPainter1.setEndPoint(currPoint);
+            this.setConnectionPainter(connectionPainter1);
+            diagramView.getPainters().add(connectionPainter1);
+            diagramView.repaint();
+        }
 
     }
 
