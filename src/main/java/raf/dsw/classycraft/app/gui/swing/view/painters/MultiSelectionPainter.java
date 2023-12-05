@@ -1,6 +1,7 @@
 package raf.dsw.classycraft.app.gui.swing.view.painters;
 
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.DiagramElement;
+import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.InterClass;
 import raf.dsw.classycraft.app.gui.swing.view.DiagramView;
 
 import javax.swing.text.Position;
@@ -79,7 +80,18 @@ public class MultiSelectionPainter {
 
         g.draw(shape);
 
+        for(ElementPainter ep:diagramView.getPainters()){
+            double x=((InterClass)ep.getDiagramElement()).getPostition().getX();
+            double y=((InterClass)ep.getDiagramElement()).getPostition().getY();
+            double classw=((InterClass)ep.getDiagramElement()).getSize().width;
+            double classh=((InterClass)ep.getDiagramElement()).getSize().height;
+            if(shape.contains(x,y)||shape.contains(x+classw,y)|| shape.contains(x,y+classh)|| shape.contains(x+classw,y+classh)){
+                ep.getDiagramElement().setSelected(true);
+                System.out.println("selektovani element je "+ep.getDiagramElement().getName());
+            }
 
+
+        }
         System.out.println("Start x " +start.x+" start y "+start.y);
         System.out.println("End x " +end.x+" End y "+end.y);
 

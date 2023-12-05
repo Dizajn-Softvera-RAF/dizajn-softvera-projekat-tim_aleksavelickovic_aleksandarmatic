@@ -1,5 +1,6 @@
 package raf.dsw.classycraft.app.classyRepository.State;
 
+import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.InterClass;
 import raf.dsw.classycraft.app.gui.swing.view.DiagramView;
 import raf.dsw.classycraft.app.gui.swing.view.painters.ConnectionPainter;
 import raf.dsw.classycraft.app.gui.swing.view.painters.ElementPainter;
@@ -27,12 +28,16 @@ public class Selected implements State{
                     System.out.println(ep.getDiagramElement().getName());
                     System.out.println("jeste tu");
                     ep.getDiagramElement().setSelected(true);
+                    ep.getDiagramElement().setColor(Color.red);
             }
             else {
                 for(ElementPainter elementPainter:diagramView.getPainters()){
-                    if (elementPainter instanceof InterClassPainter || elementPainter instanceof ConnectionPainter)elementPainter.getDiagramElement().setSelected(false);
+                    if (elementPainter instanceof InterClassPainter || elementPainter instanceof ConnectionPainter)
+                        elementPainter.getDiagramElement().setSelected(false);
                 }
             }
+
+
 
 
         }
@@ -45,9 +50,15 @@ public class Selected implements State{
 
     @Override
     public void misPusten(Point initPoint, Point endPoint, DiagramView diagramView) {
-        diagramView.removeMultiSelectionPainter();
-    }
+        diagramView.getMultiSelectionPainters().removeAll(diagramView.getMultiSelectionPainters());
 
+        for(ElementPainter ep: diagramView.getPainters()){
+            if(ep.getDiagramElement() instanceof InterClass && ep.getDiagramElement().isSelected()==true ){
+                ep.getDiagramElement().setColor(Color.red);
+            }
+        }
+       // diagramView.repaint();
+    }
     @Override
     public void misPrevucen(Point initPoint, Point endPoint, DiagramView diagramView) {
 

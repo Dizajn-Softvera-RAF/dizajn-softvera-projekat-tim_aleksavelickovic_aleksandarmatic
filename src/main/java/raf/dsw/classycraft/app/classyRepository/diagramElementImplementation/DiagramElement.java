@@ -3,6 +3,7 @@ package raf.dsw.classycraft.app.classyRepository.diagramElementImplementation;
 import raf.dsw.classycraft.app.classyRepository.composite.ClassyNode;
 import raf.dsw.classycraft.app.core.observer.Pubsliher;
 import raf.dsw.classycraft.app.core.observer.Subscriber;
+import raf.dsw.classycraft.app.core.observer.interCommunicationNotification.InterCommunicationNotification;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ public abstract class DiagramElement extends ClassyNode implements Pubsliher {
 
     public void setColor(Color color) {
         this.color = color;
+        notifySubscribers(new InterCommunicationNotification("COLOR_CHANGED"));
     }
 
     public Stroke getStroke() {
