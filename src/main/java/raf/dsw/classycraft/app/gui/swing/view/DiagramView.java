@@ -65,6 +65,8 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
         Point point =new Point(e.getX(),e.getY());
         points.add(point);
         points.set(0,initPoint);
+        if(point.equals(initPoint))
+            System.out.println("pocetak je isti");
         MainFrame.getInstance().getPackageView().misPrevucen(points,diagramView);
 
 
@@ -92,6 +94,8 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
         this.initPoint = new Point(e.getX(),e.getY());
         this.setInitPoint(new Point(e.getX(),e.getY()));
         System.out.println("Initpoint je "+initPoint);
+        if(!points.isEmpty())
+            System.out.println("nije prazan points u pressedu");
 
     }
 

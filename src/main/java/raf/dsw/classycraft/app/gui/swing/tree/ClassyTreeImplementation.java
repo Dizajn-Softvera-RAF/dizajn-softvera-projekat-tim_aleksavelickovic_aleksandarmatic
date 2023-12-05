@@ -101,7 +101,7 @@ public class ClassyTreeImplementation implements ClassyTree {
 
 
 
-
+        if(child instanceof Diagram)
         ApplicationFramework.getInstance().getMessageGeneratorImplementation().generate("ADDED", MessageType.NOTIFICATION, LocalDateTime.now());
 
         treeView.expandPath(treeView.getSelectionPath());

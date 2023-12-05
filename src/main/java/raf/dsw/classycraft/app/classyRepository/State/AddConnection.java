@@ -19,6 +19,8 @@ public class AddConnection implements State{
     private ConnectionPainter connectionPainter;
     private int t=0;
     private String type;
+    private InterClass from;
+    private InterClass to;
     
 
     @Override
@@ -26,6 +28,11 @@ public class AddConnection implements State{
 
     @Override
     public void misPusten() {
+
+    }
+
+    @Override
+    public void misPritisnut(Point initPoint, DiagramView diagramView) {
 
     }
 
@@ -68,20 +75,21 @@ public class AddConnection implements State{
            // diagramView.getPainters().add(connectionPainter);
 
 
- */
-        ConnectionPainter cp=new DependencyPainter(connection);
-        cp.setFlag(1);
-        cp.setStartPoint(initPoint);
-        cp.setEndPoint(endPoint);
-        diagramView.getDiagram().addChild(connection);//OVO RESAVA TAJ PROBLEM SA PAINTEROM ALI PRAVI DOLE HAHAHA
+ */     if(to!=null&&to!=from) {
+            ConnectionPainter cp = new DependencyPainter(connection);
+            cp.setFlag(1);
+            cp.setStartPoint(initPoint);
+            cp.setEndPoint(endPoint);
+            diagramView.getDiagram().addChild(connection);//OVO RESAVA TAJ PROBLEM SA PAINTEROM ALI PRAVI DOLE HAHAHA
 
-        ClassyTreeItem child=new ClassyTreeItem(connection);
-        //MainFrame.getInstance().getClassyTreeImplementation().addChild(MainFrame.getInstance().getClassyTreeImplementation().getSelectedNode(),child);
-        MainFrame.getInstance().getClassyTreeImplementation().addChild(null,diagramView.getDiagram(),child);
-        diagramView.getPainters().add(cp);
+            ClassyTreeItem child = new ClassyTreeItem(connection);
+            //MainFrame.getInstance().getClassyTreeImplementation().addChild(MainFrame.getInstance().getClassyTreeImplementation().getSelectedNode(),child);
+            MainFrame.getInstance().getClassyTreeImplementation().addChild(null, diagramView.getDiagram(), child);
+            diagramView.getPainters().add(cp);
             //NE RADI DOBRO JE SE REPAINT POZIVA KAD SE NAPRAVI NOVI ELEMENT A OVDE SE NE PRAVI
-        for(ClassyNode cn :diagramView.getDiagram().getChildren()){
-            System.out.println("dete ovog dijagrama ju "+cn.getName());
+            for (ClassyNode cn : diagramView.getDiagram().getChildren()) {
+                System.out.println("dete ovog dijagrama ju " + cn.getName());
+            }
         }
 
     }
@@ -177,6 +185,8 @@ public class AddConnection implements State{
         }
 
         */
+        this.from=from;
+        this.to=to;
         int k=0;
         if(from!= null ) {
             Connection veza = ApplicationFramework.getInstance().getClassyManufacturer().createConnection("DEPENDENCY", "DEPENDENCY" + i, diagramView.getDiagram(), Color.BLACK, new BasicStroke(), from, to);
@@ -187,6 +197,8 @@ public class AddConnection implements State{
                 System.out.println("sad je veza equal sa conn");
             this.setConnection(veza);
             ConnectionPainter connectionPainter = new DependencyPainter(connection);
+            connectionPainter.setPoints(points);
+            connectionPainter.setI(k);
             this.setConnectionPainter(connectionPainter);
             // diagramView.getDiagram().addChild(connection); OVO MOZDA TREBA DA SE VRATI ZOBG TOGA OVE NEMA REPAINT
             diagramView.getPainters().add(connectionPainter);

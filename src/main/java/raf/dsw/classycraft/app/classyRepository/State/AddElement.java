@@ -32,4 +32,9 @@ public class AddElement implements State{
     public void misPrevucen(ArrayList<Point> points, DiagramView diagramView) {
 
     }
+
+    @Override
+    public void misPritisnut(Point initPoint, DiagramView diagramView) {
+
+    }
 }

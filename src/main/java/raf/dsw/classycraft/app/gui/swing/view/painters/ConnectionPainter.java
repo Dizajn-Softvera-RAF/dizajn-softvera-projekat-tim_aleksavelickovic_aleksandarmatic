@@ -18,6 +18,8 @@ public abstract class ConnectionPainter extends ElementPainter{
 
     private int flag=0;
 
+    private int i;
+
     private ArrayList<Point>points=new ArrayList<>();
 
     public ConnectionPainter(DiagramElement diagramElement) {
@@ -135,11 +137,13 @@ public abstract class ConnectionPainter extends ElementPainter{
         }
        else{
             //ovde treba konstano da se dodaje moze diagramview .repaint
+            int i=0;
             System.out.println("velicina lista je "+points.size());
-          //  if(points.size()==1)
-
+            System.out.println("pozicija x "+points.get(i).x +" pozicija y "+points.get(i).y);
+            //if(points.size()>1)
+          //  drawArrowLine(g,points.,minf.y,mint.x,mint.y,35,25);
            // drawArrowLine(,35,25);
-
+            i++;
         }
 
 
@@ -180,5 +184,13 @@ public abstract class ConnectionPainter extends ElementPainter{
 
     public void setFlag(int flag) {
         this.flag = flag;
+    }
+
+    public int getI() {
+        return i;
+    }
+
+    public void setI(int i) {
+        this.i = i;
     }
 }

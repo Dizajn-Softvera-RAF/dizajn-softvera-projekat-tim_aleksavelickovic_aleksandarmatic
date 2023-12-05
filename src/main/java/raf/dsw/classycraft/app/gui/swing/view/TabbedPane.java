@@ -35,6 +35,30 @@ public class TabbedPane extends JTabbedPane {
     }
 
     public void loadDiagrams() {
+       /* for (ClassyNode cn : this.cpackage.getChildren()) {
+
+            if (cn instanceof Diagram) {
+                int f=0;
+                for(DiagramView dv:diagrams){
+                    System.out.println("imena diagarma i diagram viewa velicina diagramviewa "+cn.getName()+" "+dv.getDiagram().getName()+ " "+diagrams.size());
+                   // if(dv.getDiagram().getName().equals(cn.getName())) {\
+                        f = 1;
+
+                    }
+                 //   if(this.cpackage.getChildren().contains(dv.getDiagram()))
+                   //     f=1;
+                }
+
+                //if(f==0)
+                //if(this.cpackage.getChildren().contains(d))
+                    this.diagrams.add(new DiagramView((Diagram) cn));
+                System.out.println("louduje se dijagram");
+            }
+        }
+        for(DiagramView dv:diagrams)
+            System.out.println(dv.getName()+" velicina "+diagrams.size());
+
+        */
         for (ClassyNode cn : this.cpackage.getChildren()) {
             if (cn instanceof Diagram) {
                 this.diagrams.add(new DiagramView((Diagram) cn));
