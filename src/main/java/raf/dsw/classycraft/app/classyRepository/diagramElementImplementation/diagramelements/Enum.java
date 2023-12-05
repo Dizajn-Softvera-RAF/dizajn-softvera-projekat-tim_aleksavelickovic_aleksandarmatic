@@ -6,6 +6,7 @@ import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.Dia
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.InterClass;
 import raf.dsw.classycraft.app.core.observer.Pubsliher;
 import raf.dsw.classycraft.app.core.observer.Subscriber;
+import raf.dsw.classycraft.app.core.observer.interCommunicationNotification.InterCommunicationNotification;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -27,10 +28,11 @@ public  class Enum extends InterClass implements Pubsliher {
     }
     public void addTypes(String type){
         types.add(type);
-
+        notifySubscribers(new InterCommunicationNotification("TYPE_ADDED"));
     }
     public void removeTypes(String type){
         types.remove(type);
+        notifySubscribers(new InterCommunicationNotification("TYPE_REMOVED"));
     }
     public void addSubscriber(Subscriber subscriber) {
         subscribers.add(subscriber);

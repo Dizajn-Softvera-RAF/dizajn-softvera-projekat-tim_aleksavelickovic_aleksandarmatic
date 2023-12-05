@@ -94,6 +94,12 @@ public class Diagram extends ClassyNodeComposite implements Pubsliher {
     }
 
     @Override
+    public void removeChild(ClassyNode child) {
+        super.removeChild(child);
+        notifySubscribers(new InterCommunicationNotification("CHILD_REMOVED"));
+    }
+
+    @Override
     public void addSubscriber(Subscriber subscriber) {
         subscribers.add(subscriber);
     }

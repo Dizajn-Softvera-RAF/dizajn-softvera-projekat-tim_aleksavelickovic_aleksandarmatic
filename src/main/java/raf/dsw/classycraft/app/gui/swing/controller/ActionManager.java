@@ -21,6 +21,10 @@ public class ActionManager{
     private DeleteAction deleteAction;
     private SelectedAction selectedAction;
     private EditAction editAction;
+    private AgregationSelectionAction agregationSelectionAction;
+    private  CompositionSelectionAction compositionSelectionAction;
+    private DependencySelectionAction dependencySelectionAction;
+    private GeneralizationSelectionAction generalizationSelectionAction;
 
     public ActionManager() {
         initialiseActions();
@@ -116,6 +120,23 @@ public class ActionManager{
         return editAction;
     }
 
+    public AgregationSelectionAction getAgregationSelectionAction() {
+        return agregationSelectionAction;
+    }
+
+    public CompositionSelectionAction getCompositionSelectionAction() {
+        return compositionSelectionAction;
+    }
+
+    public DependencySelectionAction getDependencySelectionAction() {
+        return dependencySelectionAction;
+    }
+
+    public GeneralizationSelectionAction getGeneralizationSelectionAction() {
+        return generalizationSelectionAction;
+    }
+
+
     private void initialiseActions(){
         exitAction=new ExitAction();
         newProjectAction=new NewProjectAction();
@@ -131,6 +152,10 @@ public class ActionManager{
         deleteAction = new DeleteAction();
         selectedAction = new SelectedAction();
         editAction = new EditAction();
+        agregationSelectionAction = new AgregationSelectionAction();
+        compositionSelectionAction = new CompositionSelectionAction();
+        dependencySelectionAction = new DependencySelectionAction();
+        generalizationSelectionAction = new GeneralizationSelectionAction();
     }
 
 

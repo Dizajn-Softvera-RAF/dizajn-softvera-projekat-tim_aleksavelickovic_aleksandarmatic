@@ -18,7 +18,7 @@ public class AddConnection implements State{
     private Connection connection;
     private ConnectionPainter connectionPainter;
     private int t=0;
-
+    private String type;
     
 
     @Override

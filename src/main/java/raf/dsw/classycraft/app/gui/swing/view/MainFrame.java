@@ -41,6 +41,7 @@ public class MainFrame extends JFrame implements Subscriber {
 
     private PackageView packageView;
     private TabbedPane tabbedPane;
+    private ConnectionSelectionFrame connectionSelectionFrame;
 
 
     private MainFrame(MessageGeneratorImplementation mgi){
@@ -78,6 +79,7 @@ public class MainFrame extends JFrame implements Subscriber {
 
         tabbedPane=new TabbedPane();
         packageView=new PackageView(infoLine,tabbedPane);
+        connectionSelectionFrame = new ConnectionSelectionFrame();
 
 
 
@@ -145,6 +147,10 @@ public class MainFrame extends JFrame implements Subscriber {
 
     public MessageGeneratorImplementation getMgi() {
         return mgi;
+    }
+
+    public ConnectionSelectionFrame getConnectionSelectionFrame() {
+        return connectionSelectionFrame;
     }
 
     @Override

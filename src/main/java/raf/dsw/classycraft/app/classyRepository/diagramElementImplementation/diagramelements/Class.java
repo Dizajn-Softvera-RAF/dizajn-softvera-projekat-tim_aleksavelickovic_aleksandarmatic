@@ -30,7 +30,9 @@ public  class Class extends InterClass implements Pubsliher {
 
     public void setClassContents(ArrayList<ClassContents> classContents) {
         this.classContents = classContents;
+        notifySubscribers(new InterCommunicationNotification("RETURN_TYPE_CHANGED"));
     }
+
     public void addClassContents(ClassContents classContent){
         classContents.add(classContent);
         notifySubscribers(new InterCommunicationNotification("CLASSCONTENT_ADDED"));

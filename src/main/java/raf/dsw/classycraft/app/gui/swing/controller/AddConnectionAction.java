@@ -17,5 +17,6 @@ public class AddConnectionAction extends AbstractClassyAction{
     @Override
     public void actionPerformed(ActionEvent e) {
         MainFrame.getInstance().getPackageView().startAddConnection();
+        MainFrame.getInstance().getConnectionSelectionFrame().setVisible(true);
     }
 }
