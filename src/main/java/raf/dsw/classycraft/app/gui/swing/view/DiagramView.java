@@ -3,6 +3,7 @@ package raf.dsw.classycraft.app.gui.swing.view;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.InterClass;
 import raf.dsw.classycraft.app.classyRepository.implementation.Diagram;
 import raf.dsw.classycraft.app.core.observer.Subscriber;
+import raf.dsw.classycraft.app.gui.swing.view.painters.ConnectionPainter;
 import raf.dsw.classycraft.app.gui.swing.view.painters.ElementPainter;
 
 import javax.swing.*;
@@ -60,18 +61,32 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        System.out.println("prikazu je se dragged"+e.getX()+" "+e.getY());
+      //  System.out.println("prikazu je se dragged"+e.getX()+" "+e.getY());
     //    endPoint = new Point(e.getX(),e.getY());
         Point point =new Point(e.getX(),e.getY());
         points.add(point);
         points.set(0,initPoint);
         if(point.equals(initPoint))
             System.out.println("pocetak je isti");
-        MainFrame.getInstance().getPackageView().misPrevucen(points,diagramView);
+       // MainFrame.getInstance().getPackageView().misPrevucen(points,diagramView);
+        MainFrame.getInstance().getPackageView().misPovucen(point,diagramView);
 
 
     }
+    public void removeConnectionPainter(){
+      /*  for(ElementPainter ep:painters) {
+            if(ep instanceof ConnectionPainter) {
+                painters.remove(ep);
+                System.out.println("uslo je u remove if");
+            }
+        }
+        */
+        if(painters.get(painters.size()-1)instanceof ConnectionPainter)
+       painters.remove(painters.size()-1);
 
+
+
+    }
     @Override
     public void mouseMoved(MouseEvent e) {
 
@@ -93,9 +108,11 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
     public void mousePressed(MouseEvent e) {
         this.initPoint = new Point(e.getX(),e.getY());
         this.setInitPoint(new Point(e.getX(),e.getY()));
+
         System.out.println("Initpoint je "+initPoint);
         if(!points.isEmpty())
             System.out.println("nije prazan points u pressedu");
+        MainFrame.getInstance().getPackageView().misPritisnut(initPoint,diagramView);
 
     }
 
@@ -105,7 +122,7 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
         endPoint = new Point(e.getX(),e.getY());
         System.out.println("mouse released koordinate su "+e.getX()+" "+e.getY());
 
-        if(!points.isEmpty()) {
+       /* if(!points.isEmpty()) {
             System.out.println("poslednja svar u listi"+points.get(points.size()-1).getX()+" "+points.get(points.size()-1).getY());
             if (endPoint.getX()==points.get(points.size()-1).getX()&&endPoint.getY()==points.get(points.size()-1).getY()) {         //mozda ovaj equals nije ok
                 System.out.println("po<vao se mis pusten");
@@ -114,6 +131,9 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
             }
 
         }
+
+        */
+        MainFrame.getInstance().getPackageView().misPusten(initPoint, endPoint, diagramView);
     }
 
     @Override

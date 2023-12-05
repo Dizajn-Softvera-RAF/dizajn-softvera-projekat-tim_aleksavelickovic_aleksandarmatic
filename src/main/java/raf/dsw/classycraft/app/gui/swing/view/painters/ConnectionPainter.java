@@ -139,11 +139,16 @@ public abstract class ConnectionPainter extends ElementPainter{
             //ovde treba konstano da se dodaje moze diagramview .repaint
             int i=0;
             System.out.println("velicina lista je "+points.size());
-            System.out.println("pozicija x "+points.get(i).x +" pozicija y "+points.get(i).y);
+
             //if(points.size()>1)
           //  drawArrowLine(g,points.,minf.y,mint.x,mint.y,35,25);
            // drawArrowLine(,35,25);
             i++;
+         //   drawArrowLine(g,this.startPoint.x,this.startPoint.y,this.endPoint.x,this.endPoint.y,35,25);
+            Line2D line2D=new Line2D.Double(this.startPoint.x,this.startPoint.y,this.endPoint.x,this.endPoint.y);
+            g.draw(line2D);
+           // g.drawLine(this.startPoint.x,this.startPoint.y,this.endPoint.x,this.endPoint.y);
+
         }
 
 

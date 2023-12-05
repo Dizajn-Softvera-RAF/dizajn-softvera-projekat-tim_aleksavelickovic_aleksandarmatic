@@ -144,4 +144,9 @@ public class AddInterclass implements State{
     public void misPritisnut(Point initPoint, DiagramView diagramView) {
 
     }
+
+    @Override
+    public void misPovucen(Point currPoint, DiagramView diagramView) {
+
+    }
 }

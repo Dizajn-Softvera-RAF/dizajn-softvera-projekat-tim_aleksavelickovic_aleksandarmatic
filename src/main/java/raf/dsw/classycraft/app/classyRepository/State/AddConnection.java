@@ -3,6 +3,7 @@ package raf.dsw.classycraft.app.classyRepository.State;
 import raf.dsw.classycraft.app.classyRepository.composite.ClassyNode;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.Connection;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.InterClass;
+import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.connections.Dependency;
 import raf.dsw.classycraft.app.classyRepository.implementation.Diagram;
 import raf.dsw.classycraft.app.core.ApplicationFramework;
 import raf.dsw.classycraft.app.gui.swing.tree.model.ClassyTreeItem;
@@ -21,7 +22,15 @@ public class AddConnection implements State{
     private String type;
     private InterClass from;
     private InterClass to;
-    
+    private Point Initpoint;
+
+    public Point getInitpoint() {
+        return Initpoint;
+    }
+
+    public void setInitpoint(Point initpoint) {
+        Initpoint = initpoint;
+    }
 
     @Override
     public void misKlik(Point point, DiagramView diagramView) {}
@@ -33,6 +42,45 @@ public class AddConnection implements State{
 
     @Override
     public void misPritisnut(Point initPoint, DiagramView diagramView) {
+        //treba da se napravi veza i painter sa from pa posle u dragu da se vidi dal je to ok a mozda i u relesed
+
+
+
+        for(ElementPainter ep:diagramView.getPainters()) {
+            if (ep instanceof InterClassPainter) {
+                if (ep.elementAt(ep.getDiagramElement(), initPoint, diagramView)) {
+                    System.out.println("pocetne koridante klse" + initPoint);
+                    from = (InterClass) ep.getDiagramElement();
+                    this.setInitpoint(initPoint);
+                    return;
+
+
+                }
+            }
+        }
+      /*  Connection veza = ApplicationFramework.getInstance().getClassyManufacturer().createConnection("DEPENDENCY", "DEPENDENCY" + i, diagramView.getDiagram(), Color.BLACK, new BasicStroke(), from, null);
+        this.setConnection(veza);
+        ConnectionPainter connectionPainter1=new DependencyPainter(veza);
+        this.setConnectionPainter(connectionPainter1);
+        diagramView.getPainters().add(connectionPainter1);
+
+
+      */
+
+    }
+
+    @Override
+    public void misPovucen(Point currPoint, DiagramView diagramView) {
+        diagramView.removeConnectionPainter();
+        Connection veza = ApplicationFramework.getInstance().getClassyManufacturer().createConnection("AGREGATION", "DEPENDENCY" + i, diagramView.getDiagram(), Color.BLACK, new BasicStroke(), from, null);
+
+        this.setConnection(veza);
+        ConnectionPainter connectionPainter1=new AgregationPainter(veza);
+        connectionPainter1.setStartPoint(this.getInitpoint());
+        connectionPainter1.setEndPoint(currPoint);
+        this.setConnectionPainter(connectionPainter1);
+        diagramView.getPainters().add(connectionPainter1);
+        diagramView.repaint();
 
     }
 
@@ -74,9 +122,22 @@ public class AddConnection implements State{
            // diagramView.getDiagram().addChild(connection);
            // diagramView.getPainters().add(connectionPainter);
 
+ */
+        for(ElementPainter ep:diagramView.getPainters()) {
 
- */     if(to!=null&&to!=from) {
-            ConnectionPainter cp = new DependencyPainter(connection);
+                if(ep.elementAt(ep.getDiagramElement(),endPoint,diagramView)) {
+                    if(!ep.getDiagramElement().equals(from)) {
+                        System.out.println("zavrsne  koridante klase" + endPoint);//iz nekog razloga se povecava x u svakoj iteraciji vrv je to jedan
+                        to = (InterClass) ep.getDiagramElement();
+
+                    }
+                }
+            }
+        diagramView.removeConnectionPainter();
+
+        if(from!=null&&to!=null&&to!=from) {
+            connection.setTo(to);
+            ConnectionPainter cp = new AgregationPainter(connection);
             cp.setFlag(1);
             cp.setStartPoint(initPoint);
             cp.setEndPoint(endPoint);
@@ -137,7 +198,7 @@ public class AddConnection implements State{
 
     */
 
-    @Override
+   /* @Override
     public void misPrevucen(ArrayList<Point> points, DiagramView diagramView) {
         InterClass from = null;
         InterClass to= null;
@@ -158,33 +219,7 @@ public class AddConnection implements State{
             }
 
         }
-       /* if(from!= null && to!=null) { u poslednjem komitu je ovako i ne radi
-            if(t==0) {
-                //ovde terab if else za tipove veeza
-                connection = ApplicationFramework.getInstance().getClassyManufacturer().createConnection("DEPENDENCY", "DEPENDENCY" + i, diagramView.getDiagram(), Color.BLACK, new BasicStroke(), from, to);
-                i++;
-                connectionPainter = new DependencyPainter(connection,diagramView);
-                diagramView.getPainters().add(connectionPainter);
-                diagramView.getDiagram().addChild(connection);
-            }
-            // ConnectionPainter connectionPainter = new AgregationPainter(veza);
 
-
-
-
-
-            connectionPainter.setPoints(points);
-           // this.setConnectionPainter(connectionPainter);
-
-            System.out.println("kolko se put poziva ova funkcija "+i++);//svaki put kad se ovo pozove se pravi novi painter ne znam koliko je to dobro
-           // diagramView.getDiagram().addChild(connection); OVO MOZDA TREBA DA SE VRATI ZOBG TOGA OVE NEMA REPAINT
-
-
-            // System.out.println("veza "+veza.getName());
-            t++;
-        }
-
-        */
         this.from=from;
         this.to=to;
         int k=0;
@@ -210,6 +245,21 @@ public class AddConnection implements State{
         }
     }
 
+    */
+   @Override
+   public void misPrevucen(ArrayList<Point> points, DiagramView diagramView) {
+       Point initPoint=points.get(0);
+       Point endPoint=points.get(points.size()-1);
+       connectionPainter.setPoints(points);
+       System.out.println("pozicija u listi "+points.get(points.size()-1));
+       diagramView.repaint();
+
+   }
+
+
+
+
+
     public Connection getConnection() {
         return connection;
     }
@@ -225,4 +275,31 @@ public class AddConnection implements State{
     public void setConnectionPainter(ConnectionPainter connectionPainter) {
         this.connectionPainter = connectionPainter;
     }
+    /* if(from!= null && to!=null) { u poslednjem komitu je ovako i ne radi
+              if(t==0) {
+                  //ovde terab if else za tipove veeza
+                  connection = ApplicationFramework.getInstance().getClassyManufacturer().createConnection("DEPENDENCY", "DEPENDENCY" + i, diagramView.getDiagram(), Color.BLACK, new BasicStroke(), from, to);
+                  i++;
+                  connectionPainter = new DependencyPainter(connection,diagramView);
+                  diagramView.getPainters().add(connectionPainter);
+                  diagramView.getDiagram().addChild(connection);
+              }
+              // ConnectionPainter connectionPainter = new AgregationPainter(veza);
+
+
+
+
+
+              connectionPainter.setPoints(points);
+             // this.setConnectionPainter(connectionPainter);
+
+              System.out.println("kolko se put poziva ova funkcija "+i++);//svaki put kad se ovo pozove se pravi novi painter ne znam koliko je to dobro
+             // diagramView.getDiagram().addChild(connection); OVO MOZDA TREBA DA SE VRATI ZOBG TOGA OVE NEMA REPAINT
+
+
+              // System.out.println("veza "+veza.getName());
+              t++;
+          }
+
+          */
 }

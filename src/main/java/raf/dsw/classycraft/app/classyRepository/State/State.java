@@ -15,5 +15,6 @@ public interface State {
     void misPrevucen(Point initPoint, Point endPoint, DiagramView diagramView);
     void misPrevucen(ArrayList<Point> points, DiagramView diagramView);
     void misPritisnut(Point initPoint,DiagramView diagramView);
+    void misPovucen(Point currPoint,DiagramView diagramView);
 
 }
