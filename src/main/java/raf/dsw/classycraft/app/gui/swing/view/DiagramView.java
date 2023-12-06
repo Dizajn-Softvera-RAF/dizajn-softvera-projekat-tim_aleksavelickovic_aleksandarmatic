@@ -239,9 +239,10 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
         this.diagramView = this;
         this.addMouseListener(this);
         this.addMouseMotionListener(this);
+
         //framework=new Framework();
        // framework.setCursor(new Cursor(Cursor.HAND_CURSOR));
-     //   framework.setBackground(Color.RED);
+        //framework.setBackground(Color.WHITE);
      //   MainFrame.getInstance().getTabbedPane().add(framework,BorderLayout.CENTER);
      //   framework.addMouseListener(new MouseController());
       //  paintComponent(Graphics g);
