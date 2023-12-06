@@ -36,6 +36,7 @@ public class TabbedPane extends JTabbedPane {
     }
 
     public void loadDiagrams() {
+
        /* for (ClassyNode cn : this.cpackage.getChildren()) {
 
             if (cn instanceof Diagram) {

@@ -1,6 +1,7 @@
 package raf.dsw.classycraft.app.gui.swing.view;
 
 import raf.dsw.classycraft.app.classyRepository.State.StateManager;
+import raf.dsw.classycraft.app.classyRepository.implementation.Diagram;
 import raf.dsw.classycraft.app.classyRepository.implementation.Package;
 import raf.dsw.classycraft.app.core.MessageGenerator.Message;
 import raf.dsw.classycraft.app.core.MessageGenerator.MessageType;
@@ -51,8 +52,22 @@ public class PackageView extends JPanel implements Subscriber {
         if(notification instanceof Message){
             if (((Message) notification).getType().equals(MessageType.NOTIFICATION)){
 
-                if(tabbedPane.getCpackage() != null&&(((Message) notification).getText().toString().equals("ADDED")|| ((Message) notification).getText().toString().equals("DELETED_DIAGRAM"))){
+              /*  if(tabbedPane.getCpackage() != null&&(((Message) notification).getText().toString().equals("ADDED")|| ((Message) notification).getText().toString().equals("DELETED_DIAGRAM"))){
                    view(tabbedPane.getCpackage());
+
+                }
+
+               */
+                if(tabbedPane.getCpackage() != null&&(((Message) notification).getText().toString().contains("ADDED") &&tabbedPane.getCpackage().getName().equals(((Message) notification).getText().toString().substring(5)) )){
+                    tabbedPane.getDiagrams().add(new DiagramView((Diagram)(tabbedPane.getCpackage().getChildren().get(tabbedPane.getCpackage().getChildren().size()-1))));
+                    tabbedPane.addTab(((Diagram)(tabbedPane.getCpackage().getChildren().get(tabbedPane.getCpackage().getChildren().size()-1))).getName(),tabbedPane.getDiagrams().get(tabbedPane.getDiagrams().size()-1));
+
+                }
+                if(tabbedPane.getCpackage() != null&&((Message) notification).getText().toString().contains("DELETED_DIAGRAM")&&tabbedPane.getCpackage().getName().equals(((Message) notification).getText().toString().substring(15,((Message) notification).getText().toString().indexOf(" ") ))){
+                    for(DiagramView dv:tabbedPane.getDiagrams()) {
+                        if (((Message) notification).getText().toString().substring(((Message) notification).getText().toString().indexOf(" ")).equals(dv.getName()))
+                            tabbedPane.getDiagrams().remove(dv);
+                    }
                 }
                 else if(((Message) notification).getText().toString().equals("CLEAR"))
                    clear();
