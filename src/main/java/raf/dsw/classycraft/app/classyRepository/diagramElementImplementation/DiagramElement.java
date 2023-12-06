@@ -67,5 +67,7 @@ public abstract class DiagramElement extends ClassyNode implements Pubsliher {
     }
 
 
-
+    public boolean getSelected() {
+        return this.selected;
+    }
 }

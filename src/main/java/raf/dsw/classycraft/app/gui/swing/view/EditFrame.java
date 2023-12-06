@@ -191,7 +191,7 @@ public class EditFrame implements ActionListener{
     }
     private void init1(DiagramElement diagramElement){JFrame editFrame = new JFrame();
         Agregation veza = (Agregation)diagramElement;
-        editFrame.setLayout(new BoxLayout(editFrame,BoxLayout.Y_AXIS));
+        editFrame.setLayout(new BorderLayout());
         editFrame.setSize(500,500);
         editFrame.setTitle("Edit");
         editFrame.setLocationRelativeTo(null);
@@ -215,15 +215,19 @@ public class EditFrame implements ActionListener{
         JButton confirm = new JButton("Confirm");
         confirm.addActionListener(this);
         confirm.setActionCommand("Confirm");
+        JPanel body = new JPanel();
+        body.setLayout(new BoxLayout(body,BoxLayout.Y_AXIS));
+        body.add(name);
+        body.add(kardinalnost);
 
-        editFrame.add(name);
-        editFrame.add(kardinalnost);
-        editFrame.add(confirm);
+        editFrame.add(body,BorderLayout.CENTER);
+
+        editFrame.add(confirm,BorderLayout.SOUTH);
         editFrame.setVisible(true);
     }
     private void init2(DiagramElement diagramElement){JFrame editFrame = new JFrame();
         Composition veza = (Composition) diagramElement;
-        editFrame.setLayout(new BoxLayout(editFrame,BoxLayout.Y_AXIS));
+        editFrame.setLayout(new BorderLayout());
         editFrame.setSize(500,500);
         editFrame.setTitle("Edit");
         editFrame.setLocationRelativeTo(null);
@@ -247,10 +251,13 @@ public class EditFrame implements ActionListener{
         JButton confirm = new JButton("Confirm");
         confirm.addActionListener(this);
         confirm.setActionCommand("Confirm");
+        JPanel body = new JPanel();
+        body.setLayout(new BoxLayout(body,BoxLayout.Y_AXIS));
+        body.add(name);
+        body.add(kardinalnost);
 
-        editFrame.add(name);
-        editFrame.add(kardinalnost);
-        editFrame.add(confirm);
+        editFrame.add(body,BorderLayout.CENTER);
+        editFrame.add(confirm,BorderLayout.SOUTH);
         editFrame.setVisible(true);
     }
 

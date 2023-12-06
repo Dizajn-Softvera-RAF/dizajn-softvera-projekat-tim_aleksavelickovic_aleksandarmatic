@@ -1874,3 +1874,79 @@
 
 [NOTIFICATION] [2023-12-06T05:23:05.411098100] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@3555309
 
+[NOTIFICATION] [2023-12-06T14:16:23.024069100] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@10c276a3
+
+[NOTIFICATION] [2023-12-06T14:18:02.743922500] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@65ef271e
+
+[NOTIFICATION] [2023-12-06T14:20:51.448716] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@5fd07498
+
+[NOTIFICATION] [2023-12-06T14:31:16.402481900] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@2634f514
+
+[NOTIFICATION] [2023-12-06T14:42:43.691652] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@27e01ef
+
+[NOTIFICATION] [2023-12-06T14:48:48.871847600] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@20995b32
+
+[NOTIFICATION] [2023-12-06T15:18:34.902471900] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@7d3225bc
+
+[NOTIFICATION] [2023-12-06T15:19:42.632093200] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@71ab1b65
+
+[NOTIFICATION] [2023-12-06T15:22:24.015499400] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@60a7b8bb
+
+[NOTIFICATION] [2023-12-06T15:26:07.960116900] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@6615d5da
+
+[NOTIFICATION] [2023-12-06T15:27:31.576641400] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@3a781938
+
+[NOTIFICATION] [2023-12-06T15:28:04.573896] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@15cd770d
+
+[NOTIFICATION] [2023-12-06T16:14:34.205287400] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@2fa155b
+
+[NOTIFICATION] [2023-12-06T16:18:17.618657700] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@308d1a6
+
+[NOTIFICATION] [2023-12-06T16:19:11.619611800] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@6a3074e8
+
+[NOTIFICATION] [2023-12-06T16:21:01.877071600] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@33733624
+
+[NOTIFICATION] [2023-12-06T16:23:01.959297700] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@15cd770d
+
+[NOTIFICATION] [2023-12-06T16:23:54.973688900] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@14d64e60
+
+[NOTIFICATION] [2023-12-06T16:26:20.561838400] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@279b480d
+
+[NOTIFICATION] [2023-12-06T16:29:13.355259700] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@65be1a9a
+
+[NOTIFICATION] [2023-12-06T16:39:48.876463500] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@64ac549f
+
+[NOTIFICATION] [2023-12-06T16:41:15.378342700] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@6a8e879e
+
+[NOTIFICATION] [2023-12-06T16:42:09.089802700] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@756675e2
+
+[NOTIFICATION] [2023-12-06T16:44:03.789668600] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@4f466acb
+
+[NOTIFICATION] [2023-12-06T16:44:37.799606400] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@2772c083
+
+[NOTIFICATION] [2023-12-06T16:46:57.739915500] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@602f2baa
+
+[NOTIFICATION] [2023-12-06T16:49:46.292047700] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@7e85dcc
+
+[NOTIFICATION] [2023-12-06T16:51:50.702749700] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@75ab83
+
+[NOTIFICATION] [2023-12-06T16:52:57.436716500] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@63910edd
+
+[NOTIFICATION] [2023-12-06T17:07:37.715732200] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@3b6dbc60
+
+[NOTIFICATION] [2023-12-06T17:10:52.838077200] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@5bb1d134
+
+[NOTIFICATION] [2023-12-06T17:22:09.135351] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@65cde980
+
+[NOTIFICATION] [2023-12-06T17:23:16.568467300] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@454b0216
+
+[NOTIFICATION] [2023-12-06T17:26:16.626407100] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@55329244
+
+[NOTIFICATION] [2023-12-06T17:27:07.779868800] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@6f13c51a
+
+[NOTIFICATION] [2023-12-06T17:27:52.800050300] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@6f13c51a
+
+[ERROR] [2023-12-06T17:28:51.678485100] Node_CANNOT_BE_ADDED
+
+[NOTIFICATION] [2023-12-06T17:28:56.570212400] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@799207e9
+

@@ -14,6 +14,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.ImageObserver;
 import java.text.AttributedCharacterIterator;
 import java.util.ArrayList;
@@ -61,6 +62,10 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
         for(MultiSelectionPainter mp: multiSelectionPainters){
             mp.draw(g2);
         }
+    }
+    public void drawRect( Rectangle2D rectangle2D){
+        Graphics2D g2 = (Graphics2D) this.getGraphics();
+        g2.drawRect((int) rectangle2D.getX(), (int) rectangle2D.getY(), (int) rectangle2D.getWidth(), (int) rectangle2D.getHeight());
     }
     public Diagram getDiagram() {
         return diagram;

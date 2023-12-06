@@ -29,19 +29,20 @@ public class Selected implements State{
                     System.out.println(ep.getDiagramElement().getName());
                     System.out.println("jeste tu");
                     ep.getDiagramElement().setSelected(true);
-                    ep.getDiagramElement().setColor(Color.red);
+                    System.out.println(ep.getDiagramElement().getSelected());
+
             }
             else {
                 for(ElementPainter elementPainter:diagramView.getPainters()) {
                     if (elementPainter instanceof InterClassPainter ) {
                         elementPainter.getDiagramElement().setSelected(false);
 
-                        elementPainter.getDiagramElement().setColor(Color.blue);
+
                     }
                     else if( elementPainter instanceof ConnectionPainter){
                         elementPainter.getDiagramElement().setSelected(false);
 
-                        elementPainter.getDiagramElement().setColor(Color.black);
+
                     }
                 }
             }
@@ -49,6 +50,13 @@ public class Selected implements State{
 
 
 
+        }for (ElementPainter ep: diagramView.getPainters()){
+            if(ep.getDiagramElement().isSelected())ep.getDiagramElement().setColor(Color.red);
+            else{
+                if (ep.getDiagramElement() instanceof InterClass)ep.getDiagramElement().setColor(Color.blue);
+                else if (ep.getDiagramElement() instanceof Connection) {ep.getDiagramElement().setColor(Color.black);}
+
+            }
         }
         /*
         for(ElementPainter ep:diagramView.getPainters()){
