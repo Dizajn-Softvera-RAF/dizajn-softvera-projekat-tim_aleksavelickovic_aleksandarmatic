@@ -33,9 +33,15 @@ public class Selected implements State{
             }
             else {
                 for(ElementPainter elementPainter:diagramView.getPainters()) {
-                    if (elementPainter instanceof InterClassPainter || elementPainter instanceof ConnectionPainter) {
+                    if (elementPainter instanceof InterClassPainter ) {
                         elementPainter.getDiagramElement().setSelected(false);
+
                         elementPainter.getDiagramElement().setColor(Color.blue);
+                    }
+                    else if( elementPainter instanceof ConnectionPainter){
+                        elementPainter.getDiagramElement().setSelected(false);
+
+                        elementPainter.getDiagramElement().setColor(Color.black);
                     }
                 }
             }
@@ -44,6 +50,16 @@ public class Selected implements State{
 
 
         }
+        /*
+        for(ElementPainter ep:diagramView.getPainters()){
+            if(ep.getDiagramElement().isSelected()==true){
+                ep .getDiagramElement().setSelected(false);
+                ep.getDiagramElement().setColor(Color.blue);
+                //deselekt samo mora da se pomeri mesto
+            }
+        }
+
+         */
     }
 
     @Override
@@ -56,11 +72,38 @@ public class Selected implements State{
         diagramView.getMultiSelectionPainters().removeAll(diagramView.getMultiSelectionPainters());
 
         for(ElementPainter ep: diagramView.getPainters()){
-            if(ep.getDiagramElement() instanceof InterClass && ep.getDiagramElement().isSelected()==true ){
+            /*if(ep.getDiagramElement() instanceof InterClass && ep.getDiagramElement().isSelected()==true ){
                 ep.getDiagramElement().setColor(Color.red);
-            }if(ep.getDiagramElement()instanceof Connection && ep.getDiagramElement().isSelected()==true)ep.getDiagramElement().setColor(Color.blue);
+            }
+            else
+                ep.getDiagramElement().setColor(ep.getDiagramElement().getColor());
+
+            if(ep.getDiagramElement()instanceof Connection && ep.getDiagramElement().isSelected()==true)
+                ep.getDiagramElement().setColor(Color.red);
+            else
+                ep.getDiagramElement().setColor(ep.getDiagramElement().getColor());
+
+             */
+
+            if(ep.getDiagramElement().isSelected()==true){
+                if(ep.getDiagramElement() instanceof InterClass){
+                    ep.getDiagramElement().setColor(Color.red);
+                }
+                else if(ep.getDiagramElement() instanceof Connection){
+                    ep.getDiagramElement().setColor(Color.red);
+
+                }
+
+            }
+            else
+                ep.getDiagramElement().setColor(ep.getDiagramElement().getColor());
+
+
         }
-       // diagramView.repaint();
+
+
+
+       //diagramView.repaint();
     }
     @Override
     public void misPrevucen(Point initPoint, Point endPoint, DiagramView diagramView) {

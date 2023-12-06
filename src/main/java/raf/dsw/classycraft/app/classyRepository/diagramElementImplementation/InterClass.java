@@ -44,7 +44,7 @@ public abstract class InterClass extends DiagramElement implements Pubsliher {
 
     public void setPostition(Point postition) {
         this.postition = postition;
-        // treba i za sve notify u setu
+        notifySubscribers(new InterCommunicationNotification("REPOSITION"));
     }
 
     public Dimension getSize() {

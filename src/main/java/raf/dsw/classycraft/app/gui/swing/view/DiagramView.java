@@ -45,12 +45,13 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
         Graphics2D g2 = (Graphics2D) g;
 
 
-        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.8f));
+      //  g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.8f));
         // for()//treba da se prodje kroz sve paintere
        // DiagramView.this.paint(g2);
         //paint(g2);to ne radi ali tako treba da se radi
         System.out.println("Izvršena paintComponent metoda view-a");
         for(ElementPainter ep:painters) {
+          g2.setColor(ep.getDiagramElement().getColor());
             ep.draw(g2, ep.getDiagramElement());
             ep.getDiagramElement().addSubscriber(this);
             if(ep.getDiagramElement()instanceof InterClass)

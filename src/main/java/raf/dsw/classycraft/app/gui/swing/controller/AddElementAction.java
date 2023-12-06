@@ -17,5 +17,6 @@ public class AddElementAction extends AbstractClassyAction{
     @Override
     public void actionPerformed(ActionEvent e) {
         MainFrame.getInstance().getPackageView().startAddElement();
+
     }
 }

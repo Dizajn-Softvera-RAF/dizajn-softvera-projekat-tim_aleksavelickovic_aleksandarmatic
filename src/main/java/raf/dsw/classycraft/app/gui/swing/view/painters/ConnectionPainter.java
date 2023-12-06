@@ -29,6 +29,7 @@ public abstract class ConnectionPainter extends ElementPainter{
 
     public ConnectionPainter(DiagramElement diagramElement, DiagramView diagramView) {
         super(diagramElement, diagramView);
+
     }
 
     public  double dsquare(Point p1, Point p2) {
@@ -96,7 +97,9 @@ public abstract class ConnectionPainter extends ElementPainter{
     }
     @Override
     public void draw(Graphics2D g, DiagramElement diagramElement) {
+       // g.setColor(Color.black);
         if(flag==1){
+           /*
             Connection connection=(Connection)diagramElement;
             Point cpgf=new Point(connection.getFrom().getPostition().x+(connection.getFrom().getSize().width)/2,connection.getFrom().getPostition().y);
             Point cpdolf=new Point(connection.getFrom().getPostition().x+(connection.getFrom().getSize().width)/2,connection.getFrom().getPostition().y+connection.getFrom().getSize().height);
@@ -126,6 +129,40 @@ public abstract class ConnectionPainter extends ElementPainter{
                 if(dsquare(cpt[i],this.endPoint)<dsquare(mint,this.endPoint))
                     mint=cpt[i];
             }
+            */
+            Connection connection=(Connection)diagramElement;
+            Point cpgf=new Point(connection.getFrom().getPostition().x+(connection.getFrom().getSize().width)/2,connection.getFrom().getPostition().y);
+            Point cpdolf=new Point(connection.getFrom().getPostition().x+(connection.getFrom().getSize().width)/2,connection.getFrom().getPostition().y+connection.getFrom().getSize().height);
+            Point cplf=new Point(connection.getFrom().getPostition().x,connection.getFrom().getPostition().y+(connection.getFrom().getSize().height)/2);
+            Point cpdesf=new Point(connection.getFrom().getPostition().x+connection.getFrom().getSize().width,connection.getFrom().getPostition().y+(connection.getFrom().getSize().height)/2);
+
+            Point cpgt=new Point(connection.getTo().getPostition().x+(connection.getTo().getSize().width)/2,connection.getTo().getPostition().y);
+            Point cpdolt=new Point(connection.getTo().getPostition().x+(connection.getTo().getSize().width)/2,connection.getTo().getPostition().y+connection.getTo().getSize().height);
+            Point cplt=new Point(connection.getTo().getPostition().x,connection.getTo().getPostition().y+(connection.getTo().getSize().height)/2);
+            Point cpdest=new Point(connection.getTo().getPostition().x+connection.getTo().getSize().width,connection.getTo().getPostition().y+(connection.getTo().getSize().height)/2);
+
+
+            Point[] cpf={cpgf,cpdolf,cplf,cpdesf};
+            Point[] cpt={cpgt,cpdolt,cplt,cpdest};
+
+            Point minf=cpf[0];
+            Point mint=cpt[0];
+            double min=dsquare(cpf[0],cpt[0]);
+            for(int i=0;i<4;i++){
+
+                for(int j=0;j<4;j++){
+                    if(dsquare(cpf[i],cpt[j])<min) {
+                        min = dsquare(cpf[i], cpt[j]);
+                        minf = cpf[i];
+                        mint = cpt[j];
+                    }
+                }
+            }
+
+
+            Point conpointform=minf;
+
+
 
             Point conpointto=mint;
             Line2D line=new Line2D.Double(minf.x,minf.y,mint.x,mint.y);
@@ -133,6 +170,8 @@ public abstract class ConnectionPainter extends ElementPainter{
 
             //g.draw(line);
             //drawArrowHead2(g,line);
+            this.setStartPoint(new Point(minf.x, minf.y));
+            this.setEndPoint(new Point(mint.x, mint.y));
             drawArrowLine(g,minf.x,minf.y,mint.x,mint.y,35,25);
         }
        else{

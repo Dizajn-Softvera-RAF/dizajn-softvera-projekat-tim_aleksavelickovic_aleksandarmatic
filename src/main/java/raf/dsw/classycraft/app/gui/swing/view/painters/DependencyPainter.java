@@ -16,7 +16,7 @@ public class DependencyPainter extends ConnectionPainter{
 
     @Override
     public void draw(Graphics2D g, DiagramElement diagramElement) {
-        g.setColor(Color.yellow);
+
         diagramElement.setStroke(new BasicStroke(1, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{9}, 0));
         g.setStroke(diagramElement.getStroke());
         super.draw(g, diagramElement);
