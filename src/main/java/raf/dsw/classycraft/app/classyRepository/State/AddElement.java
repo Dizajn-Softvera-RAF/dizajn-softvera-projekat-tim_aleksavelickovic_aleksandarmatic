@@ -56,19 +56,13 @@ public class AddElement implements State{
 
     @Override
     public void misPovucen(Point currPoint, int i, DiagramView diagramView) {
-        System.out.println("drag za novu kordiantu");
+      //  System.out.println("drag za novu kordiantu");
         for(DiagramElement dg:elements){
-            if(elements.size()>1){
-                if(dg instanceof InterClass){
-                    System.out.println("Prosla tacka "+lastPoint+" "+"Trenutna tacka "+currPoint);
-                    ((InterClass) dg).setPostition(new Point(( ((InterClass) dg).getPostition().x+(currPoint.x-lastPoint.x)),( ((InterClass) dg).getPostition().y+(currPoint.y-lastPoint.y))));
-                }
 
-            }
-            else{
-                if(dg instanceof InterClass)
-                    ((InterClass)dg).setPostition(currPoint);
-            }
+                if(dg instanceof InterClass) {
+                  //  System.out.println("Prosla tacka " + lastPoint + " " + "Trenutna tacka " + currPoint);
+                    ((InterClass) dg).setPostition(new Point((((InterClass) dg).getPostition().x + (currPoint.x - lastPoint.x)), (((InterClass) dg).getPostition().y + (currPoint.y - lastPoint.y))));
+                }
 
         }
         this.setLastPoint(currPoint);
