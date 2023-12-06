@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class AddElement implements State{
 
     ArrayList<DiagramElement>elements=new ArrayList<>();
+    Point lastPoint;
 
 
     @Override
@@ -25,7 +26,7 @@ public class AddElement implements State{
 
     @Override
     public void misPusten(Point initPoint, Point endPoint, DiagramView diagramView) {
-
+        elements.removeAll(elements);
     }
 
     @Override
@@ -45,6 +46,7 @@ public class AddElement implements State{
                elements.add(ep.getDiagramElement());
 
         }
+        this.setLastPoint(initPoint);
     }
 
     @Override
@@ -54,9 +56,29 @@ public class AddElement implements State{
 
     @Override
     public void misPovucen(Point currPoint, int i, DiagramView diagramView) {
+        System.out.println("drag za novu kordiantu");
         for(DiagramElement dg:elements){
-            if(dg instanceof InterClass)
-                ((InterClass)dg).setPostition(currPoint);
+            if(elements.size()>1){
+                if(dg instanceof InterClass){
+                    System.out.println("Prosla tacka "+lastPoint+" "+"Trenutna tacka "+currPoint);
+                    ((InterClass) dg).setPostition(new Point(( ((InterClass) dg).getPostition().x+(currPoint.x-lastPoint.x)),( ((InterClass) dg).getPostition().y+(currPoint.y-lastPoint.y))));
+                }
+
+            }
+            else{
+                if(dg instanceof InterClass)
+                    ((InterClass)dg).setPostition(currPoint);
+            }
+
         }
+        this.setLastPoint(currPoint);
+    }
+
+    public Point getLastPoint() {
+        return lastPoint;
+    }
+
+    public void setLastPoint(Point lastPoint) {
+        this.lastPoint = lastPoint;
     }
 }

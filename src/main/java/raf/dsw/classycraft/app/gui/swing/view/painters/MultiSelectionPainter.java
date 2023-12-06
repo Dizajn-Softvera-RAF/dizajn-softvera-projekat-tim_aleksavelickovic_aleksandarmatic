@@ -130,7 +130,7 @@ public class MultiSelectionPainter {
                 double w1=xs1-xe1;
                 double h1=ys1-ye1;
                 Rectangle2D rect=new Rectangle2D.Double(xs1,ys1,w1,h1);
-                g.draw(rect);
+               // g.draw(rect);
                 if (line2D.intersectsLine(line1)||line2D.intersectsLine(line2)||line2D.intersectsLine(line3)||line2D.intersectsLine(line4)){
                     ep.getDiagramElement().setSelected(true);
                     System.out.println("veza je selektovana");

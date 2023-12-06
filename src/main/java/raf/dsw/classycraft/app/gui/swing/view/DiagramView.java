@@ -49,7 +49,7 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
         // for()//treba da se prodje kroz sve paintere
        // DiagramView.this.paint(g2);
         //paint(g2);to ne radi ali tako treba da se radi
-        System.out.println("Izvršena paintComponent metoda view-a");
+      //  System.out.println("Izvršena paintComponent metoda view-a");
         for(ElementPainter ep:painters) {
           g2.setColor(ep.getDiagramElement().getColor());
             ep.draw(g2, ep.getDiagramElement());
@@ -244,7 +244,7 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
     }
     @Override
     public void update(Object notification) {
-        System.out.println("uslo u update");
+      //  System.out.println("uslo u update");
         repaint();
     }
 
