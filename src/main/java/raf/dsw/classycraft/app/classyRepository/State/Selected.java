@@ -13,6 +13,9 @@ import java.util.ArrayList;
 
 public class Selected implements State{
     private Point init;
+    private boolean selected=false;
+
+    private int t=0;
 
     public Point getInit() {
         return init;
@@ -22,20 +25,35 @@ public class Selected implements State{
         this.init = init;
     }
 
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
+
     @Override
     public void misKlik(Point point, DiagramView diagramView) {
-        for(ElementPainter ep:diagramView.getPainters()) {
-            if(ep.elementAt(ep.getDiagramElement(),point,diagramView)) {
+        int k=0;
+        if(selected==false) {
+            for (ElementPainter ep : diagramView.getPainters()) {
+                if (ep.elementAt(ep.getDiagramElement(), point, diagramView)) {
                     System.out.println(ep.getDiagramElement().getName());
+                    k++;
                     System.out.println("jeste tu");
                     ep.getDiagramElement().setSelected(true);
+                    ep.getDiagramElement().setColor(Color.red);
                     System.out.println(ep.getDiagramElement().getSelected());
+                    this.setSelected(true);
 
-            }
-            else {
+                }
+
+       /*     if(!ep.elementAt(ep.getDiagramElement(),point,diagramView)){
                 for(ElementPainter elementPainter:diagramView.getPainters()) {
                     if (elementPainter instanceof InterClassPainter ) {
                         elementPainter.getDiagramElement().setSelected(false);
+                        System.out.println(" element "+elementPainter.getDiagramElement().getName()+elementPainter.getDiagramElement().isSelected());
 
 
                     }
@@ -47,10 +65,68 @@ public class Selected implements State{
                 }
             }
 
+        */
+        /*    else {
+                for(ElementPainter elementPainter:diagramView.getPainters()) {
+                    if (elementPainter instanceof InterClassPainter ) {
+                        elementPainter.getDiagramElement().setSelected(false);
+                        System.out.println(" element "+elementPainter.getDiagramElement().getName()+elementPainter.getDiagramElement().isSelected());
 
 
+                    }
+                    else if( elementPainter instanceof ConnectionPainter){
+                        elementPainter.getDiagramElement().setSelected(false);
 
-        }for (ElementPainter ep: diagramView.getPainters()){
+
+                    }
+                }
+            }
+            */
+
+
+            }
+        }
+
+      //  if(k==0){
+            for(ElementPainter ep:diagramView.getPainters()) {
+                ep.getDiagramElement().setSelected(false);
+                if(ep.getDiagramElement() instanceof InterClass)
+                ep.getDiagramElement().setColor(Color.BLUE);
+                else
+                    ep.getDiagramElement().setColor(Color.BLACK);
+            }
+            for (ElementPainter ep : diagramView.getPainters()) {
+                if (ep.elementAt(ep.getDiagramElement(), point, diagramView)) {
+                    System.out.println(ep.getDiagramElement().getName());
+                    k++;
+                    System.out.println("jeste tu");
+                    ep.getDiagramElement().setSelected(true);
+                    ep.getDiagramElement().setColor(Color.red);
+                    System.out.println(ep.getDiagramElement().getSelected());
+                   // this.setSelected(true);
+
+                }
+
+
+            }
+            this.setSelected(false);
+      //  }
+
+       /* for(ElementPainter ep:diagramView.getPainters()) {
+            if(ep.getDiagramElement().isSelected()==true)
+                System.out.println(" element je true "+ep.getDiagramElement().getName());
+        }
+        int i=0;
+        for(ElementPainter ep:diagramView.getPainters()) {
+            if(ep.getDiagramElement().isSelected()==false)
+                i++;
+        }
+        if(i>0){
+            for(ElementPainter ep:diagramView.getPainters())
+                ep.getDiagramElement().setSelected(false);
+        }*/
+
+      /*  for (ElementPainter ep: diagramView.getPainters()){
             if(ep.getDiagramElement().isSelected())ep.getDiagramElement().setColor(Color.red);
             else{
                 if (ep.getDiagramElement() instanceof InterClass)ep.getDiagramElement().setColor(Color.blue);
@@ -58,6 +134,8 @@ public class Selected implements State{
 
             }
         }
+
+       */
         /*
         for(ElementPainter ep:diagramView.getPainters()){
             if(ep.getDiagramElement().isSelected()==true){
@@ -126,9 +204,27 @@ public class Selected implements State{
     @Override
     public void misPritisnut(Point initPoint, DiagramView diagramView) {
        // if(initPoint==null)
+
+                for(ElementPainter ep:diagramView.getPainters()) {
+                    ep.getDiagramElement().setSelected(false);
+                    if(ep.getDiagramElement() instanceof InterClass)
+                        ep.getDiagramElement().setColor(Color.BLUE);
+                    else
+                        ep.getDiagramElement().setColor(Color.BLACK);
+                }
+
+
             System.out.println("jeste null");
               this.setInit(initPoint);
+        this.setT(1);
+    }
 
+    public int getT() {
+        return t;
+    }
+
+    public void setT(int t) {
+        this.t = t;
     }
 
     @Override
