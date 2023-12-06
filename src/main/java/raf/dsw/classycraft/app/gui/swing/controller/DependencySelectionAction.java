@@ -1,5 +1,6 @@
 package raf.dsw.classycraft.app.gui.swing.controller;
 
+import raf.dsw.classycraft.app.classyRepository.State.AddConnection;
 import raf.dsw.classycraft.app.gui.swing.view.MainFrame;
 
 import javax.swing.*;
@@ -15,6 +16,9 @@ public class DependencySelectionAction extends AbstractClassyAction{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        MainFrame.getInstance().getConnectionSelectionFrame().dispose();
+        if (MainFrame.getInstance().getPackageView().getStateManager().getCurrState() instanceof AddConnection){
+            ((AddConnection) MainFrame.getInstance().getPackageView().getStateManager().getCurrState()).setType("DEPENDENCY");
+            MainFrame.getInstance().getConnectionSelectionFrame().dispose();
+        }
     }
 }

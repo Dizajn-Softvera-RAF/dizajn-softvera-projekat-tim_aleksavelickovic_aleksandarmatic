@@ -4,6 +4,10 @@ import javafx.scene.layout.HBox;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.AccessModifier;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.DiagramElement;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.InterClass;
+import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.connections.Agregation;
+import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.connections.Composition;
+import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.connections.Dependency;
+import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.connections.Generalization;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.diagramelements.*;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.diagramelements.Class;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.diagramelements.Enum;
@@ -28,7 +32,20 @@ public class EditFrame implements ActionListener{
     private JButton confirm;
     private DiagramElement diagramElement;
     private JTextField typeReturn;
-    public EditFrame(DiagramElement diagramElement){init(diagramElement);}
+    private JTextField nameOfVariable;
+    private JTextField cardinality;
+    private JTextField type;
+    public EditFrame(DiagramElement diagramElement){if(diagramElement instanceof InterClass)init(diagramElement);
+    else if (diagramElement instanceof Agregation) {
+        init1(diagramElement);
+    } else if (diagramElement instanceof Composition) {
+        init2(diagramElement);
+    } else if (diagramElement instanceof Generalization) {
+        init3(diagramElement);
+    } else if (diagramElement instanceof Dependency) {
+        init4(diagramElement);
+    }
+    }
 
     private void init(DiagramElement diagramElement) {
         JFrame editFrame = new JFrame();
@@ -37,7 +54,7 @@ public class EditFrame implements ActionListener{
         editFrame.setTitle("Edit");
         editFrame.setLocationRelativeTo(null);
         editFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        editFrame.getInsets().set(10,5,10,5);
+
 
 
 
@@ -172,7 +189,101 @@ public class EditFrame implements ActionListener{
         editFrame.setVisible(true);
 
     }
+    private void init1(DiagramElement diagramElement){JFrame editFrame = new JFrame();
+        Agregation veza = (Agregation)diagramElement;
+        editFrame.setLayout(new BoxLayout(editFrame,BoxLayout.Y_AXIS));
+        editFrame.setSize(500,500);
+        editFrame.setTitle("Edit");
+        editFrame.setLocationRelativeTo(null);
+        editFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        editFrame.getInsets().set(10,5,10,5);
 
+        JPanel name = new JPanel(new FlowLayout());
+        name.add(new JLabel("Name of variable:"));
+        nameOfVariable = new JTextField();
+        nameOfVariable.setPreferredSize(new Dimension(200,20));
+        nameOfVariable.setText(veza.getNameOfVariable());
+        name.add(nameOfVariable);
+
+        JPanel kardinalnost = new JPanel(new FlowLayout());
+        kardinalnost.add(new JLabel("Cardinality:"));
+        cardinality = new JTextField();
+        cardinality.setPreferredSize(new Dimension(200,20));
+        cardinality.setText(veza.getKardinalnost());
+        kardinalnost.add(cardinality);
+
+        JButton confirm = new JButton("Confirm");
+        confirm.addActionListener(this);
+        confirm.setActionCommand("Confirm");
+
+        editFrame.add(name);
+        editFrame.add(kardinalnost);
+        editFrame.add(confirm);
+        editFrame.setVisible(true);
+    }
+    private void init2(DiagramElement diagramElement){JFrame editFrame = new JFrame();
+        Composition veza = (Composition) diagramElement;
+        editFrame.setLayout(new BoxLayout(editFrame,BoxLayout.Y_AXIS));
+        editFrame.setSize(500,500);
+        editFrame.setTitle("Edit");
+        editFrame.setLocationRelativeTo(null);
+        editFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        editFrame.getInsets().set(10,5,10,5);
+
+        JPanel name = new JPanel(new FlowLayout());
+        name.add(new JLabel("Name of variable:"));
+        nameOfVariable = new JTextField();
+        nameOfVariable.setPreferredSize(new Dimension(200,20));
+        nameOfVariable.setText(veza.getNameOfVariable());
+        name.add(nameOfVariable);
+
+        JPanel kardinalnost = new JPanel(new FlowLayout());
+        kardinalnost.add(new JLabel("Cardinality:"));
+        cardinality = new JTextField();
+        cardinality.setPreferredSize(new Dimension(200,20));
+        cardinality.setText(veza.getKardinalnost());
+        kardinalnost.add(cardinality);
+
+        JButton confirm = new JButton("Confirm");
+        confirm.addActionListener(this);
+        confirm.setActionCommand("Confirm");
+
+        editFrame.add(name);
+        editFrame.add(kardinalnost);
+        editFrame.add(confirm);
+        editFrame.setVisible(true);
+    }
+
+    private void init3(DiagramElement diagramElement){JFrame editFrame = new JFrame();
+        Generalization veza = (Generalization)diagramElement;
+        editFrame.setLayout(new BorderLayout());
+        editFrame.setSize(500,500);
+        editFrame.setTitle("Edit");
+        editFrame.setLocationRelativeTo(null);
+        editFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        JPanel typePanel = new JPanel(new FlowLayout());
+        typePanel.add(new JLabel("Type:"));
+        type = new JTextField();
+        type.setPreferredSize(new Dimension(200,20));
+        type.setText(veza.getType());
+        typePanel.add(type);
+
+        JButton confirm = new JButton("Confirm");
+        confirm.addActionListener(this);
+        confirm.setActionCommand("Confirm");
+
+        editFrame.add(typePanel,BorderLayout.CENTER);
+        editFrame.add(confirm,BorderLayout.SOUTH);
+        editFrame.setVisible(true);
+        }
+    private void init4(DiagramElement diagramElement){JFrame editFrame = new JFrame();
+        editFrame.setLayout(new BorderLayout());
+        editFrame.setSize(500,500);
+        editFrame.setTitle("Edit");
+        editFrame.setLocationRelativeTo(null);
+        editFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        }
 
 
     public JComboBox getVidljivostPolja() {
@@ -528,6 +639,23 @@ public class EditFrame implements ActionListener{
                     }
                 }
                 odabirPolja.setSelectedIndex(i-1);
+            }
+        } else if (diagramElement instanceof Agregation) {
+            if (comand.equals("Confirm")){
+                Agregation veza = (Agregation) diagramElement;
+                veza.setNameOfVariable(nameOfVariable.getText());
+                veza.setKardinalnost(cardinality.getText());
+            }
+        }else if (diagramElement instanceof Composition) {
+            if (comand.equals("Confirm")){
+                Composition veza = (Composition) diagramElement;
+                veza.setNameOfVariable(nameOfVariable.getText());
+                veza.setKardinalnost(cardinality.getText());
+            }
+        }else if (diagramElement instanceof Generalization) {
+            if (comand.equals("Confirm")){
+                Generalization veza = (Generalization) diagramElement;
+                veza.setType(type.getText());
             }
         }
     }

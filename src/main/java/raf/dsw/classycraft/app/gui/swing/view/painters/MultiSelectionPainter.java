@@ -7,6 +7,8 @@ import raf.dsw.classycraft.app.gui.swing.view.DiagramView;
 import javax.swing.text.Position;
 import java.awt.*;
 import java.awt.geom.GeneralPath;
+import java.awt.geom.Line2D;
+import java.awt.geom.Rectangle2D;
 
 public class MultiSelectionPainter {
 
@@ -81,13 +83,25 @@ public class MultiSelectionPainter {
         g.draw(shape);
 
         for(ElementPainter ep:diagramView.getPainters()){
-            double x=((InterClass)ep.getDiagramElement()).getPostition().getX();
-            double y=((InterClass)ep.getDiagramElement()).getPostition().getY();
-            double classw=((InterClass)ep.getDiagramElement()).getSize().width;
-            double classh=((InterClass)ep.getDiagramElement()).getSize().height;
-            if(shape.contains(x,y)||shape.contains(x+classw,y)|| shape.contains(x,y+classh)|| shape.contains(x+classw,y+classh)){
-                ep.getDiagramElement().setSelected(true);
-                System.out.println("selektovani element je "+ep.getDiagramElement().getName());
+            if (ep instanceof InterClassPainter){
+                double x=((InterClass)ep.getDiagramElement()).getPostition().getX();
+                double y=((InterClass)ep.getDiagramElement()).getPostition().getY();
+                double classw=((InterClass)ep.getDiagramElement()).getSize().width;
+                double classh=((InterClass)ep.getDiagramElement()).getSize().height;
+                if(shape.contains(x,y)||shape.contains(x+classw,y)|| shape.contains(x,y+classh)|| shape.contains(x+classw,y+classh)){
+                    ep.getDiagramElement().setSelected(true);
+                    System.out.println("selektovani element je "+ep.getDiagramElement().getName());
+                }
+            }
+            if (ep instanceof ConnectionPainter){
+                Line2D line2D = new Line2D.Double(((ConnectionPainter) ep).getStartPoint().getX(),((ConnectionPainter) ep).getStartPoint().getY(),((ConnectionPainter) ep).getEndPoint().getX(),((ConnectionPainter) ep).getEndPoint().getY());
+                Line2D line1 = new Line2D.Float(start.x,start.y,start.x+dimension.getSize().width,start.y);
+                Line2D line2 = new Line2D.Float(start.x+dimension.getSize().width,start.y,start.x+dimension.getSize().width,start.y+dimension.getSize().height);
+                Line2D line3 = new Line2D.Float(start.x+dimension.getSize().width,start.y+dimension.getSize().height,start.x,start.y+dimension.getSize().height);
+                Line2D line4 = new Line2D.Float(start.x,start.y+dimension.getSize().height,start.x,start.y);
+                if (line2D.intersectsLine(line1)||line2D.intersectsLine(line2)||line2D.intersectsLine(line3)||line2D.intersectsLine(line4)){ep.getDiagramElement().setSelected(true);}
+                if(ep.getDiagramElement().isSelected()){
+                System.out.println("selektovani element je "+ep.getDiagramElement().getName());}
             }
 
 

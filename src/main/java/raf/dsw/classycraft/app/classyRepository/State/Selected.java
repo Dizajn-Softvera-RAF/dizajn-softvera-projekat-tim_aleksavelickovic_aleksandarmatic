@@ -1,5 +1,6 @@
 package raf.dsw.classycraft.app.classyRepository.State;
 
+import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.Connection;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.InterClass;
 import raf.dsw.classycraft.app.gui.swing.view.DiagramView;
 import raf.dsw.classycraft.app.gui.swing.view.painters.ConnectionPainter;
@@ -31,9 +32,11 @@ public class Selected implements State{
                     ep.getDiagramElement().setColor(Color.red);
             }
             else {
-                for(ElementPainter elementPainter:diagramView.getPainters()){
-                    if (elementPainter instanceof InterClassPainter || elementPainter instanceof ConnectionPainter)
+                for(ElementPainter elementPainter:diagramView.getPainters()) {
+                    if (elementPainter instanceof InterClassPainter || elementPainter instanceof ConnectionPainter) {
                         elementPainter.getDiagramElement().setSelected(false);
+                        elementPainter.getDiagramElement().setColor(Color.blue);
+                    }
                 }
             }
 
@@ -55,7 +58,7 @@ public class Selected implements State{
         for(ElementPainter ep: diagramView.getPainters()){
             if(ep.getDiagramElement() instanceof InterClass && ep.getDiagramElement().isSelected()==true ){
                 ep.getDiagramElement().setColor(Color.red);
-            }
+            }if(ep.getDiagramElement()instanceof Connection && ep.getDiagramElement().isSelected()==true)ep.getDiagramElement().setColor(Color.blue);
         }
        // diagramView.repaint();
     }

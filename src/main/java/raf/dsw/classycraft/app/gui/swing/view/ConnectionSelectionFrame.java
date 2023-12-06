@@ -12,7 +12,7 @@ public class ConnectionSelectionFrame extends JFrame {
         int screenHeight = screenSize.height;
         int screenWidth = screenSize.width;
         setSize(screenWidth/4, screenHeight/4);
-
+        setLocationRelativeTo(MainFrame.getInstance().getPackageView());
         setLayout(new FlowLayout(FlowLayout.CENTER, 20,20));
         JButton aButton = new JButton();
         JButton cButton = new JButton();
