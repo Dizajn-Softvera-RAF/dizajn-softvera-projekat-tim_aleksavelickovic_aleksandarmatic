@@ -3,6 +3,7 @@ package raf.dsw.classycraft.app.core;
 
 import raf.dsw.classycraft.app.classyRepository.ClassyRepository;
 import raf.dsw.classycraft.app.classyRepository.ClassyRepositoryImplementation;
+import raf.dsw.classycraft.app.classyRepository.diagramElementAbstractFactory.ClassyManufacturer;
 import raf.dsw.classycraft.app.core.Loggeri.Logger;
 import raf.dsw.classycraft.app.core.Loggeri.LoggerFactory;
 import raf.dsw.classycraft.app.core.MessageGenerator.Message;
@@ -14,11 +15,13 @@ public class ApplicationFramework {
     private static ApplicationFramework instance;
 
     private MessageGeneratorImplementation messageGeneratorImplementation;
+    private ClassyManufacturer classyManufacturer;
 
     private ApplicationFramework(){
         classyRepositoryImplementation=new ClassyRepositoryImplementation();
         messageGeneratorImplementation=new MessageGeneratorImplementation();
         LoggerFactory lf = new LoggerFactory();
+        classyManufacturer = new ClassyManufacturer();
         Logger loger1 = lf.creatLogger("FILE", messageGeneratorImplementation);
         Logger loger2 = lf.creatLogger("CONSOLE", messageGeneratorImplementation);
     }
@@ -59,6 +62,10 @@ public class ApplicationFramework {
             instance = new ApplicationFramework();
         }
         return instance;
+    }
+
+    public ClassyManufacturer getClassyManufacturer() {
+        return classyManufacturer;
     }
 
 }

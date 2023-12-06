@@ -1,0 +1,7 @@
+bugovi
+treba svuda se pozovu greske
+kad se obrise cvor mora da se popravi selekcija
+kad se obrise bilo koji node ime broj ostaje isti
+preimenovanje autora i projekta pre pokretanja tabbed pane
+kad se renejmuje projekat pre nego sto se uradi dvoklik ne trreba da se prikaze popravi se tako sto se negde pita da li je PackageView=null
+

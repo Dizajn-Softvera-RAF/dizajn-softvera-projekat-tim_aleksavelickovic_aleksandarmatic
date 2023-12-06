@@ -3,6 +3,7 @@ package raf.dsw.classycraft.app.gui.swing.tree;
 import raf.dsw.classycraft.app.classyRepository.Factory.NodeFactory;
 import raf.dsw.classycraft.app.classyRepository.composite.ClassyNode;
 import raf.dsw.classycraft.app.classyRepository.composite.ClassyNodeComposite;
+import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.DiagramElement;
 import raf.dsw.classycraft.app.classyRepository.implementation.Diagram;
 import raf.dsw.classycraft.app.classyRepository.implementation.Project;
 import raf.dsw.classycraft.app.classyRepository.implementation.Package;
@@ -23,12 +24,16 @@ import javax.swing.*;
 import javax.swing.tree.DefaultTreeModel;
 import java.awt.event.ActionEvent;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class ClassyTreeImplementation implements ClassyTree {
     private ClassyTreeView treeView;
     private DefaultTreeModel treeModel;
     private  int selection;
+    private DiagramElement diagramElement;
+    private int nesto;
+    private ArrayList<ClassyTreeItem> parentlist=new ArrayList<>();
 
 
     public int getSelection() {
@@ -37,6 +42,22 @@ public class ClassyTreeImplementation implements ClassyTree {
 
     public void setSelection(int selection) {
         this.selection = selection;
+    }
+
+    public int getNesto() {
+        return nesto;
+    }
+
+    public void setNesto(int nesto) {
+        this.nesto = nesto;
+    }
+
+    public DiagramElement getDiagramElement() {
+        return diagramElement;
+    }
+
+    public void setDiagramElement(DiagramElement diagramElement) {
+        this.diagramElement = diagramElement;
     }
 
     @Override
@@ -50,29 +71,38 @@ public class ClassyTreeImplementation implements ClassyTree {
     @Override
     public void addChild(ClassyTreeItem parent) {
 
-        if(parent==null){
 
-            ApplicationFramework.getInstance().getMessageGeneratorImplementation().generate("NODE_CANNOT_BE_ADDED", MessageType.ERROR, LocalDateTime.now());
+            if(parent==null){
 
-            return;
+                ApplicationFramework.getInstance().getMessageGeneratorImplementation().generate("NODE_CANNOT_BE_ADDED", MessageType.ERROR, LocalDateTime.now());
 
-        }
-        if (!(parent.getClassyNode() instanceof ClassyNodeComposite)) {
+                return;
 
-            return;
-        }
-        NodeFactory nf= Utils.getNodeFactory(parent.getClassyNode(),getSelection());
-        nf.getNode((ClassyNodeComposite) parent.getClassyNode());
-        ClassyNode child =nf.getNode((ClassyNodeComposite) parent.getClassyNode());
+            }
+            if (!(parent.getClassyNode() instanceof ClassyNodeComposite)) {
 
-        parent.add(new ClassyTreeItem(child));
+                return;
+            }
+            NodeFactory nf= Utils.getNodeFactory(parent.getClassyNode(),getSelection());
+            nf.getNode((ClassyNodeComposite) parent.getClassyNode());
+            ClassyNode child =nf.getNode((ClassyNodeComposite) parent.getClassyNode());
 
-        ((ClassyNodeComposite) parent.getClassyNode()).addChild(child);
+            //parent.add(new ClassyTreeItem(child)); ovo je zakomentarisano
+        ClassyTreeItem classyTreeItem=new ClassyTreeItem(child);
+        if(child instanceof Diagram)
+            parentlist.add(classyTreeItem);
+        //   parent.add(new ClassyTreeItem(child));
+        parent.add(classyTreeItem);
+
+            ((ClassyNodeComposite) parent.getClassyNode()).addChild(child);
 
 
 
 
-        ApplicationFramework.getInstance().getMessageGeneratorImplementation().generate("ADDED", MessageType.NOTIFICATION, LocalDateTime.now());
+
+
+        if(child instanceof Diagram)
+        ApplicationFramework.getInstance().getMessageGeneratorImplementation().generate("ADDED"+parent.getClassyNode().getName()+child, MessageType.NOTIFICATION, LocalDateTime.now());
 
         treeView.expandPath(treeView.getSelectionPath());
         SwingUtilities.updateComponentTreeUI(treeView);
@@ -81,6 +111,50 @@ public class ClassyTreeImplementation implements ClassyTree {
     @Override
     public ClassyTreeItem getSelectedNode() {
         return (ClassyTreeItem) treeView.getLastSelectedPathComponent();
+    }
+
+    @Override
+    public void addChild(ClassyTreeItem parent, ClassyTreeItem child) {
+     //   if(parent.getClassyNode() instanceof Diagram){
+
+         //   for(ClassyNode cn: ((ClassyNodeComposite)parent.getClassyNode()).getChildren()) {
+           //     if (!parent.isNodeChild(new ClassyTreeItem(cn)))
+             //       parent.add(new ClassyTreeItem(cn));
+            //}
+            if(parent.getClassyNode() instanceof Diagram)
+                parent.add(child);
+            else
+                ApplicationFramework.getInstance().getMessageGeneratorImplementation().generate("ERROR DIAGRAM MUST BE SELECTED TO ADD ELEMENTS TO TREE", MessageType.ERROR, LocalDateTime.now());
+           //ApplicationFramework.getInstance().getMessageGeneratorImplementation().generate("ADDED", MessageType.NOTIFICATION, LocalDateTime.now());
+
+            treeView.expandPath(treeView.getSelectionPath());
+            SwingUtilities.updateComponentTreeUI(treeView);
+
+        //}
+    }
+
+    @Override
+    public void addChild(ClassyTreeItem grandparent, ClassyTreeItem parent, ClassyTreeItem child) {
+        if(!grandparent.isNodeChild(parent))
+            System.out.println("nije mu roditelj");
+        System.out.println("broj dece "+grandparent.getChildCount());
+
+        parent.add(child);
+        //ApplicationFramework.getInstance().getMessageGeneratorImplementation().generate("ADDED", MessageType.NOTIFICATION, LocalDateTime.now());
+
+        treeView.expandPath(treeView.getSelectionPath());
+        SwingUtilities.updateComponentTreeUI(treeView);
+    }
+
+    @Override
+    public void addChild(ClassyTreeItem grandparent, ClassyNode parent, ClassyTreeItem child) {
+        for(ClassyTreeItem cti:parentlist) {
+            if (cti.getClassyNode().equals(parent))
+                cti.add(child);
+
+        }
+        treeView.expandPath(treeView.getSelectionPath());
+        SwingUtilities.updateComponentTreeUI(treeView);
     }
 
     @Override

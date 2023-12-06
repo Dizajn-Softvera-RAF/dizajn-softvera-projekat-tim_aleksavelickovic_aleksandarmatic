@@ -41,6 +41,7 @@ public class MainFrame extends JFrame implements Subscriber {
 
     private PackageView packageView;
     private TabbedPane tabbedPane;
+    private ConnectionSelectionFrame connectionSelectionFrame;
 
 
     private MainFrame(MessageGeneratorImplementation mgi){
@@ -78,6 +79,7 @@ public class MainFrame extends JFrame implements Subscriber {
 
         tabbedPane=new TabbedPane();
         packageView=new PackageView(infoLine,tabbedPane);
+        connectionSelectionFrame = new ConnectionSelectionFrame();
 
 
 
@@ -96,6 +98,8 @@ public class MainFrame extends JFrame implements Subscriber {
 
         MyToolBar toolBar = new MyToolBar();
         add(toolBar, BorderLayout.NORTH);
+        MyToolBar2 toolBar2 = new MyToolBar2();
+        add(toolBar2,BorderLayout.EAST);
 
         JTree projectExplorer = classyTreeImplementation.generateTree(ApplicationFramework.getInstance().getClassyRepositoryImplementation().getProjectExplorer());
         MyTreeMouseListner myTreeMouseListner = new MyTreeMouseListner(projectExplorer);
@@ -143,6 +147,10 @@ public class MainFrame extends JFrame implements Subscriber {
 
     public MessageGeneratorImplementation getMgi() {
         return mgi;
+    }
+
+    public ConnectionSelectionFrame getConnectionSelectionFrame() {
+        return connectionSelectionFrame;
     }
 
     @Override

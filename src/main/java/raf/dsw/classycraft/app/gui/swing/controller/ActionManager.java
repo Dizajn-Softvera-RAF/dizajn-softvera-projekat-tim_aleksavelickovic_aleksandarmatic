@@ -15,6 +15,16 @@ public class ActionManager{
     private DiagramSelectedAction diagramSelectedAction;
     private AuthorNameAction authorNameAction;
     private AuthorNameConfrimationAction authorNameConfrimationAction;
+    private AddConnectionAction addConnectionAction;
+    private AddElementAction addElementAction;
+    private AddInterclassAction addInterclassAction;
+    private DeleteAction deleteAction;
+    private SelectedAction selectedAction;
+    private EditAction editAction;
+    private AgregationSelectionAction agregationSelectionAction;
+    private  CompositionSelectionAction compositionSelectionAction;
+    private DependencySelectionAction dependencySelectionAction;
+    private GeneralizationSelectionAction generalizationSelectionAction;
 
     public ActionManager() {
         initialiseActions();
@@ -86,6 +96,47 @@ public class ActionManager{
         this.authorNameConfrimationAction = authorNameConfrimationAction;
     }
 
+    public AddConnectionAction getAddConnectionAction() {
+        return addConnectionAction;
+    }
+
+    public AddElementAction getAddElementAction() {
+        return addElementAction;
+    }
+
+    public AddInterclassAction getAddInterclassAction() {
+        return addInterclassAction;
+    }
+
+    public DeleteAction getDeleteAction() {
+        return deleteAction;
+    }
+
+    public SelectedAction getSelectedAction() {
+        return selectedAction;
+    }
+
+    public EditAction getEditAction() {
+        return editAction;
+    }
+
+    public AgregationSelectionAction getAgregationSelectionAction() {
+        return agregationSelectionAction;
+    }
+
+    public CompositionSelectionAction getCompositionSelectionAction() {
+        return compositionSelectionAction;
+    }
+
+    public DependencySelectionAction getDependencySelectionAction() {
+        return dependencySelectionAction;
+    }
+
+    public GeneralizationSelectionAction getGeneralizationSelectionAction() {
+        return generalizationSelectionAction;
+    }
+
+
     private void initialiseActions(){
         exitAction=new ExitAction();
         newProjectAction=new NewProjectAction();
@@ -95,6 +146,16 @@ public class ActionManager{
         diagramSelectedAction=new DiagramSelectedAction();
         authorNameAction=new AuthorNameAction();
         authorNameConfrimationAction=new AuthorNameConfrimationAction();
+        addConnectionAction = new AddConnectionAction();
+        addElementAction = new AddElementAction();
+        addInterclassAction = new AddInterclassAction();
+        deleteAction = new DeleteAction();
+        selectedAction = new SelectedAction();
+        editAction = new EditAction();
+        agregationSelectionAction = new AgregationSelectionAction();
+        compositionSelectionAction = new CompositionSelectionAction();
+        dependencySelectionAction = new DependencySelectionAction();
+        generalizationSelectionAction = new GeneralizationSelectionAction();
     }
 
 

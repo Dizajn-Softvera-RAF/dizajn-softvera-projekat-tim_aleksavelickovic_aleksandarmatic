@@ -34,7 +34,7 @@ public class RemoveAction extends AbstractClassyAction{
         if (selected.getClassyNode() instanceof Package || selected.getClassyNode() instanceof Project)
             ApplicationFramework.getInstance().getMessageGeneratorImplementation().generate("CLEAR", MessageType.NOTIFICATION, LocalDateTime.now());
         else if (selected.getClassyNode() instanceof Diagram)
-            ApplicationFramework.getInstance().getMessageGeneratorImplementation().generate("DELETED_DIAGRAM", MessageType.NOTIFICATION, LocalDateTime.now());
+            ApplicationFramework.getInstance().getMessageGeneratorImplementation().generate("DELETED_DIAGRAM"+selected.getClassyNode().getParent().getName()+" "+selected.getClassyNode(), MessageType.NOTIFICATION, LocalDateTime.now());
 
 
     }
