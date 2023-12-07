@@ -22,7 +22,6 @@ public class Delete implements State{
             if (ep.getDiagramElement() instanceof Connection){
                 Line2D line2D = new Line2D.Double(((ConnectionPainter) ep).getStartPoint().getX(),((ConnectionPainter) ep).getStartPoint().getY(),((ConnectionPainter) ep).getEndPoint().getX(),((ConnectionPainter) ep).getEndPoint().getY());
                 if (prav.intersectsLine(line2D)){
-                    System.out.println("Detektuje ep");
                     diagramView.getPainters().remove(ep);
                     diagramView.getDiagram().removeChild(ep.getDiagramElement());
                 }

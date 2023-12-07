@@ -9,6 +9,8 @@ import raf.dsw.classycraft.app.gui.swing.view.painters.InterClassPainter;
 import raf.dsw.classycraft.app.gui.swing.view.painters.MultiSelectionPainter;
 
 import java.awt.*;
+import java.awt.geom.Line2D;
+import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
 public class Selected implements State{
@@ -36,7 +38,22 @@ public class Selected implements State{
     @Override
     public void misKlik(Point point, DiagramView diagramView) {
         int k=0;
+        Rectangle2D prav = new Rectangle2D.Double(point.getX()-5,point.getY()-5,10,10);
+        diagramView.drawRect(prav);
+        for (int i =0;i<diagramView.getPainters().size();i++) {
+            ElementPainter ep = diagramView.getPainters().get(i);
+            if (ep.getDiagramElement() instanceof Connection) {
+                Line2D line2D = new Line2D.Double(((ConnectionPainter) ep).getStartPoint().getX(), ((ConnectionPainter) ep).getStartPoint().getY(), ((ConnectionPainter) ep).getEndPoint().getX(), ((ConnectionPainter) ep).getEndPoint().getY());
+                if (prav.intersectsLine(line2D)) {
+                    k++;
+                    ep.getDiagramElement().setSelected(true);
+                    ep.getDiagramElement().setColor(Color.red);
+                    this.setSelected(true);
+                }
+            }
+        }
         if(selected==false) {
+
             for (ElementPainter ep : diagramView.getPainters()) {
                 if (ep.elementAt(ep.getDiagramElement(), point, diagramView)) {
                     System.out.println(ep.getDiagramElement().getName());
@@ -48,6 +65,8 @@ public class Selected implements State{
                     this.setSelected(true);
 
                 }
+
+
 
        /*     if(!ep.elementAt(ep.getDiagramElement(),point,diagramView)){
                 for(ElementPainter elementPainter:diagramView.getPainters()) {
@@ -131,7 +150,6 @@ public class Selected implements State{
             else{
                 if (ep.getDiagramElement() instanceof InterClass)ep.getDiagramElement().setColor(Color.blue);
                 else if (ep.getDiagramElement() instanceof Connection) {ep.getDiagramElement().setColor(Color.black);}
-
             }
         }
 
