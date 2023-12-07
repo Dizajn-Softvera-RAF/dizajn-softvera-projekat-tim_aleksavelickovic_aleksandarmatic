@@ -5,6 +5,7 @@ import raf.dsw.classycraft.app.classyRepository.implementation.Diagram;
 import raf.dsw.classycraft.app.classyRepository.implementation.Package;
 import raf.dsw.classycraft.app.classyRepository.implementation.Project;
 import raf.dsw.classycraft.app.core.observer.interCommunicationNotification.InterCommunicationNotification;
+import raf.dsw.classycraft.app.gui.swing.tree.model.ClassyTreeItem;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -70,8 +71,12 @@ public class TabbedPane extends JTabbedPane {
     }
 
     public void clear() {
-        for (DiagramView tabElement : diagrams)
+        for (DiagramView tabElement : diagrams){
+
             remove(tabElement);
+
+        }
+
         this.diagrams.clear();
     }
 

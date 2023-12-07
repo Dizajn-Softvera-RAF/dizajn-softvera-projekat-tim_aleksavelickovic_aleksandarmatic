@@ -168,22 +168,25 @@ public abstract class ConnectionPainter extends ElementPainter{
         if(diagramElement instanceof Agregation){
             g.drawLine(x1, y1,(int) xC, (int)yC);
             g.draw(shape);
+
         }
 
-        else if(diagramElement instanceof Composition){
+         if(diagramElement instanceof Composition){
             g.drawLine(x1, y1,(int) xC, (int)yC);
             g.setColor(Color.BLACK);
             g.fill(shape);
 
-            System.out.println("nije do tipa veze");
+
         }
-        else if(diagramElement instanceof Generalization){
+        if(diagramElement instanceof Generalization){
             g.drawLine(x1, y1,(int) xc, (int)yc);
             g.drawPolygon(xpoints,ypoints,3);
 
         }
-        else if(diagramElement instanceof Dependency){
+        if(diagramElement instanceof Dependency){
+            g.setStroke(new BasicStroke(1, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{9}, 0));
             g.drawLine(x1, y1,x2,y2);
+            g.setStroke(new BasicStroke());
             g.drawLine(x2,y2,(int)xm,(int)ym);//iz ova dva dependency
             g.drawLine(x2,y2,(int)xn,(int)yn);
 

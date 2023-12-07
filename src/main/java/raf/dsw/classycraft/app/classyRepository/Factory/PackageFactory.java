@@ -23,13 +23,13 @@ public class PackageFactory extends NodeFactory{
                 boolean exist = false;
 
                 for(ClassyNode classyNode : parent.getChildren())
-                    if (classyNode.getName().equals("Package (" + i + ")")) {
+                    if (classyNode.getName().equals("Package(" + i + ")")) {
 
                         exist = true;
                         break;
                     }
                 if(!exist)
-                    return new Package("Package (" + i + ")",parent);
+                    return new Package("Package(" + i + ")",parent);
             }
         }
         return new Package("Package",parent);

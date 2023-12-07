@@ -20,13 +20,13 @@ public class DiagramFactory extends NodeFactory{
                 boolean exist = false;
 
                 for(ClassyNode cn : parent.getChildren())
-                    if (cn.getName().equals("Diagram (" + i + ")")) {
+                    if (cn.getName().equals("Diagram(" + i + ")")) {
                         exist = true;
                         break;
                     }
 
                 if(!exist)
-                    return new Diagram("Diagram (" + i + ")",parent);
+                    return new Diagram("Diagram(" + i + ")",parent);
             }
         }
 

@@ -20,13 +20,13 @@ public class ProjectFactory extends NodeFactory{
                 boolean exist = false;
 
                 for(ClassyNode classyNode : parent.getChildren())
-                    if (classyNode.getName().equals("Project (" + i + ")")) {
+                    if (classyNode.getName().equals("Project(" + i + ")")) {
                         exist = true;
                         break;
                     }
 
                 if(!exist)
-                    return new Project("Project (" + i + ")", parent,"default Author", "/");
+                    return new Project("Project(" + i + ")", parent,"default Author", "/");
             }
         }
 

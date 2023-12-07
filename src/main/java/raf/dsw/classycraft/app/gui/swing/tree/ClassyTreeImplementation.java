@@ -102,8 +102,9 @@ public class ClassyTreeImplementation implements ClassyTree {
 
 
         if(child instanceof Diagram)
-        ApplicationFramework.getInstance().getMessageGeneratorImplementation().generate("ADDED"+parent.getClassyNode().getName()+child, MessageType.NOTIFICATION, LocalDateTime.now());
-
+            ApplicationFramework.getInstance().getMessageGeneratorImplementation().generate("ADDED"+parent.getClassyNode().getName()+" "+child.getName(), MessageType.NOTIFICATION, LocalDateTime.now());
+        if(child instanceof Package && parent.getClassyNode() instanceof Package)
+            ApplicationFramework.getInstance().getMessageGeneratorImplementation().generate("ADDED", MessageType.NOTIFICATION, LocalDateTime.now());
         treeView.expandPath(treeView.getSelectionPath());
         SwingUtilities.updateComponentTreeUI(treeView);
     }

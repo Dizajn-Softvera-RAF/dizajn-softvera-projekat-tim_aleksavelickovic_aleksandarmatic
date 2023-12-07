@@ -52,13 +52,14 @@ public class PackageView extends JPanel implements Subscriber {
         if(notification instanceof Message){
             if (((Message) notification).getType().equals(MessageType.NOTIFICATION)){
 
-              /*  if(tabbedPane.getCpackage() != null&&(((Message) notification).getText().toString().equals("ADDED")|| ((Message) notification).getText().toString().equals("DELETED_DIAGRAM"))){
-                   view(tabbedPane.getCpackage());
+              if(tabbedPane.getCpackage() != null&&(((Message) notification).getText().toString().equals("ADDED"))){
+                   //view(tabbedPane.getCpackage());
 
                 }
 
-               */
-                if(tabbedPane.getCpackage() != null&&(((Message) notification).getText().toString().contains("ADDED") &&tabbedPane.getCpackage().getName().equals(((Message) notification).getText().toString().substring(5)) )){
+
+                if(tabbedPane.getCpackage() != null&&(((Message) notification).getText().toString().contains("ADDED")&&((Message) notification).getText().toString().length()>5 &&tabbedPane.getCpackage().getName().equals(((Message) notification).getText().toString().substring(5,((Message) notification).getText().toString().indexOf(" "))) )){
+                    System.out.println("uso je packview if ");
                     tabbedPane.getDiagrams().add(new DiagramView((Diagram)(tabbedPane.getCpackage().getChildren().get(tabbedPane.getCpackage().getChildren().size()-1))));
                     tabbedPane.addTab(((Diagram)(tabbedPane.getCpackage().getChildren().get(tabbedPane.getCpackage().getChildren().size()-1))).getName(),tabbedPane.getDiagrams().get(tabbedPane.getDiagrams().size()-1));
 
