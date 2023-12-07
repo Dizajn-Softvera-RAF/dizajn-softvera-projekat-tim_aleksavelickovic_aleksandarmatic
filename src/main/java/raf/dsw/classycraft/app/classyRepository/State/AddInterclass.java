@@ -10,6 +10,7 @@ import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.dia
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.diagramelements.Enum;
 import raf.dsw.classycraft.app.classyRepository.implementation.Diagram;
 import raf.dsw.classycraft.app.core.ApplicationFramework;
+import raf.dsw.classycraft.app.core.MessageGenerator.MessageType;
 import raf.dsw.classycraft.app.gui.swing.tree.model.ClassyTreeItem;
 import raf.dsw.classycraft.app.gui.swing.view.DiagramView;
 import raf.dsw.classycraft.app.gui.swing.view.MainFrame;
@@ -17,6 +18,7 @@ import raf.dsw.classycraft.app.gui.swing.view.painters.ElementPainter;
 import raf.dsw.classycraft.app.gui.swing.view.painters.InterClassPainter;
 
 import java.awt.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class AddInterclass implements State{
@@ -24,9 +26,16 @@ public class AddInterclass implements State{
     private InterClass interClass;
     @Override
     public void misKlik(Point point, DiagramView diagramView) {
-        System.out.println("misKlik");
+        boolean exist=false;
 
-        System.out.println(diagramView.getDiagram().getName());
+        for (ElementPainter ep : diagramView.getPainters()) {
+            if (ep.elementAt(ep.getDiagramElement(), point, diagramView))
+                exist = true;
+        }
+        if(exist==false){
+            System.out.println("misKlik");
+
+            System.out.println(diagramView.getDiagram().getName());
       /* Class klasa = (Class) ApplicationFramework.getInstance().getClassyManufacturer().createInterClass("CLASS","klasa"+i,diagramView.getDiagram(),Color.BLUE, new BasicStroke(), AccessModifier.PRIVATE,point, new Dimension(150,100));
         i++;
         ClassContents cc=new Atribute("atribut",AccessModifier.PROTECTED);//gledaj sta ce da se desi
@@ -52,61 +61,67 @@ public class AddInterclass implements State{
 
        */
 
-       Interface klasa = (Interface) ApplicationFramework.getInstance().getClassyManufacturer().createInterClass("INTERFACE","INTERFACE"+i,diagramView.getDiagram(),Color.BLUE, new BasicStroke(), AccessModifier.PRIVATE,point, new Dimension(150,100));
-        i++;
-        Method cc=new Method("atribut",AccessModifier.PROTECTED);//gledaj sta ce da se desi
+            Interface klasa = (Interface) ApplicationFramework.getInstance().getClassyManufacturer().createInterClass("INTERFACE","INTERFACE"+i,diagramView.getDiagram(),Color.BLUE, new BasicStroke(), AccessModifier.PRIVATE,point, new Dimension(150,100));
+            i++;
+            Method cc=new Method("atribut",AccessModifier.PROTECTED);//gledaj sta ce da se desi
 
-        Method cc1=new Method("atribut1",AccessModifier.PROTECTED);
-        Method cc2=new Method("atribut2",AccessModifier.PROTECTED);
-        Method cc3=new Method("atribut3",AccessModifier.PROTECTED);
-        Method cc4=new Method("atribut4",AccessModifier.PROTECTED);
-        Method cc5=new Method("atribut5",AccessModifier.PROTECTED);
-        Method cc6=new Method("atribut6",AccessModifier.PROTECTED);
-        cc.setReturnType("int");
-        cc1.setReturnType("int");
-        cc2.setReturnType("int");
-        cc3.setReturnType("int");
-        cc4.setReturnType("int");
-        cc5.setReturnType("int");
-        cc6.setReturnType("int");
-        klasa.addMethods(cc);
-        klasa.addMethods(cc1);
-        klasa.addMethods(cc2);
-        klasa.addMethods(cc3);
-        klasa.addMethods(cc4);
-        klasa.addMethods(cc5);
-        klasa.addMethods(cc6);
-
-
+            Method cc1=new Method("atribut1",AccessModifier.PROTECTED);
+            Method cc2=new Method("atribut2",AccessModifier.PROTECTED);
+            Method cc3=new Method("atribut3",AccessModifier.PROTECTED);
+            Method cc4=new Method("atribut4",AccessModifier.PROTECTED);
+            Method cc5=new Method("atribut5",AccessModifier.PROTECTED);
+            Method cc6=new Method("atribut6",AccessModifier.PROTECTED);
+            cc.setReturnType("int");
+            cc1.setReturnType("int");
+            cc2.setReturnType("int");
+            cc3.setReturnType("int");
+            cc4.setReturnType("int");
+            cc5.setReturnType("int");
+            cc6.setReturnType("int");
+            klasa.addMethods(cc);
+            klasa.addMethods(cc1);
+            klasa.addMethods(cc2);
+            klasa.addMethods(cc3);
+            klasa.addMethods(cc4);
+            klasa.addMethods(cc5);
+            klasa.addMethods(cc6);
 
 
 
 
-        InterClassPainter icp = new InterClassPainter(klasa);
-        diagramView.getDiagram().addChild(klasa);
-        this.setInterClass(klasa);
-        //ClassyTreeItem selected = (ClassyTreeItem) MainFrame.getInstance().getClassyTreeImplementation().getSelectedNode();
 
-        System.out.println(klasa.getName());
 
-        //icp.setDiagramElement(klasa);
-        if(icp.getDiagramElement()==null)
-            System.out.println("null je na pocetku");
-        diagramView.getPainters().add(icp);
-        ClassyTreeItem parent=new ClassyTreeItem(diagramView.getDiagram());
-        ClassyTreeItem child=new ClassyTreeItem(klasa);
+            InterClassPainter icp = new InterClassPainter(klasa);
+            diagramView.getDiagram().addChild(klasa);
+            this.setInterClass(klasa);
+            //ClassyTreeItem selected = (ClassyTreeItem) MainFrame.getInstance().getClassyTreeImplementation().getSelectedNode();
+
+            System.out.println(klasa.getName());
+
+            //icp.setDiagramElement(klasa);
+            if(icp.getDiagramElement()==null)
+                System.out.println("null je na pocetku");
+            diagramView.getPainters().add(icp);
+            ClassyTreeItem parent=new ClassyTreeItem(diagramView.getDiagram());
+            ClassyTreeItem child=new ClassyTreeItem(klasa);
 //ovaj je bio pre i radi        MainFrame.getInstance().getClassyTreeImplementation().addChild(MainFrame.getInstance().getClassyTreeImplementation().getSelectedNode(),child); //3 sva tri treba ju da se odkomentarisu kad krenem novo
-      //  MainFrame.getInstance().getClassyTreeImplementation().addChild(MainFrame.getInstance().getClassyTreeImplementation().getSelectedNode(),parent,child);
-        //MainFrame.getInstance().getClassyTreeImplementation().addChild(null,diagramView.getDiagram(),child);
-        MainFrame.getInstance().getClassyTreeImplementation().addChild(diagramView.getDiagram().getParent(),diagramView.getDiagram(),child);
-        for(ElementPainter ep:diagramView.getPainters()) {
-            if (ep instanceof InterClassPainter){
-                System.out.println(ep.getDiagramElement().getName());
-                if(ep.elementAt(ep.getDiagramElement(),point,diagramView))
-                    System.out.println("jeste tu");
+            //  MainFrame.getInstance().getClassyTreeImplementation().addChild(MainFrame.getInstance().getClassyTreeImplementation().getSelectedNode(),parent,child);
+            //MainFrame.getInstance().getClassyTreeImplementation().addChild(null,diagramView.getDiagram(),child);
+            MainFrame.getInstance().getClassyTreeImplementation().addChild(diagramView.getDiagram().getParent(),diagramView.getDiagram(),child);
+            for(ElementPainter ep:diagramView.getPainters()) {
+                if (ep instanceof InterClassPainter){
+                    System.out.println(ep.getDiagramElement().getName());
+                    if(ep.elementAt(ep.getDiagramElement(),point,diagramView))
+                        System.out.println("jeste tu");
+                }
+
             }
 
         }
+        else
+            ApplicationFramework.getInstance().getMessageGeneratorImplementation().generate("Class must be added outside of class", MessageType.ERROR, LocalDateTime.now());
+
+
 
 
 

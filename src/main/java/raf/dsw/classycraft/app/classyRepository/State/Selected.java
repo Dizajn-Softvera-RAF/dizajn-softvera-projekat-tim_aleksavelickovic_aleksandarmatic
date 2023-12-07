@@ -49,6 +49,7 @@ public class Selected implements State{
                     ep.getDiagramElement().setSelected(true);
                     ep.getDiagramElement().setColor(Color.red);
                     this.setSelected(true);
+
                 }
             }
         }
