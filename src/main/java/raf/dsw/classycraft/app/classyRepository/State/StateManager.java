@@ -9,6 +9,8 @@ public class StateManager {
     private Delete delete;
     private Selected selected;
     private Edit edit;
+
+    private Clone clone;
     public StateManager(){
         init();
     }
@@ -38,6 +40,8 @@ public class StateManager {
     }
     public void setEdit(){currState = edit;}
 
+    public void setClone(){currState=clone;}
+
     private void init() {
         addInterclass = new AddInterclass();
         addConnection = new AddConnection();
@@ -45,6 +49,7 @@ public class StateManager {
         delete = new Delete();
         selected = new Selected();
         edit = new Edit();
+        clone=new Clone();
         currState =  addInterclass;
     }
 }

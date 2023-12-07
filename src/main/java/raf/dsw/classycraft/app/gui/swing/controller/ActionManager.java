@@ -26,6 +26,8 @@ public class ActionManager{
     private DependencySelectionAction dependencySelectionAction;
     private GeneralizationSelectionAction generalizationSelectionAction;
 
+    private CloneAction cloneAction;
+
     public ActionManager() {
         initialiseActions();
     }
@@ -136,6 +138,9 @@ public class ActionManager{
         return generalizationSelectionAction;
     }
 
+    public CloneAction getCloneAction() {
+        return cloneAction;
+    }
 
     private void initialiseActions(){
         exitAction=new ExitAction();
@@ -156,6 +161,7 @@ public class ActionManager{
         compositionSelectionAction = new CompositionSelectionAction();
         dependencySelectionAction = new DependencySelectionAction();
         generalizationSelectionAction = new GeneralizationSelectionAction();
+        cloneAction=new CloneAction();
     }
 
 

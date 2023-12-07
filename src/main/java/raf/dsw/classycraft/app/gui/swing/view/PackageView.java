@@ -123,6 +123,9 @@ public class PackageView extends JPanel implements Subscriber {
         System.out.println("State Delete");}
     public void startSelected(){stateManager.setSelected();
         System.out.println("State Selected");}
+    public void startClone(){stateManager.setClone();
+        System.out.println("State clone");
+    }
     public void startEdit(){stateManager.setEdit();
         System.out.println("State Edit");}
     public void misKlik(Point point, DiagramView dw){
