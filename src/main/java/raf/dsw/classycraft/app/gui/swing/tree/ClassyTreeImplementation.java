@@ -34,6 +34,7 @@ public class ClassyTreeImplementation implements ClassyTree {
     private DiagramElement diagramElement;
     private int nesto;
     private ArrayList<ClassyTreeItem> parentlist=new ArrayList<>();
+    private ArrayList<ClassyTreeItem>childlist=new ArrayList<>();
 
 
     public int getSelection() {
@@ -150,8 +151,11 @@ public class ClassyTreeImplementation implements ClassyTree {
     @Override
     public void addChild(ClassyTreeItem grandparent, ClassyNode parent, ClassyTreeItem child) {
         for(ClassyTreeItem cti:parentlist) {
-            if (cti.getClassyNode().equals(parent))
+            if (cti.getClassyNode().equals(parent)){
                 cti.add(child);
+                childlist.add(child);
+            }
+
 
         }
         treeView.expandPath(treeView.getSelectionPath());
@@ -160,12 +164,19 @@ public class ClassyTreeImplementation implements ClassyTree {
     @Override
     public void addChild(ClassyNode grandparent, ClassyNode parent, ClassyTreeItem child) {
         for(ClassyTreeItem cti:parentlist) {
-            if (cti.getClassyNode().equals(parent)&& ((ClassyTreeItem)cti.getParent()).getClassyNode().equals(grandparent))
+            if (cti.getClassyNode().equals(parent)&& ((ClassyTreeItem)cti.getParent()).getClassyNode().equals(grandparent)){
+                childlist.add(child);
                 cti.add(child);
+            }
+
+
 
         }
+
         treeView.expandPath(treeView.getSelectionPath());
         SwingUtilities.updateComponentTreeUI(treeView);
+
+
     }
 
     @Override
@@ -182,5 +193,19 @@ public class ClassyTreeImplementation implements ClassyTree {
         node.removeFromParent();
         SwingUtilities.updateComponentTreeUI(treeView);
 
+    }
+
+    @Override
+    public void remove(ClassyNode node) {
+        for(ClassyTreeItem cti:childlist) {
+            if (cti.getClassyNode().equals(node)){
+                cti.removeFromParent();
+                System.out.println("if radi");
+            }
+
+
+
+        }
+        SwingUtilities.updateComponentTreeUI(treeView);
     }
 }
