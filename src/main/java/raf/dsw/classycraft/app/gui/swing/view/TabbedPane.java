@@ -17,6 +17,8 @@ public class TabbedPane extends JTabbedPane {
 
     private final List<DiagramView> diagrams = new ArrayList<>();
 
+    private final List<DiagramView> diagramstoSave = new ArrayList<>();
+
     public TabbedPane() {
 
         super(JTabbedPane.TOP, JTabbedPane.SCROLL_TAB_LAYOUT);
@@ -63,8 +65,20 @@ public class TabbedPane extends JTabbedPane {
 
         */
         for (ClassyNode cn : this.cpackage.getChildren()) {
+            boolean exist=false;
             if (cn instanceof Diagram) {
-                this.diagrams.add(new DiagramView((Diagram) cn));
+                for(DiagramView dv : diagramstoSave){
+                    if(dv.getDiagram().equals(cn)&&dv.getDiagram().getParent().equals(cn.getParent()))
+                        exist=true;
+                }
+                if(exist){
+                    for(DiagramView dv : diagramstoSave){
+                        if(dv.getDiagram().equals(cn)&&dv.getDiagram().getParent().equals(cn.getParent()))
+                            this.diagrams.add(dv);
+                    }
+                }
+                else
+                    this.diagrams.add(new DiagramView((Diagram) cn));
             ((Diagram) cn).notifySubscribers(new InterCommunicationNotification("DIAGRAMVIEW_ADDED"));
             }
         }
@@ -72,7 +86,7 @@ public class TabbedPane extends JTabbedPane {
 
     public void clear() {
         for (DiagramView tabElement : diagrams){
-
+            diagramstoSave.add(tabElement);
             remove(tabElement);
 
         }

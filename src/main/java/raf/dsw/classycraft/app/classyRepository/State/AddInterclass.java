@@ -97,7 +97,8 @@ public class AddInterclass implements State{
         ClassyTreeItem child=new ClassyTreeItem(klasa);
 //ovaj je bio pre i radi        MainFrame.getInstance().getClassyTreeImplementation().addChild(MainFrame.getInstance().getClassyTreeImplementation().getSelectedNode(),child); //3 sva tri treba ju da se odkomentarisu kad krenem novo
       //  MainFrame.getInstance().getClassyTreeImplementation().addChild(MainFrame.getInstance().getClassyTreeImplementation().getSelectedNode(),parent,child);
-        MainFrame.getInstance().getClassyTreeImplementation().addChild(null,diagramView.getDiagram(),child);
+        //MainFrame.getInstance().getClassyTreeImplementation().addChild(null,diagramView.getDiagram(),child);
+        MainFrame.getInstance().getClassyTreeImplementation().addChild(diagramView.getDiagram().getParent(),diagramView.getDiagram(),child);
         for(ElementPainter ep:diagramView.getPainters()) {
             if (ep instanceof InterClassPainter){
                 System.out.println(ep.getDiagramElement().getName());

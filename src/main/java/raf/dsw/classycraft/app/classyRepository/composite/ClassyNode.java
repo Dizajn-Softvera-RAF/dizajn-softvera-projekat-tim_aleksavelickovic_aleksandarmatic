@@ -28,13 +28,6 @@ public abstract class ClassyNode {
     public void setParent(ClassyNode parent) {
         this.parent = parent;
     }
-    @Override
-    public boolean equals(Object obj) {
-        if (obj != null && obj instanceof ClassyNode) {
-            ClassyNode otherObj = (ClassyNode) obj;
-            return this.getName().equals(otherObj.getName());
-        }
-        return false;
-    }
+
 
 }

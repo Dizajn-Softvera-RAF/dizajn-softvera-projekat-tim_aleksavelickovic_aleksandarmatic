@@ -32,12 +32,16 @@ public class Package extends ClassyNodeComposite implements Pubsliher {
                 Package pack = (Package) child;
                 if (!this.getChildren().contains(pack)) {
                     this.getChildren().add(pack);
+                    notifySubscribers(new InterCommunicationNotification("ADDED_PACKAGE",pack));
                 }
             }
             if (child instanceof Diagram) {
                 Diagram diagram = (Diagram) child;
                 if (!this.getChildren().contains(diagram)) {
                     this.getChildren().add(diagram);
+                    if(!(diagram.getParent()==null))
+                        System.out.println("nije null parent");
+                    notifySubscribers(new InterCommunicationNotification("ADDED_DIAGRAM",diagram,diagram.getParent()));
                 }
             }
         }

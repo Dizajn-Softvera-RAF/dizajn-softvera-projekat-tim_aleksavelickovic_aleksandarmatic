@@ -157,6 +157,16 @@ public class ClassyTreeImplementation implements ClassyTree {
         treeView.expandPath(treeView.getSelectionPath());
         SwingUtilities.updateComponentTreeUI(treeView);
     }
+    @Override
+    public void addChild(ClassyNode grandparent, ClassyNode parent, ClassyTreeItem child) {
+        for(ClassyTreeItem cti:parentlist) {
+            if (cti.getClassyNode().equals(parent)&& ((ClassyTreeItem)cti.getParent()).getClassyNode().equals(grandparent))
+                cti.add(child);
+
+        }
+        treeView.expandPath(treeView.getSelectionPath());
+        SwingUtilities.updateComponentTreeUI(treeView);
+    }
 
     @Override
     public void remove(ClassyTreeItem node) {

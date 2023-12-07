@@ -33,7 +33,7 @@ public class PackageView extends JPanel implements Subscriber {
 
         this.tabbedPane.loadcpackage(opackage);
         this.infoLine.populate(tabbedPane.getproject().getName(),tabbedPane.getproject().getAuthorName());
-
+        repaint();
     }
     public void clear(){
         this.infoLine.clear();
@@ -58,18 +58,23 @@ public class PackageView extends JPanel implements Subscriber {
                 }
 
 
-                if(tabbedPane.getCpackage() != null&&(((Message) notification).getText().toString().contains("ADDED")&&((Message) notification).getText().toString().length()>5 &&tabbedPane.getCpackage().getName().equals(((Message) notification).getText().toString().substring(5,((Message) notification).getText().toString().indexOf(" "))) )){
+              /*  if(tabbedPane.getCpackage() != null&&(((Message) notification).getText().toString().contains("ADDED")&&((Message) notification).getText().toString().length()>5 &&tabbedPane.getCpackage().getName().equals(((Message) notification).getText().toString().substring(5,((Message) notification).getText().toString().indexOf(" "))) )){
                     System.out.println("uso je packview if ");
+
                     tabbedPane.getDiagrams().add(new DiagramView((Diagram)(tabbedPane.getCpackage().getChildren().get(tabbedPane.getCpackage().getChildren().size()-1))));
                     tabbedPane.addTab(((Diagram)(tabbedPane.getCpackage().getChildren().get(tabbedPane.getCpackage().getChildren().size()-1))).getName(),tabbedPane.getDiagrams().get(tabbedPane.getDiagrams().size()-1));
 
                 }
+
+               */
                 if(tabbedPane.getCpackage() != null&&((Message) notification).getText().toString().contains("DELETED_DIAGRAM")&&tabbedPane.getCpackage().getName().equals(((Message) notification).getText().toString().substring(15,((Message) notification).getText().toString().indexOf(" ") ))){
                     for(DiagramView dv:tabbedPane.getDiagrams()) {
                         if (((Message) notification).getText().toString().substring(((Message) notification).getText().toString().indexOf(" ")).equals(dv.getName()))
                             tabbedPane.getDiagrams().remove(dv);
                     }
                 }
+
+
                 else if(((Message) notification).getText().toString().equals("CLEAR"))
                    clear();
                 }
@@ -85,6 +90,13 @@ public class PackageView extends JPanel implements Subscriber {
                 }
                 if ( ((InterCommunicationNotification) notification).getMessage().toString().equals("RENAME_PROJECT"))
                     infoLine.setupProjectName(((InterCommunicationNotification) notification).getContent().toString());
+
+                if(((InterCommunicationNotification) notification).getMessage().toString().equals("ADDED_DIAGRAM")){
+                    if(tabbedPane.getCpackage() != null&&tabbedPane.getCpackage().equals(((InterCommunicationNotification) notification).getParent())) {
+                        tabbedPane.getDiagrams().add(new DiagramView(((Diagram) ((InterCommunicationNotification) notification).getClassyNode())));
+                        tabbedPane.addTab(((InterCommunicationNotification) notification).getClassyNode().getName(), tabbedPane.getDiagrams().get(tabbedPane.getDiagrams().size() - 1));
+                    }
+                 }
             }
 
     }
