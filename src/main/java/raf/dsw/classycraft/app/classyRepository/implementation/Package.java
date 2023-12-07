@@ -50,6 +50,14 @@ public class Package extends ClassyNodeComposite implements Pubsliher {
             ApplicationFramework.getInstance().getMessageGeneratorImplementation().generate("Node_CANNOT_BE_ADDED", MessageType.ERROR, LocalDateTime.now());
         }
     }
+
+    @Override
+    public void removeChild(ClassyNode child) {
+        super.removeChild(child);
+        if(child instanceof Diagram)
+            notifySubscribers(new InterCommunicationNotification("DELETED_DIAGRAM",child));
+    }
+
     public ClassyNodeComposite findProject() {
         ClassyNodeComposite project = (ClassyNodeComposite) this.getParent();
         while (!(project instanceof Project)) {

@@ -84,6 +84,10 @@ public class TabbedPane extends JTabbedPane {
         }
     }
 
+    public List<DiagramView> getDiagramstoSave() {
+        return diagramstoSave;
+    }
+
     public void clear() {
         for (DiagramView tabElement : diagrams){
             diagramstoSave.add(tabElement);
