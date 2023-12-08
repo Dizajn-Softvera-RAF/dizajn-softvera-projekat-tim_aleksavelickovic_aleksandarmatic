@@ -23,6 +23,7 @@ public class DeleteAction extends AbstractClassyAction{
             if (ep.getDiagramElement().isSelected()){
                 MainFrame.getInstance().getPackageView().getDiagramView().getPainters().remove(ep);
                 MainFrame.getInstance().getPackageView().getDiagramView().getDiagram().removeChild(ep.getDiagramElement());
+                i--;
             }
         }
     }

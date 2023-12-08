@@ -134,6 +134,10 @@ public class PackageView extends JPanel implements Subscriber {
     }
     public void startEdit(){stateManager.setEdit();
         System.out.println("State Edit");}
+    public void startMove(){
+        stateManager.setMove();
+        System.out.println("State Move");
+    }
     public void misKlik(Point point, DiagramView dw){
         stateManager.getCurrState().misKlik(point,dw);
         this.diagramView = dw;

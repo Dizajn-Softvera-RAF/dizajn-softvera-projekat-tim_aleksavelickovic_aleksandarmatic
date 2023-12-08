@@ -173,8 +173,13 @@ public abstract class ConnectionPainter extends ElementPainter{
 
          if(diagramElement instanceof Composition){
             g.drawLine(x1, y1,(int) xC, (int)yC);
-            g.setColor(Color.BLACK);
+
+            g.setPaint(Color.black);
             g.fill(shape);
+            g.setPaint(Color.black);
+            g.draw(shape);
+
+
 
 
         }

@@ -7,17 +7,17 @@ import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.Int
 import java.awt.*;
 
 public class Generalization extends Connection {
-    String type="";
+    String nameOf="";
 
     public Generalization(String name, ClassyNode parent, Color color, Stroke stroke, InterClass from, InterClass to) {
         super(name, parent, color, stroke, from, to);
     }
 
-    public String getType() {
-        return type;
+    public String getNameOf() {
+        return nameOf;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setNameOf(String nameOf) {
+        this.nameOf = nameOf;
     }
 }

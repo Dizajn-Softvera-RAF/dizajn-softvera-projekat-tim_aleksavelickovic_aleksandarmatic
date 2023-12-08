@@ -35,15 +35,16 @@ public class EditFrame implements ActionListener{
     private JTextField nameOfVariable;
     private JTextField cardinality;
     private JTextField type;
+    private JTextField nameOf;
     public EditFrame(DiagramElement diagramElement){if(diagramElement instanceof InterClass)init(diagramElement);
     else if (diagramElement instanceof Agregation) {
         init1(diagramElement);
     } else if (diagramElement instanceof Composition) {
         init2(diagramElement);
     } else if (diagramElement instanceof Generalization) {
-        init3(diagramElement);
-    } else if (diagramElement instanceof Dependency) {
         init4(diagramElement);
+    } else if (diagramElement instanceof Dependency) {
+        init3(diagramElement);
     }
     }
 
@@ -262,7 +263,7 @@ public class EditFrame implements ActionListener{
     }
 
     private void init3(DiagramElement diagramElement){JFrame editFrame = new JFrame();
-        Generalization veza = (Generalization)diagramElement;
+        Dependency veza = (Dependency)diagramElement;
         editFrame.setLayout(new BorderLayout());
         editFrame.setSize(500,500);
         editFrame.setTitle("Edit");
@@ -285,11 +286,26 @@ public class EditFrame implements ActionListener{
         editFrame.setVisible(true);
         }
     private void init4(DiagramElement diagramElement){JFrame editFrame = new JFrame();
+        Generalization veza = (Generalization)diagramElement;
         editFrame.setLayout(new BorderLayout());
         editFrame.setSize(500,500);
         editFrame.setTitle("Edit");
         editFrame.setLocationRelativeTo(null);
         editFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        JPanel centar = new JPanel(new FlowLayout());
+        centar.add(new JLabel("Name of:"));
+        nameOf = new JTextField();
+        nameOf.setPreferredSize(new Dimension(200,20));
+        nameOf.setEditable(true);
+        nameOf.setText(veza.getNameOf());
+        centar.add(nameOf);
+        JButton confirm = new JButton("Confirm");
+        confirm.addActionListener(this);
+        confirm.setActionCommand("Confirm");
+
+        editFrame.add(centar,BorderLayout.CENTER);
+        editFrame.add(confirm,BorderLayout.SOUTH);
+        editFrame.setVisible(true);
         }
 
 
@@ -662,6 +678,11 @@ public class EditFrame implements ActionListener{
         }else if (diagramElement instanceof Generalization) {
             if (comand.equals("Confirm")){
                 Generalization veza = (Generalization) diagramElement;
+                veza.setNameOf(nameOf.getText());
+            }
+        }else if (diagramElement instanceof Dependency) {
+            if (comand.equals("Confirm")){
+                Dependency veza = (Dependency) diagramElement;
                 veza.setType(type.getText());
             }
         }

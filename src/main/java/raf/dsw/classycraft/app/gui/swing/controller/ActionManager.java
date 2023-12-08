@@ -30,8 +30,8 @@ public class ActionManager{
     private GeneralizationSelectionAction generalizationSelectionAction;
     private ZoomInAction zoomInAction;
     private ZoomOutAction zoomOutAction;
-
     private CloneAction cloneAction;
+    private MoveAction moveAction;
 
     public ActionManager() {
         initialiseActions();
@@ -149,6 +149,10 @@ public class ActionManager{
     public ZoomInAction getZoomInAction(){return zoomInAction;}
     public ZoomOutAction getZoomOutAction(){return zoomOutAction;}
 
+    public MoveAction getMoveAction() {
+        return moveAction;
+    }
+
     private void initialiseActions(){
         exitAction=new ExitAction();
         newProjectAction=new NewProjectAction();
@@ -171,6 +175,7 @@ public class ActionManager{
         cloneAction=new CloneAction();
         zoomInAction=new ZoomInAction();
         zoomOutAction=new ZoomOutAction();
+        moveAction = new MoveAction();
     }
 
 
