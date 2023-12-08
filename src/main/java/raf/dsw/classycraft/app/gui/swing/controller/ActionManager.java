@@ -2,6 +2,9 @@ package raf.dsw.classycraft.app.gui.swing.controller;
 
 
 
+import raf.dsw.classycraft.app.classyRepository.State.ZoomIn;
+import raf.dsw.classycraft.app.classyRepository.State.ZoomOut;
+
 import javax.swing.*;
 import java.net.URL;
 
@@ -25,6 +28,8 @@ public class ActionManager{
     private  CompositionSelectionAction compositionSelectionAction;
     private DependencySelectionAction dependencySelectionAction;
     private GeneralizationSelectionAction generalizationSelectionAction;
+    private ZoomInAction zoomInAction;
+    private ZoomOutAction zoomOutAction;
 
     private CloneAction cloneAction;
 
@@ -141,6 +146,8 @@ public class ActionManager{
     public CloneAction getCloneAction() {
         return cloneAction;
     }
+    public ZoomInAction getZoomInAction(){return zoomInAction;}
+    public ZoomOutAction getZoomOutAction(){return zoomOutAction;}
 
     private void initialiseActions(){
         exitAction=new ExitAction();
@@ -162,6 +169,8 @@ public class ActionManager{
         dependencySelectionAction = new DependencySelectionAction();
         generalizationSelectionAction = new GeneralizationSelectionAction();
         cloneAction=new CloneAction();
+        zoomInAction=new ZoomInAction();
+        zoomOutAction=new ZoomOutAction();
     }
 
 

@@ -14,6 +14,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.ImageObserver;
 import java.text.AttributedCharacterIterator;
@@ -28,6 +29,8 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
     private Point endPoint;
     private Point initPoint;
     private ArrayList<Point>points=new ArrayList<>();
+
+    private double zoom=1;
 
 
 
@@ -44,7 +47,10 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
         super.paintComponent(g);
 
         Graphics2D g2 = (Graphics2D) g;
-
+        AffineTransform at=new AffineTransform();
+        System.out.println("zoom je "+zoom);
+        at.scale(zoom,zoom);
+        g2.transform(at);
 
       //  g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.8f));
         // for()//treba da se prodje kroz sve paintere
@@ -177,6 +183,13 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
 
     }
 
+    public double getZoom() {
+        return zoom;
+    }
+
+    public void setZoom(double zoom) {
+        this.zoom = zoom;
+    }
 
     private class MouseController extends MouseAdapter{
         DiagramView dw = diagramView;

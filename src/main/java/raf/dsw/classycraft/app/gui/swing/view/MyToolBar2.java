@@ -14,6 +14,10 @@ public class MyToolBar2 extends JToolBar {
         add(MainFrame.getInstance().getActionManager().getSelectedAction());
         add(MainFrame.getInstance().getActionManager().getAddElementAction());
         add(MainFrame.getInstance().getActionManager().getCloneAction());
+        add(MainFrame.getInstance().getActionManager().getZoomInAction());
+        add(MainFrame.getInstance().getActionManager().getZoomOutAction());
+
+
 
 
 

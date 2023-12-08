@@ -126,6 +126,12 @@ public class PackageView extends JPanel implements Subscriber {
     public void startClone(){stateManager.setClone();
         System.out.println("State clone");
     }
+    public void startZoomIn(){stateManager.setZoomIn();
+        System.out.println("State zoomIn");
+    }
+    public void startZoomOut(){stateManager.setZoomOut();
+        System.out.println("State zoomOut");
+    }
     public void startEdit(){stateManager.setEdit();
         System.out.println("State Edit");}
     public void misKlik(Point point, DiagramView dw){
