@@ -79,6 +79,7 @@ public class TabbedPane extends JTabbedPane {
                 }
                 else
                     this.diagrams.add(new DiagramView((Diagram) cn));
+                    //  this.diagrams.add(((DiagramView) (new JScrollPane((new DiagramView((Diagram) cn)),22,22))));
             ((Diagram) cn).notifySubscribers(new InterCommunicationNotification("DIAGRAMVIEW_ADDED"));
             }
         }

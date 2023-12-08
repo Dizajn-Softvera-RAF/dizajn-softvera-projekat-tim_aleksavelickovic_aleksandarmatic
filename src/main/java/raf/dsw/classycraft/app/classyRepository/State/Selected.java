@@ -39,7 +39,7 @@ public class Selected implements State{
     public void misKlik(Point point, DiagramView diagramView) {
         int k=0;
         Rectangle2D prav = new Rectangle2D.Double(point.getX()-5,point.getY()-5,10,10);
-        diagramView.drawRect(prav);
+       // diagramView.drawRect(prav);
         for (int i =0;i<diagramView.getPainters().size();i++) {
             ElementPainter ep = diagramView.getPainters().get(i);
             if (ep.getDiagramElement() instanceof Connection) {
@@ -175,8 +175,10 @@ public class Selected implements State{
     @Override
     public void misPusten(Point initPoint, Point endPoint, DiagramView diagramView) {
         diagramView.getMultiSelectionPainters().removeAll(diagramView.getMultiSelectionPainters());
-
+        if(diagramView.getMultiSelectionPainters().isEmpty())
+            System.out.println("prazna lista");
         for(ElementPainter ep: diagramView.getPainters()){
+
             /*if(ep.getDiagramElement() instanceof InterClass && ep.getDiagramElement().isSelected()==true ){
                 ep.getDiagramElement().setColor(Color.red);
             }
@@ -253,6 +255,7 @@ public class Selected implements State{
 
     @Override
     public void misPovucen(Point currPoint, int i, DiagramView diagramView) {
+        System.out.println("uslo u drag");
         diagramView.removeMultiSelectionPainter();
         MultiSelectionPainter multiSelectionPainter=new MultiSelectionPainter(this.getInit(),currPoint,diagramView);
         diagramView.getMultiSelectionPainters().add(multiSelectionPainter);

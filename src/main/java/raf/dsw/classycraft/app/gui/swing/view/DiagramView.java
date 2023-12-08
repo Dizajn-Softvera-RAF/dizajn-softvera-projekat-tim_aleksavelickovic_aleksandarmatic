@@ -36,6 +36,17 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
     private double zoom=1;
     private double prevzoom=1;
 
+    private double xDiff;
+    private double yDiff;
+    private double startzoom;
+
+    public double getStartzoom() {
+        return startzoom;
+    }
+
+    public void setStartzoom(double startzoom) {
+        this.startzoom = startzoom;
+    }
 
 
     private ArrayList<ElementPainter> painters=new ArrayList<>();
@@ -65,6 +76,8 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
       //  at.translate(-r.getMinX(),-r.getMinY());//pise da se dodaju unazad
        // at.scale(ScaleX,ScaleY);
        // at.translate(xOffset,yOffset);
+        if(xDiff !=0.0)
+            at.translate(xOffset + xDiff, yOffset + yDiff);
         at.scale(zoom,zoom);
         prevzoom=zoom;
 
@@ -97,7 +110,24 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
             mp.draw(g2);
         }
     }
-    public void drawRect( Rectangle2D rectangle2D){
+
+    public double getxDiff() {
+        return xDiff;
+    }
+
+    public void setxDiff(double xDiff) {
+        this.xDiff = xDiff;
+    }
+
+    public double getyDiff() {
+        return yDiff;
+    }
+
+    public void setyDiff(double yDiff) {
+        this.yDiff = yDiff;
+    }
+
+    public void drawRect(Rectangle2D rectangle2D){
         Graphics2D g2 = (Graphics2D) this.getGraphics();
         g2.drawRect((int) rectangle2D.getX(), (int) rectangle2D.getY(), (int) rectangle2D.getWidth(), (int) rectangle2D.getHeight());
     }
@@ -121,10 +151,12 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
         points.set(0,initPoint);
         if(point.equals(initPoint))
             System.out.println("pocetak je isti");
+
        // MainFrame.getInstance().getPackageView().misPrevucen(points,diagramView);
        // MainFrame.getInstance().getPackageView().misPovucen(point,diagramView);
         MainFrame.getInstance().getPackageView().misPovucen(zoom,i,diagramView);
         //i++;
+
 
 
     }

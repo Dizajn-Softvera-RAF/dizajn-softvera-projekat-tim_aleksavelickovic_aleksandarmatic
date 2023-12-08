@@ -6,6 +6,16 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class Move implements State{
+    Point start;
+
+    public Point getStart() {
+        return start;
+    }
+
+    public void setStart(Point start) {
+        this.start = start;
+    }
+
     @Override
     public void misKlik(Point point, DiagramView diagramView) {
 
@@ -18,7 +28,7 @@ public class Move implements State{
 
     @Override
     public void misPusten(Point initPoint, Point endPoint, DiagramView diagramView) {
-
+        //treba da se stavi na null xdiff i y diff u diag view
     }
 
     @Override
@@ -33,7 +43,7 @@ public class Move implements State{
 
     @Override
     public void misPritisnut(Point initPoint, DiagramView diagramView) {
-
+        this.setStart(initPoint);
     }
 
     @Override
@@ -43,6 +53,9 @@ public class Move implements State{
 
     @Override
     public void misPovucen(Point currPoint, int i, DiagramView diagramView) {
+        diagramView.setxDiff(currPoint.getX()-this.getStart().getX());
+        diagramView.setyDiff(currPoint.getY()-this.getStart().getY());
+        diagramView.repaint();
 
     }
 }

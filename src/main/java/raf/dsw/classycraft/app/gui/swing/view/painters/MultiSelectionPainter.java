@@ -21,6 +21,8 @@ public class MultiSelectionPainter {
     private Shape shape;
 
 
+
+
     public MultiSelectionPainter(Point start, Point end, DiagramView diagramView) {
         this.start = start;
         this.end = end;
@@ -60,7 +62,7 @@ public class MultiSelectionPainter {
     }
 
 
-
+//treba u drag da se setuje nesto da bi se crtao pravougaonik
 
     public void draw(Graphics2D g) {
         g.setColor(Color.BLUE);
