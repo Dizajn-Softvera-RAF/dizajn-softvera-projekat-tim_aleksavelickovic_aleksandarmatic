@@ -121,7 +121,7 @@ public class ClassyManufacturer extends ClassyAbstractFactory{
                             break;
                         }
                     if(!exist)
-                        return new Agregation("Composition (" + i + ")", parent, color, stroke, from, to);
+                        return new Composition("Composition (" + i + ")", parent, color, stroke, from, to);
                 }
             }
             return new Composition("Composition", parent, color, stroke, from, to);

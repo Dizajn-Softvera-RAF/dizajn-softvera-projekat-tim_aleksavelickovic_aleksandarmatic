@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class ZoomIn implements State{
     @Override
     public void misKlik(Point point, DiagramView diagramView) {
-        diagramView.setZoom(diagramView.getZoom()*1.5);
+        diagramView.setZoom(diagramView.getZoom()*1.1);
         diagramView.repaint();
 
     }

@@ -164,31 +164,33 @@ public abstract class ConnectionPainter extends ElementPainter{
         int[] ypoints2 = {(int)ym, (int) ym+30, (int) yn+30};
      //   g.drawPolygon(xpoints1, ypoints2, 3);
 
-
-        if(diagramElement instanceof Agregation){
+        if(diagramElement  instanceof Composition){
             g.drawLine(x1, y1,(int) xC, (int)yC);
-            g.draw(shape);
-
-        }
-
-         if(diagramElement instanceof Composition){
-            g.drawLine(x1, y1,(int) xC, (int)yC);
-
+            System.out.println("uso je u if od comostiona");
             g.setPaint(Color.black);
             g.fill(shape);
             g.setPaint(Color.black);
-            g.draw(shape);
+           // g.draw(shape);
 
 
 
 
         }
-        if(diagramElement instanceof Generalization){
+
+        else if(diagramElement instanceof Agregation){
+            g.drawLine(x1, y1,(int) xC, (int)yC);
+           g.draw(shape);
+            System.out.println("veza se ovde crta");
+
+        }
+
+
+       else if(diagramElement instanceof Generalization){
             g.drawLine(x1, y1,(int) xc, (int)yc);
             g.drawPolygon(xpoints,ypoints,3);
 
         }
-        if(diagramElement instanceof Dependency){
+     else   if(diagramElement instanceof Dependency){
             g.setStroke(new BasicStroke(1, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{9}, 0));
             g.drawLine(x1, y1,x2,y2);
             g.setStroke(new BasicStroke());
@@ -196,7 +198,11 @@ public abstract class ConnectionPainter extends ElementPainter{
             g.drawLine(x2,y2,(int)xn,(int)yn);
 
         }
-
+        else{
+            g.drawLine(x1, y1,(int) xC, (int)yC);
+            g.setPaint(Color.black);
+            g.fill(shape);
+        }
     }
     @Override
     public void draw(Graphics2D g, DiagramElement diagramElement) {
