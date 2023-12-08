@@ -75,9 +75,10 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
         yOffset = (zoomDiv) * (yOffset) + (1 - zoomDiv) * yPos;
       //  at.translate(-r.getMinX(),-r.getMinY());//pise da se dodaju unazad
        // at.scale(ScaleX,ScaleY);
-       // at.translate(xOffset,yOffset);
+       //
         if(xDiff !=0.0)
             at.translate(xOffset + xDiff, yOffset + yDiff);
+        //at.translate(xOffset,yOffset);
         at.scale(zoom,zoom);
         prevzoom=zoom;
 
@@ -90,6 +91,11 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
         super.paintComponent(g);
 
         Graphics2D g2 = (Graphics2D) g;
+        RenderingHints rh = new RenderingHints(
+                RenderingHints.KEY_ANTIALIASING,
+                RenderingHints.VALUE_ANTIALIAS_ON);
+        g2.setRenderingHints(rh);
+
         transform(g2);
 
       //  g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.8f));
@@ -109,6 +115,22 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
         for(MultiSelectionPainter mp: multiSelectionPainters){
             mp.draw(g2);
         }
+    }
+
+    public double getxOffset() {
+        return xOffset;
+    }
+
+    public void setxOffset(double xOffset) {
+        this.xOffset = xOffset;
+    }
+
+    public double getyOffset() {
+        return yOffset;
+    }
+
+    public void setyOffset(double yOffset) {
+        this.yOffset = yOffset;
     }
 
     public double getxDiff() {
@@ -147,6 +169,7 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
         Point point =new Point(e.getX(),e.getY());
 
         Point zoom=new Point((int)(e.getX()/this.getZoom()),(int) (e.getY()/this.getZoom()));
+        Point off=new Point((int)(xOffset), (int)(yOffset ));
         points.add(point);
         points.set(0,initPoint);
         if(point.equals(initPoint))
@@ -199,7 +222,8 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
         Point p = new Point(e.getX(),e.getY());
         Point zoom=new Point((int)(e.getX()/this.getZoom()),(int) (e.getY()/this.getZoom()));
         System.out.println("mouse point"+p.getLocation().x+" "+p.getLocation().y);
-        //   Point p=MouseInfo.getPointerInfo().getLocation();
+            p=MouseInfo.getPointerInfo().getLocation();
+       // Point off=new Point((int)(xOffset), (int)(yOffset ));
         MainFrame.getInstance().getPackageView().misKlik(zoom,diagramView);
     }
 
@@ -209,6 +233,9 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
         //this.setInitPoint(new Point(e.getX(),e.getY()));
         Point zoom=new Point((int)(e.getX()/this.getZoom()),(int) (e.getY()/this.getZoom()));
         this.setInitPoint(zoom);
+        Point off=new Point((int)(xOffset), (int)(yOffset ));//ovo treba da se obrise
+        Point p=MouseInfo.getPointerInfo().getLocation();
+       // this.setInitPoint(off);//ovo vrv treba da se obrise
         System.out.println("Initpoint je "+initPoint);
         if(!points.isEmpty())
             System.out.println("nije prazan points u pressedu");
@@ -224,6 +251,7 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
         System.out.println("mouse released koordinate su "+e.getX()+" "+e.getY());
         Point zoom=new Point((int)(e.getX()/this.getZoom()),(int) (e.getY()/this.getZoom()));
         endPoint=zoom;
+
        /* if(!points.isEmpty()) {
             System.out.println("poslednja svar u listi"+points.get(points.size()-1).getX()+" "+points.get(points.size()-1).getY());
             if (endPoint.getX()==points.get(points.size()-1).getX()&&endPoint.getY()==points.get(points.size()-1).getY()) {         //mozda ovaj equals nije ok

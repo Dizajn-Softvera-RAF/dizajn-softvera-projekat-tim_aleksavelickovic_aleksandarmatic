@@ -29,6 +29,12 @@ public class Move implements State{
     @Override
     public void misPusten(Point initPoint, Point endPoint, DiagramView diagramView) {
         //treba da se stavi na null xdiff i y diff u diag view
+        diagramView.setxOffset(diagramView.getxDiff()+diagramView.getxOffset());//ako bi trebalo da radi ovako
+        diagramView.setyOffset(diagramView.getyOffset()+diagramView.getyDiff());
+        diagramView.setxDiff(0.0);
+
+
+
     }
 
     @Override

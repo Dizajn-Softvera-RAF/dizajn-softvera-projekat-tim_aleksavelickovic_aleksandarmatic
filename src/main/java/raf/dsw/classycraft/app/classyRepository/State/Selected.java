@@ -238,6 +238,8 @@ public class Selected implements State{
             System.out.println("jeste null");
               this.setInit(initPoint);
         this.setT(1);
+
+
     }
 
     public int getT() {

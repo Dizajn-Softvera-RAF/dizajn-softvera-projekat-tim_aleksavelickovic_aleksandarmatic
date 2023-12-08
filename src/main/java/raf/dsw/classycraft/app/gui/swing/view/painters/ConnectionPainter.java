@@ -198,11 +198,7 @@ public abstract class ConnectionPainter extends ElementPainter{
             g.drawLine(x2,y2,(int)xn,(int)yn);
 
         }
-        else{
-            g.drawLine(x1, y1,(int) xC, (int)yC);
-            g.setPaint(Color.black);
-            g.fill(shape);
-        }
+
     }
     @Override
     public void draw(Graphics2D g, DiagramElement diagramElement) {
