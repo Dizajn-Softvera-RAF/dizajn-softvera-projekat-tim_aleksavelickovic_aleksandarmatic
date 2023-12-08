@@ -17,8 +17,10 @@ public interface ClassyTree  {
     void addChild(ClassyTreeItem grandparent,ClassyTreeItem parent,ClassyTreeItem child);
     void addChild(ClassyTreeItem grandparent, ClassyNode parent,ClassyTreeItem child );
     void addChild(ClassyNode grandparent, ClassyNode parent, ClassyTreeItem child);
+    void addChild(ClassyNode grandparent, ClassyNode parent, ClassyNode child);
     void remove(ClassyTreeItem node);
     void remove(ClassyNode node);
+
 
 
 

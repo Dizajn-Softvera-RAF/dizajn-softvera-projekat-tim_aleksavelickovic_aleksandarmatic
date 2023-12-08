@@ -232,8 +232,8 @@ public class AddConnection implements State{
                 cp.setStartPoint(initPoint);
                 cp.setEndPoint(endPoint);
                 diagramView.getDiagram().addChild(connection);
-                ClassyTreeItem child = new ClassyTreeItem(connection);
-                MainFrame.getInstance().getClassyTreeImplementation().addChild(diagramView.getDiagram().getParent(), diagramView.getDiagram(), child);
+
+                MainFrame.getInstance().getClassyTreeImplementation().addChild(diagramView.getDiagram().getParent(), diagramView.getDiagram(), connection);
                 diagramView.getPainters().add(cp);
             }
             else if (type.equalsIgnoreCase("GENERALIZATION")){
@@ -242,8 +242,8 @@ public class AddConnection implements State{
                 cp.setStartPoint(initPoint);
                 cp.setEndPoint(endPoint);
                 diagramView.getDiagram().addChild(connection);
-                ClassyTreeItem child = new ClassyTreeItem(connection);
-                MainFrame.getInstance().getClassyTreeImplementation().addChild(diagramView.getDiagram().getParent(), diagramView.getDiagram(), child);
+
+                MainFrame.getInstance().getClassyTreeImplementation().addChild(diagramView.getDiagram().getParent(), diagramView.getDiagram(), connection);
                 diagramView.getPainters().add(cp);
             }
             else if (type.equalsIgnoreCase("COMPOSITION")){
@@ -252,8 +252,8 @@ public class AddConnection implements State{
                 cp.setStartPoint(initPoint);
                 cp.setEndPoint(endPoint);
                 diagramView.getDiagram().addChild(connection);
-                ClassyTreeItem child = new ClassyTreeItem(connection);
-                MainFrame.getInstance().getClassyTreeImplementation().addChild(diagramView.getDiagram().getParent(), diagramView.getDiagram(), child);
+
+                MainFrame.getInstance().getClassyTreeImplementation().addChild(diagramView.getDiagram().getParent(), diagramView.getDiagram(), connection);
                 diagramView.getPainters().add(cp);
             }
             else if (type.equalsIgnoreCase("AGREGATION")){
@@ -262,8 +262,8 @@ public class AddConnection implements State{
                 cp.setStartPoint(initPoint);
                 cp.setEndPoint(endPoint);
                 diagramView.getDiagram().addChild(connection);
-                ClassyTreeItem child = new ClassyTreeItem(connection);
-                MainFrame.getInstance().getClassyTreeImplementation().addChild(diagramView.getDiagram().getParent(), diagramView.getDiagram(), child);
+
+                MainFrame.getInstance().getClassyTreeImplementation().addChild(diagramView.getDiagram().getParent(), diagramView.getDiagram(), connection);
                 diagramView.getPainters().add(cp);
             }
 

@@ -23,6 +23,7 @@ public class InterClassPainter extends ElementPainter{
         this.diagramElement=diagramElement;
      //   System.out.println("ulazi u konstruktor");
         // draw();
+
     }
 
     @Override
@@ -56,8 +57,13 @@ public class InterClassPainter extends ElementPainter{
         */
      //  System.out.println (interClass.getAccessModifier().name().length());
         fontSize=g.getFont().getSize();
-        if((g.getFont().getSize()*interClass.getName().length()+g.getFont().getSize()*interClass.getAccessModifier().name().length()+85)>(interClass.getSize().width))
-            interClass.setSize(new Dimension(interClass.getSize().width + ((g.getFont().getSize() * interClass.getName().length() + g.getFont().getSize() * interClass.getAccessModifier().name().length() + 85) - (interClass.getSize().width)),interClass.getSize().height));
+        if((g.getFont().getSize()*interClass.getName().length()+20)>(interClass.getSize().width)){
+            interClass.setSize(new Dimension(interClass.getSize().width + ((g.getFont().getSize() * interClass.getName().length()  + 20) - (interClass.getSize().width)),interClass.getSize().height));
+            System.out.println("Promenio se size od klase");
+        }
+
+
+
 
             if(interClass instanceof Class){
                 Class clas=(Class) interClass;
@@ -107,8 +113,19 @@ public class InterClassPainter extends ElementPainter{
         //else
             g.drawRect(interClass.getPostition().getLocation().x, interClass.getPostition().getLocation().y, interClass.getSize().width,interClass.getSize().height);
 
-        g.drawString(interClass.getAccessModifier().name(),interClass.getPostition().x+10,interClass.getPostition().y+10);
-        g.drawString(interClass.getName(),interClass.getPostition().x+75,interClass.getPostition().y+10);
+       // g.drawString(interClass.getAccessModifier().name(),interClass.getPostition().x+10,interClass.getPostition().y+10);
+        if(interClass.getAccessModifier().equals(AccessModifier.PUBLIC))
+            g.drawString("+",interClass.getPostition().x+10,interClass.getPostition().y+10);
+        if(interClass.getAccessModifier().equals(AccessModifier.PRIVATE))
+            g.drawString("-",interClass.getPostition().x+10,interClass.getPostition().y+10);
+        if(interClass.getAccessModifier().equals(AccessModifier.PROTECTED))
+            g.drawString("#",interClass.getPostition().x+10,interClass.getPostition().y+10);
+        if(interClass.getAccessModifier().equals(AccessModifier.PACKAGE))
+            g.drawString("~",interClass.getPostition().x+10,interClass.getPostition().y+10);
+
+        g.drawString(interClass.getName(),interClass.getPostition().x+20,interClass.getPostition().y+10);
+
+
         int k=g.getFont().getSize()+30;
         if(interClass instanceof Class) {
 

@@ -7,6 +7,7 @@ import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.dia
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.diagramelements.Enum;
 import raf.dsw.classycraft.app.core.ApplicationFramework;
 import raf.dsw.classycraft.app.gui.swing.view.DiagramView;
+import raf.dsw.classycraft.app.gui.swing.view.MainFrame;
 import raf.dsw.classycraft.app.gui.swing.view.painters.ElementPainter;
 import raf.dsw.classycraft.app.gui.swing.view.painters.InterClassPainter;
 
@@ -27,6 +28,7 @@ public class Clone implements State{
                     clone = (Interface) ApplicationFramework.getInstance().getClassyManufacturer().createInterClass("INTERFACE", ((InterClass) ep.getDiagramElement()).getName(), diagramView.getDiagram(), ep.getDiagramElement().getColor(), ep.getDiagramElement().getStroke(), ((InterClass) ep.getDiagramElement()).getAccessModifier(), new Point(((InterClass) ep.getDiagramElement()).getPostition().x + ((InterClass) ep.getDiagramElement()).getSize().width + 20, ((InterClass) ep.getDiagramElement()).getPostition().y + ((InterClass) ep.getDiagramElement()).getSize().height + 20), ((InterClass) ep.getDiagramElement()).getSize());
                     ((InterClass) clone).setName(ep.getDiagramElement().getName());
                     System.out.println("Ime clone elementa"+ep.getDiagramElement().getName());
+                    MainFrame.getInstance().getClassyTreeImplementation().addChild(diagramView.getDiagram().getParent(),diagramView.getDiagram(),clone);
                     for(Method m:((Interface) ep.getDiagramElement()).getMethods())
                         ((Interface)clone).addMethods(m);
 
@@ -35,6 +37,7 @@ public class Clone implements State{
                     System.out.println("uslo u pravljenje interfejsa");
                     clone = (Class) ApplicationFramework.getInstance().getClassyManufacturer().createInterClass("CLASS", ((InterClass) ep.getDiagramElement()).getName(), diagramView.getDiagram(), ep.getDiagramElement().getColor(), ep.getDiagramElement().getStroke(), ((InterClass) ep.getDiagramElement()).getAccessModifier(), new Point(((InterClass) ep.getDiagramElement()).getPostition().x + ((InterClass) ep.getDiagramElement()).getSize().width + 20, ((InterClass) ep.getDiagramElement()).getPostition().y + ((InterClass) ep.getDiagramElement()).getSize().height + 20), ((InterClass) ep.getDiagramElement()).getSize());
                     ((InterClass) clone).setName(ep.getDiagramElement().getName());
+                    MainFrame.getInstance().getClassyTreeImplementation().addChild(diagramView.getDiagram().getParent(),diagramView.getDiagram(),clone);
                     for(ClassContents cc: ((Class) (InterClass) ep.getDiagramElement()).getClassContents())
                         ((Class) clone).addClassContents(cc);
 
@@ -43,6 +46,7 @@ public class Clone implements State{
                     System.out.println("uslo u pravljenje interfejsa");
                     clone = (Enum) ApplicationFramework.getInstance().getClassyManufacturer().createInterClass("ENUM", ((InterClass) ep.getDiagramElement()).getName(), diagramView.getDiagram(), ep.getDiagramElement().getColor(), ep.getDiagramElement().getStroke(), ((InterClass) ep.getDiagramElement()).getAccessModifier(), new Point(((InterClass) ep.getDiagramElement()).getPostition().x + ((InterClass) ep.getDiagramElement()).getSize().width + 20, ((InterClass) ep.getDiagramElement()).getPostition().y + ((InterClass) ep.getDiagramElement()).getSize().height + 20), ((InterClass) ep.getDiagramElement()).getSize());
                     ((InterClass) clone).setName(ep.getDiagramElement().getName());
+                    MainFrame.getInstance().getClassyTreeImplementation().addChild(diagramView.getDiagram().getParent(),diagramView.getDiagram(),clone);
                     for(String s:((Enum)ep.getDiagramElement()).getTypes())
                         ((Enum) clone).addTypes(s);
 

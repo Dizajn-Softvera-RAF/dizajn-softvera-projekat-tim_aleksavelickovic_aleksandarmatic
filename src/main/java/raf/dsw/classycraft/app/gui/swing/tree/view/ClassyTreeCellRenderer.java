@@ -1,4 +1,7 @@
 package raf.dsw.classycraft.app.gui.swing.tree.view;
+import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.connections.Composition;
+import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.connections.Dependency;
+import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.connections.Generalization;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.diagramelements.Class;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.diagramelements.Enum;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.diagramelements.Interface;
@@ -37,6 +40,15 @@ public class ClassyTreeCellRenderer extends DefaultTreeCellRenderer {
             imageURL = getClass().getResource("/images/interface.png");
         else if((((ClassyTreeItem)value).getClassyNode() instanceof Enum))
             imageURL = getClass().getResource("/images/enum.png");
+        else if((((ClassyTreeItem)value).getClassyNode() instanceof Dependency))
+            imageURL = getClass().getResource("/images/Veza5.png");
+        else if((((ClassyTreeItem)value).getClassyNode() instanceof Generalization))
+            imageURL = getClass().getResource("/images/Veza4.png");
+        else if((((ClassyTreeItem)value).getClassyNode() instanceof Composition))
+            imageURL = getClass().getResource("/images/Veza3.png");
+        else if((((ClassyTreeItem)value).getClassyNode() instanceof Composition))
+            imageURL = getClass().getResource("/images/Veza2.png");
+
 
 
         Icon icon = null;

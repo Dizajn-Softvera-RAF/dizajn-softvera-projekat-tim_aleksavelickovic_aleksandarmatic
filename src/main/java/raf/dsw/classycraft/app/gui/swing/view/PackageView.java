@@ -93,20 +93,25 @@ public class PackageView extends JPanel implements Subscriber {
 
                 if(((InterCommunicationNotification) notification).getMessage().toString().equals("ADDED_DIAGRAM")){
                     if(tabbedPane.getCpackage() != null&&tabbedPane.getCpackage().equals(((InterCommunicationNotification) notification).getParent())) {
-                        tabbedPane.getDiagrams().add(new DiagramView(((Diagram) ((InterCommunicationNotification) notification).getClassyNode())));
-                        tabbedPane.addTab(((InterCommunicationNotification) notification).getClassyNode().getName(), tabbedPane.getDiagrams().get(tabbedPane.getDiagrams().size() - 1));
+                        tabbedPane.getTabs().add(new TabView(new DiagramView(((Diagram) ((InterCommunicationNotification) notification).getClassyNode()))));
+                        tabbedPane.addTab(((InterCommunicationNotification) notification).getClassyNode().getName(), tabbedPane.getTabs().get(tabbedPane.getTabs().size() - 1));
                     }
                  }
                 if(((InterCommunicationNotification) notification).getMessage().toString().equals("DELETED_DIAGRAM")){
                     DiagramView d=null;
-                    for(DiagramView dv:tabbedPane.getDiagrams()) {
-                        if(((InterCommunicationNotification) notification).getClassyNode().equals(dv.getDiagram()))
-                            d=dv;
+                    TabView t=null;
+                   // for(DiagramView dv:tabbedPane.getDiagrams()) {
+                   //     if(((InterCommunicationNotification) notification).getClassyNode().equals(dv.getDiagram()))
+                   //         d=dv;
+                  //  }
+                    for(TabView tb:tabbedPane.getTabs()){
+                        if(((InterCommunicationNotification) notification).getClassyNode().equals(tb.getDiagramView().getDiagram()))
+                            t=tb;
                     }
 
                     //tabbedPane.getDiagrams().remove(d);
                     //tabbedPane.getDiagramstoSave().remove(d);
-                    tabbedPane.remove(d);
+                    tabbedPane.remove(t);
                     //tabbedPane.loadDiagrams();
                 }
             }

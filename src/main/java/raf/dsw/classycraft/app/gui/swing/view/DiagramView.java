@@ -3,6 +3,8 @@ package raf.dsw.classycraft.app.gui.swing.view;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.Connection;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.InterClass;
 import raf.dsw.classycraft.app.classyRepository.implementation.Diagram;
+import raf.dsw.classycraft.app.core.ApplicationFramework;
+import raf.dsw.classycraft.app.core.MessageGenerator.MessageType;
 import raf.dsw.classycraft.app.core.observer.Subscriber;
 import raf.dsw.classycraft.app.gui.swing.view.painters.ConnectionPainter;
 import raf.dsw.classycraft.app.gui.swing.view.painters.ElementPainter;
@@ -19,10 +21,11 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.ImageObserver;
 import java.text.AttributedCharacterIterator;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DiagramView extends JPanel implements Subscriber, MouseMotionListener,MouseListener {
+public class DiagramView extends JPanel implements Subscriber, MouseMotionListener,MouseListener,Scrollable {
     private final Diagram diagram;
     private JPanel framework;
     private String name;
@@ -79,7 +82,13 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
         if(xDiff !=0.0)
             at.translate(xOffset + xDiff, yOffset + yDiff);
         //at.translate(xOffset,yOffset);
-        at.scale(zoom,zoom);
+        if(zoom<3&&zoom>0)
+            at.scale(zoom,zoom);
+        else if(zoom>3)
+            ApplicationFramework.getInstance().getMessageGeneratorImplementation().generate("You reached maximum zoom", MessageType.WARNING, LocalDateTime.now());
+        else if(zoom<0)
+            ApplicationFramework.getInstance().getMessageGeneratorImplementation().generate("You reached minimum zoom", MessageType.WARNING, LocalDateTime.now());
+
         prevzoom=zoom;
 
         g.transform(at);
@@ -284,6 +293,31 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
         this.zoom = zoom;
     }
 
+    @Override
+    public Dimension getPreferredScrollableViewportSize() {
+        return null;
+    }
+
+    @Override
+    public int getScrollableUnitIncrement(Rectangle visibleRect, int orientation, int direction) {
+        return 85;
+    }
+
+    @Override
+    public int getScrollableBlockIncrement(Rectangle visibleRect, int orientation, int direction) {
+        return 10;
+    }
+
+    @Override
+    public boolean getScrollableTracksViewportWidth() {
+        return false;
+    }
+
+    @Override
+    public boolean getScrollableTracksViewportHeight() {
+        return false;
+    }
+
     private class MouseController extends MouseAdapter{
         DiagramView dw = diagramView;
         @Override
@@ -337,6 +371,7 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
         //this.setMinimumSize();
         System.out.println("evo su kordinate"+this.getSize().width+this.getSize().height);
         this.setMinimumSize(new Dimension(500,500));
+        this.setPreferredSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize().width*3,Toolkit.getDefaultToolkit().getScreenSize().height*3));
         this.diagram = diagram;
         name = diagram.getName();
         this.diagram.addSubscriber(this);

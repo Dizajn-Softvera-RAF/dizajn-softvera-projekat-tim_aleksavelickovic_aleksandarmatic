@@ -15,6 +15,10 @@ public class TabbedPane extends JTabbedPane {
     private Project project;
     private Package cpackage;
 
+    private final List<TabView> tabs = new ArrayList<>();
+
+    private final List<TabView> tabstoSave = new ArrayList<>();
+
     private final List<DiagramView> diagrams = new ArrayList<>();
 
     private final List<DiagramView> diagramstoSave = new ArrayList<>();
@@ -64,7 +68,7 @@ public class TabbedPane extends JTabbedPane {
             System.out.println(dv.getName()+" velicina "+diagrams.size());
 
         */
-        for (ClassyNode cn : this.cpackage.getChildren()) {
+      /*  for (ClassyNode cn : this.cpackage.getChildren()) {
             boolean exist=false;
             if (cn instanceof Diagram) {
                 for(DiagramView dv : diagramstoSave){
@@ -73,8 +77,10 @@ public class TabbedPane extends JTabbedPane {
                 }
                 if(exist){
                     for(DiagramView dv : diagramstoSave){
-                        if(dv.getDiagram().equals(cn)&&dv.getDiagram().getParent().equals(cn.getParent()))
+                        if(dv.getDiagram().equals(cn)&&dv.getDiagram().getParent().equals(cn.getParent())){
                             this.diagrams.add(dv);
+                        }
+
                     }
                 }
                 else
@@ -83,6 +89,37 @@ public class TabbedPane extends JTabbedPane {
             ((Diagram) cn).notifySubscribers(new InterCommunicationNotification("DIAGRAMVIEW_ADDED"));
             }
         }
+
+       */
+        for (ClassyNode cn : this.cpackage.getChildren()) {
+            boolean exist=false;
+            if (cn instanceof Diagram) {
+                for(TabView tb : tabstoSave){
+                    if(tb.getDiagramView().getDiagram().equals(cn)&&tb.getDiagramView().getDiagram().getParent().equals(cn.getParent()))
+                        exist=true;
+                }
+                if(exist){
+                    for(TabView tb : tabstoSave){
+                        if(tb.getDiagramView().getDiagram().equals(cn)&&tb.getDiagramView().getDiagram().getParent().equals(cn.getParent())){
+                            this.tabs.add(tb);
+                        }
+
+                    }
+                }
+                else
+                    this.tabs.add(new TabView(new DiagramView((Diagram) cn)));
+                //  this.diagrams.add(((DiagramView) (new JScrollPane((new DiagramView((Diagram) cn)),22,22))));
+                ((Diagram) cn).notifySubscribers(new InterCommunicationNotification("DIAGRAMVIEW_ADDED"));
+            }
+        }
+    }
+
+    public List<TabView> getTabs() {
+        return tabs;
+    }
+
+    public List<TabView> getTabstoSave() {
+        return tabstoSave;
     }
 
     public List<DiagramView> getDiagramstoSave() {
@@ -90,18 +127,18 @@ public class TabbedPane extends JTabbedPane {
     }
 
     public void clear() {
-        for (DiagramView tabElement : diagrams){
-            diagramstoSave.add(tabElement);
+        for (TabView tabElement : tabs){
+            tabstoSave.add(tabElement);
             remove(tabElement);
 
         }
-
+        this.tabs.clear();
         this.diagrams.clear();
     }
 
     public void addTabs() {
-        for (DiagramView tabElement : diagrams){
-            addTab(tabElement.getName(), tabElement);
+        for (TabView tabElement : tabs){
+            addTab(tabElement.getDiagramView().getName(), tabElement);
         }
     }
 
