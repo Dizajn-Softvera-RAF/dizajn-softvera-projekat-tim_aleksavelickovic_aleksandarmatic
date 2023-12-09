@@ -9,7 +9,7 @@ import java.awt.event.KeyEvent;
 public class ZoomOutAction extends AbstractClassyAction {
     public ZoomOutAction() {
         putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
-        //putValue(SMALL_ICON, loadIcon("/images/plus.png"));
+        putValue(SMALL_ICON, loadIcon("/images/ZoomOut.png"));
         putValue(NAME, "ZoomOut");
         putValue(SHORT_DESCRIPTION, "ZoomOut");
     }

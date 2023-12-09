@@ -2,6 +2,7 @@ package raf.dsw.classycraft.app.gui.swing.view;
 
 import javafx.scene.layout.HBox;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.AccessModifier;
+import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.Connection;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.DiagramElement;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.InterClass;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.connections.Agregation;
@@ -11,6 +12,7 @@ import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.con
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.diagramelements.*;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.diagramelements.Class;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.diagramelements.Enum;
+import raf.dsw.classycraft.app.core.observer.interCommunicationNotification.InterCommunicationNotification;
 import raf.dsw.classycraft.app.gui.swing.view.painters.ElementPainter;
 import raf.dsw.classycraft.app.gui.swing.view.painters.InterClassPainter;
 
@@ -124,6 +126,7 @@ public class EditFrame implements ActionListener{
             Class klasa = (Class) diagramElement;//***
             klasaIme.setText(klasa.getName());
             vidljivost.setSelectedItem(klasa.getAccessModifier().toString());
+            this.diagramElement = klasa;
             System.out.println(klasa);
             odabirPolja.addItem("New field");
             odabirPolja.addItem("New method");
@@ -147,6 +150,7 @@ public class EditFrame implements ActionListener{
         } else if (diagramElement instanceof Enum) {
             Enum enum1 = (Enum) diagramElement;
             klasaIme.setText(enum1.getName());
+            this.diagramElement = enum1;
             odabirPolja.addItem("New type");
             if (!(enum1.getTypes().isEmpty())){
                 for (String type:enum1.getTypes())odabirPolja.addItem(type);
@@ -167,7 +171,7 @@ public class EditFrame implements ActionListener{
 
 
         //Buttons na dnu
-        JButton confirm = new JButton();
+        confirm = new JButton();
         JButton remove = new JButton();
         confirm.setText("Confirm");
         remove.setText("Remove");
@@ -192,6 +196,7 @@ public class EditFrame implements ActionListener{
     }
     private void init1(DiagramElement diagramElement){JFrame editFrame = new JFrame();
         Agregation veza = (Agregation)diagramElement;
+        this.diagramElement = veza;
         editFrame.setLayout(new BorderLayout());
         editFrame.setSize(500,500);
         editFrame.setTitle("Edit");
@@ -213,21 +218,24 @@ public class EditFrame implements ActionListener{
         cardinality.setText(veza.getKardinalnost());
         kardinalnost.add(cardinality);
 
-        JButton confirm = new JButton("Confirm");
+        confirm = new JButton("Confirm");
         confirm.addActionListener(this);
         confirm.setActionCommand("Confirm");
         JPanel body = new JPanel();
         body.setLayout(new BoxLayout(body,BoxLayout.Y_AXIS));
         body.add(name);
         body.add(kardinalnost);
+        JPanel bot = new JPanel(new FlowLayout());
+        bot.add(confirm);
 
         editFrame.add(body,BorderLayout.CENTER);
 
-        editFrame.add(confirm,BorderLayout.SOUTH);
+        editFrame.add(bot,BorderLayout.SOUTH);
         editFrame.setVisible(true);
     }
     private void init2(DiagramElement diagramElement){JFrame editFrame = new JFrame();
         Composition veza = (Composition) diagramElement;
+        this.diagramElement = veza;
         editFrame.setLayout(new BorderLayout());
         editFrame.setSize(500,500);
         editFrame.setTitle("Edit");
@@ -249,7 +257,7 @@ public class EditFrame implements ActionListener{
         cardinality.setText(veza.getKardinalnost());
         kardinalnost.add(cardinality);
 
-        JButton confirm = new JButton("Confirm");
+        confirm = new JButton("Confirm");
         confirm.addActionListener(this);
         confirm.setActionCommand("Confirm");
         JPanel body = new JPanel();
@@ -264,6 +272,7 @@ public class EditFrame implements ActionListener{
 
     private void init3(DiagramElement diagramElement){JFrame editFrame = new JFrame();
         Dependency veza = (Dependency)diagramElement;
+        this.diagramElement = veza;
         editFrame.setLayout(new BorderLayout());
         editFrame.setSize(500,500);
         editFrame.setTitle("Edit");
@@ -277,7 +286,7 @@ public class EditFrame implements ActionListener{
         type.setText(veza.getType());
         typePanel.add(type);
 
-        JButton confirm = new JButton("Confirm");
+        confirm = new JButton("Confirm");
         confirm.addActionListener(this);
         confirm.setActionCommand("Confirm");
 
@@ -287,6 +296,7 @@ public class EditFrame implements ActionListener{
         }
     private void init4(DiagramElement diagramElement){JFrame editFrame = new JFrame();
         Generalization veza = (Generalization)diagramElement;
+        this.diagramElement = veza;
         editFrame.setLayout(new BorderLayout());
         editFrame.setSize(500,500);
         editFrame.setTitle("Edit");
@@ -299,7 +309,7 @@ public class EditFrame implements ActionListener{
         nameOf.setEditable(true);
         nameOf.setText(veza.getNameOf());
         centar.add(nameOf);
-        JButton confirm = new JButton("Confirm");
+        confirm = new JButton("Confirm");
         confirm.addActionListener(this);
         confirm.setActionCommand("Confirm");
 
@@ -663,25 +673,24 @@ public class EditFrame implements ActionListener{
                 }
                 odabirPolja.setSelectedIndex(i-1);
             }
-        } else if (diagramElement instanceof Agregation) {
-            if (comand.equals("Confirm")){
+        }else if (comand.equals("Confirm")) {
+            if (diagramElement instanceof Agregation) {
                 Agregation veza = (Agregation) diagramElement;
                 veza.setNameOfVariable(nameOfVariable.getText());
                 veza.setKardinalnost(cardinality.getText());
+
             }
-        }else if (diagramElement instanceof Composition) {
-            if (comand.equals("Confirm")){
+            if (diagramElement instanceof Composition) {
                 Composition veza = (Composition) diagramElement;
                 veza.setNameOfVariable(nameOfVariable.getText());
                 veza.setKardinalnost(cardinality.getText());
             }
-        }else if (diagramElement instanceof Generalization) {
-            if (comand.equals("Confirm")){
+            if (diagramElement instanceof Generalization) {
                 Generalization veza = (Generalization) diagramElement;
                 veza.setNameOf(nameOf.getText());
             }
-        }else if (diagramElement instanceof Dependency) {
-            if (comand.equals("Confirm")){
+            if (diagramElement instanceof Dependency) {
+
                 Dependency veza = (Dependency) diagramElement;
                 veza.setType(type.getText());
             }

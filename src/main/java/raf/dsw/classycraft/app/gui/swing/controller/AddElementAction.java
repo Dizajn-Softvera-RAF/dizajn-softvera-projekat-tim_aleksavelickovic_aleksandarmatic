@@ -9,9 +9,9 @@ import java.awt.event.KeyEvent;
 public class AddElementAction extends AbstractClassyAction{
     public AddElementAction() {
         putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK));
-       // putValue(SMALL_ICON, loadIcon("/images/plus.png"));
-        putValue(NAME, "New Element");
-        putValue(SHORT_DESCRIPTION, "New Class Element");
+        putValue(SMALL_ICON, loadIcon("/images/Move.png"));
+        putValue(NAME, "Move Element");
+        putValue(SHORT_DESCRIPTION, "Move Element");
     }
 
     @Override

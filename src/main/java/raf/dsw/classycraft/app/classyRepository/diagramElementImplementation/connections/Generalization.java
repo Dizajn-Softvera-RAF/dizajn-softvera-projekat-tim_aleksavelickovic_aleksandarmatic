@@ -3,6 +3,7 @@ package raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.co
 import raf.dsw.classycraft.app.classyRepository.composite.ClassyNode;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.Connection;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.InterClass;
+import raf.dsw.classycraft.app.core.observer.interCommunicationNotification.InterCommunicationNotification;
 
 import java.awt.*;
 
@@ -19,5 +20,6 @@ public class Generalization extends Connection {
 
     public void setNameOf(String nameOf) {
         this.nameOf = nameOf;
+        //notifySubscribers(new InterCommunicationNotification("GENERALIZATION_NAMEOF_CHANGED"));
     }
 }

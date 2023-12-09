@@ -9,7 +9,7 @@ import java.awt.event.KeyEvent;
 public class MoveAction extends AbstractClassyAction{
     public MoveAction() {
         putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_M, ActionEvent.CTRL_MASK));
-        //putValue(SMALL_ICON, loadIcon("/images/plus.png"));
+        putValue(SMALL_ICON, loadIcon("/images/Move_tool.png"));
         putValue(NAME, "Move Tool");
         putValue(SHORT_DESCRIPTION, "Move Tool");
     }

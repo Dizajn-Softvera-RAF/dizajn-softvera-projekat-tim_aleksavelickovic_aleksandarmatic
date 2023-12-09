@@ -10,7 +10,7 @@ import java.awt.event.KeyEvent;
 public class EditAction extends AbstractClassyAction{
     public EditAction() {
         putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK));
-        //putValue(SMALL_ICON, loadIcon("/images/plus.png"));
+        putValue(SMALL_ICON, loadIcon("/images/Edit.png"));
         putValue(NAME, "Edit tool");
         putValue(SHORT_DESCRIPTION, "Edit Tool");
     }

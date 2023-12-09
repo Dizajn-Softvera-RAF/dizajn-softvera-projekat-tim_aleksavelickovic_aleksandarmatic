@@ -9,7 +9,7 @@ import java.awt.event.KeyEvent;
 public class SelectedAction extends AbstractClassyAction{
     public SelectedAction() {
         putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK));
-        //putValue(SMALL_ICON, loadIcon("/images/plus.png"));
+        putValue(SMALL_ICON, loadIcon("/images/Select.png"));
         putValue(NAME, "Select Tool");
         putValue(SHORT_DESCRIPTION, "Select TOOL");
     }

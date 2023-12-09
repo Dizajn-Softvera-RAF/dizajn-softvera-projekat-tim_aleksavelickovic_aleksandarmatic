@@ -32,7 +32,9 @@ public class ActionManager{
     private ZoomOutAction zoomOutAction;
     private CloneAction cloneAction;
     private MoveAction moveAction;
-
+    private ClassButtonAction classButtonAction;
+    private InterfaceButtonAction interfaceButtonAction;
+    private EnumButtonAction enumButtonAction;
     public ActionManager() {
         initialiseActions();
     }
@@ -61,7 +63,17 @@ public class ActionManager{
         this.aboutUs = aboutUs;
     }
 
+    public ClassButtonAction getClassButtonAction() {
+        return classButtonAction;
+    }
 
+    public InterfaceButtonAction getInterfaceButtonAction() {
+        return interfaceButtonAction;
+    }
+
+    public EnumButtonAction getEnumButtonAction() {
+        return enumButtonAction;
+    }
 
     public RemoveAction getRemoveAction() {
         return removeAction;
@@ -176,6 +188,9 @@ public class ActionManager{
         zoomInAction=new ZoomInAction();
         zoomOutAction=new ZoomOutAction();
         moveAction = new MoveAction();
+        enumButtonAction = new EnumButtonAction();
+        classButtonAction = new ClassButtonAction();
+        interfaceButtonAction = new InterfaceButtonAction();
     }
 
 

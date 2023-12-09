@@ -9,7 +9,7 @@ import java.awt.event.KeyEvent;
 public class ZoomInAction extends AbstractClassyAction {
     public ZoomInAction() {
         putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
-        //putValue(SMALL_ICON, loadIcon("/images/plus.png"));
+        putValue(SMALL_ICON, loadIcon("/images/ZoomIn.png"));
         putValue(NAME, "ZoomIn");
         putValue(SHORT_DESCRIPTION, "ZoomIn");
     }

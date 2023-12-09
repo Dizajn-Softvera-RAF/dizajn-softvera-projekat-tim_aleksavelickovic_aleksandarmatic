@@ -3,6 +3,7 @@ package raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.co
 import raf.dsw.classycraft.app.classyRepository.composite.ClassyNode;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.Connection;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.InterClass;
+import raf.dsw.classycraft.app.core.observer.interCommunicationNotification.InterCommunicationNotification;
 
 import java.awt.*;
 
@@ -14,6 +15,7 @@ public class Dependency extends Connection {
 
     public void setType(String type) {
         this.type = type;
+        //notifySubscribers(new InterCommunicationNotification("DEPENDENCY_TYPE_CHANGED"));
     }
 
     public String getType() {

@@ -10,7 +10,7 @@ import java.awt.event.KeyEvent;
 public class DeleteAction extends AbstractClassyAction{
     public DeleteAction() {
         putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
-        //putValue(SMALL_ICON, loadIcon("/images/plus.png"));
+        putValue(SMALL_ICON, loadIcon("/images/Delete.png"));
         putValue(NAME, "Remove tool");
         putValue(SHORT_DESCRIPTION, "Remove Tool");
     }
