@@ -17,6 +17,7 @@ public class Delete implements State{
 
     @Override
     public void misKlik(Point point, DiagramView diagramView) {
+        ArrayList<ConnectionPainter> delete=new ArrayList<>();
         Rectangle2D prav = new Rectangle2D.Double(point.getX()-5,point.getY()-5,10,10);
         for (int i =0;i<diagramView.getPainters().size();i++) {
             ElementPainter ep = diagramView.getPainters().get(i);
@@ -32,6 +33,17 @@ public class Delete implements State{
                 diagramView.getPainters().remove(ep);
                 diagramView.getDiagram().removeChild(ep.getDiagramElement());
                 MainFrame.getInstance().getClassyTreeImplementation().remove(((ep).getDiagramElement()));
+                for(ElementPainter el:diagramView.getPainters()){
+                    if(el.getDiagramElement() instanceof Connection){
+                        if(((Connection)el.getDiagramElement()).getTo().equals(ep.getDiagramElement())||((Connection)el.getDiagramElement()).getFrom().equals(ep.getDiagramElement()))
+                           delete.add((ConnectionPainter) el);
+                    }
+                }
+            }
+            for(ConnectionPainter c:delete){
+                MainFrame.getInstance().getClassyTreeImplementation().remove(c.getDiagramElement());
+                diagramView.getPainters().remove(c);
+                diagramView.getDiagram().removeChild(c.getDiagramElement());
             }
         }
     }
@@ -42,7 +54,19 @@ public class Delete implements State{
 
     @Override
     public void misPusten(Point initPoint, Point endPoint, DiagramView diagramView) {
+        /*for( ElementPainter ep: diagramView.getPainters()){
+            if(ep.getDiagramElement() instanceof Connection){
+                if(((Connection) ep.getDiagramElement()).getFrom()==null ||((Connection) ep.getDiagramElement()).getTo()==null)
+                {
+                    System.out.println("uslo je u if");
+                    MainFrame.getInstance().getClassyTreeImplementation().remove((((ConnectionPainter)ep).getDiagramElement()));
+                    diagramView.getPainters().remove(ep);
+                    diagramView.getDiagram().removeChild(ep.getDiagramElement());
+                }
+            }
+        }
 
+         */
     }
 
     @Override

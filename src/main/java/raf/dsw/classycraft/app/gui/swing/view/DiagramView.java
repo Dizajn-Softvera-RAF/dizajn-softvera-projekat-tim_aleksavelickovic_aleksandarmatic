@@ -234,6 +234,7 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
             p=MouseInfo.getPointerInfo().getLocation();
        // Point off=new Point((int)(xOffset), (int)(yOffset ));
         MainFrame.getInstance().getPackageView().misKlik(zoom,diagramView);
+        repaint();
     }
 
     @Override
@@ -272,6 +273,7 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
         }
 
         */
+
         MainFrame.getInstance().getPackageView().misPusten(initPoint, endPoint, diagramView);
     }
 

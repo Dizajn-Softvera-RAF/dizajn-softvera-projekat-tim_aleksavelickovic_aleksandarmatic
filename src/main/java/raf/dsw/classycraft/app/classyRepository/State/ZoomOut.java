@@ -9,7 +9,7 @@ public class ZoomOut implements State{
     @Override
     public void misKlik(Point point, DiagramView diagramView) {
         diagramView.setZoom(diagramView.getZoom()/1.1);
-        diagramView.repaint();
+       // diagramView.repaint();
     }
 
     @Override
