@@ -45,7 +45,7 @@ public class AddConnection implements State{
     public void misPritisnut(Point initPoint, DiagramView diagramView) {
         //treba da se napravi veza i painter sa from pa posle u dragu da se vidi dal je to ok a mozda i u relesed
 
-
+        int t=0;
 
         for(ElementPainter ep:diagramView.getPainters()) {
             if (ep instanceof InterClassPainter) {
@@ -53,12 +53,15 @@ public class AddConnection implements State{
                     System.out.println("pocetne koridante klse" + initPoint);
                     from = (InterClass) ep.getDiagramElement();
                     this.setInitpoint(initPoint);
+                    t++;
                     return;
 
 
                 }
             }
         }
+        if(t==0)
+            from=null;
       /*  Connection veza = ApplicationFramework.getInstance().getClassyManufacturer().createConnection("DEPENDENCY", "DEPENDENCY" + i, diagramView.getDiagram(), Color.BLACK, new BasicStroke(), from, null);
         this.setConnection(veza);
         ConnectionPainter connectionPainter1=new DependencyPainter(veza);
@@ -94,80 +97,76 @@ public class AddConnection implements State{
 
     @Override
     public void misPovucen(Point currPoint, int i, DiagramView diagramView) {
-        if(i!=0) {
-            //diagramView.removeConnectionPainter();
-            Connection veza = ApplicationFramework.getInstance().getClassyManufacturer().createConnection(type, "DEPENDENCY" + i, diagramView.getDiagram(), Color.BLACK, new BasicStroke(), from, null);
-            this.setConnection(veza);
-            if (type.equalsIgnoreCase("DEPENDENCY")){
-                ConnectionPainter connectionPainter1 = new DependencyPainter(veza);
-                connectionPainter1.setStartPoint(this.getInitpoint());
-                connectionPainter1.setEndPoint(currPoint);
-                this.setConnectionPainter(connectionPainter1);
-                diagramView.getPainters().add(connectionPainter1);
-                diagramView.repaint();
-            }
-            else if (type.equalsIgnoreCase("GENERALIZATION")) {
-                ConnectionPainter connectionPainter1 = new GeneralizationPainter(veza);
-                connectionPainter1.setStartPoint(this.getInitpoint());
-                connectionPainter1.setEndPoint(currPoint);
-                this.setConnectionPainter(connectionPainter1);
-                diagramView.getPainters().add(connectionPainter1);
-                diagramView.repaint();
-            }
-            else if (type.equalsIgnoreCase("COMPOSITION")) {
-                ConnectionPainter connectionPainter1 = new CompositionPainter(veza);
-                connectionPainter1.setStartPoint(this.getInitpoint());
-                connectionPainter1.setEndPoint(currPoint);
-                this.setConnectionPainter(connectionPainter1);
-                diagramView.getPainters().add(connectionPainter1);
-                diagramView.repaint();
-            }
-            else if (type.equalsIgnoreCase("AGREGATION")) {
-                ConnectionPainter connectionPainter1 = new AgregationPainter(veza);
-                connectionPainter1.setStartPoint(this.getInitpoint());
-                connectionPainter1.setEndPoint(currPoint);
-                this.setConnectionPainter(connectionPainter1);
-                diagramView.getPainters().add(connectionPainter1);
-                diagramView.repaint();
-            }
+        System.out.println(" i je "+i);
+        if(from!=null) {
+            if (i != 0) {
+                //diagramView.removeConnectionPainter();
+                Connection veza = ApplicationFramework.getInstance().getClassyManufacturer().createConnection(type, "DEPENDENCY" + i, diagramView.getDiagram(), Color.BLACK, new BasicStroke(), from, null);
+                this.setConnection(veza);
+                if (type.equalsIgnoreCase("DEPENDENCY")) {
+                    ConnectionPainter connectionPainter1 = new DependencyPainter(veza);
+                    connectionPainter1.setStartPoint(this.getInitpoint());
+                    connectionPainter1.setEndPoint(currPoint);
+                    this.setConnectionPainter(connectionPainter1);
+                    diagramView.getPainters().add(connectionPainter1);
+                    diagramView.repaint();
+                } else if (type.equalsIgnoreCase("GENERALIZATION")) {
+                    ConnectionPainter connectionPainter1 = new GeneralizationPainter(veza);
+                    connectionPainter1.setStartPoint(this.getInitpoint());
+                    connectionPainter1.setEndPoint(currPoint);
+                    this.setConnectionPainter(connectionPainter1);
+                    diagramView.getPainters().add(connectionPainter1);
+                    diagramView.repaint();
+                } else if (type.equalsIgnoreCase("COMPOSITION")) {
+                    ConnectionPainter connectionPainter1 = new CompositionPainter(veza);
+                    connectionPainter1.setStartPoint(this.getInitpoint());
+                    connectionPainter1.setEndPoint(currPoint);
+                    this.setConnectionPainter(connectionPainter1);
+                    diagramView.getPainters().add(connectionPainter1);
+                    diagramView.repaint();
+                } else if (type.equalsIgnoreCase("AGREGATION")) {
+                    ConnectionPainter connectionPainter1 = new AgregationPainter(veza);
+                    connectionPainter1.setStartPoint(this.getInitpoint());
+                    connectionPainter1.setEndPoint(currPoint);
+                    this.setConnectionPainter(connectionPainter1);
+                    diagramView.getPainters().add(connectionPainter1);
+                    diagramView.repaint();
+                }
 
-        }
-        else{
-            diagramView.removeConnectionPainter();
-            Connection veza = ApplicationFramework.getInstance().getClassyManufacturer().createConnection(type, "DEPENDENCY" + i, diagramView.getDiagram(), Color.BLACK, new BasicStroke(), from, null);
-            this.setConnection(veza);
+            } else {
+                diagramView.removeConnectionPainter();
+                Connection veza = ApplicationFramework.getInstance().getClassyManufacturer().createConnection(type, "DEPENDENCY" + i, diagramView.getDiagram(), Color.BLACK, new BasicStroke(), from, null);
+                this.setConnection(veza);
 
-            if (type.equalsIgnoreCase("DEPENDENCY")){
-                ConnectionPainter connectionPainter1 = new DependencyPainter(veza);
-                connectionPainter1.setStartPoint(this.getInitpoint());
-                connectionPainter1.setEndPoint(currPoint);
-                this.setConnectionPainter(connectionPainter1);
-                diagramView.getPainters().add(connectionPainter1);
-                diagramView.repaint();
-            }
-            else if (type.equalsIgnoreCase("GENERALIZATION")) {
-                ConnectionPainter connectionPainter1 = new GeneralizationPainter(veza);
-                connectionPainter1.setStartPoint(this.getInitpoint());
-                connectionPainter1.setEndPoint(currPoint);
-                this.setConnectionPainter(connectionPainter1);
-                diagramView.getPainters().add(connectionPainter1);
-                diagramView.repaint();
-            }
-            else if (type.equalsIgnoreCase("COMPOSITION")) {
-                ConnectionPainter connectionPainter1 = new CompositionPainter(veza);
-                connectionPainter1.setStartPoint(this.getInitpoint());
-                connectionPainter1.setEndPoint(currPoint);
-                this.setConnectionPainter(connectionPainter1);
-                diagramView.getPainters().add(connectionPainter1);
-                diagramView.repaint();
-            }
-            else if (type.equalsIgnoreCase("AGREGATION")) {
-                ConnectionPainter connectionPainter1 = new AgregationPainter(veza);
-                connectionPainter1.setStartPoint(this.getInitpoint());
-                connectionPainter1.setEndPoint(currPoint);
-                this.setConnectionPainter(connectionPainter1);
-                diagramView.getPainters().add(connectionPainter1);
-                diagramView.repaint();
+                if (type.equalsIgnoreCase("DEPENDENCY")) {
+                    ConnectionPainter connectionPainter1 = new DependencyPainter(veza);
+                    connectionPainter1.setStartPoint(this.getInitpoint());
+                    connectionPainter1.setEndPoint(currPoint);
+                    this.setConnectionPainter(connectionPainter1);
+                    diagramView.getPainters().add(connectionPainter1);
+                    diagramView.repaint();
+                } else if (type.equalsIgnoreCase("GENERALIZATION")) {
+                    ConnectionPainter connectionPainter1 = new GeneralizationPainter(veza);
+                    connectionPainter1.setStartPoint(this.getInitpoint());
+                    connectionPainter1.setEndPoint(currPoint);
+                    this.setConnectionPainter(connectionPainter1);
+                    diagramView.getPainters().add(connectionPainter1);
+                    diagramView.repaint();
+                } else if (type.equalsIgnoreCase("COMPOSITION")) {
+                    ConnectionPainter connectionPainter1 = new CompositionPainter(veza);
+                    connectionPainter1.setStartPoint(this.getInitpoint());
+                    connectionPainter1.setEndPoint(currPoint);
+                    this.setConnectionPainter(connectionPainter1);
+                    diagramView.getPainters().add(connectionPainter1);
+                    diagramView.repaint();
+                } else if (type.equalsIgnoreCase("AGREGATION")) {
+                    ConnectionPainter connectionPainter1 = new AgregationPainter(veza);
+                    connectionPainter1.setStartPoint(this.getInitpoint());
+                    connectionPainter1.setEndPoint(currPoint);
+                    this.setConnectionPainter(connectionPainter1);
+                    diagramView.getPainters().add(connectionPainter1);
+                    diagramView.repaint();
+                }
             }
         }
 
@@ -225,48 +224,57 @@ public class AddConnection implements State{
         diagramView.removeConnectionPainter();
 
         if(from!=null&&to!=null&&to!=from) {
+            int br=0;
             connection.setTo(to);
-            if (type.equalsIgnoreCase("DEPENDENCY")){
-                ConnectionPainter cp =new DependencyPainter(connection);
-                cp.setFlag(1);
-                cp.setStartPoint(initPoint);
-                cp.setEndPoint(endPoint);
-                diagramView.getDiagram().addChild(connection);
-
-                MainFrame.getInstance().getClassyTreeImplementation().addChild(diagramView.getDiagram().getParent(), diagramView.getDiagram(), connection);
-                diagramView.getPainters().add(cp);
+            for(ElementPainter ep :diagramView.getPainters()){
+                if(ep.getDiagramElement() instanceof Connection)
+                    if(((Connection)ep.getDiagramElement()).getFrom().equals(from)&&((Connection)ep.getDiagramElement()).getTo().equals(to) )
+                        br++;
             }
-            else if (type.equalsIgnoreCase("GENERALIZATION")){
-                ConnectionPainter cp = new GeneralizationPainter(connection);
-                cp.setFlag(1);
-                cp.setStartPoint(initPoint);
-                cp.setEndPoint(endPoint);
-                diagramView.getDiagram().addChild(connection);
+            if(br==0) {
+                if (type.equalsIgnoreCase("DEPENDENCY")) {
+                    ConnectionPainter cp = new DependencyPainter(connection);
+                    cp.setFlag(1);
+                    cp.setStartPoint(initPoint);
+                    cp.setEndPoint(endPoint);
+                    diagramView.getDiagram().addChild(connection);
 
-                MainFrame.getInstance().getClassyTreeImplementation().addChild(diagramView.getDiagram().getParent(), diagramView.getDiagram(), connection);
-                diagramView.getPainters().add(cp);
+                    MainFrame.getInstance().getClassyTreeImplementation().addChild(diagramView.getDiagram().getParent(), diagramView.getDiagram(), connection);
+                    diagramView.getPainters().add(cp);
+                } else if (type.equalsIgnoreCase("GENERALIZATION")) {
+                    ConnectionPainter cp = new GeneralizationPainter(connection);
+                    cp.setFlag(1);
+                    cp.setStartPoint(initPoint);
+                    cp.setEndPoint(endPoint);
+                    diagramView.getDiagram().addChild(connection);
+
+                    MainFrame.getInstance().getClassyTreeImplementation().addChild(diagramView.getDiagram().getParent(), diagramView.getDiagram(), connection);
+                    diagramView.getPainters().add(cp);
+                } else if (type.equalsIgnoreCase("COMPOSITION")) {
+                    ConnectionPainter cp = new CompositionPainter(connection);
+                    cp.setFlag(1);
+                    cp.setStartPoint(initPoint);
+                    cp.setEndPoint(endPoint);
+                    diagramView.getDiagram().addChild(connection);
+
+                    MainFrame.getInstance().getClassyTreeImplementation().addChild(diagramView.getDiagram().getParent(), diagramView.getDiagram(), connection);
+                    diagramView.getPainters().add(cp);
+                } else if (type.equalsIgnoreCase("AGREGATION")) {
+                    ConnectionPainter cp = new AgregationPainter(connection);
+                    cp.setFlag(1);
+                    cp.setStartPoint(initPoint);
+                    cp.setEndPoint(endPoint);
+                    diagramView.getDiagram().addChild(connection);
+
+                    MainFrame.getInstance().getClassyTreeImplementation().addChild(diagramView.getDiagram().getParent(), diagramView.getDiagram(), connection);
+                    diagramView.getPainters().add(cp);
+                }
             }
-            else if (type.equalsIgnoreCase("COMPOSITION")){
-                ConnectionPainter cp = new CompositionPainter(connection);
-                cp.setFlag(1);
-                cp.setStartPoint(initPoint);
-                cp.setEndPoint(endPoint);
-                diagramView.getDiagram().addChild(connection);
-
-                MainFrame.getInstance().getClassyTreeImplementation().addChild(diagramView.getDiagram().getParent(), diagramView.getDiagram(), connection);
-                diagramView.getPainters().add(cp);
-            }
-            else if (type.equalsIgnoreCase("AGREGATION")){
-                ConnectionPainter cp = new AgregationPainter(connection);
-                cp.setFlag(1);
-                cp.setStartPoint(initPoint);
-                cp.setEndPoint(endPoint);
-                diagramView.getDiagram().addChild(connection);
-
-                MainFrame.getInstance().getClassyTreeImplementation().addChild(diagramView.getDiagram().getParent(), diagramView.getDiagram(), connection);
-                diagramView.getPainters().add(cp);
+            else{
+                diagramView.repaint();
             }
 
+            br=0;
             //OVO RESAVA TAJ PROBLEM SA PAINTEROM ALI PRAVI DOLE HAHAHA
 
 
@@ -277,6 +285,11 @@ public class AddConnection implements State{
                 System.out.println("dete ovog dijagrama ju " + cn.getName());
             }
         }
+        else {
+            diagramView.repaint();
+        }
+        from=null;
+        to=null;
 
     }
 
