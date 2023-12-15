@@ -3,21 +3,23 @@ package raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.co
 import raf.dsw.classycraft.app.classyRepository.composite.ClassyNode;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.Connection;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.InterClass;
+import raf.dsw.classycraft.app.core.observer.interCommunicationNotification.InterCommunicationNotification;
 
 import java.awt.*;
 
 public class Generalization extends Connection {
-    String type="";
+    String nameOf="";
 
     public Generalization(String name, ClassyNode parent, Color color, Stroke stroke, InterClass from, InterClass to) {
         super(name, parent, color, stroke, from, to);
     }
 
-    public String getType() {
-        return type;
+    public String getNameOf() {
+        return nameOf;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setNameOf(String nameOf) {
+        this.nameOf = nameOf;
+        //notifySubscribers(new InterCommunicationNotification("GENERALIZATION_NAMEOF_CHANGED"));
     }
 }

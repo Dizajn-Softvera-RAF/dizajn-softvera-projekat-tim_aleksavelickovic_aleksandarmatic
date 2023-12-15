@@ -1950,3 +1950,491 @@
 
 [NOTIFICATION] [2023-12-06T17:28:56.570212400] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@799207e9
 
+[NOTIFICATION] [2023-12-06T17:35:38.543796600] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@66660089
+
+[NOTIFICATION] [2023-12-06T19:17:25.481871] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@30a2f93
+
+[NOTIFICATION] [2023-12-06T19:19:23.653871] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@44be103d
+
+[NOTIFICATION] [2023-12-06T21:20:31.765505] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@30a2f93
+
+[NOTIFICATION] [2023-12-06T21:20:40.735371] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@18635a58
+
+[NOTIFICATION] [2023-12-06T21:20:48.045672] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@444a51a0
+
+[NOTIFICATION] [2023-12-06T21:20:50.968495] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@139c45b4
+
+[NOTIFICATION] [2023-12-06T21:21:07.904210] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@218840f7
+
+[NOTIFICATION] [2023-12-06T21:21:11.017481] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@7254edfe
+
+[NOTIFICATION] [2023-12-06T21:21:21.369156] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@5c5d5b66
+
+[NOTIFICATION] [2023-12-06T21:22:58.681504] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@30a2f93
+
+[NOTIFICATION] [2023-12-06T21:23:53.135233] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@72dfee05
+
+[NOTIFICATION] [2023-12-06T21:24:58.702884] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@2aa7583d
+
+[NOTIFICATION] [2023-12-06T21:25:25.128219] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@208f3b1c
+
+[NOTIFICATION] [2023-12-06T21:33:31.603525] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@64312e8c
+
+[NOTIFICATION] [2023-12-06T21:34:00.041845] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@3de1f561
+
+[NOTIFICATION] [2023-12-06T21:36:49.206947] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@208f3b1c
+
+[NOTIFICATION] [2023-12-06T21:38:23.339380] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@28e0b687
+
+[NOTIFICATION] [2023-12-06T21:41:33.925598] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@278af28e
+
+[NOTIFICATION] [2023-12-06T21:42:27.557327] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@66d7e4b3
+
+[NOTIFICATION] [2023-12-06T21:42:57.136066] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@24117ff4
+
+[NOTIFICATION] [2023-12-06T22:15:54.776183] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@24117ff4
+
+[NOTIFICATION] [2023-12-06T22:39:50.038880] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@29fb8024
+
+[NOTIFICATION] [2023-12-06T22:40:27.268811] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@6bcf3a6a
+
+[NOTIFICATION] [2023-12-06T22:56:56.407737] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@2e3f554b
+
+[NOTIFICATION] [2023-12-06T23:04:11.759237] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@76f9da92
+
+[NOTIFICATION] [2023-12-06T23:09:19.461159] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@2e3f554b
+
+[NOTIFICATION] [2023-12-06T23:10:51.335277] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@271c712c
+
+[NOTIFICATION] [2023-12-06T23:19:22.896496] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@36069106
+
+[NOTIFICATION] [2023-12-06T23:23:28.006044] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@1f43b25b
+
+[NOTIFICATION] [2023-12-06T23:24:02.152169] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@295c87a
+
+[NOTIFICATION] [2023-12-06T23:25:21.212920] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@d438215
+
+[NOTIFICATION] [2023-12-06T23:26:06.180145] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@5a186f89
+
+[NOTIFICATION] [2023-12-06T23:26:43.763906] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@364170dc
+
+[NOTIFICATION] [2023-12-06T23:27:31.199563] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@2e3f554b
+
+[NOTIFICATION] [2023-12-06T23:28:08.721033] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@5a217849
+
+[NOTIFICATION] [2023-12-06T23:31:42.373031] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@2541238d
+
+[NOTIFICATION] [2023-12-06T23:32:13.318627] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@6076d7e7
+
+[NOTIFICATION] [2023-12-06T23:34:26.241341] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@38a3a02a
+
+[NOTIFICATION] [2023-12-07T00:01:37.408224] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@2541238d
+
+[NOTIFICATION] [2023-12-07T00:02:32.696136] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@58e35cf0
+
+[NOTIFICATION] [2023-12-07T00:17:20.225836] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@6a5bb012
+
+[NOTIFICATION] [2023-12-07T00:19:14.607458] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@d438215
+
+[NOTIFICATION] [2023-12-07T00:21:40.521336] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@7c233fa4
+
+[NOTIFICATION] [2023-12-07T00:22:44.628703] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@d438215
+
+[NOTIFICATION] [2023-12-07T00:23:52.382941] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@63343616
+
+[NOTIFICATION] [2023-12-07T00:24:28.489106] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@538a5ade
+
+[NOTIFICATION] [2023-12-07T00:25:12.027368] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@d438215
+
+[NOTIFICATION] [2023-12-07T03:01:12.810740200] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@e890deb
+
+[NOTIFICATION] [2023-12-07T03:06:40.960109300] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@4f10de5c
+
+[NOTIFICATION] [2023-12-07T03:08:55.125110100] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@248ae745
+
+[NOTIFICATION] [2023-12-07T03:13:47.955492100] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@77830ccf
+
+[NOTIFICATION] [2023-12-07T03:15:24.599974400] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@4f616c6d
+
+[NOTIFICATION] [2023-12-07T03:16:11.739055200] CLEAR
+
+[NOTIFICATION] [2023-12-07T03:16:16.577294100] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@2471f511
+
+[NOTIFICATION] [2023-12-07T03:19:27.694204400] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@1d26c45f
+
+[NOTIFICATION] [2023-12-07T03:23:46.266619] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@741f23f8
+
+[NOTIFICATION] [2023-12-07T03:24:35.068711] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@2624a571
+
+[NOTIFICATION] [2023-12-07T03:25:55.645930300] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@4f616c6d
+
+[NOTIFICATION] [2023-12-07T03:27:18.305230700] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@570fc23c
+
+[NOTIFICATION] [2023-12-07T03:29:51.800202300] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@2c9f0d18
+
+[NOTIFICATION] [2023-12-07T03:30:34.260132200] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@2c9f0d18
+
+[NOTIFICATION] [2023-12-07T03:31:49.710316300] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@27486534
+
+[NOTIFICATION] [2023-12-07T03:33:05.923908200] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@6dafe5e0
+
+[NOTIFICATION] [2023-12-07T09:44:59.473842] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@b42038b
+
+[NOTIFICATION] [2023-12-07T10:21:11.022795] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@3941afcd
+
+[NOTIFICATION] [2023-12-07T10:25:20.704571] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@2e3f554b
+
+[NOTIFICATION] [2023-12-07T10:26:04.766450] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@278af28e
+
+[NOTIFICATION] [2023-12-07T10:26:34.180161] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@278af28e
+
+[NOTIFICATION] [2023-12-07T10:29:01.167562] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@5a186f89
+
+[NOTIFICATION] [2023-12-07T10:30:49.968302] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@9e36c07
+
+[NOTIFICATION] [2023-12-07T10:31:06.016602] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@65c4f87c
+
+[NOTIFICATION] [2023-12-07T10:35:31.721324] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@4c5af1a2
+
+[NOTIFICATION] [2023-12-07T10:35:42.714053] ADDEDPackageraf.dsw.classycraft.app.classyRepository.implementation.Diagram@1fc631be
+
+[NOTIFICATION] [2023-12-07T10:36:37.047505] ADDEDPackageDiagram
+
+[NOTIFICATION] [2023-12-07T10:36:58.809974] ADDEDPackageDiagram (1)
+
+[NOTIFICATION] [2023-12-07T10:39:10.587220] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-07T10:39:17.580036] ADDEDPackage Diagram (1)
+
+[NOTIFICATION] [2023-12-07T10:39:41.549407] ADDEDPackage (1) Diagram
+
+[NOTIFICATION] [2023-12-07T10:40:08.102951] ADDEDPackage Diagram (2)
+
+[NOTIFICATION] [2023-12-07T10:40:19.945182] ADDEDPackage (1) Diagram (1)
+
+[NOTIFICATION] [2023-12-07T10:41:18.213583] ADDEDPackage (2) Diagram
+
+[NOTIFICATION] [2023-12-07T10:46:45.731029] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-07T10:46:52.243455] ADDEDPackage Diagram (1)
+
+[NOTIFICATION] [2023-12-07T10:46:54.775720] ADDED
+
+[NOTIFICATION] [2023-12-07T10:48:03.574655] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-07T10:48:08.753337] ADDEDPackage Diagram (1)
+
+[NOTIFICATION] [2023-12-07T10:48:10.949024] ADDED
+
+[NOTIFICATION] [2023-12-07T10:49:17.788253] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-07T10:49:25.812072] ADDEDPackage Diagram (1)
+
+[NOTIFICATION] [2023-12-07T10:49:28.340179] ADDED
+
+[NOTIFICATION] [2023-12-07T10:49:33.329813] ADDEDPackage (1) Diagram
+
+[NOTIFICATION] [2023-12-07T10:52:17.604838] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-07T10:52:23.198922] ADDEDPackage Diagram(1)
+
+[NOTIFICATION] [2023-12-07T10:52:27.914769] ADDEDPackage Diagram(2)
+
+[NOTIFICATION] [2023-12-07T10:52:30.916796] ADDED
+
+[NOTIFICATION] [2023-12-07T10:52:33.977740] ADDEDPackage(1) Diagram
+
+[NOTIFICATION] [2023-12-07T10:52:56.614292] ADDEDPackage(1) Diagram(1)
+
+[NOTIFICATION] [2023-12-07T10:53:40.941226] ADDEDPackage(1) Diagram(2)
+
+[NOTIFICATION] [2023-12-07T10:53:43.613397] ADDED
+
+[NOTIFICATION] [2023-12-07T10:53:46.770625] ADDEDPackage(1) Diagram
+
+[NOTIFICATION] [2023-12-07T11:06:45.575354] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-07T11:06:56.639509] ADDEDPackage Diagram(1)
+
+[NOTIFICATION] [2023-12-07T11:07:04.007447] ADDEDPackage(1) Diagram
+
+[NOTIFICATION] [2023-12-07T11:10:59.148160] ADDEDPackage(2) Diagram
+
+[NOTIFICATION] [2023-12-07T11:14:30.384478] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-07T11:14:39.387794] ADDED
+
+[NOTIFICATION] [2023-12-07T11:14:42.766993] ADDEDPackage(1) Diagram
+
+[NOTIFICATION] [2023-12-07T11:29:46.903731] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-07T11:29:53.010988] ADDEDPackage Diagram(1)
+
+[NOTIFICATION] [2023-12-07T11:30:00.464514] ADDED
+
+[NOTIFICATION] [2023-12-07T11:30:09.602146] ADDEDPackage(1) Diagram
+
+[NOTIFICATION] [2023-12-08T03:12:01.777709900] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T03:14:20.121291400] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T03:25:22.824141100] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T03:30:24.630525200] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T03:34:33.276477500] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T03:35:12.839907200] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T03:36:50.376264100] ADDEDPackage Diagram
+
+[ERROR] [2023-12-08T03:42:05.675337700] Node_CANNOT_BE_ADDED
+
+[NOTIFICATION] [2023-12-08T03:42:10.505532500] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T03:45:17.861120300] ADDEDPackage Diagram
+
+[ERROR] [2023-12-08T03:45:46.444208200] Node_CANNOT_BE_ADDED
+
+[NOTIFICATION] [2023-12-08T03:45:52.656069] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T03:46:11.510839300] DELETED_DIAGRAMPackage raf.dsw.classycraft.app.classyRepository.implementation.Diagram@1e4efbd7
+
+[NOTIFICATION] [2023-12-08T03:46:13.671910300] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T03:46:56.952126600] ADDEDPackage Diagram
+
+[ERROR] [2023-12-08T04:02:28.478711] Node_CANNOT_BE_ADDED
+
+[NOTIFICATION] [2023-12-08T04:02:33.457645700] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T04:05:58.481015500] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T04:07:42.244258900] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T04:09:19.730654700] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T14:49:52.444498500] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T14:52:49.009700200] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T15:02:37.842044800] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T15:03:15.867420800] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T15:05:55.513932100] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T15:06:28.449444900] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T15:07:00.389331800] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T15:08:45.277067200] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T15:09:18.591170700] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T15:09:57.969608600] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T15:10:20.047881100] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T15:11:06.362508100] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T15:17:58.916584500] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T15:22:56.223912600] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T15:23:59.794679500] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T15:25:14.803785600] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T15:27:39.760401] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T15:31:00.295857] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T15:33:44.739989600] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T15:35:51.184972500] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T15:39:35.706770700] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T15:40:51.406828800] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T15:41:35.366067300] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T15:43:41.827416800] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T15:53:59.811855800] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T15:55:08.459103700] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T15:55:56.773115400] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T15:56:22.118974900] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T15:56:45.889484900] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T15:57:58.342538400] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T15:58:28.340503100] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T15:58:49.424667400] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T15:59:48.317539100] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T16:00:10.114140500] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T16:00:40.320770400] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T16:02:00.526204300] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T16:02:21.724623900] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T16:03:09.842123600] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T16:03:47.815174100] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T16:04:17.057427800] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T16:04:50.556910500] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T16:05:37.072301900] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T16:35:16.074303500] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T16:50:23.067244400] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T16:51:44.264804800] CLEAR
+
+[NOTIFICATION] [2023-12-08T16:51:49.357647800] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T16:55:18.614497] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-08T17:34:55.927081600] ADDEDPackage Diagram
+
+[ERROR] [2023-12-08T17:35:39.287312500] Class must be added outside of class
+
+[NOTIFICATION] [2023-12-09T02:39:48.948438800] ADDEDPackage Diagram
+
+[ERROR] [2023-12-09T02:39:54.898443100] Class must be added outside of class
+
+[ERROR] [2023-12-09T02:39:57.206701800] Class must be added outside of class
+
+[ERROR] [2023-12-09T02:40:00.311620600] Class must be added outside of class
+
+[ERROR] [2023-12-09T02:40:01.990435] Class must be added outside of class
+
+[NOTIFICATION] [2023-12-09T02:45:31.406054300] ADDEDPackage Diagram
+
+[ERROR] [2023-12-09T02:45:40.546615100] Class must be added outside of class
+
+[ERROR] [2023-12-09T02:45:47.437498300] Class must be added outside of class
+
+[ERROR] [2023-12-09T02:45:50.875594700] Class must be added outside of class
+
+[NOTIFICATION] [2023-12-09T02:47:57.823393100] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-12T01:31:31.007387400] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-12T01:35:11.408247300] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-12T01:35:45.687213700] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-12T01:37:11.133592200] ADDEDPackage Diagram
+
+[ERROR] [2023-12-12T01:39:08.528730100] Node_CANNOT_BE_ADDED
+
+[NOTIFICATION] [2023-12-12T01:39:13.373992900] ADDEDPackage Diagram
+
+[ERROR] [2023-12-12T01:39:20.901683] Class must be added outside of class
+
+[NOTIFICATION] [2023-12-12T01:41:42.733156600] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-12T01:42:12.216546400] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-12T01:43:42.605383300] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-12T01:45:08.080869900] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-12T01:46:13.781174900] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-12T01:49:40.518351300] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-12T01:55:15.192878200] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-12T02:03:39.577191400] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-12T02:31:23.974384100] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-12T02:40:39.164729] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-12T02:48:06.743426700] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-12T02:50:52.503786200] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-12T02:51:50.924689] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-12T02:58:13.672290] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-12T03:01:34.740005800] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-12T03:04:22.330810400] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-12T03:07:51.384484700] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-12T03:15:47.659903300] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-12T03:18:24.392613800] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-14T18:46:06.013784300] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-14T19:01:21.121011100] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-14T19:08:08.866538400] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-14T19:09:26.026862600] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-14T19:11:19.595022] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-14T19:13:39.185088300] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-14T19:15:51.976315500] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-14T19:17:03.837503600] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-14T19:19:31.747317900] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-14T19:20:59.426716600] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-14T19:21:59.866307700] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-14T19:22:59.059977600] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-14T19:25:54.060879800] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-14T19:26:59.263387400] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-14T19:28:22.740948800] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-14T19:29:09.293553800] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-14T19:30:10.295729100] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-14T19:36:15.108352400] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-14T19:36:53.402391500] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-14T19:37:52.626217500] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-14T19:41:08.855638600] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-15T02:10:42.513734500] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-15T02:11:53.552038700] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-15T02:15:59.327178300] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-15T02:25:20.105043] ADDEDPackage Diagram
+
+[NOTIFICATION] [2023-12-15T02:25:24.751042900] ADDEDPackage Diagram(1)
+
+[NOTIFICATION] [2023-12-15T02:26:35.933106600] ADDEDPackage Diagram
+

@@ -7,12 +7,18 @@ public class MyToolBar2 extends JToolBar {
         super(VERTICAL);
         setFloatable(false);
 
+
         add(MainFrame.getInstance().getActionManager().getAddInterclassAction());
         add(MainFrame.getInstance().getActionManager().getAddConnectionAction());
         add(MainFrame.getInstance().getActionManager().getEditAction());
         add(MainFrame.getInstance().getActionManager().getDeleteAction());
         add(MainFrame.getInstance().getActionManager().getSelectedAction());
         add(MainFrame.getInstance().getActionManager().getAddElementAction());
+        add(MainFrame.getInstance().getActionManager().getCloneAction());
+        add(MainFrame.getInstance().getActionManager().getZoomInAction());
+        add(MainFrame.getInstance().getActionManager().getZoomOutAction());
+
+
 
 
 

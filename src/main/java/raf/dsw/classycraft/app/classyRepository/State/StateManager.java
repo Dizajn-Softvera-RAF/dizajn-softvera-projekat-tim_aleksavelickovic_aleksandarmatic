@@ -9,6 +9,11 @@ public class StateManager {
     private Delete delete;
     private Selected selected;
     private Edit edit;
+
+    private ZoomIn zoomIn;
+    private ZoomOut zoomOut;
+
+    private Clone clone;
     public StateManager(){
         init();
     }
@@ -38,6 +43,13 @@ public class StateManager {
     }
     public void setEdit(){currState = edit;}
 
+    public void setClone(){currState=clone;}
+
+    public void setZoomIn(){currState=zoomIn;}
+    public void setZoomOut(){currState=zoomOut;}
+
+
+
     private void init() {
         addInterclass = new AddInterclass();
         addConnection = new AddConnection();
@@ -45,6 +57,11 @@ public class StateManager {
         delete = new Delete();
         selected = new Selected();
         edit = new Edit();
+        clone=new Clone();
+        zoomIn=new ZoomIn();
+        zoomOut=new ZoomOut();
         currState =  addInterclass;
+
+
     }
 }

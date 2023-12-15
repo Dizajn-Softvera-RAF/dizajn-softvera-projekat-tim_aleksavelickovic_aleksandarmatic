@@ -9,7 +9,7 @@ import java.awt.event.KeyEvent;
 public class AddConnectionAction extends AbstractClassyAction{
     public AddConnectionAction() {
         putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
-        //putValue(SMALL_ICON, loadIcon("/images/plus.png"));
+        putValue(SMALL_ICON, loadIcon("/images/veza1.png"));
         putValue(NAME, "New Connection");
         putValue(SHORT_DESCRIPTION, "New Connection");
     }

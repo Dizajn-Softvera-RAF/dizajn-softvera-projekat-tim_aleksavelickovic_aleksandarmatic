@@ -9,13 +9,8 @@ import java.util.ArrayList;
 
 public interface State {
     void misKlik(Point point,DiagramView diagramView);
-    void misPusten();
     void misPusten(Point initPoint, Point endPoint, DiagramView diagramView);
-
-    void misPrevucen(Point initPoint, Point endPoint, DiagramView diagramView);
-    void misPrevucen(ArrayList<Point> points, DiagramView diagramView);
     void misPritisnut(Point initPoint,DiagramView diagramView);
-    void misPovucen(Point currPoint,DiagramView diagramView);
     void misPovucen(Point currPoint,int i,DiagramView diagramView);
 
 }

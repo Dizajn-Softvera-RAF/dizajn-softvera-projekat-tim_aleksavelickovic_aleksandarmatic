@@ -42,6 +42,8 @@ public class MainFrame extends JFrame implements Subscriber {
     private PackageView packageView;
     private TabbedPane tabbedPane;
     private ConnectionSelectionFrame connectionSelectionFrame;
+    private NewInterClassFrame newInterClassFrame;
+    private EditFrame editFrame;
 
 
     private MainFrame(MessageGeneratorImplementation mgi){
@@ -80,15 +82,15 @@ public class MainFrame extends JFrame implements Subscriber {
         tabbedPane=new TabbedPane();
         packageView=new PackageView(infoLine,tabbedPane);
         connectionSelectionFrame = new ConnectionSelectionFrame();
-
-
+        newInterClassFrame = new NewInterClassFrame();
+        editFrame = null;
 
 
         Toolkit kit = Toolkit.getDefaultToolkit();
         Dimension screenSize = kit.getScreenSize();
         int screenHeight = screenSize.height;
         int screenWidth = screenSize.width;
-        setSize(screenWidth / 2, screenHeight / 2);
+        setSize(screenWidth , screenHeight );
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("ClassyCrafT");
@@ -151,6 +153,18 @@ public class MainFrame extends JFrame implements Subscriber {
 
     public ConnectionSelectionFrame getConnectionSelectionFrame() {
         return connectionSelectionFrame;
+    }
+
+    public NewInterClassFrame getNewInterClassFrame() {
+        return newInterClassFrame;
+    }
+
+    public EditFrame getEditFrame() {
+        return editFrame;
+    }
+
+    public void setEditFrame(EditFrame editFrame) {
+        this.editFrame = editFrame;
     }
 
     @Override

@@ -33,7 +33,10 @@ public class ClassyTreeImplementation implements ClassyTree {
     private  int selection;
     private DiagramElement diagramElement;
     private int nesto;
+
+
     private ArrayList<ClassyTreeItem> parentlist=new ArrayList<>();
+    private ArrayList<ClassyTreeItem>childlist=new ArrayList<>();
 
 
     public int getSelection() {
@@ -102,8 +105,9 @@ public class ClassyTreeImplementation implements ClassyTree {
 
 
         if(child instanceof Diagram)
-        ApplicationFramework.getInstance().getMessageGeneratorImplementation().generate("ADDED"+parent.getClassyNode().getName()+child, MessageType.NOTIFICATION, LocalDateTime.now());
-
+            ApplicationFramework.getInstance().getMessageGeneratorImplementation().generate("ADDED"+parent.getClassyNode().getName()+" "+child.getName(), MessageType.NOTIFICATION, LocalDateTime.now());
+        if(child instanceof Package && parent.getClassyNode() instanceof Package)
+            ApplicationFramework.getInstance().getMessageGeneratorImplementation().generate("ADDED", MessageType.NOTIFICATION, LocalDateTime.now());
         treeView.expandPath(treeView.getSelectionPath());
         SwingUtilities.updateComponentTreeUI(treeView);
     }
@@ -135,24 +139,67 @@ public class ClassyTreeImplementation implements ClassyTree {
 
     @Override
     public void addChild(ClassyTreeItem grandparent, ClassyTreeItem parent, ClassyTreeItem child) {
-        if(!grandparent.isNodeChild(parent))
-            System.out.println("nije mu roditelj");
-        System.out.println("broj dece "+grandparent.getChildCount());
 
-        parent.add(child);
-        //ApplicationFramework.getInstance().getMessageGeneratorImplementation().generate("ADDED", MessageType.NOTIFICATION, LocalDateTime.now());
+        for(ClassyTreeItem cti:parentlist) {
+            if (cti.getClassyNode().equals(parent)&& ((ClassyTreeItem)cti.getParent()).getClassyNode().equals(grandparent)){
+                childlist.add(child);
+                cti.add(child);
+            }
 
-        treeView.expandPath(treeView.getSelectionPath());
+
+
+        }
+
+        treeView.expandPath(treeView.getSelectionPath().pathByAddingChild(child));
         SwingUtilities.updateComponentTreeUI(treeView);
+
     }
 
     @Override
     public void addChild(ClassyTreeItem grandparent, ClassyNode parent, ClassyTreeItem child) {
         for(ClassyTreeItem cti:parentlist) {
-            if (cti.getClassyNode().equals(parent))
+            if (cti.getClassyNode().equals(parent)){
                 cti.add(child);
+                childlist.add(child);
+            }
+
 
         }
+        treeView.expandPath(treeView.getSelectionPath());
+        SwingUtilities.updateComponentTreeUI(treeView);
+    }
+    @Override
+    public void addChild(ClassyNode grandparent, ClassyNode parent, ClassyTreeItem child) {
+        for(ClassyTreeItem cti:parentlist) {
+            if (cti.getClassyNode().equals(parent)&& ((ClassyTreeItem)cti.getParent()).getClassyNode().equals(grandparent)){
+                childlist.add(child);
+                cti.add(child);
+            }
+
+
+
+        }
+
+        treeView.expandPath(treeView.getSelectionPath());
+        SwingUtilities.updateComponentTreeUI(treeView);
+
+
+    }
+
+    @Override
+    public void addChild(ClassyNode grandparent, ClassyNode parent, ClassyNode child) {
+        ClassyTreeItem cchlid=parentlist.get(0);
+        for(ClassyTreeItem cti:parentlist) {
+            if (cti.getClassyNode().equals(parent)&& ((ClassyTreeItem)cti.getParent()).getClassyNode().equals(grandparent)){
+                ClassyTreeItem cchild=new ClassyTreeItem(child);
+                childlist.add(cchild);
+                cti.add(cchild);
+            }
+
+
+
+        }
+
         treeView.expandPath(treeView.getSelectionPath());
         SwingUtilities.updateComponentTreeUI(treeView);
     }
@@ -171,5 +218,19 @@ public class ClassyTreeImplementation implements ClassyTree {
         node.removeFromParent();
         SwingUtilities.updateComponentTreeUI(treeView);
 
+    }
+
+    @Override
+    public void remove(ClassyNode node) {
+        for(ClassyTreeItem cti:childlist) {
+            if (cti.getClassyNode().equals(node)){
+                cti.removeFromParent();
+                System.out.println("if radi");
+            }
+
+
+
+        }
+        SwingUtilities.updateComponentTreeUI(treeView);
     }
 }

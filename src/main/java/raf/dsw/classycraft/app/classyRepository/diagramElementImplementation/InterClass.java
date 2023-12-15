@@ -53,6 +53,7 @@ public abstract class InterClass extends DiagramElement implements Pubsliher {
 
     public void setSize(Dimension size) {
         this.size = size;
+        notifySubscribers(new InterCommunicationNotification("SIZE"));
     }
 
     public void addSubscriber(Subscriber subscriber) {

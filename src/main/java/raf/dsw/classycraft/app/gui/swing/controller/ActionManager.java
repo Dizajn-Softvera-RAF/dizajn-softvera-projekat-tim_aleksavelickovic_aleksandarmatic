@@ -2,6 +2,9 @@ package raf.dsw.classycraft.app.gui.swing.controller;
 
 
 
+import raf.dsw.classycraft.app.classyRepository.State.ZoomIn;
+import raf.dsw.classycraft.app.classyRepository.State.ZoomOut;
+
 import javax.swing.*;
 import java.net.URL;
 
@@ -25,7 +28,13 @@ public class ActionManager{
     private  CompositionSelectionAction compositionSelectionAction;
     private DependencySelectionAction dependencySelectionAction;
     private GeneralizationSelectionAction generalizationSelectionAction;
-
+    private ZoomInAction zoomInAction;
+    private ZoomOutAction zoomOutAction;
+    private CloneAction cloneAction;
+    private ClassButtonAction classButtonAction;
+    private InterfaceButtonAction interfaceButtonAction;
+    private EnumButtonAction enumButtonAction;
+    private ConfirmAction confirmAction;
     public ActionManager() {
         initialiseActions();
     }
@@ -54,7 +63,17 @@ public class ActionManager{
         this.aboutUs = aboutUs;
     }
 
+    public ClassButtonAction getClassButtonAction() {
+        return classButtonAction;
+    }
 
+    public InterfaceButtonAction getInterfaceButtonAction() {
+        return interfaceButtonAction;
+    }
+
+    public EnumButtonAction getEnumButtonAction() {
+        return enumButtonAction;
+    }
 
     public RemoveAction getRemoveAction() {
         return removeAction;
@@ -136,6 +155,25 @@ public class ActionManager{
         return generalizationSelectionAction;
     }
 
+    public ConfirmAction getConfirmAction() {
+        return confirmAction;
+    }
+
+    public void setConfirmAction(JButton button) {
+        this.confirmAction = new ConfirmAction(button);
+    }
+
+    public void setConfirmAction(JComboBox box) {
+        this.confirmAction = new ConfirmAction(box);
+    }
+
+    public CloneAction getCloneAction() {
+        return cloneAction;
+    }
+    public ZoomInAction getZoomInAction(){return zoomInAction;}
+    public ZoomOutAction getZoomOutAction(){return zoomOutAction;}
+
+
 
     private void initialiseActions(){
         exitAction=new ExitAction();
@@ -156,6 +194,14 @@ public class ActionManager{
         compositionSelectionAction = new CompositionSelectionAction();
         dependencySelectionAction = new DependencySelectionAction();
         generalizationSelectionAction = new GeneralizationSelectionAction();
+        cloneAction=new CloneAction();
+        zoomInAction=new ZoomInAction();
+        zoomOutAction=new ZoomOutAction();
+
+        enumButtonAction = new EnumButtonAction();
+        classButtonAction = new ClassButtonAction();
+        interfaceButtonAction = new InterfaceButtonAction();
+        confirmAction = new ConfirmAction();
     }
 
 

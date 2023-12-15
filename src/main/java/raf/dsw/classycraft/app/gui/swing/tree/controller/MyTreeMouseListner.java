@@ -2,6 +2,7 @@ package raf.dsw.classycraft.app.gui.swing.tree.controller;
 
 import com.sun.tools.javac.Main;
 import raf.dsw.classycraft.app.classyRepository.composite.ClassyNode;
+import raf.dsw.classycraft.app.classyRepository.implementation.Diagram;
 import raf.dsw.classycraft.app.classyRepository.implementation.Package;
 import raf.dsw.classycraft.app.core.ApplicationFramework;
 import raf.dsw.classycraft.app.core.MessageGenerator.Message;
@@ -36,6 +37,13 @@ public class MyTreeMouseListner implements MouseListener {
                     if(cvor instanceof Package){
                         Package paket = (Package) cvor;
                         paket.show();
+                    /*    for(ClassyNode cn:((Package) cvor).getChildren()){
+                            if(cn instanceof Diagram)
+                                if(treeItem.getClassyNode().equals(cn))
+                                    treeItem.removeAllChildren();
+                        }
+
+                     */
                         ApplicationFramework.getInstance().getMessageGeneratorImplementation().notifySubscribers(paket);
                     }
                 }

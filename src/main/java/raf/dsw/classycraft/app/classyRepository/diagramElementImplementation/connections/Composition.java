@@ -3,6 +3,7 @@ package raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.co
 import raf.dsw.classycraft.app.classyRepository.composite.ClassyNode;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.Connection;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.InterClass;
+import raf.dsw.classycraft.app.core.observer.interCommunicationNotification.InterCommunicationNotification;
 
 import java.awt.*;
 
@@ -23,9 +24,11 @@ public class Composition extends Connection {
 
     public void setNameOfVariable(String nameOfVariable) {
         this.nameOfVariable = nameOfVariable;
+        notifySubscribers(new InterCommunicationNotification("COMPOSITION_CHANGED"));
     }
 
     public void setKardinalnost(String kardinalnost) {
         this.kardinalnost = kardinalnost;
+        //notifySubscribers(new InterCommunicationNotification("COMPOSITION_CHANGED"));
     }
 }

@@ -32,12 +32,16 @@ public class Package extends ClassyNodeComposite implements Pubsliher {
                 Package pack = (Package) child;
                 if (!this.getChildren().contains(pack)) {
                     this.getChildren().add(pack);
+                    notifySubscribers(new InterCommunicationNotification("ADDED_PACKAGE",pack));
                 }
             }
             if (child instanceof Diagram) {
                 Diagram diagram = (Diagram) child;
                 if (!this.getChildren().contains(diagram)) {
                     this.getChildren().add(diagram);
+                    if(!(diagram.getParent()==null))
+                        System.out.println("nije null parent");
+                    notifySubscribers(new InterCommunicationNotification("ADDED_DIAGRAM",diagram,diagram.getParent()));
                 }
             }
         }
@@ -46,6 +50,14 @@ public class Package extends ClassyNodeComposite implements Pubsliher {
             ApplicationFramework.getInstance().getMessageGeneratorImplementation().generate("Node_CANNOT_BE_ADDED", MessageType.ERROR, LocalDateTime.now());
         }
     }
+
+    @Override
+    public void removeChild(ClassyNode child) {
+        super.removeChild(child);
+        if(child instanceof Diagram)
+            notifySubscribers(new InterCommunicationNotification("DELETED_DIAGRAM",child));
+    }
+
     public ClassyNodeComposite findProject() {
         ClassyNodeComposite project = (ClassyNodeComposite) this.getParent();
         while (!(project instanceof Project)) {

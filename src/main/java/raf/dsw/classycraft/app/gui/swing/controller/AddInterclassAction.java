@@ -9,13 +9,15 @@ import java.awt.event.KeyEvent;
 public class AddInterclassAction extends AbstractClassyAction {
     public AddInterclassAction() {
         putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_K, ActionEvent.CTRL_MASK));
-        //putValue(SMALL_ICON, loadIcon("/images/plus.png"));
-        putValue(NAME, "New Class");
-        putValue(SHORT_DESCRIPTION, "New Class");
+        putValue(SMALL_ICON, loadIcon("/images/AddInterclass.png"));
+        putValue(NAME, "New Element");
+        putValue(SHORT_DESCRIPTION, "New interclass element");
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         MainFrame.getInstance().getPackageView().startAddInterclass();
+        MainFrame.getInstance().getNewInterClassFrame().setVisible(true);
+
     }
 }
