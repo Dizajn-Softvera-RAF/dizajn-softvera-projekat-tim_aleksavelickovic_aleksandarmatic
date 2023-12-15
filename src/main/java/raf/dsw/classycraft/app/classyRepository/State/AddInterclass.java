@@ -106,49 +106,50 @@ public class AddInterclass implements State{
             Interface klasa1 = (Interface) ApplicationFramework.getInstance().getClassyManufacturer().createInterClass(type,"INTERFACE"+i,diagramView.getDiagram(),Color.BLUE, new BasicStroke(), AccessModifier.PRIVATE,point, new Dimension(200,100));
             InterClassPainter incp=new InterClassPainter(klasa1);
             for (ElementPainter ep : diagramView.getPainters()) {
-                if (ep.elementAt(ep.getDiagramElement(), point, diagramView))
-                    exist = true;
-                Rectangle2D klasa=new Rectangle2D.Double((klasa1.getPostition().getX()),((InterClass) klasa1).getPostition().y,((InterClass) klasa1).getSize().width,((InterClass)klasa1).getSize().height);
-                Shape shape;
-                shape=new GeneralPath();
-                ((GeneralPath)shape).moveTo(((InterClass) ep.getDiagramElement()).getPostition().x,((InterClass) ep.getDiagramElement()).getPostition().y);
-                ((GeneralPath)shape).lineTo(((InterClass) ep.getDiagramElement()).getPostition().x+((InterClass) ep.getDiagramElement()).getSize().width, ((InterClass) ep.getDiagramElement()).getPostition().y);
-                ((GeneralPath)shape).lineTo(((InterClass) ep.getDiagramElement()).getPostition().x+((InterClass) ((InterClass) ep.getDiagramElement())).getSize().width, ((InterClass) ep.getDiagramElement()).getPostition().y+((InterClass) ((InterClass) ep.getDiagramElement())).getSize().height);
-                ((GeneralPath)shape).lineTo(((InterClass) ep.getDiagramElement()).getPostition().x, ((InterClass) ep.getDiagramElement()).getPostition().y+((InterClass) ep.getDiagramElement()).getSize().height);
-                ((GeneralPath)shape).closePath();
+                if(ep.getDiagramElement() instanceof InterClass) {
+                    if (ep.elementAt(ep.getDiagramElement(), point, diagramView))
+                        exist = true;
+                    Rectangle2D klasa = new Rectangle2D.Double((klasa1.getPostition().getX()), ((InterClass) klasa1).getPostition().y, ((InterClass) klasa1).getSize().width, ((InterClass) klasa1).getSize().height);
+                    Shape shape;
+                    shape = new GeneralPath();
+                    ((GeneralPath) shape).moveTo(((InterClass) ep.getDiagramElement()).getPostition().x, ((InterClass) ep.getDiagramElement()).getPostition().y);
+                    ((GeneralPath) shape).lineTo(((InterClass) ep.getDiagramElement()).getPostition().x + ((InterClass) ep.getDiagramElement()).getSize().width, ((InterClass) ep.getDiagramElement()).getPostition().y);
+                    ((GeneralPath) shape).lineTo(((InterClass) ep.getDiagramElement()).getPostition().x + ((InterClass) ((InterClass) ep.getDiagramElement())).getSize().width, ((InterClass) ep.getDiagramElement()).getPostition().y + ((InterClass) ((InterClass) ep.getDiagramElement())).getSize().height);
+                    ((GeneralPath) shape).lineTo(((InterClass) ep.getDiagramElement()).getPostition().x, ((InterClass) ep.getDiagramElement()).getPostition().y + ((InterClass) ep.getDiagramElement()).getSize().height);
+                    ((GeneralPath) shape).closePath();
 
-                if(shape.intersects(klasa))
-                    exist=true;
-                if(incp.elementAt(ep.getDiagramElement(),point,diagramView)){
-                    exist=true;
-                    continue;
-                }
-                if(ep.elementAt(ep.getDiagramElement(),new Point(point.x+((InterClass) klasa1).getSize().width, point.y),diagramView)){
-                    exist=true;
-                    continue;
-                }
-                if(incp.elementAt(ep.getDiagramElement(),new Point(((InterClass) ep.getDiagramElement()).getPostition().x+((InterClass) ep.getDiagramElement()).getSize().width, ((InterClass) ep.getDiagramElement()).getPostition().y),diagramView)){
-                    exist=true;
-                    continue;
-                }
+                    if (shape.intersects(klasa))
+                        exist = true;
+                    if (incp.elementAt(ep.getDiagramElement(), point, diagramView)) {
+                        exist = true;
+                        continue;
+                    }
+                    if (ep.elementAt(ep.getDiagramElement(), new Point(point.x + ((InterClass) klasa1).getSize().width, point.y), diagramView)) {
+                        exist = true;
+                        continue;
+                    }
+                    if (incp.elementAt(ep.getDiagramElement(), new Point(((InterClass) ep.getDiagramElement()).getPostition().x + ((InterClass) ep.getDiagramElement()).getSize().width, ((InterClass) ep.getDiagramElement()).getPostition().y), diagramView)) {
+                        exist = true;
+                        continue;
+                    }
 
-                if(ep.elementAt(ep.getDiagramElement(),new Point(point.x+((InterClass) klasa1).getSize().width, point.y+((InterClass) klasa1).getSize().height),diagramView)){
-                    exist=true;
-                    continue;
+                    if (ep.elementAt(ep.getDiagramElement(), new Point(point.x + ((InterClass) klasa1).getSize().width, point.y + ((InterClass) klasa1).getSize().height), diagramView)) {
+                        exist = true;
+                        continue;
+                    }
+                    if (incp.elementAt(ep.getDiagramElement(), new Point(((InterClass) ep.getDiagramElement()).getPostition().x + ((InterClass) ((InterClass) ep.getDiagramElement())).getSize().width, ((InterClass) ep.getDiagramElement()).getPostition().y + ((InterClass) ep.getDiagramElement()).getSize().height), diagramView)) {
+                        exist = true;
+                        continue;
+                    }
+                    if (ep.elementAt(ep.getDiagramElement(), new Point(point.x + ((InterClass) klasa1).getSize().width, point.y + ((InterClass) klasa1).getSize().height), diagramView)) {
+                        exist = true;
+                        continue;
+                    }
+                    if (incp.elementAt(ep.getDiagramElement(), new Point(((InterClass) ep.getDiagramElement()).getPostition().x + ((InterClass) ep.getDiagramElement()).getSize().width, ((InterClass) ep.getDiagramElement()).getPostition().y + ((InterClass) ((InterClass) ep.getDiagramElement())).getSize().height), diagramView)) {
+                        exist = true;
+                        continue;
+                    }
                 }
-                if(incp.elementAt(ep.getDiagramElement(),new Point(((InterClass) ep.getDiagramElement()).getPostition().x+((InterClass) ((InterClass) ep.getDiagramElement())).getSize().width, ((InterClass) ep.getDiagramElement()).getPostition().y+((InterClass) ep.getDiagramElement()).getSize().height),diagramView)){
-                    exist=true;
-                    continue;
-                }
-                if(ep.elementAt(ep.getDiagramElement(),new Point(point.x+((InterClass) klasa1).getSize().width, point.y+((InterClass) klasa1).getSize().height),diagramView)){
-                    exist=true;
-                    continue;
-                }
-                if(incp.elementAt(ep.getDiagramElement(),new Point(((InterClass) ep.getDiagramElement()).getPostition().x+((InterClass) ep.getDiagramElement()).getSize().width, ((InterClass) ep.getDiagramElement()).getPostition().y+((InterClass) ((InterClass) ep.getDiagramElement())).getSize().height),diagramView)){
-                    exist=true;
-                    continue;
-                }
-
             }if(exist==false){
                 diagramView.getDiagram().addChild(klasa1);
                 this.setInterClass(klasa1);
@@ -174,50 +175,52 @@ public class AddInterclass implements State{
             Enum klasa1 = (Enum) ApplicationFramework.getInstance().getClassyManufacturer().createInterClass(type,"INTERFACE"+i,diagramView.getDiagram(),Color.BLUE, new BasicStroke(), AccessModifier.PRIVATE,point, new Dimension(200,100));
             InterClassPainter incp=new InterClassPainter(klasa1);
             for (ElementPainter ep : diagramView.getPainters()) {
-                if (ep.elementAt(ep.getDiagramElement(), point, diagramView))
-                    exist = true;
-                Rectangle2D klasa=new Rectangle2D.Double((klasa1.getPostition().getX()),((InterClass) klasa1).getPostition().y,((InterClass) klasa1).getSize().width,((InterClass)klasa1).getSize().height);
-                Shape shape;
-                shape=new GeneralPath();
-                ((GeneralPath)shape).moveTo(((InterClass) ep.getDiagramElement()).getPostition().x,((InterClass) ep.getDiagramElement()).getPostition().y);
-                ((GeneralPath)shape).lineTo(((InterClass) ep.getDiagramElement()).getPostition().x+((InterClass) ep.getDiagramElement()).getSize().width, ((InterClass) ep.getDiagramElement()).getPostition().y);
-                ((GeneralPath)shape).lineTo(((InterClass) ep.getDiagramElement()).getPostition().x+((InterClass) ((InterClass) ep.getDiagramElement())).getSize().width, ((InterClass) ep.getDiagramElement()).getPostition().y+((InterClass) ((InterClass) ep.getDiagramElement())).getSize().height);
-                ((GeneralPath)shape).lineTo(((InterClass) ep.getDiagramElement()).getPostition().x, ((InterClass) ep.getDiagramElement()).getPostition().y+((InterClass) ep.getDiagramElement()).getSize().height);
-                ((GeneralPath)shape).closePath();
+                if(ep.getDiagramElement() instanceof InterClass) {
+                    if (ep.elementAt(ep.getDiagramElement(), point, diagramView))
+                        exist = true;
+                    Rectangle2D klasa = new Rectangle2D.Double((klasa1.getPostition().getX()), ((InterClass) klasa1).getPostition().y, ((InterClass) klasa1).getSize().width, ((InterClass) klasa1).getSize().height);
+                    Shape shape;
+                    shape = new GeneralPath();
+                    ((GeneralPath) shape).moveTo(((InterClass) ep.getDiagramElement()).getPostition().x, ((InterClass) ep.getDiagramElement()).getPostition().y);
+                    ((GeneralPath) shape).lineTo(((InterClass) ep.getDiagramElement()).getPostition().x + ((InterClass) ep.getDiagramElement()).getSize().width, ((InterClass) ep.getDiagramElement()).getPostition().y);
+                    ((GeneralPath) shape).lineTo(((InterClass) ep.getDiagramElement()).getPostition().x + ((InterClass) ((InterClass) ep.getDiagramElement())).getSize().width, ((InterClass) ep.getDiagramElement()).getPostition().y + ((InterClass) ((InterClass) ep.getDiagramElement())).getSize().height);
+                    ((GeneralPath) shape).lineTo(((InterClass) ep.getDiagramElement()).getPostition().x, ((InterClass) ep.getDiagramElement()).getPostition().y + ((InterClass) ep.getDiagramElement()).getSize().height);
+                    ((GeneralPath) shape).closePath();
 
-                if(shape.intersects(klasa))
-                    exist=true;
-                if(incp.elementAt(ep.getDiagramElement(),point,diagramView)){
-                    exist=true;
-                    continue;
-                }
-                if(ep.elementAt(ep.getDiagramElement(),new Point(point.x+((InterClass) klasa1).getSize().width, point.y),diagramView)){
-                    exist=true;
-                    continue;
-                }
-                if(incp.elementAt(ep.getDiagramElement(),new Point(((InterClass) ep.getDiagramElement()).getPostition().x+((InterClass) ep.getDiagramElement()).getSize().width, ((InterClass) ep.getDiagramElement()).getPostition().y),diagramView)){
-                    exist=true;
-                    continue;
-                }
+                    if (shape.intersects(klasa))
+                        exist = true;
+                    if (incp.elementAt(ep.getDiagramElement(), point, diagramView)) {
+                        exist = true;
+                        continue;
+                    }
+                    if (ep.elementAt(ep.getDiagramElement(), new Point(point.x + ((InterClass) klasa1).getSize().width, point.y), diagramView)) {
+                        exist = true;
+                        continue;
+                    }
+                    if (incp.elementAt(ep.getDiagramElement(), new Point(((InterClass) ep.getDiagramElement()).getPostition().x + ((InterClass) ep.getDiagramElement()).getSize().width, ((InterClass) ep.getDiagramElement()).getPostition().y), diagramView)) {
+                        exist = true;
+                        continue;
+                    }
 
-                if(ep.elementAt(ep.getDiagramElement(),new Point(point.x+((InterClass) klasa1).getSize().width, point.y+((InterClass) klasa1).getSize().height),diagramView)){
-                    exist=true;
-                    continue;
+                    if (ep.elementAt(ep.getDiagramElement(), new Point(point.x + ((InterClass) klasa1).getSize().width, point.y + ((InterClass) klasa1).getSize().height), diagramView)) {
+                        exist = true;
+                        continue;
+                    }
+                    if (incp.elementAt(ep.getDiagramElement(), new Point(((InterClass) ep.getDiagramElement()).getPostition().x + ((InterClass) ((InterClass) ep.getDiagramElement())).getSize().width, ((InterClass) ep.getDiagramElement()).getPostition().y + ((InterClass) ep.getDiagramElement()).getSize().height), diagramView)) {
+                        exist = true;
+                        continue;
+                    }
+                    if (ep.elementAt(ep.getDiagramElement(), new Point(point.x + ((InterClass) klasa1).getSize().width, point.y + ((InterClass) klasa1).getSize().height), diagramView)) {
+                        exist = true;
+                        continue;
+                    }
+                    if (incp.elementAt(ep.getDiagramElement(), new Point(((InterClass) ep.getDiagramElement()).getPostition().x + ((InterClass) ep.getDiagramElement()).getSize().width, ((InterClass) ep.getDiagramElement()).getPostition().y + ((InterClass) ((InterClass) ep.getDiagramElement())).getSize().height), diagramView)) {
+                        exist = true;
+                        continue;
+                    }
                 }
-                if(incp.elementAt(ep.getDiagramElement(),new Point(((InterClass) ep.getDiagramElement()).getPostition().x+((InterClass) ((InterClass) ep.getDiagramElement())).getSize().width, ((InterClass) ep.getDiagramElement()).getPostition().y+((InterClass) ep.getDiagramElement()).getSize().height),diagramView)){
-                    exist=true;
-                    continue;
-                }
-                if(ep.elementAt(ep.getDiagramElement(),new Point(point.x+((InterClass) klasa1).getSize().width, point.y+((InterClass) klasa1).getSize().height),diagramView)){
-                    exist=true;
-                    continue;
-                }
-                if(incp.elementAt(ep.getDiagramElement(),new Point(((InterClass) ep.getDiagramElement()).getPostition().x+((InterClass) ep.getDiagramElement()).getSize().width, ((InterClass) ep.getDiagramElement()).getPostition().y+((InterClass) ((InterClass) ep.getDiagramElement())).getSize().height),diagramView)){
-                    exist=true;
-                    continue;
-                }
-
-            }if(exist==false){
+            }
+            if(exist==false){
                 diagramView.getDiagram().addChild(klasa1);
                 this.setInterClass(klasa1);
 
