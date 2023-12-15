@@ -100,11 +100,11 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
         super.paintComponent(g);
 
         Graphics2D g2 = (Graphics2D) g;
-        RenderingHints rh = new RenderingHints(
+     /*   RenderingHints rh = new RenderingHints(
                 RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
         g2.setRenderingHints(rh);
-
+*/
         transform(g2);
 
       //  g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.8f));
