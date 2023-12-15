@@ -253,25 +253,13 @@ public class AddInterclass implements State{
         this.interClass = interClass;
     }
 
-    @Override
-    public void misPusten() {
 
-    }
 
     @Override
     public void misPusten(Point initPoint, Point endPoint, DiagramView diagramView) {
 
     }
 
-    @Override
-    public void misPrevucen(Point initPoint, Point endPoint, DiagramView diagramView) {
-
-    }
-
-    @Override
-    public void misPrevucen(ArrayList<Point> points, DiagramView diagramView) {
-
-    }
 
     @Override
     public void misPritisnut(Point initPoint, DiagramView diagramView) {
@@ -283,10 +271,6 @@ public class AddInterclass implements State{
 
     }
 
-    @Override
-    public void misPovucen(Point currPoint, DiagramView diagramView) {
-
-    }
 
     public void setType(String type) {
         this.type = type;

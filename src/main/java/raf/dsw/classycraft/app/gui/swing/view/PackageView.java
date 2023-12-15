@@ -139,28 +139,19 @@ public class PackageView extends JPanel implements Subscriber {
     }
     public void startEdit(){stateManager.setEdit();
         System.out.println("State Edit");}
-    public void startMove(){
-        stateManager.setMove();
-        System.out.println("State Move");
-    }
+
     public void misKlik(Point point, DiagramView dw){
         stateManager.getCurrState().misKlik(point,dw);
         this.diagramView = dw;
     }
-    public  void misPusten(){stateManager.getCurrState().misPusten();}
-    public void misPrevucen(Point initPoint, Point endPoint, DiagramView dw){stateManager.getCurrState().misPrevucen(initPoint,endPoint,dw);}
-    public void misPrevucen(ArrayList<Point> points, DiagramView diagramView){
-        stateManager.getCurrState().misPrevucen(points, diagramView);
-    }
+
     public void misPusten(Point initPoint, Point endPoint, DiagramView diagramView) {
         stateManager.getCurrState().misPusten(initPoint,endPoint,diagramView);
     }
     public void misPritisnut(Point initPoint, DiagramView diagramView){
         stateManager.getCurrState().misPritisnut(initPoint,diagramView);
     }
-    public void misPovucen(Point currPoint,DiagramView diagramView){
-        stateManager.getCurrState().misPovucen(currPoint,diagramView);
-    }
+
     public void misPovucen(Point currPoint,int i,DiagramView diagramView){
         stateManager.getCurrState().misPovucen(currPoint,i,diagramView);
     }

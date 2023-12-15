@@ -43,6 +43,7 @@ public class MainFrame extends JFrame implements Subscriber {
     private TabbedPane tabbedPane;
     private ConnectionSelectionFrame connectionSelectionFrame;
     private NewInterClassFrame newInterClassFrame;
+    private EditFrame editFrame;
 
 
     private MainFrame(MessageGeneratorImplementation mgi){
@@ -82,7 +83,7 @@ public class MainFrame extends JFrame implements Subscriber {
         packageView=new PackageView(infoLine,tabbedPane);
         connectionSelectionFrame = new ConnectionSelectionFrame();
         newInterClassFrame = new NewInterClassFrame();
-
+        editFrame = null;
 
 
         Toolkit kit = Toolkit.getDefaultToolkit();
@@ -156,6 +157,14 @@ public class MainFrame extends JFrame implements Subscriber {
 
     public NewInterClassFrame getNewInterClassFrame() {
         return newInterClassFrame;
+    }
+
+    public EditFrame getEditFrame() {
+        return editFrame;
+    }
+
+    public void setEditFrame(EditFrame editFrame) {
+        this.editFrame = editFrame;
     }
 
     @Override

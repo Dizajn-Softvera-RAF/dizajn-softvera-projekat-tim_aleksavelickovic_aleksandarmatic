@@ -1,6 +1,7 @@
 package raf.dsw.classycraft.app.gui.swing.controller;
 
 import raf.dsw.classycraft.app.gui.swing.view.MainFrame;
+import raf.dsw.classycraft.app.gui.swing.view.painters.ConnectionPainter;
 import raf.dsw.classycraft.app.gui.swing.view.painters.ElementPainter;
 
 import javax.swing.*;
@@ -21,6 +22,7 @@ public class DeleteAction extends AbstractClassyAction{
         for (int i =0;i<MainFrame.getInstance().getPackageView().getDiagramView().getPainters().size();i++){
             ElementPainter ep = MainFrame.getInstance().getPackageView().getDiagramView().getPainters().get(i);
             if (ep.getDiagramElement().isSelected()){
+                MainFrame.getInstance().getClassyTreeImplementation().remove(((ep).getDiagramElement()));
                 MainFrame.getInstance().getPackageView().getDiagramView().getPainters().remove(ep);
                 MainFrame.getInstance().getPackageView().getDiagramView().getDiagram().removeChild(ep.getDiagramElement());
                 i--;

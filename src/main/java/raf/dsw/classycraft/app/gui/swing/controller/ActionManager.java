@@ -31,10 +31,10 @@ public class ActionManager{
     private ZoomInAction zoomInAction;
     private ZoomOutAction zoomOutAction;
     private CloneAction cloneAction;
-    private MoveAction moveAction;
     private ClassButtonAction classButtonAction;
     private InterfaceButtonAction interfaceButtonAction;
     private EnumButtonAction enumButtonAction;
+    private ConfirmAction confirmAction;
     public ActionManager() {
         initialiseActions();
     }
@@ -155,15 +155,25 @@ public class ActionManager{
         return generalizationSelectionAction;
     }
 
+    public ConfirmAction getConfirmAction() {
+        return confirmAction;
+    }
+
+    public void setConfirmAction(JButton button) {
+        this.confirmAction = new ConfirmAction(button);
+    }
+
+    public void setConfirmAction(JComboBox box) {
+        this.confirmAction = new ConfirmAction(box);
+    }
+
     public CloneAction getCloneAction() {
         return cloneAction;
     }
     public ZoomInAction getZoomInAction(){return zoomInAction;}
     public ZoomOutAction getZoomOutAction(){return zoomOutAction;}
 
-    public MoveAction getMoveAction() {
-        return moveAction;
-    }
+
 
     private void initialiseActions(){
         exitAction=new ExitAction();
@@ -187,10 +197,11 @@ public class ActionManager{
         cloneAction=new CloneAction();
         zoomInAction=new ZoomInAction();
         zoomOutAction=new ZoomOutAction();
-        moveAction = new MoveAction();
+
         enumButtonAction = new EnumButtonAction();
         classButtonAction = new ClassButtonAction();
         interfaceButtonAction = new InterfaceButtonAction();
+        confirmAction = new ConfirmAction();
     }
 
 

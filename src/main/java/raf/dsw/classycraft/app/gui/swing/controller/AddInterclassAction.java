@@ -18,5 +18,6 @@ public class AddInterclassAction extends AbstractClassyAction {
     public void actionPerformed(ActionEvent e) {
         MainFrame.getInstance().getPackageView().startAddInterclass();
         MainFrame.getInstance().getNewInterClassFrame().setVisible(true);
+
     }
 }

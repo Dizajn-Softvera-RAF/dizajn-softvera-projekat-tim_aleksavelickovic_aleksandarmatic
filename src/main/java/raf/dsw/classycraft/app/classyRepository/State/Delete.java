@@ -47,37 +47,16 @@ public class Delete implements State{
             }
         }
     }
-    @Override
-    public void misPusten() {
 
-    }
 
     @Override
     public void misPusten(Point initPoint, Point endPoint, DiagramView diagramView) {
-        /*for( ElementPainter ep: diagramView.getPainters()){
-            if(ep.getDiagramElement() instanceof Connection){
-                if(((Connection) ep.getDiagramElement()).getFrom()==null ||((Connection) ep.getDiagramElement()).getTo()==null)
-                {
-                    System.out.println("uslo je u if");
-                    MainFrame.getInstance().getClassyTreeImplementation().remove((((ConnectionPainter)ep).getDiagramElement()));
-                    diagramView.getPainters().remove(ep);
-                    diagramView.getDiagram().removeChild(ep.getDiagramElement());
-                }
-            }
-        }
-
-         */
-    }
-
-    @Override
-    public void misPrevucen(Point initPoint, Point endPoint, DiagramView diagramView) {
 
     }
 
-    @Override
-    public void misPrevucen(ArrayList<Point> points, DiagramView diagramView) {
 
-    }
+
+
 
     @Override
     public void misPritisnut(Point initPoint, DiagramView diagramView) {
@@ -89,9 +68,5 @@ public class Delete implements State{
 
     }
 
-    @Override
-    public void misPovucen(Point currPoint, DiagramView diagramView) {
 
-
-    }
 }

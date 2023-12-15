@@ -158,10 +158,7 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
         this.yDiff = yDiff;
     }
 
-    public void drawRect(Rectangle2D rectangle2D){
-        Graphics2D g2 = (Graphics2D) this.getGraphics();
-        g2.drawRect((int) rectangle2D.getX(), (int) rectangle2D.getY(), (int) rectangle2D.getWidth(), (int) rectangle2D.getHeight());
-    }
+
     public Diagram getDiagram() {
         return diagram;
     }
@@ -187,7 +184,7 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
        // MainFrame.getInstance().getPackageView().misPrevucen(points,diagramView);
        // MainFrame.getInstance().getPackageView().misPovucen(point,diagramView);
         MainFrame.getInstance().getPackageView().misPovucen(zoom,i,diagramView);
-        //i++;
+
 
 
 
@@ -320,50 +317,8 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
         return false;
     }
 
-    private class MouseController extends MouseAdapter{
-        DiagramView dw = diagramView;
-        @Override
-        public void mousePressed(MouseEvent e) {
-            super.mousePressed(e);
 
 
-        }
-
-       // @Override
-       /* public void mouseClicked(MouseEvent e) {
-            super.mouseClicked(e);
-            System.out.println("mouse clicked");
-            //ovde zoves stateove pa metode za kliknut itd sa pointom za poziciju i posle se prave klase itd u zavisnosti od stejta
-            Point p = new Point(e.getX(),e.getY());
-            System.out.println("mouse point"+p.getLocation().x+" "+p.getLocation().y);
-         //   Point p=MouseInfo.getPointerInfo().getLocation();
-            MainFrame.getInstance().getPackageView().misKlik(p,dw);
-
-        }*/
-
-        @Override
-        public void mouseMoved(MouseEvent e) {
-            super.mouseMoved(e);
-            System.out.println("mis pomeren");
-
-        }
-
-        @Override
-        public void mouseDragged(MouseEvent e) {
-            super.mouseDragged(e);
-
-            MainFrame.getInstance().getPackageView().misPrevucen(initPoint,endPoint,dw);
-        }
-        //@Override
-       /* public void mouseReleased(MouseEvent e) {
-            super.mouseReleased(e);
-            System.out.println("Mis pusten");
-            MainFrame.getInstance().getPackageView().misPusten();
-        }*/
-
-
-
-    }
 
     public List<ElementPainter> getPainters() {
         return painters;
@@ -378,7 +333,7 @@ public class DiagramView extends JPanel implements Subscriber, MouseMotionListen
         name = diagram.getName();
         this.diagram.addSubscriber(this);
 
-        this.addMouseListener(new MouseController());
+        //this.addMouseListener(new MouseController());
         this.diagramView = this;
         this.addMouseListener(this);
         this.addMouseMotionListener(this);

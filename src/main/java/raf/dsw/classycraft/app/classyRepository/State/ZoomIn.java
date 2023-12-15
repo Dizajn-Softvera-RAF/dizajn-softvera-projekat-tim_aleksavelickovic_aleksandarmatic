@@ -15,10 +15,7 @@ public class ZoomIn implements State, Pubsliher {
 
     }
 
-    @Override
-    public void misPusten() {
 
-    }
 
     @Override
     public void misPusten(Point initPoint, Point endPoint, DiagramView diagramView) {
@@ -26,25 +23,9 @@ public class ZoomIn implements State, Pubsliher {
     }
 
     @Override
-    public void misPrevucen(Point initPoint, Point endPoint, DiagramView diagramView) {
-
-    }
-
-    @Override
-    public void misPrevucen(ArrayList<Point> points, DiagramView diagramView) {
-
-    }
-
-    @Override
     public void misPritisnut(Point initPoint, DiagramView diagramView) {
 
     }
-
-    @Override
-    public void misPovucen(Point currPoint, DiagramView diagramView) {
-
-    }
-
     @Override
     public void misPovucen(Point currPoint, int i, DiagramView diagramView) {
 

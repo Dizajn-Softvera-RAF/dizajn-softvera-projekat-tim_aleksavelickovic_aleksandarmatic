@@ -12,7 +12,7 @@ public class StateManager {
 
     private ZoomIn zoomIn;
     private ZoomOut zoomOut;
-    private Move move;
+
     private Clone clone;
     public StateManager(){
         init();
@@ -48,9 +48,7 @@ public class StateManager {
     public void setZoomIn(){currState=zoomIn;}
     public void setZoomOut(){currState=zoomOut;}
 
-    public void setMove() {
-        currState = move;
-    }
+
 
     private void init() {
         addInterclass = new AddInterclass();
@@ -62,7 +60,6 @@ public class StateManager {
         clone=new Clone();
         zoomIn=new ZoomIn();
         zoomOut=new ZoomOut();
-        move = new Move();
         currState =  addInterclass;
 
 

@@ -21,25 +21,16 @@ public class AddElement implements State{
 
     }
 
-    @Override
-    public void misPusten() {
 
-    }
 
     @Override
     public void misPusten(Point initPoint, Point endPoint, DiagramView diagramView) {
         elements.removeAll(elements);
     }
 
-    @Override
-    public void misPrevucen(Point initPoint, Point endPoint, DiagramView diagramView) {
 
-    }
 
-    @Override
-    public void misPrevucen(ArrayList<Point> points, DiagramView diagramView) {
 
-    }
 
     @Override
     public void misPritisnut(Point initPoint, DiagramView diagramView) {
@@ -51,10 +42,7 @@ public class AddElement implements State{
         this.setLastPoint(initPoint);
     }
 
-    @Override
-    public void misPovucen(Point currPoint, DiagramView diagramView) {
 
-    }
 
     @Override
     public void misPovucen(Point currPoint, int i, DiagramView diagramView) {

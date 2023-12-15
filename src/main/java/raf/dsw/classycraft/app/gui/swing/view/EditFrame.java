@@ -1,8 +1,6 @@
 package raf.dsw.classycraft.app.gui.swing.view;
 
-import javafx.scene.layout.HBox;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.AccessModifier;
-import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.Connection;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.DiagramElement;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.InterClass;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.connections.Agregation;
@@ -12,19 +10,15 @@ import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.con
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.diagramelements.*;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.diagramelements.Class;
 import raf.dsw.classycraft.app.classyRepository.diagramElementImplementation.diagramelements.Enum;
-import raf.dsw.classycraft.app.core.observer.interCommunicationNotification.InterCommunicationNotification;
-import raf.dsw.classycraft.app.gui.swing.view.painters.ElementPainter;
-import raf.dsw.classycraft.app.gui.swing.view.painters.InterClassPainter;
+import raf.dsw.classycraft.app.gui.swing.controller.ConfirmAction;
 
 import javax.swing.*;
-import javax.swing.text.StyledEditorKit;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Objects;
 
-public class EditFrame implements ActionListener{
+public class EditFrame {
     private JComboBox vidljivost;
     private JTextField klasaIme;
     private JComboBox vidljivostPolja;
@@ -38,6 +32,7 @@ public class EditFrame implements ActionListener{
     private JTextField cardinality;
     private JTextField type;
     private JTextField nameOf;
+    private JFrame editFrame;
     public EditFrame(DiagramElement diagramElement){if(diagramElement instanceof InterClass)init(diagramElement);
     else if (diagramElement instanceof Agregation) {
         init1(diagramElement);
@@ -51,7 +46,7 @@ public class EditFrame implements ActionListener{
     }
 
     private void init(DiagramElement diagramElement) {
-        JFrame editFrame = new JFrame();
+        editFrame = new JFrame();
         editFrame.setLayout(new BorderLayout());
         editFrame.setSize(500,500);
         editFrame.setTitle("Edit");
@@ -157,7 +152,8 @@ public class EditFrame implements ActionListener{
             }
         }
         odabirPolja.setSelectedItem("");
-        odabirPolja.addActionListener(this);
+        MainFrame.getInstance().getActionManager().setConfirmAction(odabirPolja);
+        //new ConfirmAction(odabirPolja);
         comboBox2.add(odabirPolja);
 
         atributi.add(comboBox2);
@@ -175,10 +171,10 @@ public class EditFrame implements ActionListener{
         JButton remove = new JButton();
         confirm.setText("Confirm");
         remove.setText("Remove");
-        confirm.addActionListener(this);
-        confirm.setActionCommand("Confirm");
-        remove.addActionListener(this);
-        remove.setActionCommand("Remove");
+        MainFrame.getInstance().getActionManager().setConfirmAction(confirm);
+        MainFrame.getInstance().getActionManager().setConfirmAction(remove);
+        //new ConfirmAction(confirm);
+        //new ConfirmAction(remove);
 
         JPanel buttons = new JPanel();
         buttons.setLayout(new FlowLayout());
@@ -190,11 +186,12 @@ public class EditFrame implements ActionListener{
 
         editFrame.add(centar,BorderLayout.WEST);
         editFrame.add(buttons,BorderLayout.SOUTH);
-
         editFrame.setVisible(true);
 
+
     }
-    private void init1(DiagramElement diagramElement){JFrame editFrame = new JFrame();
+    private void init1(DiagramElement diagramElement){
+        editFrame = new JFrame();
         Agregation veza = (Agregation)diagramElement;
         this.diagramElement = veza;
         editFrame.setLayout(new BorderLayout());
@@ -219,8 +216,8 @@ public class EditFrame implements ActionListener{
         kardinalnost.add(cardinality);
 
         confirm = new JButton("Confirm");
-        confirm.addActionListener(this);
-        confirm.setActionCommand("Confirm");
+        MainFrame.getInstance().getActionManager().setConfirmAction(confirm);
+        //new ConfirmAction(confirm);
         JPanel body = new JPanel();
         body.setLayout(new BoxLayout(body,BoxLayout.Y_AXIS));
         body.add(name);
@@ -233,7 +230,8 @@ public class EditFrame implements ActionListener{
         editFrame.add(bot,BorderLayout.SOUTH);
         editFrame.setVisible(true);
     }
-    private void init2(DiagramElement diagramElement){JFrame editFrame = new JFrame();
+    private void init2(DiagramElement diagramElement){
+        editFrame = new JFrame();
         Composition veza = (Composition) diagramElement;
         this.diagramElement = veza;
         editFrame.setLayout(new BorderLayout());
@@ -258,8 +256,8 @@ public class EditFrame implements ActionListener{
         kardinalnost.add(cardinality);
 
         confirm = new JButton("Confirm");
-        confirm.addActionListener(this);
-        confirm.setActionCommand("Confirm");
+        MainFrame.getInstance().getActionManager().setConfirmAction(confirm);
+        //new ConfirmAction(confirm);
         JPanel body = new JPanel();
         body.setLayout(new BoxLayout(body,BoxLayout.Y_AXIS));
         body.add(name);
@@ -270,7 +268,8 @@ public class EditFrame implements ActionListener{
         editFrame.setVisible(true);
     }
 
-    private void init3(DiagramElement diagramElement){JFrame editFrame = new JFrame();
+    private void init3(DiagramElement diagramElement){
+        editFrame = new JFrame();
         Dependency veza = (Dependency)diagramElement;
         this.diagramElement = veza;
         editFrame.setLayout(new BorderLayout());
@@ -287,14 +286,15 @@ public class EditFrame implements ActionListener{
         typePanel.add(type);
 
         confirm = new JButton("Confirm");
-        confirm.addActionListener(this);
-        confirm.setActionCommand("Confirm");
+        MainFrame.getInstance().getActionManager().setConfirmAction(confirm);
+        //new ConfirmAction(confirm);
 
         editFrame.add(typePanel,BorderLayout.CENTER);
         editFrame.add(confirm,BorderLayout.SOUTH);
         editFrame.setVisible(true);
         }
-    private void init4(DiagramElement diagramElement){JFrame editFrame = new JFrame();
+    private void init4(DiagramElement diagramElement){
+        editFrame = new JFrame();
         Generalization veza = (Generalization)diagramElement;
         this.diagramElement = veza;
         editFrame.setLayout(new BorderLayout());
@@ -310,8 +310,8 @@ public class EditFrame implements ActionListener{
         nameOf.setText(veza.getNameOf());
         centar.add(nameOf);
         confirm = new JButton("Confirm");
-        confirm.addActionListener(this);
-        confirm.setActionCommand("Confirm");
+        MainFrame.getInstance().getActionManager().setConfirmAction(confirm);
+        //new ConfirmAction(confirm);
 
         editFrame.add(centar,BorderLayout.CENTER);
         editFrame.add(confirm,BorderLayout.SOUTH);
@@ -368,7 +368,9 @@ public class EditFrame implements ActionListener{
         this.vidljivost = vidljivost;
     }
 
-
+    public DiagramElement getDiagramElement() {
+        return diagramElement;
+    }
 
     public void setClassContents(ArrayList<ClassContents> classContents) {
         this.classContents = classContents;
@@ -386,330 +388,22 @@ public class EditFrame implements ActionListener{
         this.typeReturn = typeReturn;
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        Object source = e.getSource();
-        String comand = e.getActionCommand();
-
-        if (diagramElement instanceof Class){
-            //rad sa poljima klase
-            Class klasa = (Class)diagramElement;
-            if(source.equals(odabirPolja)){
-                if(getItemFromClassContentsList((String)odabirPolja.getSelectedItem(),klasa.getClassContents())!=null){
-                    ClassContents content = getItemFromClassContentsList((String)odabirPolja.getSelectedItem(),klasa.getClassContents());//***
-                    getImePolja().setText(content.getName());
-                    getVidljivostPolja().setSelectedItem(content.getAccessModifier());
-                    getTypeReturn().setText(content.getReturnType());
-
-                }
-                else {
-                    getImePolja().setText("");
-                    getVidljivostPolja().setSelectedItem(AccessModifier.PACKAGE);
-                    getTypeReturn().setText("");
-                }
-            }
-            //izmena klase
-            if (comand.equals("Confirm")){
-                klasa.setName(getKlasaIme().getText());
-                AccessModifier accessModifier = null;
-                if(vidljivost.getSelectedItem().toString().equals(AccessModifier.PRIVATE.toString()))accessModifier = AccessModifier.PRIVATE;
-                else if (vidljivost.getSelectedItem().toString().equals(AccessModifier.PACKAGE.toString()))accessModifier = AccessModifier.PACKAGE;
-                else if (vidljivost.getSelectedItem().toString().equals(AccessModifier.PROTECTED.toString()))accessModifier = AccessModifier.PROTECTED;
-                else if (vidljivost.getSelectedItem().toString().equals(AccessModifier.PUBLIC.toString()))accessModifier = AccessModifier.PUBLIC;
-                klasa.setAccessModifier(accessModifier);
-
-                if (getOdabirPolja().getSelectedItem().toString().equals("New field")){
-                    AccessModifier ac=null;
-                    if(getVidljivostPolja().getSelectedItem().toString().equals("PRIVATE"))
-                        ac=AccessModifier.PRIVATE;
-                    else if(getVidljivostPolja().getSelectedItem().toString().equals("PUBLIC"))
-                        ac=AccessModifier.PUBLIC;
-                    else if(getVidljivostPolja().getSelectedItem().toString().equals("PACKAGE"))
-                        ac=AccessModifier.PACKAGE;
-                    else if(getVidljivostPolja().getSelectedItem().toString().equals("PROTECTED"))
-                        ac=AccessModifier.PROTECTED;
-                    Atribute classContents1 = new Atribute(getImePolja().getText(),ac);
-                    String type = getTypeReturn().getText();
-                    classContents1.setReturnType(type);
-                    klasa.addClassContents(classContents1);
-                    odabirPolja.removeAllItems();
-                    odabirPolja.addItem("");
-                    odabirPolja.addItem("New field");
-                    odabirPolja.addItem("New method");
-                    if (!(klasa.getClassContents().isEmpty())) {
-                        for (ClassContents cc : klasa.getClassContents()) {
-                            odabirPolja.addItem(cc.getName());
-                        }
-                    }
-                    odabirPolja.setSelectedItem(classContents1.getName());
-                } else if (getOdabirPolja().getSelectedItem().toString().equals("New method")) {
-                        AccessModifier ac = null;
-                        if (getVidljivostPolja().getSelectedItem().toString().equals("PRIVATE"))
-                            ac = AccessModifier.PRIVATE;
-                        else if (getVidljivostPolja().getSelectedItem().toString().equals("PUBLIC"))
-                            ac = AccessModifier.PUBLIC;
-                        else if (getVidljivostPolja().getSelectedItem().toString().equals("PACKAGE"))
-                            ac = AccessModifier.PACKAGE;
-                        else if (getVidljivostPolja().getSelectedItem().toString().equals("PROTECTED"))
-                            ac = AccessModifier.PROTECTED;
-                        Method classContents1 = new Method(getImePolja().getText(), ac);
-                        String type = getTypeReturn().getText();
-                        classContents1.setReturnType(type);
-                        klasa.addClassContents(classContents1);
-                        odabirPolja.removeAllItems();
-                        odabirPolja.addItem("");
-                        odabirPolja.addItem("New field");
-                        odabirPolja.addItem("New method");
-                        if (!(klasa.getClassContents().isEmpty())) {
-                            for (ClassContents cc : klasa.getClassContents()) {
-                                odabirPolja.addItem(cc.getName());
-                            }
-                        }
-                        odabirPolja.setSelectedItem(classContents1.getName());
-
-                }
-                else if(!(odabirPolja.getSelectedItem().toString().equals(""))){
-                    Object currSelected = odabirPolja.getSelectedItem();
-                    ClassContents currField = getItemFromClassContentsList((String)currSelected,klasa.getClassContents());//***
-                    ClassContents polje = currField;
-                    polje.setName(getImePolja().getText());
-                    polje.setReturnType(getTypeReturn().getText());
-                    if(getVidljivostPolja().getSelectedItem().toString().equals("PRIVATE"))
-                        polje.setAccessModifier(AccessModifier.PRIVATE);
-                    else if(getVidljivostPolja().getSelectedItem().toString().equals("PUBLIC"))
-                        polje.setAccessModifier(AccessModifier.PUBLIC);
-                    else if(getVidljivostPolja().getSelectedItem().toString().equals("PACKAGE"))
-                        polje.setAccessModifier(AccessModifier.PACKAGE);
-                    else if(getVidljivostPolja().getSelectedItem().toString().equals("PROTECTED"))
-                        polje.setAccessModifier(AccessModifier.PROTECTED);
-                    getImePolja().setText("");
-                    getTypeReturn().setText("");
-                    klasa.addClassContents(polje);
-                    klasa.removeClassContents(currField);
-                    odabirPolja.removeAllItems();
-                    odabirPolja.addItem("");
-                    odabirPolja.addItem("New field");
-                    odabirPolja.addItem("New method");
-                    odabirPolja.setSelectedItem("New field");
-                    if (!(klasa.getClassContents().isEmpty())) {
-                        for (ClassContents cc : klasa.getClassContents()) {
-                            odabirPolja.addItem(cc.getName());
-                        }
-                    }
-                    odabirPolja.setSelectedItem(polje.getName());
-                }
-            }if(comand.equals("Remove")&&!((odabirPolja.getSelectedItem().toString().equals(""))||(odabirPolja.getSelectedItem().toString().equals("New field"))||(odabirPolja.getSelectedItem().toString().equals("New method")))){
-                Object currSelected = odabirPolja.getSelectedItem();
-                int i = odabirPolja.getSelectedIndex();
-                ClassContents currField = getItemFromClassContentsList((String) currSelected,klasa.getClassContents());
-                klasa.removeClassContents(currField);
-                odabirPolja.removeAllItems();
-                odabirPolja.addItem("");
-                odabirPolja.addItem("New field");
-                odabirPolja.addItem("New method");
-                if (!(klasa.getClassContents().isEmpty())) {
-                    for (ClassContents cc : klasa.getClassContents()) {
-                        odabirPolja.addItem(cc.getName());
-                    }
-                }
-                odabirPolja.setSelectedIndex(i-1);
-
-            }
-
-        ///INTEFEJS///
-        }else if (diagramElement instanceof Interface){
-            Interface interfejs = (Interface) diagramElement;
-            if(source.equals(odabirPolja)){
-                if(getItemFromMethodList((String)odabirPolja.getSelectedItem(),interfejs.getMethods())!=null){
-                    Method metoda = getItemFromMethodList((String)odabirPolja.getSelectedItem(),interfejs.getMethods());
-                    getImePolja().setText(metoda.getName());
-                    getVidljivostPolja().setSelectedItem(metoda.getAccessModifier());
-                    getTypeReturn().setText(metoda.getReturnType());
-                }
-                else {
-                    getImePolja().setText("");
-                    getVidljivostPolja().setSelectedItem(AccessModifier.PACKAGE);
-                    getTypeReturn().setText("");
-                }
-            }
-            //izmena klase
-            if (comand.equals("Confirm")) {
-                interfejs.setName(getKlasaIme().getText());
-                AccessModifier accessModifier = null;
-                if(vidljivost.getSelectedItem().toString().equals(AccessModifier.PRIVATE.toString()))accessModifier = AccessModifier.PRIVATE;
-                else if (vidljivost.getSelectedItem().toString().equals(AccessModifier.PACKAGE.toString()))accessModifier = AccessModifier.PACKAGE;
-                else if (vidljivost.getSelectedItem().toString().equals(AccessModifier.PROTECTED.toString()))accessModifier = AccessModifier.PROTECTED;
-                else if (vidljivost.getSelectedItem().toString().equals(AccessModifier.PUBLIC.toString()))accessModifier = AccessModifier.PUBLIC;
-                interfejs.setAccessModifier(accessModifier);
-
-                if (getOdabirPolja().getSelectedItem().toString().equals("New method")) {
-                    AccessModifier ac = null;
-                    if (getVidljivostPolja().getSelectedItem().toString().equals("PRIVATE"))
-                        ac = AccessModifier.PRIVATE;
-                    else if (getVidljivostPolja().getSelectedItem().toString().equals("PUBLIC"))
-                        ac = AccessModifier.PUBLIC;
-                    else if (getVidljivostPolja().getSelectedItem().toString().equals("PACKAGE"))
-                        ac = AccessModifier.PACKAGE;
-                    else if (getVidljivostPolja().getSelectedItem().toString().equals("PROTECTED"))
-                        ac = AccessModifier.PROTECTED;
-                    Method metoda = new Method(getImePolja().getText(), ac);
-                    metoda.setReturnType(getTypeReturn().getText());
-                    interfejs.addMethods(metoda);
-                    odabirPolja.removeAllItems();
-                    odabirPolja.addItem("");
-                    odabirPolja.addItem("New method");
-                    if (!(interfejs.getMethods().isEmpty())) {
-                        for (Method method : interfejs.getMethods()) {
-                            odabirPolja.addItem(method.getName());
-                        }
-                    }
-                    odabirPolja.setSelectedItem(metoda.getName());
-
-                } else if (!(odabirPolja.getSelectedItem().toString().equals(""))){
-                    Object currChosen= odabirPolja.getSelectedItem();
-                    Method currMethod = getItemFromMethodList((String) currChosen,interfejs.getMethods());
-                    Method polje = currMethod;
-                    polje.setName(getImePolja().getText());
-                    polje.setReturnType(getTypeReturn().getText());
-                    if (getVidljivostPolja().getSelectedItem().toString().equals("PRIVATE"))
-                        polje.setAccessModifier(AccessModifier.PRIVATE);
-                    else if (getVidljivostPolja().getSelectedItem().toString().equals("PUBLIC"))
-                        polje.setAccessModifier(AccessModifier.PUBLIC);
-                    else if (getVidljivostPolja().getSelectedItem().toString().equals("PACKAGE"))
-                        polje.setAccessModifier(AccessModifier.PACKAGE);
-                    else if (getVidljivostPolja().getSelectedItem().toString().equals("PROTECTED"))
-                        polje.setAccessModifier(AccessModifier.PROTECTED);
-                    getImePolja().setText("");
-                    interfejs.addMethods(polje);
-                    interfejs.removeMethods(currMethod);
-                    odabirPolja.removeAllItems();
-                    odabirPolja.addItem("");
-                    odabirPolja.addItem("New method");
-                    odabirPolja.setSelectedItem("New method");
-                    if (!(interfejs.getMethods().isEmpty())) {
-                        for (Method method : interfejs.getMethods()) {
-                            odabirPolja.addItem(method.getName());
-                        }
-                    }
-                    odabirPolja.setSelectedItem(polje.getName());
-
-                }
-            }if (comand.equals("Remove")&&!((odabirPolja.getSelectedItem().toString().equals("")||(odabirPolja.getSelectedItem().toString().equals("New method"))))){
-
-                Object currChosen= odabirPolja.getSelectedItem();
-                int i = odabirPolja.getSelectedIndex();
-                Method currMethod = getItemFromMethodList((String) currChosen,interfejs.getMethods());
-                interfejs.removeMethods(currMethod);
-                odabirPolja.removeAllItems();
-                odabirPolja.addItem("");
-                odabirPolja.addItem("New method");
-                if (!(interfejs.getMethods().isEmpty())) {
-                    for (Method method : interfejs.getMethods()) {
-                        odabirPolja.addItem(method.getName());
-                    }
-                }
-                odabirPolja.setSelectedIndex(i-1);
-            }
-         ///ENUM///
-        }else if (diagramElement instanceof Enum) {
-            Enum enum2 = (Enum) diagramElement;
-            if(source.equals(odabirPolja)){
-                if(!(odabirPolja.getSelectedItem().toString().equalsIgnoreCase("New type"))){
-                    String type = odabirPolja.getSelectedItem().toString();
-                    getImePolja().setText(type);
-                }
-                else {
-                    getImePolja().setText("");
-                }
-            }
-            if(comand.equals("Confirm")){
-                enum2.setName(getKlasaIme().getText());
-                AccessModifier accessModifier = null;
-                if(vidljivost.getSelectedItem().toString().equals(AccessModifier.PRIVATE.toString()))accessModifier = AccessModifier.PRIVATE;
-                else if (vidljivost.getSelectedItem().toString().equals(AccessModifier.PACKAGE.toString()))accessModifier = AccessModifier.PACKAGE;
-                else if (vidljivost.getSelectedItem().toString().equals(AccessModifier.PROTECTED.toString()))accessModifier = AccessModifier.PROTECTED;
-                else if (vidljivost.getSelectedItem().toString().equals(AccessModifier.PUBLIC.toString()))accessModifier = AccessModifier.PUBLIC;
-                enum2.setAccessModifier(accessModifier);
-                if (getOdabirPolja().getSelectedItem().toString().equals("New type")) {
-                    String type = imePolja.getText();
-                    enum2.addTypes(type);
-                    odabirPolja.removeAllItems();
-                    odabirPolja.addItem("New type");
-                    if (!(enum2.getTypes().isEmpty())) {
-                        for (String method : enum2.getTypes()) {
-                            odabirPolja.addItem(method);
-                        }
-                    }
-                    odabirPolja.setSelectedItem(type);
-                }else if (!(odabirPolja.getSelectedItem().equals(""))){
-                    String currType = odabirPolja.getSelectedItem().toString();
-                    String type = imePolja.getText();
-                    getImePolja().setText("");
-                    enum2.addTypes(type);
-                    enum2.removeTypes(currType);
-                    odabirPolja.removeAllItems();
-                    odabirPolja.addItem("");
-                    odabirPolja.addItem("New type");
-                    odabirPolja.setSelectedItem("New type");
-                    if (!(enum2.getTypes().isEmpty())) {
-                        for (String method : enum2.getTypes()) {
-                            odabirPolja.addItem(method);
-                        }
-                    }
-                    odabirPolja.setSelectedItem(type);
-                }
-            }
-            if (comand.equals("Remove")&&!((odabirPolja.getSelectedItem().toString().equals(""))||(odabirPolja.getSelectedItem().toString().equals("New type")))){
-                int i = odabirPolja.getSelectedIndex();
-                String currType = odabirPolja.getSelectedItem().toString();
-                enum2.removeTypes(currType);
-                odabirPolja.removeAllItems();
-                odabirPolja.addItem("");
-                odabirPolja.addItem("New type");
-                if (!(enum2.getTypes().isEmpty())) {
-                    for (String method : enum2.getTypes()) {
-                        odabirPolja.addItem(method);
-                    }
-                }
-                odabirPolja.setSelectedIndex(i-1);
-            }
-        }else if (comand.equals("Confirm")) {
-            if (diagramElement instanceof Agregation) {
-                Agregation veza = (Agregation) diagramElement;
-                veza.setNameOfVariable(nameOfVariable.getText());
-                veza.setKardinalnost(cardinality.getText());
-
-            }
-            if (diagramElement instanceof Composition) {
-                Composition veza = (Composition) diagramElement;
-                veza.setNameOfVariable(nameOfVariable.getText());
-                veza.setKardinalnost(cardinality.getText());
-            }
-            if (diagramElement instanceof Generalization) {
-                Generalization veza = (Generalization) diagramElement;
-                veza.setNameOf(nameOf.getText());
-            }
-            if (diagramElement instanceof Dependency) {
-
-                Dependency veza = (Dependency) diagramElement;
-                veza.setType(type.getText());
-            }
-        }
-    }
-    public  Method getItemFromMethodList(String ime, ArrayList<Method> metode){
-        Method metoda;
-        for (Method metod: metode){
-            if (metod.getName().equals(ime)){metoda = metod;return metoda;}
-        }
-
-        return null;
-    }
-    public ClassContents getItemFromClassContentsList(String ime, ArrayList<ClassContents> classContents){
-        ClassContents trazeni;
-        for(ClassContents cc: classContents){
-            if(cc.getName().equals(ime)){trazeni = cc;return trazeni;}
-        }
-        return null;
+    public JTextField getNameOfVariable() {
+        return nameOfVariable;
     }
 
+    public JTextField getCardinality() {
+        return cardinality;
+    }
+
+    public JTextField getNameOf() {
+        return nameOf;
+    }
+
+    public JTextField getType() {
+        return type;
+    }
+    public void dispose(){
+        this.editFrame.dispose();
+    }
 }
